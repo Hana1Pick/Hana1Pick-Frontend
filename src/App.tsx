@@ -1,18 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import MainPage from './pages/MainPage';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import MainPage from "./pages/MainPage";
+import { DepositCreation1 } from "./pages";
 
 function App() {
   return (
-    <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<MainPage/>}/>
+          <Route path="/" element={<MainPage />} />
+          <Route path="deposit" element={<DepositCreation1 />} />
         </Routes>
       </BrowserRouter>
-    </div>
   );
 }
 
