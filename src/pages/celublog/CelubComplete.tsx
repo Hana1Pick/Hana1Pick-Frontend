@@ -1,4 +1,4 @@
-import checkImg from '../../assets/images/check.png';
+import checkImg from '../../assets/images/common/check.png';
 function CelubComplete(){
     const goList=()=>{
         window.location.href="/celub/list";

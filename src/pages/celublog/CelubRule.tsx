@@ -17,8 +17,8 @@ function CelubRule(){
                     </div>
 
                     <div className="celub-rulemake-box3">
-                        <input className="celub-rulemake-input1" type="text" />
-                        <input className="celub-rulemake-input2" type="number" />
+                        <input placeholder="규칙을 입력해주세요." className="celub-rulemake-input1" type="text" />
+                        <input placeholder="금액을 입력해주세요." className="celub-rulemake-input2" type="number" />
                     </div>
                     <div className="celub-rulemake-box4">
                         <button className="celub-addrule-btn">추가</button>         

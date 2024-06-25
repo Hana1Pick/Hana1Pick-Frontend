@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CelubHeader3 from "../../layouts/CelubHeader3";
-import bgImg from "../../assets/images/cha.png";
+import bgImg from "../../assets/images/celub/cha.png";
 import { CelubHistoryType, CelubRuleType } from '../../type/commonType';
 
 const CelubDetail: React.FC = () => {

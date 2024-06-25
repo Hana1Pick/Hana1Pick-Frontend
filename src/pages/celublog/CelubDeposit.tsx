@@ -1,6 +1,6 @@
 import React, { useState} from 'react';
 import CelubHeader3 from "../../layouts/CelubHeader3";
-import bgImg from "../../assets/images/cha.png";
+import bgImg from "../../assets/images/celub/cha.png";
 
 function CelubDeposit(){
     const [isExpanded, setIsExpanded] = useState(false);

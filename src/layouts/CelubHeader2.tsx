@@ -1,5 +1,5 @@
-import arrow from'../assets/images/arrow.png';
-import setting from '../assets/images/setting.png';
+import arrow from'../assets/images/celub/arrow.png';
+import setting from '../assets/images/celub/setting.png';
 function CelubHeader2(){
     return(
         <>

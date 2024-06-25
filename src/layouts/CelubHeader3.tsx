@@ -1,6 +1,6 @@
-import arrow from'../assets/images/arrow.png';
-import setting from '../assets/images/setting.png';
-import share from '../assets/images/share.png'
+import arrow from'../assets/images/celub/arrow.png';
+import setting from '../assets/images/celub/setting.png';
+import share from '../assets/images/celub/share.png'
 function CelubHeader3(){
     return(
         <>

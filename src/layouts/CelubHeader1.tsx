@@ -1,4 +1,4 @@
-import arrow from'../assets/images/arrow.png';
+import arrow from'../assets/images/celub/arrow.png';
 function CelubHeader1(){
     return(
         <>

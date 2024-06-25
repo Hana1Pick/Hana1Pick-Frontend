@@ -1,5 +1,5 @@
-import bgImg from '../../assets/images/CelubBack.png';
-import logo from '../../assets/images/heart.png'; 
+import bgImg from '../../assets/images/celub/CelubBack.png';
+import logo from '../../assets/images/celub/heart.png'; 
 import './CelublogStyle.scss';
 function CelubPage(){
     return(
