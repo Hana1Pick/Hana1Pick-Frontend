@@ -64,7 +64,7 @@ function SelectAccountPage() {
       <div id='main'>
         <div id='searchbar' onClick={search}>
           <IoSearchOutline id='searchIcon' />
-          <span id='searchSpan'>계좌번호 입력</span>
+          <span id='searchSpan'>받는 사람 이름 또는 계좌번호</span>
         </div>
         {renderAccounts('내 계좌', myAccId)}
         {renderAccounts('최근 보낸 계좌', recentAccId)}
