@@ -21,7 +21,7 @@ function SearchAccountPage() {
     };
 
     axios
-      .post(url, data)
+      .get(url, { params: data })
       .then((res) => {
         console.log(res.data);
         setAccId(res.data.data.accId);

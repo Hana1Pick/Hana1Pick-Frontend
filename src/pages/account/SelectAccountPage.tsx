@@ -20,7 +20,7 @@ function SelectAccountPage() {
 
   useEffect(() => {
     axios
-      .post(url, data)
+      .get(url, { params: data })
       .then((res) => {
         console.log(res.data);
         setMyAccId(res.data.data.myAccId);
