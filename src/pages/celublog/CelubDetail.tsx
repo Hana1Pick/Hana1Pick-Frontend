@@ -48,16 +48,16 @@ const CelubDetail: React.FC = () => {
     }
 
     const history=()=>{
-        // setHistoryList([
-        //     {   date: "6.18", ruleName: "은우 라방", hashtag: "#공카댓글",
-        //         ruleMoney: 5000, totalBalance: 593900},
-        //         {   date: "6.18", ruleName: "은우 라방", hashtag: "#공카댓글",
-        //             ruleMoney: 5000, totalBalance: 593900},
-        //             {   date: "6.18", ruleName: "은우 라방", hashtag: "#공카댓글",
-        //                 ruleMoney: 5000, totalBalance: 593900},
-        //                 {   date: "6.18", ruleName: "은우 라방", hashtag: "#공카댓글",
-        //                     ruleMoney: 5000, totalBalance: 593900}
-        // ])
+        setHistoryList([
+            {   date: "6.18", ruleName: "은우 라방", hashtag: "#공카댓글",
+                ruleMoney: 5000, totalBalance: 593900},
+                {   date: "6.18", ruleName: "은우 라방", hashtag: "#공카댓글",
+                    ruleMoney: 5000, totalBalance: 593900},
+                    {   date: "6.18", ruleName: "은우 라방", hashtag: "#공카댓글",
+                        ruleMoney: 5000, totalBalance: 593900},
+                        {   date: "6.18", ruleName: "은우 라방", hashtag: "#공카댓글",
+                            ruleMoney: 5000, totalBalance: 593900}
+        ])
         setIsHistory(true);
         setIsRule(false);
     }
@@ -126,8 +126,8 @@ const CelubDetail: React.FC = () => {
                                         <table className="celub-history-table">
                                             <tr>
                                                 <td>{his.date}</td>
-                                                <td>{his.ruleName} <br/> {his.hashtag} </td>
-                                                <td>+{his.ruleMoney}원 <br/> {his.totalBalance}원 </td>
+                                                <td>{his.ruleName} <br/> <div className="celub-hashtag">{his.hashtag}</div> </td>
+                                                <td>+{his.ruleMoney}원 <br/> <div className="celub-totalmoney">{his.totalBalance}원</div> </td>
                                             </tr>
                                         </table>
                                     </div>
