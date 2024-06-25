@@ -4,6 +4,13 @@
   margin: auto;
 }
 
+#nextBtn {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 3.5em;
+}
+
 /** SelectAccountPage **/
 #searchbar {
   display: flex;
@@ -77,71 +84,4 @@ input#accountId::placeholder {
 
 .accountData .accountInfo {
   font-weight: 500;
-}
-
-/** GetAmountPage : amount(35%) + accountInfo(2.5em) + nextBtn(3.5em) + calculator(100 - 35% - 6em) **/
-#amount {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 35%;
-  font-size: 2.5em;
-  color: #c4c4c4;
-}
-
-#accountInfo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 0.5em;
-  height: 2em;
-  background-color: #f8f8f8;
-  border-radius: 0.5em;
-}
-
-#calculator {
-  height: calc(100% - 35% - 2.5em);
-}
-
-#calculator .row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  justify-content: space-around;
-  height: 20%;
-}
-
-#calculator .amountBtn1 {
-  width: 23%;
-  height: 2.2em;
-  background-color: #ffffff;
-  border: 0.15em solid #cfcfcf;
-  border-radius: 0.5em;
-  font-size: 1em;
-  font-weight: 550;
-}
-
-#calculator .amountBtn2 {
-  width: 33.3%;
-  height: 100%;
-  background-color: #ffffff;
-  border: none;
-  font-size: 1.5em;
-  font-weight: 550;
-}
-
-#calculator .amountBtn2:hover {
-  width: 33.3%;
-  height: 100%;
-  background-color: #cfcfcf;
-  border: none;
-  font-size: 1.5em;
-  font-weight: 550;
-}
-
-#nextBtn {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 3.5em;
 }
