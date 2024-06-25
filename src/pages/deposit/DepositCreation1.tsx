@@ -1,10 +1,31 @@
 import React from "react";
-import styles from '../../common/styles/scss/CommonStyle.css'
+import "../../common/styles/scss/CommonStyle.css";
+import "./style.css";
+import Logo from "../../assets/images/Logo.png";
+import Default from "../../assets/images/CreateDeposit.jpg";
+import { useNavigate } from "react-router-dom";
 
-const DepositCreation1: React.FC = () => {
+
+function DepositCreation1() {
+
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => navigate("/deposit2");
+  
   return (
-    <div>
-      <h3 className={styles.title}>먼저, 정보를 입력받을게요</h3>
-    </div>
+    <>
+      <div className="image-container">
+        <div className="image1-container">
+          <img src={Logo} />
+        </div>
+        <div className="image2-container">
+            <button className="button2-container" onClick={handleButtonClick}>
+              <img src={Default} />
+            </button>
+        </div>
+      </div>
+    </>
   );
-};
+}
+
+export default DepositCreation1;

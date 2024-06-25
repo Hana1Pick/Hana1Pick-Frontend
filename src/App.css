@@ -32,12 +32,11 @@
   }
 }
 
-
 @font-face {
-  font-family: "Hana1Pick";
-  src: url("./fonts/PRETENDARDVARIABLE.TTF");
+  font-family: 'Hana1Pick';
+  src: url('./fonts/PRETENDARDVARIABLE.TTF');
 }
 
-*{
-  font-family: "Hana1Pick" !important;
+* {
+  font-family: 'Hana1Pick' !important;
 }
