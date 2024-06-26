@@ -8,6 +8,7 @@ import CelubAccountList from './pages/celublog/CelubAccountList';
 import CelubDetail from './pages/celublog/CelubDetail';
 import CelubRule from './pages/celublog/CelubRule';
 import CelubDeposit from './pages/celublog/CelubDeposit';
+import Pattern from './components/pattern/PatternPage';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/celub/detail" element={<CelubDetail/>}/>
           <Route path="/celub/rule" element={<CelubRule/>}/>
           <Route path="/celub/deposit" element={<CelubDeposit/>}/>
+          <Route path="/pattern/:nextUrl" element={<Pattern />}/>
         </Routes>
       </BrowserRouter>
     </div>
