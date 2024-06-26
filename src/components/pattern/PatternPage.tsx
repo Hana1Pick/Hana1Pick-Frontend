@@ -59,9 +59,8 @@ function PatternPassword(){
           password+= selectedPoints[i];
         }
         alert("password: "+password);
-        // navigate(`${nextUrl}`);
+        navigate("/"+`${nextUrl}`);
         console.log(`${nextUrl}`);
-        window.location.href = "/"+`${nextUrl}`;
       }
     }
   };
