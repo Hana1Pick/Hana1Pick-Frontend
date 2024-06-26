@@ -23,7 +23,7 @@ function App() {
           <Route path="/celub/detail" element={<CelubDetail/>}/>
           <Route path="/celub/rule" element={<CelubRule/>}/>
           <Route path="/celub/deposit" element={<CelubDeposit/>}/>
-          <Route path="/pattern/:nextUrl" element={<Pattern />}/>
+          <Route path="/pattern" element={<Pattern nextUrl="celub-withdraw/complete"/>}/>
         </Routes>
       </BrowserRouter>
     </div>
