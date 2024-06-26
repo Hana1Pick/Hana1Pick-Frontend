@@ -15,5 +15,4 @@ function CommonBtn({ type, value, onClick }: CommonBtnProps) {
     </>
   );
 }
-
 export default CommonBtn;
