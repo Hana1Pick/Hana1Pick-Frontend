@@ -3,7 +3,6 @@ import "../../common/styles/scss/CommonStyle.css"; // SCSS 파일 경로
 import Header from "../../components/Header";
 import "./style.css";
 import DomesticAuth from "./DomesticAuth";
-import { useNavigate } from "react-router-dom";
 
 function DepositCreation2() {
   const [value, setValue] = useState<string>("");
@@ -53,7 +52,7 @@ function DepositCreation2() {
             </div>
           </div>
         </div>
-        {value && (
+        {value === "Korean" && (
           <div>
             <DomesticAuth rtcRoomNum={rtcRoomNum} />
           </div>
