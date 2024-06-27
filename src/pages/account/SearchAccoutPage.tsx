@@ -1,22 +1,23 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { IoSearchOutline } from 'react-icons/io5';
 
 import Header from '../../components/Header';
 import CommonBtn from '../../components/button/CommonBtn';
 import AccountCard from '../../components/card/AccountCard';
-import './../../common/styles/scss/AccountStyle.css';
+import './../../common/styles/scss/AccountStyle.scss';
+import { AccountContext } from '../../contexts/AccountContextProvider';
 
 function SearchAccountPage() {
+  const { outAccId }: any = useContext(AccountContext);
   const [accId, setAccId] = useState([]);
 
   const handleInputChange = (event: any) => {
-    const url = `http://${process.env.REACT_APP_BE_SERVER_URI}/api/account/cash-out/history`;
+    const url = `http://${process.env.REACT_APP_BESERVERURI}/api/account/cash-out/history`;
 
-    /* TODO */
-    console.log(event.target.value);
     const data = {
-      outAccId: '02-00-0010124',
+      outAccId: outAccId,
       query: event.target.value,
     };
 
@@ -38,7 +39,7 @@ function SearchAccountPage() {
         <div className='blockContent'>
           {accounts && accounts.length > 0 ? (
             accounts.map((item, index) => (
-              <AccountCard key={index} value={item} onClick={next} />
+              <AccountCard key={index} value={item} />
             ))
           ) : (
             <span className='blockContentSpan'>
@@ -50,8 +51,9 @@ function SearchAccountPage() {
     );
   };
 
+  const navigate = useNavigate();
   const next = () => {
-    window.location.href = `http://${process.env.REACT_APP_FE_SERVER_URI}/cash-out/amount`;
+    navigate('/cash-out/amount');
   };
 
   return (
@@ -70,7 +72,7 @@ function SearchAccountPage() {
         {renderAccounts('계좌번호', accId)}
       </div>
       <div id='nextBtn'>
-        <CommonBtn type='black' value='다음' onClick={next} />
+        <CommonBtn type='black' value='다음' onClick={next} disabled={false} />
       </div>
     </div>
   );

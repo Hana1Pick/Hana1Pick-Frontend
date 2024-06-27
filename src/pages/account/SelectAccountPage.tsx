@@ -1,21 +1,22 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { IoSearchOutline } from 'react-icons/io5';
 
 import Header from '../../components/Header';
 import AccountCard from '../../components/card/AccountCard';
-import './../../common/styles/scss/AccountStyle.css';
+import './../../common/styles/scss/AccountStyle.scss';
+import { AccountContext } from '../../contexts/AccountContextProvider';
 
 function SelectAccountPage() {
+  const { userIdx, outAccId }: any = useContext(AccountContext);
   const [myAccId, setMyAccId] = useState([]);
   const [recentAccId, setRecentAccId] = useState([]);
 
-  const url = `http://${process.env.REACT_APP_BE_SERVER_URI}/api/account/cash-out`;
-
-  /* TODO */
+  const url = `http://${process.env.REACT_APP_BESERVERURI}/api/account/cash-out`;
   const data = {
-    userIdx: '550e8400-e29b-41d4-a716-446655440000',
-    outAccId: '02-00-0010124',
+    userIdx: userIdx,
+    outAccId: outAccId,
   };
 
   useEffect(() => {
@@ -38,7 +39,7 @@ function SelectAccountPage() {
         <div className='blockContent'>
           {accounts && accounts.length > 0 ? (
             accounts.map((item, index) => (
-              <AccountCard key={index} value={item} onClick={next} />
+              <AccountCard key={index} value={item} />
             ))
           ) : (
             <span className='blockContentSpan'>
@@ -50,18 +51,19 @@ function SelectAccountPage() {
     );
   };
 
+  const navigate = useNavigate();
   const search = () => {
-    window.location.href = `http://${process.env.REACT_APP_FE_SERVER_URI}/cash-out/account-query`;
+    navigate('/cash-out/account-query');
   };
 
   const next = () => {
-    window.location.href = `http://${process.env.REACT_APP_FE_SERVER_URI}/cash-out/amount`;
+    navigate('/cash-out/amount');
   };
 
   return (
     <div>
       <Header value='이체' />
-      <div id='main'>
+      <div>
         <div id='searchbar' onClick={search}>
           <IoSearchOutline id='searchIcon' />
           <span id='searchSpan'>받는 사람 이름 또는 계좌번호</span>

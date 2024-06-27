@@ -1,27 +1,36 @@
-import accountImage from '../../assets/images/CircleLogo.png';
+import CelublogCircleLogo from '../../assets/images/account/CelublogCircleLogo.png';
+import MoaClubCircleLogo from '../../assets/images/account/MoaClubCircleLogo.png';
+import DepositCircleLogo from '../../assets/images/account/DepositCircleLogo.png';
+import { useContext } from 'react';
+import { AccountContext } from '../../contexts/AccountContextProvider';
+import { useNavigate } from 'react-router-dom';
 
 type AccountData = {
-  accountInfo: string;
+  accountType: string;
   accountId: string;
+  name: string;
 };
 
-function AccountCard({
-  value,
-  onClick,
-}: {
-  value: AccountData;
-  onClick: () => void;
-}) {
-  console.log(value);
+function AccountCard({ value }: { value: AccountData }) {
+  const { setInAccType, setInAccId, setInAccName }: any =
+    useContext(AccountContext);
+  const navigate = useNavigate();
 
-  const accountInfoMap: { [key: string]: string } = {
-    deposit: '하나원픽 입출금 통장',
-    celublog: '하나원픽 셀럽로그',
-    moaclub: '하나원픽 모아클럽',
+  const next = (value: AccountData) => {
+    setInAccType(value.accountType);
+    setInAccId(value.accountId);
+    setInAccName(value.name);
+    navigate('/cash-out/amount');
   };
 
-  function getAccountInfo(key: string) {
-    return accountInfoMap[key] || key; // 해당 키가 없을 경우 키 자체를 반환
+  const accountTypeMap: { [key: string]: string } = {
+    deposit: DepositCircleLogo,
+    celublog: CelublogCircleLogo,
+    moaclub: MoaClubCircleLogo,
+  };
+
+  function getAccountType(accountType: string) {
+    return accountTypeMap[accountType] || '';
   }
 
   if (!value) {
@@ -30,12 +39,16 @@ function AccountCard({
 
   return (
     <>
-      <div className='accountCard' onClick={onClick}>
+      <div className='accountCard' onClick={() => next(value)}>
         <div>
-          <img className='accountImage' src={accountImage} alt='accountImage' />
+          <img
+            className='accountImage'
+            src={getAccountType(value.accountType)}
+            alt='accountImage'
+          />
         </div>
         <div className='accountData'>
-          <div className='accountInfo'>{getAccountInfo(value.accountInfo)}</div>
+          <div className='accountInfo'>{value.name}</div>
           <div className='accountId'>{value.accountId}</div>
         </div>
       </div>
