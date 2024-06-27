@@ -20,15 +20,15 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/celub" element={<CelubPage />} />
-          <Route path="/celub-withdraw" element={<CelubWithdraw />} />
-          <Route path="/celub-withdraw/complete" element={<CelubComplete />} />
-          <Route path="/celub/list" element={<CelubAccountList />} />
-          <Route path="/celub/detail" element={<CelubDetail />} />
-          <Route path="/celub/rule" element={<CelubRule />} />
-          <Route path="/celub/deposit" element={<CelubDeposit />} />
-          <Route path="/pattern/:nextUrl" element={<Pattern />} />
+          <Route path="/" element={<MainPage/>}/>
+          <Route path="/celub" element={<CelubPage/>}/>
+          <Route path="/celub-withdraw" element={<CelubWithdraw/>}/>
+          <Route path="/celub-withdraw/complete" element={<CelubComplete/>}/>
+          <Route path="/celub/list" element={<CelubAccountList/>}/>
+          <Route path="/celub/detail" element={<CelubDetail/>}/>
+          <Route path="/celub/rule" element={<CelubRule/>}/>
+          <Route path="/celub/deposit" element={<CelubDeposit/>}/>
+          <Route path="/pattern" element={<Pattern nextUrl="celub-withdraw/complete"/>}/>
           <Route path="deposit" element={<DepositCreation1 />} />
           <Route path="/deposit2" element={<DepositCreation2 />} />
           <Route path="/deposit3" element={<PatternPassword />} />

@@ -1,14 +1,16 @@
 import React, { useRef, useState } from "react";
-import Header from "../../layouts/CelubHeader3";
 import PattrenBg from "../../assets/images/common/PatternBg.png";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function PatternPassword(){
+interface PatternProps {
+  nextUrl: string;
+}
+
+const Pattern: React.FC<PatternProps> = ({ nextUrl }) => {
   const [selectedPoints, setSelectedPoints] = useState<number[]>([]);
   const isDrawing = useRef(false);
   const pointsRef = useRef<HTMLDivElement[]>([]);
   const navigate = useNavigate();
-  const { nextUrl } = useParams<{ nextUrl: string }>();
 
   const handleMouseDown = (index: number) => {
     if (!selectedPoints.includes(index)) {
@@ -110,7 +112,6 @@ function PatternPassword(){
 
   return (
     <>
-      <Header />
       <div className="background-container">
         <img src={PattrenBg} alt="Pattern Background" className="pattern-bg" />
         <div className="overlay-text">
@@ -134,4 +135,4 @@ function PatternPassword(){
   );
 }
 
-export default PatternPassword;
+export default Pattern;
