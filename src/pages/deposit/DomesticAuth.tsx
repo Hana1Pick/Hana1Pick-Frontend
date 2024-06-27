@@ -13,7 +13,7 @@ function DomesticAuth({ rtcRoomNum }: DomesticAuthProps) {
 
   const handleClose = () => {
     setShow(false);
-    navigate("/deposit3");
+    navigate("/pattern/deposit4");
   };
 
   const ws = useRef<WebSocket | null>(null);

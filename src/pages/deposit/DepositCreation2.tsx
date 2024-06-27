@@ -34,6 +34,13 @@ function DepositCreation2() {
               />
             </div>
             <div className="input-container">
+              <input
+                type="text"
+                className="input-field"
+                placeholder="생년월일을 적어주세요."
+              />
+            </div>
+            <div className="input-container">
               <select
                 className="input-field"
                 defaultValue=""
@@ -42,12 +49,9 @@ function DepositCreation2() {
                 <option className="input-field" value="">
                   국적을 선택해주세요.
                 </option>
-                <option value="Korean">한국</option>
-                <option value="American">미국</option>
-                <option value="Japanese">일본</option>
-                <option value="Chinese">중국</option>
-                <option value="Canadian">캐나다</option>
-                <option value="Australian">호주</option>
+                <option value="KOR">한국</option>
+                <option value="JP">일본</option>
+                <option value="CN">중국</option>
               </select>
             </div>
           </div>

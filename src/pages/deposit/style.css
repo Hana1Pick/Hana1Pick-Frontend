@@ -1,5 +1,5 @@
 .content {
-  margin-top: 1.5rem; /* 내용 위 여백 */
+  text-align: left;
 }
 
 #basicBtn2 {
@@ -120,33 +120,21 @@
 
 /* PatternComponent.css */
 
-.pattern-dot {
-  width: 0.5rem; /* 각 패턴 점의 크기를 설정합니다. */
-  height: 0.5rem;
-  border-radius: 50%;
-  background-color: #000;
-  margin: 3rem; /* 점과 점 사이의 간격을 넓힙니다. */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-/* PatternPassword.css */
-/* style.css */
+/* pattern CSS */
 
 .pattern-container {
-  display: flex;
-  flex-wrap: wrap;
-  width: 20rem; /* 패턴 점들을 감싸는 컨테이너의 넓이를 설정합니다. */
-  height: 20rem; /* 패턴 점들을 감싸는 컨테이너의 높이도 설정할 수 있습니다. */
-  margin: 0 auto;
-  justify-content: center; /* 가로 중앙 정렬 */
-  align-items: center; /* 세로 중앙 정렬 */
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  gap: 0.5rem;  
+  margin-top: 1rem;
 }
+
 
 .background-container {
   position: relative;
-  display: inline-block;
 }
 
 .overlay-text {
@@ -154,18 +142,46 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  text-align: center; /* 텍스트 가운데 정렬 */
+  text-align: center;
   font-size: 16px;
   z-index: 10;
-  color: #000000; /* 다른 색상으로 설정 */
+  color: #000000; 
 }
 
 .overlay-text div {
-  white-space: nowrap; /* 줄바꿈 없이 한 줄로 표시 */
-  color: #535353; /* 다른 색상으로 설정 */
-  margin-top: 10px; /* 문장 간의 간격 설정 */
+  white-space: nowrap; 
+  color: #535353;
+  margin-top: 10px; 
 }
 
+.pattern-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: #000;
+  margin: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pattern-bg{
+  width: 100%;
+  height: auto;
+}
+
+.pattern-dot.selected {
+  background-color: #555359;
+}
+
+.pattern-lines{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
 /* user agree */
 
 .legal-notice-box {
