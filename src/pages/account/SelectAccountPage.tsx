@@ -39,7 +39,12 @@ function SelectAccountPage() {
         <div className='blockContent'>
           {accounts && accounts.length > 0 ? (
             accounts.map((item, index) => (
-              <AccountCard key={index} value={item} />
+              <AccountCard
+                key={index}
+                useType='cash-out'
+                value={item}
+                nextUrl='/cash-out/amount'
+              />
             ))
           ) : (
             <span className='blockContentSpan'>

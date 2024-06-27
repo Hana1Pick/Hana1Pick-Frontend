@@ -11,16 +11,24 @@ type AccountData = {
   name: string;
 };
 
-function AccountCard({ value }: { value: AccountData }) {
+type AccountCardProps = {
+  useType: string;
+  value: AccountData;
+  nextUrl: string;
+};
+
+function AccountCard({ useType, value, nextUrl }: AccountCardProps) {
   const { setInAccType, setInAccId, setInAccName }: any =
     useContext(AccountContext);
   const navigate = useNavigate();
 
-  const next = (value: AccountData) => {
-    setInAccType(value.accountType);
-    setInAccId(value.accountId);
-    setInAccName(value.name);
-    navigate('/cash-out/amount');
+  const next = (useType: string, value: AccountData, nextUrl: string) => {
+    if (useType == 'cash-out') {
+      setInAccType(value.accountType);
+      setInAccId(value.accountId);
+      setInAccName(value.name);
+    }
+    navigate(nextUrl);
   };
 
   const accountTypeMap: { [key: string]: string } = {
@@ -38,21 +46,19 @@ function AccountCard({ value }: { value: AccountData }) {
   }
 
   return (
-    <>
-      <div className='accountCard' onClick={() => next(value)}>
-        <div>
-          <img
-            className='accountImage'
-            src={getAccountType(value.accountType)}
-            alt='accountImage'
-          />
-        </div>
-        <div className='accountData'>
-          <div className='accountInfo'>{value.name}</div>
-          <div className='accountId'>{value.accountId}</div>
-        </div>
+    <div className='accountCard' onClick={() => next(useType, value, nextUrl)}>
+      <div>
+        <img
+          className='accountImage'
+          src={getAccountType(value.accountType)}
+          alt='accountImage'
+        />
       </div>
-    </>
+      <div className='accountData'>
+        <div className='accountInfo'>{value.name}</div>
+        <div className='accountId'>{value.accountId}</div>
+      </div>
+    </div>
   );
 }
 
