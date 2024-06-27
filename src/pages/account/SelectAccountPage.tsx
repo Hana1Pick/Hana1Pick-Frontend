@@ -5,7 +5,7 @@ import { IoSearchOutline } from 'react-icons/io5';
 
 import Header from '../../components/Header';
 import AccountCard from '../../components/card/AccountCard';
-import './../../common/styles/scss/AccountStyle.scss';
+import './AccountStyle.scss';
 import { AccountContext } from '../../contexts/AccountContextProvider';
 
 function SelectAccountPage() {

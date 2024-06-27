@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Header from '../../components/Header';
 import CommonBtn from '../../components/button/CommonBtn';
-import './../../common/styles/scss/AccountStyle.scss';
+import './AccountStyle.scss';
 import { AccountContext } from '../../contexts/AccountContextProvider';
 
 function GetAmountPage() {
