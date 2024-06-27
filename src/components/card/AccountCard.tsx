@@ -1,9 +1,6 @@
 import CelublogCircleLogo from '../../assets/images/account/CelublogCircleLogo.png';
 import MoaClubCircleLogo from '../../assets/images/account/MoaClubCircleLogo.png';
 import DepositCircleLogo from '../../assets/images/account/DepositCircleLogo.png';
-import { useContext } from 'react';
-import { AccountContext } from '../../contexts/AccountContextProvider';
-import { useNavigate } from 'react-router-dom';
 
 type AccountData = {
   accountType: string;
@@ -11,26 +8,12 @@ type AccountData = {
   name: string;
 };
 
-type AccountCardProps = {
-  useType: string;
+type AccountCardData = {
   value: AccountData;
-  nextUrl: string;
+  onClick: () => void;
 };
 
-function AccountCard({ useType, value, nextUrl }: AccountCardProps) {
-  const { setInAccType, setInAccId, setInAccName }: any =
-    useContext(AccountContext);
-  const navigate = useNavigate();
-
-  const next = (useType: string, value: AccountData, nextUrl: string) => {
-    if (useType == 'cash-out') {
-      setInAccType(value.accountType);
-      setInAccId(value.accountId);
-      setInAccName(value.name);
-    }
-    navigate(nextUrl);
-  };
-
+function AccountCard({ value, onClick }: AccountCardData) {
   const accountTypeMap: { [key: string]: string } = {
     deposit: DepositCircleLogo,
     celublog: CelublogCircleLogo,
@@ -46,7 +29,7 @@ function AccountCard({ useType, value, nextUrl }: AccountCardProps) {
   }
 
   return (
-    <div className='accountCard' onClick={() => next(useType, value, nextUrl)}>
+    <div className='accountCard' onClick={onClick}>
       <div>
         <img
           className='accountImage'

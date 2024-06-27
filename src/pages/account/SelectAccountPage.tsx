@@ -9,9 +9,18 @@ import './AccountStyle.scss';
 import { AccountContext } from '../../contexts/AccountContextProvider';
 
 function SelectAccountPage() {
-  const { userIdx, outAccId }: any = useContext(AccountContext);
+  const { userIdx, outAccId, setInAccType, setInAccId, setInAccName }: any =
+    useContext(AccountContext);
   const [myAccId, setMyAccId] = useState([]);
   const [recentAccId, setRecentAccId] = useState([]);
+
+  const navigate = useNavigate();
+  const next = (value: any) => {
+    setInAccType(value.accountType);
+    setInAccId(value.accountId);
+    setInAccName(value.name);
+    navigate('/cash-out/amount');
+  };
 
   const url = `http://${process.env.REACT_APP_BESERVERURI}/api/account/cash-out`;
   const data = {
@@ -41,9 +50,8 @@ function SelectAccountPage() {
             accounts.map((item, index) => (
               <AccountCard
                 key={index}
-                useType='cash-out'
                 value={item}
-                nextUrl='/cash-out/amount'
+                onClick={() => next(item)}
               />
             ))
           ) : (
@@ -56,13 +64,8 @@ function SelectAccountPage() {
     );
   };
 
-  const navigate = useNavigate();
   const search = () => {
     navigate('/cash-out/account-query');
-  };
-
-  const next = () => {
-    navigate('/cash-out/amount');
   };
 
   return (

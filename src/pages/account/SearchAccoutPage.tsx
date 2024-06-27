@@ -10,7 +10,8 @@ import './AccountStyle.scss';
 import { AccountContext } from '../../contexts/AccountContextProvider';
 
 function SearchAccountPage() {
-  const { outAccId }: any = useContext(AccountContext);
+  const { outAccId, setInAccType, setInAccId, setInAccName }: any =
+    useContext(AccountContext);
   const [accId, setAccId] = useState([]);
 
   const handleInputChange = (event: any) => {
@@ -41,9 +42,8 @@ function SearchAccountPage() {
             accounts.map((item, index) => (
               <AccountCard
                 key={index}
-                useType='cash-out'
                 value={item}
-                nextUrl='/cash-out/amount'
+                onClick={() => next(item)}
               />
             ))
           ) : (
@@ -57,7 +57,14 @@ function SearchAccountPage() {
   };
 
   const navigate = useNavigate();
-  const next = () => {
+  const next = (value: any) => {
+    setInAccType(value.accountType);
+    setInAccId(value.accountId);
+    setInAccName(value.name);
+    navigate('/cash-out/amount');
+  };
+
+  const nextWithNewAccID = () => {
     navigate('/cash-out/amount');
   };
 
@@ -77,7 +84,12 @@ function SearchAccountPage() {
         {renderAccounts('계좌번호', accId)}
       </div>
       <div id='nextBtn'>
-        <CommonBtn type='black' value='다음' onClick={next} disabled={false} />
+        <CommonBtn
+          type='black'
+          value='다음'
+          onClick={nextWithNewAccID}
+          disabled={false}
+        />
       </div>
     </div>
   );
