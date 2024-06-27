@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CelubHeader3 from "../../layouts/CelubHeader3";
 import bgImg from "../../assets/images/celub/cha.png";
 import { CelubHistoryType, CelubRuleType } from '../../type/commonType';
+import { useLocation } from "react-router-dom";
 
 const CelubDetail: React.FC = () => {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -11,6 +12,8 @@ const CelubDetail: React.FC = () => {
     const [isHistory, setIsHistory] = useState(false);
     const [ruleList, setRuleList] = useState<CelubRuleType[]>([]);
     const [historyList, setHistoryList] = useState<CelubHistoryType[]>([]);
+    const location = useLocation();
+    const detailList = location.state;
     const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
         setStartY(e.touches[0].clientY);
         setStartHeight(document.documentElement.clientHeight - e.currentTarget.getBoundingClientRect().top);
@@ -37,27 +40,15 @@ const CelubDetail: React.FC = () => {
     };
 
     const rule=()=>{
-        setRuleList([
-            {ruleName: "은우 보고싶을 때", ruleMoney: 5000},
-            {ruleName: "은우 라방", ruleMoney: 3000},
-            {ruleName: "은우 귀여울 때", ruleMoney: 7000},
-            {ruleName: "은우 볼하트", ruleMoney: 8000}
-        ])
+        console.log(detailList);
+        setRuleList(detailList.ruleInfo);
         setIsHistory(false);
         setIsRule(true);
     }
 
     const history=()=>{
-        setHistoryList([
-            {   date: "6.18", ruleName: "은우 라방", hashtag: "#공카댓글",
-                ruleMoney: 5000, totalBalance: 593900},
-                {   date: "6.18", ruleName: "은우 라방", hashtag: "#공카댓글",
-                    ruleMoney: 5000, totalBalance: 593900},
-                    {   date: "6.18", ruleName: "은우 라방", hashtag: "#공카댓글",
-                        ruleMoney: 5000, totalBalance: 593900},
-                        {   date: "6.18", ruleName: "은우 라방", hashtag: "#공카댓글",
-                            ruleMoney: 5000, totalBalance: 593900}
-        ])
+        console.log(detailList.accountReport)
+        setHistoryList(detailList.accountReport);
         setIsHistory(true);
         setIsRule(false);
     }
@@ -74,9 +65,9 @@ const CelubDetail: React.FC = () => {
                 <div className="celub-detail-box1" id="celubContainer">
                     <img id="celubBgImg" src={bgImg} alt="Background" />
                     <div className="celub-detail">
-                        <p>D+100 ♥</p>
-                        <h4>은우적금</h4>
-                        <h1>600,900원</h1>
+                        <p>D+{detailList.accountInfo.duration} ♥</p>
+                        <h4>{detailList.accountInfo.name}</h4>
+                        <h1>{detailList.accountInfo.balance}원</h1>
                     </div>
                 </div>
             </div>
@@ -125,9 +116,9 @@ const CelubDetail: React.FC = () => {
                                     <div key={idx}>
                                         <table className="celub-history-table">
                                             <tr>
-                                                <td>{his.date}</td>
-                                                <td>{his.ruleName} <br/> <div className="celub-hashtag">{his.hashtag}</div> </td>
-                                                <td>+{his.ruleMoney}원 <br/> <div className="celub-totalmoney">{his.totalBalance}원</div> </td>
+                                                <td>{his.transDate}</td>
+                                                <td>{his.memo} <br/> <div className="celub-hashtag">#{his.hashtag}</div> </td>
+                                                <td>+{his.transAmount}원 <br/> <div className="celub-totalmoney">{his.afterInBal}원</div> </td>
                                             </tr>
                                         </table>
                                     </div>

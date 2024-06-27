@@ -1,7 +1,23 @@
-import checkImg from '../../assets/images/common/check.png';
+import { useNavigate } from 'react-router-dom';
+import checkImg from '../../assets/images/celub/celubAcc.png';
+import qs from 'qs';
+import axios from 'axios';
 function CelubComplete(){
+    const navigate = useNavigate();
     const goList=()=>{
-        window.location.href="/celub/list";
+        const data={
+            userIdx:"123e4567-e89b-12d3-a456-556655440000"
+        }
+        axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/account-list`,
+            qs.stringify(data)
+        )
+        .then((res)=>{
+            alert("성공");
+            console.log(res.data.data);
+            navigate("/celub/list",{state:res.data.data});
+        }).catch((error)=>{
+            alert("실패");
+        })
     }
     return(
         <>
