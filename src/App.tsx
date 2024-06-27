@@ -18,6 +18,8 @@ import CelubDetail from './pages/celublog/CelubDetail';
 import CelubRule from './pages/celublog/CelubRule';
 import CelubDeposit from './pages/celublog/CelubDeposit';
 import Pattern from './components/pattern/PatternPage';
+// User
+import KakaoLoginPage from './pages/user/login/KakaoLoginPage';
 
 function App() {
   return (
@@ -48,6 +50,17 @@ function App() {
           <Route path="/celub/rule" element={<CelubRule/>}/>
           <Route path="/celub/deposit" element={<CelubDeposit/>}/>
           <Route path="/pattern/:nextUrl" element={<Pattern />}/>
+          <Route
+            path="/user/*"
+            element={
+              <AccountContextProvider>
+                <Routes>
+                  <Route path="login" element={<KakaoLoginPage />} />
+              
+                </Routes>
+              </AccountContextProvider>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>
