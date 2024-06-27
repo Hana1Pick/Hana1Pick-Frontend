@@ -17,6 +17,15 @@
 //         title:string;
 //     }
 
-export type CommonType={
-    userId:number;
+export type CelubRuleType={
+    ruleName:string;
+    ruleMoney:number;
+}
+
+export type CelubHistoryType={
+    date: string;
+    ruleName: string;
+    hashtag: string;
+    ruleMoney: number;
+    totalBalance: number;
 }

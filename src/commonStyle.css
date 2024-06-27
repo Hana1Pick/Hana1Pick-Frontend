@@ -1,54 +1,33 @@
-/* CommonBtn CSS */
+/* default style in react */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-#basicBtn1 {
+/* our custom style */
+
+@font-face {
+  font-family: "Hana1Pick";
+  src: url("./fonts/PRETENDARDVARIABLE.TTF");
+}
+
+*{
+  font-family: "Hana1Pick" !important;
+}
+
+#basicBtn1{
   width: 90%;
-  background-color: #f19ed3;
+  background-color: #F19ED3;
   border: 0;
   border-radius: 0.5rem;
   color: azure;
   cursor: pointer;
   padding-top: 3%;
   padding-bottom: 3%;
-}
-
-#basicBtn2 {
-  width: 90%;
-  background-color: #000000;
-  border: 0;
-  border-radius: 0.5rem;
-  color: azure;
-  cursor: pointer;
-  padding-top: 3%;
-  padding-bottom: 3%;
-}
-
-#basicBtn1:disabled {
-  background-color: #cfcfcf;
-}
-
-#basicBtn2 {
-  width: 90%;
-  background-color: #000000;
-  border: 0;
-  border-radius: 0.5rem;
-  color: azure;
-  cursor: pointer;
-  padding-top: 3%;
-  padding-bottom: 3%;
-}
-
-#basicBtn2:disabled {
-  background-color: #cfcfcf;
-}
-
-#header {
-  height: 2.5em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 0.1em solid #efefef;
-  font-size: 1em;
-  font-weight: bolder;
 }
 
 /* pattern CSS */
@@ -58,9 +37,10 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
-  gap: 0.5rem;
+  gap: 0.5rem;  
   margin-top: 1rem;
 }
+
 
 .background-container {
   position: relative;
@@ -74,18 +54,18 @@
   text-align: center;
   font-size: 16px;
   z-index: 10;
-  color: #000000;
+  color: #000000; 
 }
 
 .overlay-text div {
-  white-space: nowrap;
+  white-space: nowrap; 
   color: #535353;
-  margin-top: 10px;
+  margin-top: 10px; 
 }
 
 .pattern-dot {
-  width: 1rem;
-  height: 1rem;
+  width: 0.5rem;
+  height: 0.5rem;
   border-radius: 50%;
   background-color: #000;
   margin: 3rem;
@@ -94,16 +74,16 @@
   justify-content: center;
 }
 
-.pattern-bg {
+.pattern-bg{
   width: 100%;
   height: auto;
 }
 
 .pattern-dot.selected {
-  background-color: #1be8ff;
+  background-color: #555359;
 }
 
-.pattern-lines {
+.pattern-lines{
   position: absolute;
   top: 0;
   left: 0;
