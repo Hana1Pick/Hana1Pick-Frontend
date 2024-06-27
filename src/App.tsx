@@ -9,6 +9,7 @@ import CelubDetail from './pages/celublog/CelubDetail';
 import CelubRule from './pages/celublog/CelubRule';
 import CelubDeposit from './pages/celublog/CelubDeposit';
 import Pattern from './components/pattern/PatternPage';
+import MoaclubOpening from './pages/moaclub/MoaclubOpening';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/celub/rule" element={<CelubRule/>}/>
           <Route path="/celub/deposit" element={<CelubDeposit/>}/>
           <Route path="/pattern/:nextUrl" element={<Pattern />}/>
+          <Route path='/moaclub/opening' element={<MoaclubOpening />}/>
         </Routes>
       </BrowserRouter>
     </div>
