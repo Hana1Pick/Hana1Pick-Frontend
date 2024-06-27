@@ -1,6 +1,15 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import MainPage from './pages/MainPage';
+// 계좌 이체
+import { AccountContextProvider } from './contexts/AccountContextProvider';
+import SelectAccountPage from './pages/account/SelectAccountPage';
+import SearchAccountPage from './pages/account/SearchAccoutPage';
+import GetAmountPage from './pages/account/GetAmountPage';
+import CashOutPage from './pages/account/CashOutPage';
+import CashOutPatternPage from './pages/account/CashOutPatternPage';
+import CashOutResultPage from './pages/account/CashOutResultPage';
+// Celublog
 import CelubPage from './pages/celublog/CelubPage';
 import CelubWithdraw from './pages/celublog/CelubWithdraw';
 import CelubComplete from './pages/celublog/CelubComplete';
@@ -13,10 +22,25 @@ import MoaclubOpening from './pages/moaclub/MoaclubOpening';
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<MainPage/>}/>
+          <Route path='/' element={<MainPage />} />
+          <Route
+            path='/cash-out/*'
+            element={
+              <AccountContextProvider>
+                <Routes>
+                  <Route path='account' element={<SelectAccountPage />} />
+                  <Route path='account-query' element={<SearchAccountPage />} />
+                  <Route path='amount' element={<GetAmountPage />} />
+                  <Route path='' element={<CashOutPage />} />
+                  <Route path='pattern' element={<CashOutPatternPage />} />
+                  <Route path='result' element={<CashOutResultPage />} />
+                </Routes>
+              </AccountContextProvider>
+            }
+          />
           <Route path="/celub" element={<CelubPage/>}/>
           <Route path="/celub-withdraw" element={<CelubWithdraw/>}/>
           <Route path="/celub-withdraw/complete" element={<CelubComplete/>}/>
