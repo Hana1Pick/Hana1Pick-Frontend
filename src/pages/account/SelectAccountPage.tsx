@@ -63,7 +63,7 @@ function SelectAccountPage() {
   return (
     <div>
       <Header value='이체' />
-      <div>
+      <div id='main'>
         <div id='searchbar' onClick={search}>
           <IoSearchOutline id='searchIcon' />
           <span id='searchSpan'>받는 사람 이름 또는 계좌번호</span>
