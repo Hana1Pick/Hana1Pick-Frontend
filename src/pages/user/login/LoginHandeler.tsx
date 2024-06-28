@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { stringify } from "querystring";
 import { get } from "http";
+import React from 'react';
 
 const LoginHandler = (props:any) => {
   const code = new URL(window.location.href).searchParams.get("code");

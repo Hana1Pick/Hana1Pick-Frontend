@@ -1,4 +1,5 @@
 import './App.css';
+import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import MainPage from './pages/MainPage';
 // 계좌 이체
@@ -17,10 +18,19 @@ import CelubAccountList from './pages/celublog/CelubAccountList';
 import CelubDetail from './pages/celublog/CelubDetail';
 import CelubRule from './pages/celublog/CelubRule';
 import CelubDeposit from './pages/celublog/CelubDeposit';
+
 import Pattern from './components/pattern/PatternPage';
+import MoaclubOpening from './pages/moaclub/MoaclubOpening';
+import MoaclubSelectAcc from './pages/moaclub/MoaclubSelectAcc';
+import MoaclubCreatePage from './pages/moaclub/MoaclubCreatePage';
+import MoaclubComplete from './pages/moaclub/MoaclubComplete';
+import MoaclubPattern from './pages/moaclub/MoaclubPattern';
+
 // User
 import KakaoLoginPage from './pages/user/login/KakaoLoginPage';
 import LoginHandeler from './pages/user/login/LoginHandeler';
+import { MoaclubContextProvider } from './contexts/MoaclubContextProvider';
+
 
 function App() {
   return (
@@ -43,21 +53,45 @@ function App() {
               </AccountContextProvider>
             }
           />
-          <Route path="/celub" element={<CelubPage/>}/>
-          <Route path="/celub-withdraw" element={<CelubWithdraw/>}/>
-          <Route path="/celub-withdraw/complete" element={<CelubComplete/>}/>
-          <Route path="/celub/list" element={<CelubAccountList/>}/>
-          <Route path="/celub/detail" element={<CelubDetail/>}/>
-          <Route path="/celub/rule" element={<CelubRule/>}/>
-          <Route path="/celub/deposit" element={<CelubDeposit/>}/>
-          <Route path="/pattern/:nextUrl" element={<Pattern />}/>
+
+          <Route
+            path='/celub/*'
+            element={
+              <AccountContextProvider>
+                <Routes>
+                  <Route path="" element={<CelubPage/>}/>
+                  <Route path="withdraw" element={<CelubWithdraw/>}/>
+                  <Route path="withdraw/complete" element={<CelubComplete/>}/>
+                  <Route path="list" element={<CelubAccountList/>}/>
+                  <Route path="detail" element={<CelubDetail/>}/>
+                  <Route path="rule" element={<CelubRule/>}/>
+                  <Route path="deposit" element={<CelubDeposit/>}/>
+                </Routes>
+              </AccountContextProvider>
+            }
+          />
+          
+          <Route
+            path='/moaclub/*'
+            element={
+              <MoaclubContextProvider>
+                <Routes>
+                  <Route path='/opening' element={<MoaclubOpening />}/>
+                  <Route path='/select-acc' element={<MoaclubSelectAcc />}/>
+                  <Route path='/create' element={<MoaclubCreatePage />}/>
+                  <Route path="/complete" element={<MoaclubComplete/>}/>
+                  <Route path="/pattern" element={<MoaclubPattern />}/>
+                </Routes>
+              </MoaclubContextProvider>
+            }
+          />
+
           <Route
             path="/user/*"
             element={
               <AccountContextProvider>
                 <Routes>
                   <Route path="login" element={<KakaoLoginPage />} />
-              
                 </Routes>
               </AccountContextProvider>
             }

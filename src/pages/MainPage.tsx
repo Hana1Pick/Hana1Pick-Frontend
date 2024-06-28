@@ -1,3 +1,5 @@
+import React from 'react';
+
 const MainPage = () => {
   console.log(
     "localStorage에 저장된 userIdx:",
