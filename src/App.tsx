@@ -31,7 +31,7 @@ function App() {
           <Route path="/pattern" element={<Pattern nextUrl="celub-withdraw/complete"/>}/>
           <Route path="deposit" element={<DepositCreation1 />} />
           <Route path="/deposit2" element={<DepositCreation2 />} />
-          <Route path="/deposit3" element={<PatternPassword />} />
+          <Route path="/deposit3" element={<PatternPassword nextUrl="deposit4"/>} />
           <Route path="/deposit4" element={<UserAgree />} />
           <Route path="/deposit5" element={<DepositComplete />} />
         </Routes>

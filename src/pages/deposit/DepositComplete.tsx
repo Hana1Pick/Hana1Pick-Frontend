@@ -1,5 +1,5 @@
 import Header from "../../components/Header";
-import CreateComplete from "../../assets/images/CreateComplete.png";
+import CreateComplete from "../../assets/images/deposit/CreateComplete.png";
 import { useNavigate } from "react-router-dom";
 
 function DepositComplete() {

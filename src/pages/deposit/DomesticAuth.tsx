@@ -6,14 +6,24 @@ import "./style.css";
 
 type DomesticAuthProps = {
   rtcRoomNum: string;
+  formData: {
+    name: string;
+    address: string;
+    birth: string | null;
+    phone: string;
+    nation: string;
+    email: string;
+    password: string;
+  };
 };
 
-function DomesticAuth({ rtcRoomNum }: DomesticAuthProps) {
+function DomesticAuth({ rtcRoomNum, formData }: DomesticAuthProps) {
+  console.log(formData);
   const navigate = useNavigate();
 
   const handleClose = () => {
     setShow(false);
-    navigate("/pattern/deposit4");
+    navigate("/deposit3", { state: { formData } });
   };
 
   const ws = useRef<WebSocket | null>(null);

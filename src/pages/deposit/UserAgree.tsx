@@ -1,10 +1,10 @@
 import Header from "../../components/Header";
 import React, { useState } from "react";
-import WhiteArrow from "../../assets/images/WhiteArrow.png";
-import BlackArrow from "../../assets/images/BlackArrow.png";
+import WhiteArrow from "../../assets/images/deposit/WhiteArrow.png";
+import BlackArrow from "../../assets/images/deposit/BlackArrow.png";
 import "./style.css"; // LegalNotice.css 파일은 스타일링을 위한 CSS 파일입니다.
 import CommonBtn from "../../components/button/CommonBtn";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function UserAgree() {
   interface CheckboxState {
@@ -12,6 +12,9 @@ function UserAgree() {
   }
 
   const navigate = useNavigate();
+
+  const location = useLocation();
+  const formData = location.state.formData;
 
   const [isChecked, setIsChecked] = useState<CheckboxState>({
     agreeCheckbox1: false,
@@ -166,17 +169,13 @@ function UserAgree() {
           </div>
         </div>
         <div className="gray-box">
-          이메일 <span> onepick123@gmail.com</span>
+          이메일 <span>{formData.email}</span>
         </div>
         <div className="useragree_text">
           계좌개설 이후에는 [계좌관리] 메뉴에서 확인하실 수 있습니다.
         </div>
         <div className="input-container">
-          <CommonBtn
-            type="black"
-            value="확인"
-            onClick={handleNext}
-          />
+          <CommonBtn type="black" value="확인" onClick={handleNext} />
         </div>
       </div>
     </>

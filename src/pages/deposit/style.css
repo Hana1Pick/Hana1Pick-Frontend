@@ -29,6 +29,61 @@
   color: #777777;
 }
 
+.input-label {
+  margin-bottom: 0.3125rem;
+  display: block;
+  text-align: left;
+}
+
+.custom-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.custom-input-field {
+  flex: 1;
+  width: calc(100% - 2.5rem); /* 40px를 rem 단위로 변환 */
+  padding-right: 7.1875rem; /* 115px를 rem 단위로 변환 */
+}
+
+.custom-calendar-icon {
+  position: absolute;
+  right: 0.5rem;
+  cursor: pointer;
+  z-index: 2; /* 이미지 위치 조정 및 z-index 설정 */
+  width: 1.5rem; /* 아이콘 크기 조정 */
+  height: 1.5rem; /* 아이콘 크기 조정 */
+}
+
+.custom-datepicker {
+  width: 15.625rem; /* 250px를 rem 단위로 변환 */
+}
+
+.date-picker-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.date-picker-input-field {
+  padding-right: "2rem";
+}
+
+.date-picker-label {
+  margin-bottom: 0.3125rem; /* 5px를 rem 단위로 변환 */
+}
+
+.date-picker-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+.react-datepicker__triangle {
+  display: none !important;
+}
+
 .deposit-creation {
   display: flex;
   flex-direction: column;
@@ -48,7 +103,7 @@
   flex-direction: column;
   height: 100%;
   justify-content: space-between;
-  padding: 20px;
+  padding: 1.25rem; /* 20px를 rem 단위로 변환 */
 }
 
 /* .input-all-container {
@@ -102,9 +157,9 @@
 
 .modal-content {
   background-color: white;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 1.25rem; /* 20px를 rem 단위로 변환 */
+  border-radius: 0.3125rem; /* 5px를 rem 단위로 변환 */
+  box-shadow: 0px 0px 0.625rem rgba(0, 0, 0, 0.1); /* 10px를 rem 단위로 변환 */
   max-width: 80%;
   max-height: 80%;
   overflow: auto;
@@ -112,14 +167,13 @@
 
 .close {
   position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 24px;
+  top: 0.625rem; /* 10px를 rem 단위로 변환 */
+  right: 0.9375rem; /* 15px를 rem 단위로 변환 */
+  font-size: 1.5rem; /* 24px를 rem 단위로 변환 */
   cursor: pointer;
 }
 
 /* PatternComponent.css */
-
 
 /* pattern CSS */
 
@@ -128,10 +182,9 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
-  gap: 0.5rem;  
+  gap: 0.5rem;
   margin-top: 1rem;
 }
-
 
 .background-container {
   position: relative;
@@ -143,15 +196,15 @@
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  font-size: 16px;
+  font-size: 1rem;
   z-index: 10;
-  color: #000000; 
+  color: #000000;
 }
 
 .overlay-text div {
-  white-space: nowrap; 
+  white-space: nowrap;
   color: #535353;
-  margin-top: 10px; 
+  margin-top: 0.625rem; /* 10px를 rem 단위로 변환 */
 }
 
 .pattern-dot {
@@ -165,7 +218,7 @@
   justify-content: center;
 }
 
-.pattern-bg{
+.pattern-bg {
   width: 100%;
   height: auto;
 }
@@ -174,7 +227,7 @@
   background-color: #555359;
 }
 
-.pattern-lines{
+.pattern-lines {
   position: absolute;
   top: 0;
   left: 0;
@@ -185,20 +238,20 @@
 /* user agree */
 
 .legal-notice-box {
-  border: 1px solid #d5d8d8; /* 전체 박스에 테두리 추가 */
+  border: 0.0625rem solid #d5d8d8; /* 1px를 rem 단위로 변환 */
   margin-bottom: 1.4rem;
 }
 
 .legal-notice-header {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #d5d8d8; /* 위쪽 부분에 밑줄 추가 */
-  padding: 10px;
+  border-bottom: 0.0625rem solid #d5d8d8; /* 1px를 rem 단위로 변환 */
+  padding: 0.625rem; /* 10px를 rem 단위로 변환 */
 }
 
 .checkbox {
-  margin-right: 10px; /* 체크박스와 라벨 사이에 여백 추가 */
-  margin-left: 10px;
+  margin-right: 0.625rem; /* 10px를 rem 단위로 변환 */
+  margin-left: 0.625rem;
 }
 
 .checkbox-label {
@@ -206,7 +259,7 @@
 }
 
 .legal-notice-content {
-  padding: 10px;
+  padding: 0.625rem; /* 10px를 rem 단위로 변환 */
   color: #535353;
 }
 
@@ -237,7 +290,7 @@
 }
 
 .checkbox {
-  margin-right: 10px; /* 체크박스와 텍스트 사이에 여백 추가 */
+  margin-right: 0.625rem; /* 10px를 rem 단위로 변환 */
 }
 
 .arrow-image {
@@ -278,7 +331,7 @@
   display: flex;
   flex-direction: column;
   align-items: center; /* 수직 가운데 정렬 */
-  margin-bottom: 10px; /* 이미지와 텍스트 사이에 여백 추가 */
+  margin-bottom: 0.625rem; /* 이미지와 텍스트 사이에 여백 추가 */
 }
 
 .create-complete-img {
@@ -290,11 +343,11 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  border-bottom: 1px solid #d5d8d8; /* 위쪽 부분에 밑줄 추가 */
+  border-bottom: 0.0625rem solid #d5d8d8; /* 1px를 rem 단위로 변환 */
 }
 
 .notice-header2 {
-  border-bottom: 1px solid #d5d8d8; /* 위쪽 부분에 밑줄 추가 */
+  border-bottom: 0.0625rem solid #d5d8d8; /* 위쪽 부분에 밑줄 추가 */
 }
 
 .to-main {
@@ -304,10 +357,10 @@
   flex-direction: column;
   background-color: #ffffff;
   color: #242635;
-  border: 1px solid #d5d8d8; /* 전체 박스에 테두리 추가 */
+  border: 0.0625rem solid #d5d8d8; /* 전체 박스에 테두리 추가 */
   cursor: pointer;
   padding: 4%; /* 상하좌우 모두 3%의 패딩 */
-  margin: 30px 30px;
+  margin: 1.875rem 1.875rem;
   width: 30%; /* 너비 설정 */
 }
 
@@ -327,4 +380,58 @@
   color: #242635;
   padding-left: 3%;
   padding-right: 3%;
+}
+
+/* 패턴 css */
+
+.pattern-container {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.background-container {
+  position: relative;
+}
+.overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 16px;
+  z-index: 10;
+  color: #000000;
+}
+.overlay-text div {
+  white-space: nowrap;
+  color: #535353;
+  margin-top: 10px;
+}
+.pattern-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: #000;
+  margin: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pattern-bg {
+  width: 100%;
+  height: auto;
+}
+.pattern-dot.selected {
+  background-color: #555359;
+}
+.pattern-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
