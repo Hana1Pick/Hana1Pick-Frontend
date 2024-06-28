@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import "../../common/styles/scss/CommonStyle.css"; // SCSS 파일 경로
+import "../../common/styles/scss/CommonStyle.scss"; // SCSS 파일 경로
 import Header from "../../components/Header";
 import "./style.css";
 import DomesticAuth from "./DomesticAuth";
