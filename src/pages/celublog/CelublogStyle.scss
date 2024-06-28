@@ -353,13 +353,13 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 1rem;
   input{
     border: 0;
-    padding: 0.5rem;
-    background-color: #dfdddd;
+    padding: 0.8rem;
+    //background-color: #dfdddd;
     border-radius: 0.5rem;
-    margin-top: 3rem;
+    border: 1px solid #dfdddd;
+    margin-top: 1rem;
     font-weight: 600;
   }
 }
@@ -373,8 +373,12 @@
 }
 
 .celub-addrule-btn{
-  margin-bottom: 3rem;
-  float: left;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 90%;
+  height: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   border: 0;
   border-radius: 0.5rem;
 }
