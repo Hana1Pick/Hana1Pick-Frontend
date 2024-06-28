@@ -2,7 +2,6 @@
 
 #basicBtn1 {
   width: 90%;
-  height: 2.8em;
   background-color: #f19ed3;
   border: 0;
   border-radius: 0.5rem;
@@ -14,7 +13,6 @@
 
 #basicBtn2 {
   width: 90%;
-  height: 2.8em;
   background-color: #000000;
   border: 0;
   border-radius: 0.5rem;
@@ -31,6 +29,33 @@
 #basicBtn2:disabled {
   background-color: #cfcfcf;
 }
+
+/* CommonInputFile CSS */
+.basicInputFile1 {
+  width: 90%;
+  background-color: #f19ed3;
+  border: 0;
+  border-radius: 0.5rem;
+  color: azure;
+  cursor: pointer;
+  margin: auto;
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+
+.basicInputFile2 {
+  width: 90%;
+  background-color: #000000;
+  border: 0;
+  border-radius: 0.5rem;
+  color: azure;
+  cursor: pointer;
+  margin: auto;
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+
+/* Header */
 
 #header {
   height: 2.5em;
