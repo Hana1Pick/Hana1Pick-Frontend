@@ -4,6 +4,11 @@ import './commonStyle.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const kakaoKey = process.env.REACT_APP_KAKAO_KEY_SY;
+console.log(kakaoKey);
+window.Kakao.init({kakaoKey});
+window.Kakao.isInitialized();
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );

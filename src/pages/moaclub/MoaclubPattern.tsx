@@ -129,7 +129,7 @@ function MoaclubPattern() {
               },
             }
         );
-
+        console.log(response.data.data);
         if (response.data.data.check) {
             next();
         } else {

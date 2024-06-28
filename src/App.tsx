@@ -28,6 +28,7 @@ import MoaclubPattern from './pages/moaclub/MoaclubPattern';
 // User
 import KakaoLoginPage from './pages/user/login/KakaoLoginPage';
 import { MoaclubContextProvider } from './contexts/MoaclubContextProvider';
+import MoaclubInvite from './pages/moaclub/MoaclubInvite';
 
 function App() {
   return (
@@ -78,6 +79,7 @@ function App() {
                   <Route path='/create' element={<MoaclubCreatePage />}/>
                   <Route path="/complete" element={<MoaclubComplete/>}/>
                   <Route path="/pattern" element={<MoaclubPattern />}/>
+                  <Route path='/invite' element={<MoaclubInvite/>}/>
                 </Routes>
               </MoaclubContextProvider>
             }
