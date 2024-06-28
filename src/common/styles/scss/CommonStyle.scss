@@ -1,42 +1,117 @@
-#basicBtn1{
-    width: 90%;
-    background-color: #F19ED3;
-    border: 0;
-    border-radius: 0.5rem;
-    height: 30px;
+/* CommonBtn CSS */
+
+#basicBtn1 {
+  width: 85%;
+  height: 2.7rem;
+  background-color: #f19ed3;
+  border: 0;
+  border-radius: 0.5rem;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  padding-top: 3%;
+  padding-bottom: 3%;
 }
 
-// pattern CSS
+#basicBtn2 {
+  width: 85%;
+  height: 2.7rem;
+  background-color: #000000;
+  border: 0;
+  border-radius: 0.5rem;
+  color: azure;
+  cursor: pointer;
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+
+#basicBtn1:disabled {
+  background-color: #cfcfcf;
+}
+
+#basicBtn2 {
+  width: 85%;
+  background-color: #000000;
+  border: 0;
+  border-radius: 0.5rem;
+  color: azure;
+  cursor: pointer;
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+
+#basicBtn2:disabled {
+  background-color: #cfcfcf;
+}
+
+#header {
+  height: 2.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 0.1em solid #efefef;
+  font-size: 1em;
+  font-weight: bolder;
+}
+
+/* pattern CSS */
 
 .pattern-container {
-    display: flex;
-    flex-wrap: wrap;
-    width: 20rem; /* 패턴 점들을 감싸는 컨테이너의 넓이를 설정합니다. */
-    height: 20rem; /* 패턴 점들을 감싸는 컨테이너의 높이도 설정할 수 있습니다. */
-    margin: 0 auto;
-    justify-content: center; /* 가로 중앙 정렬 */
-    align-items: center; /* 세로 중앙 정렬 */
-  }
-  
-  
-  .background-container {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .overlay-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center; /* 텍스트 가운데 정렬 */
-    font-size: 16px;
-    z-index: 10;
-    color: #000000; /* 다른 색상으로 설정 */
-  }
-  
-  .overlay-text div {
-    white-space: nowrap; /* 줄바꿈 없이 한 줄로 표시 */
-    color: #535353; /* 다른 색상으로 설정 */
-    margin-top: 10px; /* 문장 간의 간격 설정 */
-  }
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  gap: 0.5rem;
+  margin-top: 3rem;
+  margin-left: 2.5rem;
+  margin-right: 3.5rem;
+}
+
+.background-container {
+  position: relative;
+}
+
+.overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 16px;
+  z-index: 10;
+  color: #000000;
+}
+
+.overlay-text div {
+  white-space: nowrap;
+  color: #535353;
+  margin-top: 10px;
+}
+
+.pattern-dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background-color: #000;
+  margin: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pattern-bg {
+  width: 100%;
+  height: auto;
+}
+
+.pattern-dot.selected {
+  background-color: #1be8ff;
+}
+
+.pattern-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
