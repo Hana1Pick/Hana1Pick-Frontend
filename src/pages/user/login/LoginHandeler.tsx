@@ -1,9 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
 import axios from "axios";
-import { stringify } from "querystring";
-import { get } from "http";
-import React from 'react';
 
 const LoginHandler = (props:any) => {
   const code = new URL(window.location.href).searchParams.get("code");
@@ -19,14 +15,11 @@ const LoginHandler = (props:any) => {
     "Content-Type": "application/x-www-form-urlencoded"
   }})
   .then((response) => {
-    console.log("1 end");
     getUserInfo(response.data.access_token);
   })
   .catch((error) => {console.log(error)})
 
   const getUserInfo = (accessToken:string) => {
-    console.log("2 start");
-
     const url2 = `http://${process.env.REACT_APP_BESERVERURI}/api/user/login`;
     const data = {
       accessToken: accessToken
