@@ -7,16 +7,15 @@ function CelubAccountList(){
     const location = useLocation();
     const navigate = useNavigate();
     const accList: CelubAccount[] = location.state;
+    console.log(accList);
     const goAccount=(accountId:string)=>{
         axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/list/detail`,
             qs.stringify({accountId:accountId}))
             .then((res)=>{
                 console.log(res.data.data);
-                alert("성공");
                 navigate("/celub/detail", {state:res.data.data});
             }).catch((error)=>{
                 alert("실패");
-
             });
     }
 
@@ -26,13 +25,24 @@ function CelubAccountList(){
             <div className="celubListBox1">
                 <span>조회할 계좌를 선택해주세요</span>
             </div>
-            <div className="celubListBox2">
-                {accList.map((account:CelubAccount)=>(
-                    <button key={account.account_id} className="celub-button" onClick={()=>goAccount(account.account_id)}>
-                        {account.name}
-                    </button>
-                ))}
-            </div>
+            
+            {
+                accList.map((account:CelubAccount)=>(
+                    <div className="celubCard" onClick={() => goAccount(account.account_id)}>
+                        <div className="celubCardInner">
+                        <div className="celubCardFront" style={{"backgroundImage": `url(${account.imgSrc})`}}>
+                            <span className="accountName">{account.name}</span>
+                        </div>
+                        <div className="celubCardBack"  style={{"backgroundImage":  `url(${account.imgSrc})`,  "opacity" : "0.5"}}>
+                            <span className="accountName">{account.name}</span>
+                            <span className="accountNum">{account.account_id}</span>
+                            <span className="balance">{account.balance}원</span>
+                        </div>
+                    </div>
+                </div>
+
+                ))
+            }      
         </>
     )
 }

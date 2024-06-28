@@ -14,6 +14,7 @@ const CelubDetail: React.FC = () => {
     const [historyList, setHistoryList] = useState<CelubHistoryType[]>([]);
     const location = useLocation();
     const detailList = location.state;
+    console.log(detailList);
     const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
         setStartY(e.touches[0].clientY);
         setStartHeight(document.documentElement.clientHeight - e.currentTarget.getBoundingClientRect().top);
@@ -63,7 +64,7 @@ const CelubDetail: React.FC = () => {
             <CelubHeader3 />
             <div id="celubBox1">
                 <div className="celub-detail-box1" id="celubContainer">
-                    <img id="celubBgImg" src={bgImg} alt="Background" />
+                    <img id="celubBgImg" src={detailList.accountInfo.imgSrc} alt="Background" />
                     <div className="celub-detail">
                         <p>D+{detailList.accountInfo.duration} ♥</p>
                         <h4>{detailList.accountInfo.name}</h4>

@@ -12,7 +12,6 @@ function CelubComplete(){
             qs.stringify(data)
         )
         .then((res)=>{
-            alert("성공");
             console.log(res.data.data);
             navigate("/celub/list",{state:res.data.data});
         }).catch((error)=>{

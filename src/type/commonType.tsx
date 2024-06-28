@@ -33,4 +33,6 @@ export type CelubHistoryType={
 export type CelubAccount={
     account_id: string;
     name: string;
+    balance: number;
+    imgSrc: string;
 }

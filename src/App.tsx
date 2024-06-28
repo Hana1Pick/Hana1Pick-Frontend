@@ -40,13 +40,22 @@ function App() {
               </AccountContextProvider>
             }
           />
-          <Route path="/celub" element={<CelubPage/>}/>
-          <Route path="/celub-withdraw" element={<CelubWithdraw/>}/>
-          <Route path="/celub-withdraw/complete" element={<CelubComplete/>}/>
-          <Route path="/celub/list" element={<CelubAccountList/>}/>
-          <Route path="/celub/detail" element={<CelubDetail/>}/>
-          <Route path="/celub/rule" element={<CelubRule/>}/>
-          <Route path="/celub/deposit" element={<CelubDeposit/>}/>
+          <Route
+            path='/celub/*'
+            element={
+              <AccountContextProvider>
+                <Routes>
+                  <Route path="" element={<CelubPage/>}/>
+                  <Route path="withdraw" element={<CelubWithdraw/>}/>
+                  <Route path="withdraw/complete" element={<CelubComplete/>}/>
+                  <Route path="list" element={<CelubAccountList/>}/>
+                  <Route path="detail" element={<CelubDetail/>}/>
+                  <Route path="rule" element={<CelubRule/>}/>
+                  <Route path="deposit" element={<CelubDeposit/>}/>
+                </Routes>
+              </AccountContextProvider>
+            }
+          />
           <Route path="/pattern" element={<Pattern nextUrl="celub-withdraw/complete"/>}/>
         </Routes>
       </BrowserRouter>

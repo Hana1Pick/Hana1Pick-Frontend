@@ -23,7 +23,7 @@ function CelubWithdraw(){
         }
     }
     const wdcomplete=()=>{
-        window.location.href="/celub-withdraw/complete";
+        window.location.href="/celub/withdraw/complete";
     }
     return(
         <>
