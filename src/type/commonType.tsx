@@ -28,6 +28,7 @@ export type CelubHistoryType={
     transAmount: number;
     afterInBal: number;
     hashtag: string;
+
 }
 
 export type CelubAccount={
@@ -35,4 +36,16 @@ export type CelubAccount={
     name: string;
     balance: number;
     imgSrc: string;
+    ruleMoney: number;
+    totalBalance: number;
+}
+
+export type MoaClubHeaderData1 = {
+    value: string;
+    disabled: boolean
+}
+
+export type MoaClubHeaderData2 = {
+    value: string;
+    disabled: boolean
 }

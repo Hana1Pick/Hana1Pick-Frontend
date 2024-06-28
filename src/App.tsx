@@ -17,8 +17,17 @@ import CelubAccountList from './pages/celublog/CelubAccountList';
 import CelubDetail from './pages/celublog/CelubDetail';
 import CelubRule from './pages/celublog/CelubRule';
 import CelubDeposit from './pages/celublog/CelubDeposit';
+
+import Pattern from './components/pattern/PatternPage';
+import MoaclubOpening from './pages/moaclub/MoaclubOpening';
+import MoaclubSelectAcc from './pages/moaclub/MoaclubSelectAcc';
+import MoaclubCreatePage from './pages/moaclub/MoaclubCreatePage';
+import MoaclubComplete from './pages/moaclub/MoaclubComplete';
+import MoaclubPattern from './pages/moaclub/MoaclubPattern';
+
 // User
 import KakaoLoginPage from './pages/user/login/KakaoLoginPage';
+import { MoaclubContextProvider } from './contexts/MoaclubContextProvider';
 
 function App() {
   return (
@@ -41,6 +50,7 @@ function App() {
               </AccountContextProvider>
             }
           />
+
           <Route
             path='/celub/*'
             element={
@@ -57,6 +67,22 @@ function App() {
               </AccountContextProvider>
             }
           />
+          
+          <Route
+            path='/moaclub/*'
+            element={
+              <MoaclubContextProvider>
+                <Routes>
+                  <Route path='/opening' element={<MoaclubOpening />}/>
+                  <Route path='/select-acc' element={<MoaclubSelectAcc />}/>
+                  <Route path='/create' element={<MoaclubCreatePage />}/>
+                  <Route path="/complete" element={<MoaclubComplete/>}/>
+                  <Route path="/pattern" element={<MoaclubPattern />}/>
+                </Routes>
+              </MoaclubContextProvider>
+            }
+          />
+
           <Route
             path="/user/*"
             element={
