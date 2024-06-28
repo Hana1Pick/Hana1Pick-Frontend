@@ -1,30 +1,17 @@
 import Header from "../../../components/Header";
-import { useContext } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "../../../assets/images/common/CircleLogo.png";
 import KakaoLoginButton from "../../../assets/images/kakao/kakao_login.png";
-
-import axios from "axios";
 import "./style.scss";
+import React from 'react';
 
-const handleLogin = () => {
-  const url = `http://${process.env.REACT_APP_BESERVERURI}/api/user/login`;
+const KakaoLoginPage = () => {
+const CLIENT_ID = process.env.REACT_APP_REST_API_KEY;
+const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URL;
 
-  axios
-    .get(url)
-    .then((response) => {
-      console.log("로그인 성공~", response.data);
-      window.location.href = response.data; // 응답받은 URL로 이동
-      // TODO: response 객체의 email로 사용자 정보를 가져와서 회원 유무 판단 백엔드 로직 추가 필요
+ const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
-    })
-    .catch((error) => {
-      console.error("Login failed:", error);
-      // 로그인 실패 시 추가 작업을 여기에 작성
-    });
-};
-
-function KakaoLoginPage() {
   return (
     <>
       <Header value="로그인" />
@@ -42,17 +29,16 @@ function KakaoLoginPage() {
           <p>카카오톡으로 로그인 해보세요.</p>
         </div>
 
-        <button className="LoginButton" onClick={handleLogin}>
-<img
-          src={KakaoLoginButton}
-          alt="kakao-login-button"
-          style={{ height: "50px" }}
-        />
-</button>
-       
+        <a href={KAKAO_AUTH_URL} className="kakaobtn">
+          <img
+            src={KakaoLoginButton}
+            alt="kakao-login-button"
+            style={{ height: "50px" }}
+          />
+        </a>
       </div>
     </>
   );
-}
+};
 
 export default KakaoLoginPage;
