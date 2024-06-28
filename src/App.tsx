@@ -14,6 +14,8 @@ import { QrContextProvider } from './contexts/QrContextProvider';
 import SelectQrInAccountPage from './pages/qr/SelectQrInAccountPage';
 import GetQrAmountPage from './pages/qr/GetQrAmountPage';
 import CreateQrResultPage from './pages/qr/CreateQrResultPage';
+import GetQrPage from './pages/qr/GetQrPage';
+import AnalyzeQrPage from './pages/qr/AnalyzeQrPage';
 // Celublog
 import CelubPage from './pages/celublog/CelubPage';
 import CelubWithdraw from './pages/celublog/CelubWithdraw';
@@ -42,6 +44,9 @@ function App() {
                   <Route path='' element={<CashOutPage />} />
                   <Route path='pattern' element={<CashOutPatternPage />} />
                   <Route path='result' element={<CashOutResultPage />} />
+                  {/* QR */}
+                  <Route path='qr' element={<GetQrPage />} />
+                  <Route path='qr/result' element={<AnalyzeQrPage />} />
                 </Routes>
               </AccountContextProvider>
             }
