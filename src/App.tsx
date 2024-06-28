@@ -1,6 +1,13 @@
-import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import MainPage from './pages/MainPage';
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import MainPage from "./pages/MainPage";
+
+// 입출금 계좌 개설
+import DepositCreation1 from "./pages/deposit/DepositCreation1";
+import DepositCreation2 from "./pages/deposit/DepositCreation2";
+import PatternPassword from "./pages/deposit/PatternPassword";
+import UserAgree from "./pages/deposit/UserAgree";
+import DepositComplete from "./pages/deposit/DepositComplete";
 // 계좌 이체
 import { AccountContextProvider } from './contexts/AccountContextProvider';
 import SelectAccountPage from './pages/account/SelectAccountPage';
@@ -34,6 +41,12 @@ function App() {
     <div className='App'>
       <BrowserRouter>
         <Routes>
+          <Route path="/pattern" element={<Pattern nextUrl="celub-withdraw/complete"/>}/>
+          <Route path="deposit" element={<DepositCreation1 />} />
+          <Route path="/deposit2" element={<DepositCreation2 />} />
+          <Route path="/deposit3" element={<PatternPassword nextUrl="deposit4"/>} />
+          <Route path="/deposit4" element={<UserAgree />} />
+          <Route path="/deposit5" element={<DepositComplete />} />
           <Route path='/' element={<MainPage />} />
           <Route
             path='/cash-out/*'

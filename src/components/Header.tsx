@@ -1,9 +1,9 @@
-import './../common/styles/scss/CommonStyle.scss';
+import "./../common/styles/scss/CommonStyle.css";
 
 function Header({ value }: { value: string }) {
   return (
     <>
-      <div id='header'>{value}</div>
+      <div id="header">{value}</div>
     </>
   );
 }
