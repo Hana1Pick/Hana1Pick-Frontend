@@ -1,11 +1,18 @@
 import back from '../assets/images/common/backicon.png';
 
-function MoaClubHeader() {
+type MoaClubHeaderData = {
+  value: string;
+  disabled: boolean
+}
+
+function MoaClubHeader({ value, disabled }: MoaClubHeaderData) {
+  const headerStyle = disabled ? { backgroundColor: 'rgba(0, 0, 0, 0.009)', borderColor: 'rgba(0, 0, 0, 0.009)' } : {};
+
   return(
     <>
-      <div className='moaclubHeader'>
+      <div className='moaclubHeader' style={headerStyle}>
         <img className="back" src={back} />
-        <h4>모아클럽</h4>
+        <h4>{value}</h4>
         <h5>취소</h5>
       </div>
     </>

@@ -5,18 +5,33 @@ import checkicon from "../../assets/images/common/checkicon.png";
 import CommonBtn from "../../components/button/CommonBtn";
 import './MoaclubStyle.scss';
 import '../../common/styles/scss/CommonStyle.scss'
+import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
 
 function MoaclubOpening() {
+  const navigate = useNavigate();
+  const [allAgreed, setAllAgreed] = useState(false);
+
+  const handleAgreeClick = () => {
+    setAllAgreed(!allAgreed);
+  };
+
+  const next = () => {
+    if (allAgreed) {
+      navigate('/moaclub/select-acc');
+    }
+  };
+
   return(
       <>
-        <Header/>
+        <Header value="모아클럽" disabled={false}/>
         <div className="content">
           <img className="banner" src={banner} />
         </div>
         
         <div>
           <div className="allAgreeBox">
-            <div className="allAgree">
+            <div className={`allAgree ${allAgreed ? 'agreed' : ''}`} onClick={handleAgreeClick}>
               <div className="leftContent">
                 <img className="checkicon" src={checkicon} />
                 <span>전체 동의</span>
@@ -50,7 +65,10 @@ function MoaclubOpening() {
           </div>
         </div>
 
-        <CommonBtn msg="다음" id="basicBtn1"/>
+        <div className="buttonContainer">
+          <CommonBtn type='black' value="다음" onClick={next} disabled={!allAgreed}/>
+        </div>
+        
       </>
   )
 }
