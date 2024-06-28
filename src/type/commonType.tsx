@@ -23,9 +23,19 @@ export type CelubRuleType={
 }
 
 export type CelubHistoryType={
-    date: string;
-    ruleName: string;
+    transDate: string;
+    memo: string;
+    transAmount: number;
+    afterInBal: number;
     hashtag: string;
+
+}
+
+export type CelubAccount={
+    account_id: string;
+    name: string;
+    balance: number;
+    imgSrc: string;
     ruleMoney: number;
     totalBalance: number;
 }
