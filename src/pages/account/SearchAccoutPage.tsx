@@ -5,7 +5,7 @@ import { IoSearchOutline } from 'react-icons/io5';
 
 import Header from '../../components/Header';
 import CommonBtn from '../../components/button/CommonBtn';
-import AccountCard from '../../components/card/AccountCard';
+import AccountCard from '../../components/account/AccountCard';
 import './AccountStyle.scss';
 import { AccountContext } from '../../contexts/AccountContextProvider';
 

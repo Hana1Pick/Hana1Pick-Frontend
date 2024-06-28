@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
-import AccountCard from '../../components/card/AccountCard';
+import AccountCard from '../../components/account/AccountCard';
 import './QrStyle.scss';
 import { QrContext } from '../../contexts/QrContextProvider';
 
