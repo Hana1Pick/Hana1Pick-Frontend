@@ -1,11 +1,7 @@
 import back from '../assets/images/common/backicon.png';
+import { MoaClubHeaderData1 } from '../type/commonType';
 
-type MoaClubHeaderData = {
-  value: string;
-  disabled: boolean
-}
-
-function MoaClubHeader({ value, disabled }: MoaClubHeaderData) {
+function MoaClubHeader({ value, disabled }: MoaClubHeaderData1) {
   const headerStyle = disabled ? { backgroundColor: 'rgba(0, 0, 0, 0.009)', borderColor: 'rgba(0, 0, 0, 0.009)' } : {};
 
   return(
