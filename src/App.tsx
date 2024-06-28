@@ -8,6 +8,7 @@ import DepositCreation2 from "./pages/deposit/DepositCreation2";
 import PatternPassword from "./pages/deposit/PatternPassword";
 import UserAgree from "./pages/deposit/UserAgree";
 import DepositComplete from "./pages/deposit/DepositComplete";
+
 // 계좌 이체
 import { AccountContextProvider } from './contexts/AccountContextProvider';
 import SelectAccountPage from './pages/account/SelectAccountPage';
@@ -34,7 +35,9 @@ import MoaclubPattern from './pages/moaclub/MoaclubPattern';
 
 // User
 import KakaoLoginPage from './pages/user/login/KakaoLoginPage';
+import LoginHandeler from './pages/user/login/LoginHandeler';
 import { MoaclubContextProvider } from './contexts/MoaclubContextProvider';
+
 
 function App() {
   return (
@@ -106,6 +109,10 @@ function App() {
               </AccountContextProvider>
             }
           />
+          <Route path="/api/user/oauth/kakao" //redirect_url
+    element={<LoginHandeler/>} //당신이 redirect_url에 맞춰 꾸밀 컴포넌트
+  />
+
         </Routes>
       </BrowserRouter>
     </div>
