@@ -17,7 +17,8 @@ import CelubAccountList from './pages/celublog/CelubAccountList';
 import CelubDetail from './pages/celublog/CelubDetail';
 import CelubRule from './pages/celublog/CelubRule';
 import CelubDeposit from './pages/celublog/CelubDeposit';
-import Pattern from './components/pattern/PatternPage';
+// User
+import KakaoLoginPage from './pages/user/login/KakaoLoginPage';
 
 function App() {
   return (
@@ -56,7 +57,16 @@ function App() {
               </AccountContextProvider>
             }
           />
-          <Route path="/pattern" element={<Pattern nextUrl="celub-withdraw/complete"/>}/>
+          <Route
+            path="/user/*"
+            element={
+              <AccountContextProvider>
+                <Routes>
+                  <Route path="login" element={<KakaoLoginPage />} />
+                </Routes>
+              </AccountContextProvider>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>
