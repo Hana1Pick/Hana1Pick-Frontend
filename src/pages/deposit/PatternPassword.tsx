@@ -93,25 +93,25 @@ const Pattern: React.FC<PatternProps> = ({ nextUrl }) => {
         };
         setFormData(updatedFormData);
         console.log(updatedFormData);
-        console.log(formData)
 
-        
         axios
-        .post(url, updatedFormData, {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-        .then((res) => {
-          if (res.data.status == 200) {
-            navigate("/" + `${nextUrl}`, { state: { formData: updatedFormData } });
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-        }
+          .post(url, updatedFormData, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+          .then((res) => {
+            if (res.data.status == 200) {
+              navigate("/" + `${nextUrl}`, {
+                state: { formData: updatedFormData },
+              });
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       }
+    }
   };
 
   const renderPattern = () => {
