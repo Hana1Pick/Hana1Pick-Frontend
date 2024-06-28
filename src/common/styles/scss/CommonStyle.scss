@@ -115,3 +115,12 @@
   height: 100%;
   pointer-events: none;
 }
+
+#header {
+  height: 2.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 0.1em solid #efefef;
+  font-size: 1em;
+}
