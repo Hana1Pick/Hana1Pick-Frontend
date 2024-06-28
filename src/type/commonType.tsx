@@ -29,3 +29,13 @@ export type CelubHistoryType={
     ruleMoney: number;
     totalBalance: number;
 }
+
+export type MoaClubHeaderData1 = {
+    value: string;
+    disabled: boolean
+}
+
+export type MoaClubHeaderData2 = {
+    value: string;
+    disabled: boolean
+}

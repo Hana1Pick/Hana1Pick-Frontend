@@ -1,0 +1,344 @@
+.moaclubHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1rem 1.5rem 1rem 1.5rem;
+  background-color: white;
+  z-index: 1000;
+  box-sizing: border-box;
+  border-bottom: 0.05rem solid rgb(232, 232, 232);
+}
+
+.moaclubHeader2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1rem 1.5rem 1rem 1.5rem;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.moaclubHeader2 img {
+  position: absolute;
+  left: 1.5rem;
+}
+
+.back {
+  height: 20px; // 이미지 높이 설정 (필요에 따라 조정)
+  width: auto;
+}
+
+h4 {
+  margin: 0;
+}
+
+h5 {
+  margin: 0;
+  font-weight: 400;
+}
+
+.banner {
+  width: 15rem;
+}
+
+.MoaImg {
+  width: 10rem;
+}
+
+.content {
+  margin-top: 5rem;
+}
+
+.allAgree {
+  background-color: #e6e3e4;
+  height: 2.7rem;
+  width: 19rem;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.allAgree.agreed {
+  background-color: #F19ED3;
+}
+
+.agreeItem {
+  background-color: #ffffff;
+  height: 2rem;
+  width: 18rem;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.1rem;
+}
+
+.allAgreeBox {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.agreeItems {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.leftContent {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+}
+
+.righticon, .checkicon, .deleteicon {
+  height: 1rem;
+  margin-right: 1rem;
+}
+
+.leftContent > span {
+  font-size: small;
+  margin-left: 0.2rem;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 2rem;
+  width: 100%;
+}
+
+.withdrawMsg h4, h3 {
+  text-align: left;
+  font-weight: 600;
+}
+
+.withdrawMsg h4 {
+  color: #8F8F8F;
+  font-size: small;
+  line-height: 1.1rem;
+}
+
+.withdrawMsg {
+  margin: 3rem;
+  margin-top: 6rem;
+}
+
+.narrowLine {
+  line-height: 1.5rem;
+}
+
+.withdraw-box1 {
+  margin-top: 75%;
+}
+
+.withdraw-box1 h4 {
+  text-align: left;
+  font-size: small;
+  font-weight: 700;
+  margin-left: 2.3rem;
+  margin-bottom: 0.7rem;
+}
+
+.withdraw-box2 {
+  background-color: #F8F8F9;
+  width: 75%;
+  height: 50%;
+  padding: 5%;
+  margin: auto;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  color: #6B6B6B;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.moaclubTitleSetting {
+  margin-top: 7rem;
+  line-height: 1.7rem;
+}
+
+.accountNameInput {
+  width: 70%;
+  padding: 10px 0;
+  border: none;
+  border-bottom: 1px solid #d3d3d3; /* 회색 밑줄 */
+  outline: none;
+  font-size: 16px;
+  text-align: center;
+  margin-top: 2.5rem;
+
+  &::placeholder {
+    color: #d3d3d3; /* 회색 플레이스홀더 */
+    text-align: center;
+  }
+
+  &:focus {
+    border-bottom: 1px solid #000; /* 클릭 시 밑줄 색상 변경 */
+  }
+}
+
+.deleteicon {
+  position: absolute;
+  top: 1.5rem;
+  right: 1rem;
+}
+
+.leftAlignedText {
+  text-align: left;
+  line-height: 1.5rem;
+  display: block;
+}
+
+.currencySelect {
+  margin-top: 2.2rem;
+  margin-bottom: -3rem;
+  color: #6B6B6B;
+  font-weight: 600;
+  text-align: center;
+  border-style: none;
+  border-radius: 0.7rem;
+  width: 48%;
+  height: 2rem;
+}
+
+header {
+  position: fixed; /* Or whatever your default is */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2; /* Ensure it stays above the overlay */
+  transition: background-color 0.3s; /* Smooth transition for background color change */
+}
+
+.withdraw-box7{
+  display: none;
+  z-index: 1;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  background-color: whitesmoke;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+}
+
+.datePicker {
+  display: flex;
+}
+
+.picker {
+  margin-top: 1.1rem;
+}
+
+.centeredText {
+  text-align: center;
+  margin-top: 5rem;
+  margin-left: 4rem;
+  margin-right: 4rem;
+}
+
+.moaclub-box6{
+  margin: 3rem 3rem 1rem 3rem;
+  p{
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+  span{
+    font-size: 0.8rem;
+    color: #6B6B6B;
+  }
+}
+
+.moaclub-box5{
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  button{
+   border:0;
+   border-radius: 0.5rem;
+   padding: 1.2rem;
+   width: 50%;
+   background-color: #C4C4C4;
+  }
+}
+
+.completeBox1{
+  height:50%;
+  padding: 6rem 6rem 4rem 6rem;
+}
+.tableBox{
+  width:100%;
+}
+.completeInfo{
+  width:80%;
+  border-top: 1px solid #D5D5D5;
+  margin: auto;
+
+  th,td{
+      border-bottom: 1px solid #D5D5D5;
+      padding: 10px;
+      font-weight: 400;
+      font-size: 0.9rem;
+  }
+  th{
+      text-align: left;
+      color: #666666;
+  }
+  td{
+      text-align: right;
+  }
+}
+
+.textBox1{
+  margin-top: 1rem;
+  p{
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 2rem;
+      margin: 0;
+  }
+}
+
+.completeBox3{
+  button{
+      margin-top: 6rem;
+  }
+}
+
+.overlay-text .errorMsg {
+  color: rgb(255, 107, 107);
+  font-size: small;
+}
+
+.clubFeeText {
+  border-style: none;
+  border-radius: 2rem;
+  width: 70%;
+  height: 60%;
+  text-align: center;
+}
+
+.clubFeeBox {
+  margin-top: 2rem;
+  display: flex;
+}
+
+.currencySymbol {
+  margin-left: 0.5rem !important;
+  font-weight: bold !important;
+  color: #424242 !important;
+  font-size: large !important;
+}
