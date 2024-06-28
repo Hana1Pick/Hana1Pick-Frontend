@@ -37,3 +37,16 @@ export type MoaClubHeaderData2 = {
   value: string;
   disabled: boolean;
 };
+
+export type DomesticAuthProps = {
+  rtcRoomNum: string;
+  formData: {
+    name: string;
+    address: string;
+    birth: string | null;
+    phone: string;
+    nation: string;
+    email: string | null; 
+    password: string;
+  };
+};

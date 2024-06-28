@@ -13,7 +13,7 @@ function DepositCreation2() {
   const [birth, setBirth] = useState<string | null>(null);
   const [phone, setPhone] = useState<string>("");
   const [nation, setNation] = useState<string>("");
-  const email = "string" //임시(수정예정)
+  const email = localStorage.getItem("email");
   const [password, setPassword] = useState<string>("");
   const [rtcRoomNum, setRtcRoomNum] = useState<string>("");
   const datePickerRef = useRef<DatePicker>(null);

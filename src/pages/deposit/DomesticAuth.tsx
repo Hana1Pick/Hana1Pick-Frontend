@@ -3,19 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import useScript from "./useScript";
 import CommonBtn from "../../components/button/CommonBtn";
 import "./style.css";
+import { DomesticAuthProps } from "../../type/commonType"
 
-type DomesticAuthProps = {
-  rtcRoomNum: string;
-  formData: {
-    name: string;
-    address: string;
-    birth: string | null;
-    phone: string;
-    nation: string;
-    email: string;
-    password: string;
-  };
-};
 
 function DomesticAuth({ rtcRoomNum, formData }: DomesticAuthProps) {
   console.log(formData);
