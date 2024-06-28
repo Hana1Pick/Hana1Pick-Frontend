@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import "../../common/styles/scss/CommonStyle.css"; // SCSS 파일 경로
+import "../../common/styles/scss/CommonStyle.scss"; // SCSS 파일 경로
 import Header from "../../components/Header";
 import "./style.css";
 import DomesticAuth from "./DomesticAuth";
@@ -17,7 +17,6 @@ function DepositCreation2() {
   const [password, setPassword] = useState<string>("");
   const [rtcRoomNum, setRtcRoomNum] = useState<string>("");
   const datePickerRef = useRef<DatePicker>(null);
-  
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setNation(event.target.value);
@@ -77,7 +76,7 @@ function DepositCreation2() {
       <Header value="개인정보 입력" />
       <div className="container">
         <div className="input-box">
-          <div className="content">먼저, 정보를 입력받을게요.</div>
+          <div className="content-box">먼저, 정보를 입력받을게요.</div>
           <div className="input-all-container">
             <div className="input-container">
               <label htmlFor="name" className="input-label">

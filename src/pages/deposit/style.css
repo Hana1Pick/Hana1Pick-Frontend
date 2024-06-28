@@ -1,4 +1,4 @@
-.content {
+.content-box {
   text-align: left;
 }
 
@@ -52,7 +52,7 @@
   position: absolute;
   right: 0.5rem;
   cursor: pointer;
-  z-index: 2; /* 이미지 위치 조정 및 z-index 설정 */
+  /* z-index: 2; 이미지 위치 조정 및 z-index 설정 */
   width: 1.5rem; /* 아이콘 크기 조정 */
   height: 1.5rem; /* 아이콘 크기 조정 */
 }
