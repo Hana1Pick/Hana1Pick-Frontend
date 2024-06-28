@@ -2,6 +2,7 @@
 
 #basicBtn1 {
   width: 90%;
+  height: 2.8em;
   background-color: #f19ed3;
   border: 0;
   border-radius: 0.5rem;
@@ -13,6 +14,7 @@
 
 #basicBtn2 {
   width: 90%;
+  height: 2.8em;
   background-color: #000000;
   border: 0;
   border-radius: 0.5rem;
@@ -24,17 +26,6 @@
 
 #basicBtn1:disabled {
   background-color: #cfcfcf;
-}
-
-#basicBtn2 {
-  width: 90%;
-  background-color: #000000;
-  border: 0;
-  border-radius: 0.5rem;
-  color: azure;
-  cursor: pointer;
-  padding-top: 3%;
-  padding-bottom: 3%;
 }
 
 #basicBtn2:disabled {
