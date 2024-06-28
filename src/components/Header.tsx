@@ -1,4 +1,4 @@
-import "./../common/styles/scss/CommonStyle.css";
+import "./../common/styles/scss/CommonStyle.scss";
 
 function Header({ value }: { value: string }) {
   return (
