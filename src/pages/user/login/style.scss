@@ -5,11 +5,10 @@
     justify-content: center;
     height: calc(100vh - 3em); /* header: 3em */
 
-
     text-align: center;
     .Description{
-        margin-bottom: 20px;
-        font-size: 16px;      
+        margin-bottom: 1.25rem; /* 20px -> 1.25rem */
+        font-size: 1rem;      
     }
 
     .LoginButton {
