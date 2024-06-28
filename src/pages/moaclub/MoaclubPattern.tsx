@@ -4,6 +4,7 @@ import PattrenBg from '../../assets/images/common/PatternBg.png';
 import { useNavigate } from 'react-router-dom';
 import Header from "../../layouts/MoaclubHeader2";
 import { MoaclubContext } from '../../contexts/MoaclubContextProvider';
+import '../../common/styles/scss/CommonStyle.scss';
 
 interface PatternProps {
   nextUrl: string;
@@ -79,7 +80,6 @@ function MoaclubPattern() {
         for (let i = 0; i < selectedPoints.length; i++) {
           password += selectedPoints[i];
         }
-
         checkPassword(password);
       }
     }
@@ -120,7 +120,7 @@ function MoaclubPattern() {
         const response = await axios.post(
             `http://${process.env.REACT_APP_BESERVERURI}/api/user/password-check`,
             {
-              userIdx: '550e8400-e29b-41d4-a716-446655440000',
+              userIdx: userIdx,
               password: password,
             },
             {
@@ -129,7 +129,7 @@ function MoaclubPattern() {
               },
             }
         );
-        console.log(response.data.data);
+        console.log(response.data.data)
         if (response.data.data.check) {
             next();
         } else {
