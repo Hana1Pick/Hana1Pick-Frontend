@@ -19,7 +19,23 @@
   line-height: 1.5em;
 }
 
-#extraInfo span {
+#mainInfoCenter {
+  margin-top: 1.5em;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: 550;
+}
+
+#extraInfoCenter {
+  margin-top: 1.5em;
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: 500;
+  line-height: 1.5em;
+}
+
+#extraInfo span,
+#extraInfoCenter span {
   font-weight: 650;
   color: #f19ed3;
 }
@@ -29,5 +45,34 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(100% - 8em);
+  height: calc(100% - 10em);
+}
+
+#qrCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 16em;
+  height: 20em;
+  margin-left: auto;
+  margin-right: auto;
+  background: #ffffff;
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 1.5em;
+}
+
+.qrImage {
+  width: 15em;
+}
+
+.qrInput {
+  width: 90%;
+  height: 2.8em;
+  background-color: #f19ed3;
+  border: 0;
+  border-radius: 0.5rem;
+  color: azure;
+  cursor: pointer;
+  padding-top: 3%;
+  padding-bottom: 3%;
 }
