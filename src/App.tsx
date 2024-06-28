@@ -23,6 +23,9 @@ import MoaclubSelectAcc from './pages/moaclub/MoaclubSelectAcc';
 import MoaclubCreatePage from './pages/moaclub/MoaclubCreatePage';
 import MoaclubComplete from './pages/moaclub/MoaclubComplete';
 import MoaclubPattern from './pages/moaclub/MoaclubPattern';
+// User
+import KakaoLoginPage from './pages/user/login/KakaoLoginPage';
+import { MoaclubContextProvider } from './contexts/MoaclubContextProvider';
 
 function App() {
   return (
@@ -53,11 +56,33 @@ function App() {
           <Route path="/celub/rule" element={<CelubRule/>}/>
           <Route path="/celub/deposit" element={<CelubDeposit/>}/>
           <Route path="/pattern/:nextUrl" element={<Pattern />}/>
-          <Route path='/moaclub/opening' element={<MoaclubOpening />}/>
-          <Route path='/moaclub/select-acc' element={<MoaclubSelectAcc />}/>
-          <Route path='/moaclub/create' element={<MoaclubCreatePage />}/>
-          <Route path="/moaclub/complete" element={<MoaclubComplete/>}/>
-          <Route path="/moaclub/pattern" element={<MoaclubPattern />}/>
+          
+          <Route
+            path='/moaclub/*'
+            element={
+              <MoaclubContextProvider>
+                <Routes>
+                  <Route path='/opening' element={<MoaclubOpening />}/>
+                  <Route path='/select-acc' element={<MoaclubSelectAcc />}/>
+                  <Route path='/create' element={<MoaclubCreatePage />}/>
+                  <Route path="/complete" element={<MoaclubComplete/>}/>
+                  <Route path="/pattern" element={<MoaclubPattern />}/>
+                </Routes>
+              </MoaclubContextProvider>
+            }
+          />
+
+          <Route
+            path="/user/*"
+            element={
+              <AccountContextProvider>
+                <Routes>
+                  <Route path="login" element={<KakaoLoginPage />} />
+              
+                </Routes>
+              </AccountContextProvider>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>

@@ -2,21 +2,23 @@ import axios from 'axios';
 import React, { useRef, useState, useContext } from 'react';
 import PattrenBg from '../../assets/images/common/PatternBg.png';
 import { useNavigate } from 'react-router-dom';
-import { AccountContext } from '../../contexts/AccountContextProvider';
+import Header from "../../layouts/MoaclubHeader2";
+import { MoaclubContext } from '../../contexts/MoaclubContextProvider';
 
 interface PatternProps {
   nextUrl: string;
 }
 
 function MoaclubPattern() {
-  const { amount, outAccId, inAccId }: any = useContext(AccountContext);
-  const [userPassword, setUserPassword] = useState('1236');
+  const { userIdx, accountId, name, clubFee, atDate, currency, setMoaclub }: any = useContext(MoaclubContext);
+  const [attemptCnt, setAttemptCnt] = useState(0);
   /* TODO
   const userPassword = localStorage.getItem('userPassword');
   */
   const [selectedPoints, setSelectedPoints] = useState<number[]>([]);
   const isDrawing = useRef(false);
   const pointsRef = useRef<HTMLDivElement[]>([]);
+  const [errorMsg, setErrorMsg] = useState('');
 
   const handleMouseDown = (index: number) => {
     if (!selectedPoints.includes(index)) {
@@ -24,6 +26,7 @@ function MoaclubPattern() {
       isDrawing.current = true;
     }
   };
+
   const handleTouchStart = (index: number) => {
     if (!selectedPoints.includes(index)) {
       setSelectedPoints([index]);
@@ -69,30 +72,30 @@ function MoaclubPattern() {
       isDrawing.current = false;
       console.log('Selected Pattern:', selectedPoints);
       if (selectedPoints.length < 4) {
-        alert('비밀번호의 길이가 유효하지 않습니다. 다시 그려주세요');
+        setErrorMsg('4개 이상의 점을 연결해주세요.')
+
       } else {
         let password = '';
         for (let i = 0; i < selectedPoints.length; i++) {
           password += selectedPoints[i];
         }
 
-        if (password == userPassword) {
-          next();
-        }
+        checkPassword(password);
       }
     }
   };
 
   const navigate = useNavigate();
   const next = () => {
-    const url = `http://${process.env.REACT_APP_BESERVERURI}/api/account/cash-out`;
+    const url = `http://${process.env.REACT_APP_BESERVERURI}/api/moaclub`;
 
     const data = {
-      amount: amount,
-      memo: null,
-      hashtag: null,
-      outAccId: outAccId,
-      inAccId: inAccId,
+      accountId: accountId,
+      userIdx: userIdx,
+      name: name,
+      clubFee: clubFee,
+      atDate: atDate,
+      currency: currency
     };
 
     axios
@@ -102,14 +105,42 @@ function MoaclubPattern() {
         },
       })
       .then((res) => {
-        if (res.data.status == 200) {
-          navigate('/cash-out/result');
+        if (res.data.status == 201) {
+          setMoaclub(res.data.data.accountId);
+          navigate('/moaclub/complete');
         }
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  const checkPassword = async (password: string) => {
+    try {
+        const response = await axios.post(
+            `http://${process.env.REACT_APP_BESERVERURI}/api/user/password-check`,
+            {
+              userIdx: '550e8400-e29b-41d4-a716-446655440000',
+              password: password,
+            },
+            {
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }
+        );
+
+        if (response.data.data.check) {
+            next();
+        } else {
+            setSelectedPoints([]);
+            setAttemptCnt((prevCnt) => prevCnt + 1);
+            setErrorMsg(`일치하지 않습니다. (${attemptCnt + 1}/5)`);
+        }
+    } catch(error) {
+        console.error(error);
+    }
+  }
 
   const renderPattern = () => {
     const patternPoints = [];
@@ -160,10 +191,12 @@ function MoaclubPattern() {
   return (
     <>
       <div className='background-container'>
+        <Header value="비밀번호 입력" disabled={false} />
         <img src={PattrenBg} alt='Pattern Background' className='pattern-bg' />
         <div className='overlay-text'>
-          인증 패턴을 등록합니다.
-          <div>이체 및 모든 금융 거래시 사용됩니다.</div>
+          비밀번호를 입력하세요.
+          <div>회원 인증 패턴을 그려주세요.</div>
+          {errorMsg && <div className='errorMsg'>{errorMsg}</div>}
         </div>
       </div>
       <div

@@ -1,4 +1,4 @@
-import Header from "../../layouts/MoaclubHeader";
+import Header from "../../layouts/MoaclubHeader1";
 import banner from "../../assets/images/moaclub/moaclub-banner.png";
 import righticon from "../../assets/images/common/righticon.png";
 import checkicon from "../../assets/images/common/checkicon.png";

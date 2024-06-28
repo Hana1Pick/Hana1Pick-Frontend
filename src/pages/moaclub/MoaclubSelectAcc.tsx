@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import CommonBtn from "../../components/button/CommonBtn";
-import Header from "../../layouts/MoaclubHeader";
+import Header from "../../layouts/MoaclubHeader1";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { MoaclubContext } from "../../contexts/MoaclubContextProvider";
 
 // 계좌 데이터 타입 정의
 interface Account {
@@ -32,6 +33,8 @@ function MoaclubSelectAcc() {
   const userIdx = "550e8400-e29b-41d4-a716-446655440000";
   const type = "DEPOSIT";
 
+  const { setAccountId }: any = useContext(MoaclubContext);
+
   useEffect(() => {
     const fetchAccounts = async () => {
       const accountData = await getAccountListByType(userIdx, type);
@@ -43,6 +46,7 @@ function MoaclubSelectAcc() {
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedAccount(event.target.value);
+    setAccountId(event.target.value);
   }
 
   const next = () => {

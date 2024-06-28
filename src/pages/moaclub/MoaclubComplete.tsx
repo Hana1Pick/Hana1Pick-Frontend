@@ -1,7 +1,10 @@
+import { useContext } from 'react';
 import moaImg from '../../assets/images/moaclub/moaclub-complete.png';
+import { MoaclubContext } from '../../contexts/MoaclubContextProvider';
 
 function MoaclubComplete(){
   const currentDate = new Date().toLocaleDateString().replace(/\.$/, '');
+  const { name, moaclub }: any = useContext(MoaclubContext);
 
   const goList=()=>{
 
@@ -23,7 +26,7 @@ function MoaclubComplete(){
           <table className="completeInfo">
             <tr>
               <th>출금계좌</th>
-              <td colSpan={2}>김주혜의 통장 <br/> 계좌번호</td>
+              <td colSpan={2}>{name} <br/> {moaclub}</td>
             </tr>
             <tr>
               <th>적용금리</th>

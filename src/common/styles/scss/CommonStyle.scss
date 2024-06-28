@@ -61,7 +61,9 @@
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   gap: 0.5rem;
-  margin-top: 1rem;
+  margin-top: 3rem;
+  margin-left: 2.5rem;
+  margin-right: 3.5rem;
 }
 
 .background-container {
@@ -86,11 +88,11 @@
 }
 
 .pattern-dot {
-  width: 1rem;
-  height: 1rem;
+  width: 0.7rem;
+  height: 0.7rem;
   border-radius: 50%;
   background-color: #000;
-  margin: 3rem;
+  margin: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;

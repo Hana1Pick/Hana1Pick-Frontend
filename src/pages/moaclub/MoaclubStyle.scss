@@ -12,6 +12,23 @@
   border-bottom: 0.05rem solid rgb(232, 232, 232);
 }
 
+.moaclubHeader2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1rem 1.5rem 1rem 1.5rem;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.moaclubHeader2 img {
+  position: absolute;
+  left: 1.5rem;
+}
+
 .back {
   height: 20px; // 이미지 높이 설정 (필요에 따라 조정)
   width: auto;
@@ -299,4 +316,29 @@ header {
   button{
       margin-top: 6rem;
   }
+}
+
+.overlay-text .errorMsg {
+  color: rgb(255, 107, 107);
+  font-size: small;
+}
+
+.clubFeeText {
+  border-style: none;
+  border-radius: 2rem;
+  width: 70%;
+  height: 60%;
+  text-align: center;
+}
+
+.clubFeeBox {
+  margin-top: 2rem;
+  display: flex;
+}
+
+.currencySymbol {
+  margin-left: 0.5rem !important;
+  font-weight: bold !important;
+  color: #424242 !important;
+  font-size: large !important;
 }
