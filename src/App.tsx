@@ -9,6 +9,11 @@ import GetAmountPage from './pages/account/GetAmountPage';
 import CashOutPage from './pages/account/CashOutPage';
 import CashOutPatternPage from './pages/account/CashOutPatternPage';
 import CashOutResultPage from './pages/account/CashOutResultPage';
+// QR 계좌 이체
+import { QrContextProvider } from './contexts/QrContextProvider';
+import SelectQrInAccountPage from './pages/qr/SelectQrInAccountPage';
+import GetQrAmountPage from './pages/qr/GetQrAmountPage';
+import CreateQrResultPage from './pages/qr/CreateQrResultPage';
 // Celublog
 import CelubPage from './pages/celublog/CelubPage';
 import CelubWithdraw from './pages/celublog/CelubWithdraw';
@@ -25,6 +30,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<MainPage />} />
+          {/* 계좌 이체 */}
           <Route
             path='/cash-out/*'
             element={
@@ -40,14 +46,28 @@ function App() {
               </AccountContextProvider>
             }
           />
-          <Route path="/celub" element={<CelubPage/>}/>
-          <Route path="/celub-withdraw" element={<CelubWithdraw/>}/>
-          <Route path="/celub-withdraw/complete" element={<CelubComplete/>}/>
-          <Route path="/celub/list" element={<CelubAccountList/>}/>
-          <Route path="/celub/detail" element={<CelubDetail/>}/>
-          <Route path="/celub/rule" element={<CelubRule/>}/>
-          <Route path="/celub/deposit" element={<CelubDeposit/>}/>
-          <Route path="/pattern/:nextUrl" element={<Pattern />}/>
+          {/* QR 계좌 이체 */}
+          <Route
+            path='qr/cash-in/*'
+            element={
+              <QrContextProvider>
+                <Routes>
+                  <Route path='account' element={<SelectQrInAccountPage />} />
+                  <Route path='amount' element={<GetQrAmountPage />} />
+                  <Route path='result' element={<CreateQrResultPage />} />
+                </Routes>
+              </QrContextProvider>
+            }
+          />
+          {/* Celublog */}
+          <Route path='/celub' element={<CelubPage />} />
+          <Route path='/celub-withdraw' element={<CelubWithdraw />} />
+          <Route path='/celub-withdraw/complete' element={<CelubComplete />} />
+          <Route path='/celub/list' element={<CelubAccountList />} />
+          <Route path='/celub/detail' element={<CelubDetail />} />
+          <Route path='/celub/rule' element={<CelubRule />} />
+          <Route path='/celub/deposit' element={<CelubDeposit />} />
+          <Route path='/pattern/:nextUrl' element={<Pattern />} />
         </Routes>
       </BrowserRouter>
     </div>
