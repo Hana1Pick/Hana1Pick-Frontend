@@ -1,0 +1,33 @@
+#main {
+  width: 85%;
+  height: calc(100vh - 6em); /* header:2.5em, nextBtn:3.5em */
+  margin: auto;
+}
+
+#mainInfo {
+  margin-top: 1.5em;
+  text-align: left;
+  font-size: 1.2em;
+  font-weight: 550;
+}
+
+#extraInfo {
+  margin-top: 1.5em;
+  text-align: left;
+  font-size: 1.1em;
+  font-weight: 500;
+  line-height: 1.5em;
+}
+
+#extraInfo span {
+  font-weight: 650;
+  color: #f19ed3;
+}
+
+#qrWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100% - 8em);
+}
