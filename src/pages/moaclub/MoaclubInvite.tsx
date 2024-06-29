@@ -42,7 +42,7 @@ function MoaclubInvite() {
     console.log(url);
   
     if (!window.Kakao.isInitialized()) {
-      window.Kakao.init(process.env.REACT_APP_KAKAO_KEY_SY);
+      window.Kakao.init(process.env.REACT_APP_KAKAO_KEY_SHARE);
     }
   
     window.Kakao.Share.sendDefault({
