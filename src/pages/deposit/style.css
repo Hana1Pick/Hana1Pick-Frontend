@@ -1,0 +1,437 @@
+.content-box {
+  text-align: left;
+}
+
+#basicBtn2 {
+  width: 100%;
+  background-color: #1e1b1e;
+  border: 0;
+  border-radius: 0.5rem;
+  color: azure;
+  cursor: pointer;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  align-self: center;
+}
+
+.input-container {
+  margin-top: 1rem;
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.625rem;
+  font-size: 1rem;
+  border: 0.05rem solid #f0efef;
+  background-color: #f0efef;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+  color: #777777;
+}
+
+.input-label {
+  margin-bottom: 0.3125rem;
+  display: block;
+  text-align: left;
+}
+
+.custom-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.custom-input-field {
+  flex: 1;
+  width: calc(100% - 2.5rem); /* 40px를 rem 단위로 변환 */
+  padding-right: 7.1875rem; /* 115px를 rem 단위로 변환 */
+}
+
+.custom-calendar-icon {
+  position: absolute;
+  right: 0.5rem;
+  cursor: pointer;
+  /* z-index: 2; 이미지 위치 조정 및 z-index 설정 */
+  width: 1.5rem; /* 아이콘 크기 조정 */
+  height: 1.5rem; /* 아이콘 크기 조정 */
+}
+
+.custom-datepicker {
+  width: 15.625rem; /* 250px를 rem 단위로 변환 */
+}
+
+.date-picker-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.date-picker-input-field {
+  padding-right: "2rem";
+}
+
+.date-picker-label {
+  margin-bottom: 0.3125rem; /* 5px를 rem 단위로 변환 */
+}
+
+.date-picker-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+.react-datepicker__triangle {
+  display: none !important;
+}
+
+.deposit-creation {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* 전체 높이를 차지 */
+  flex: 1;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center; /* 버튼을 중앙에 배치 */
+  padding: 1rem; /* 버튼 주변에 패딩 추가 */
+}
+
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  padding: 1.25rem; /* 20px를 rem 단위로 변환 */
+}
+
+/* .input-all-container {
+  padding: 1rem;
+} */
+
+.image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+}
+
+.image1-container {
+  display: flex;
+  justify-content: center;
+}
+
+.image2-container {
+  display: flex;
+  justify-content: center;
+}
+
+.image1-container img {
+  width: 30%;
+  height: auto;
+}
+
+.image2-container img {
+  width: 60%;
+  height: auto;
+}
+
+.button2-container {
+  background-color: #ffffff;
+  border: 0;
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+}
+
+.modal-content {
+  background-color: white;
+  padding: 1.25rem; /* 20px를 rem 단위로 변환 */
+  border-radius: 0.3125rem; /* 5px를 rem 단위로 변환 */
+  box-shadow: 0px 0px 0.625rem rgba(0, 0, 0, 0.1); /* 10px를 rem 단위로 변환 */
+  max-width: 80%;
+  max-height: 80%;
+  overflow: auto;
+}
+
+.close {
+  position: absolute;
+  top: 0.625rem; /* 10px를 rem 단위로 변환 */
+  right: 0.9375rem; /* 15px를 rem 단위로 변환 */
+  font-size: 1.5rem; /* 24px를 rem 단위로 변환 */
+  cursor: pointer;
+}
+
+/* PatternComponent.css */
+
+/* pattern CSS */
+
+.pattern-container {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.background-container {
+  position: relative;
+}
+
+.overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 1rem;
+  z-index: 10;
+  color: #000000;
+}
+
+.overlay-text div {
+  white-space: nowrap;
+  color: #535353;
+  margin-top: 0.625rem; /* 10px를 rem 단위로 변환 */
+}
+
+.pattern-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: #000;
+  margin: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pattern-bg {
+  width: 100%;
+  height: auto;
+}
+
+.pattern-dot.selected {
+  background-color: #555359;
+}
+
+.pattern-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+/* user agree */
+
+.legal-notice-box {
+  border: 0.0625rem solid #d5d8d8; /* 1px를 rem 단위로 변환 */
+  margin-bottom: 1.4rem;
+}
+
+.legal-notice-header {
+  display: flex;
+  align-items: center;
+  border-bottom: 0.0625rem solid #d5d8d8; /* 1px를 rem 단위로 변환 */
+  padding: 0.625rem; /* 10px를 rem 단위로 변환 */
+}
+
+.checkbox {
+  margin-right: 0.625rem; /* 10px를 rem 단위로 변환 */
+  margin-left: 0.625rem;
+}
+
+.checkbox-label {
+  margin: 0; /* 라벨의 기본 여백 제거 */
+}
+
+.legal-notice-content {
+  padding: 0.625rem; /* 10px를 rem 단위로 변환 */
+  color: #535353;
+}
+
+.useragree_text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center; /* 텍스트를 가운데 정렬 */
+  color: #535353;
+  padding-left: 3%;
+  padding-right: 3%;
+}
+
+.black-box {
+  background-color: #1e1b1e;
+  border: 0;
+  border-radius: 0.5rem;
+  color: azure;
+  cursor: pointer;
+  padding: 3%; /* 상하좌우 모두 3%의 패딩 */
+  margin-top: 1.4rem;
+  margin-bottom: 1.4rem;
+  text-align: left;
+  display: flex; /* Flexbox 적용 */
+  align-items: center; /* 수직 가운데 정렬 */
+  justify-content: space-between; /* 아이템 사이에 공간을 배분 */
+}
+
+.checkbox {
+  margin-right: 0.625rem; /* 10px를 rem 단위로 변환 */
+}
+
+.arrow-image {
+  margin-left: auto; /* 화살표 이미지를 오른쪽으로 정렬 */
+}
+
+.checkbox-text {
+  display: flex; /* Flexbox 적용 */
+  align-items: center; /* 수직 가운데 정렬 */
+  justify-content: space-between; /* 아이템 사이에 공간을 배분 */
+}
+
+.gray-box {
+  background-color: #f1f0f1;
+  border: 0;
+  border-radius: 0.5rem;
+  color: #848484;
+  cursor: pointer;
+  padding: 3%; /* 상하좌우 모두 3%의 패딩 */
+  text-align: left;
+  display: flex; /* Flexbox 적용 */
+  align-items: center; /* 수직 가운데 정렬 */
+  margin-bottom: 1.4rem;
+}
+
+.gray-box span {
+  color: #0c0f12;
+  margin-left: 1rem;
+}
+
+.bottom {
+  margin-bottom: 1.4rem;
+}
+
+/* DepostiComplete */
+
+.complete-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 수직 가운데 정렬 */
+  margin-bottom: 0.625rem; /* 이미지와 텍스트 사이에 여백 추가 */
+}
+
+.create-complete-img {
+  margin-top: 1.4rem;
+  margin-bottom: 1.4rem; /* 이미지와 텍스트 사이에 여백 추가 */
+}
+
+.notice-header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-bottom: 0.0625rem solid #d5d8d8; /* 1px를 rem 단위로 변환 */
+}
+
+.notice-header2 {
+  border-bottom: 0.0625rem solid #d5d8d8; /* 위쪽 부분에 밑줄 추가 */
+}
+
+.to-main {
+  display: flex; /* Flexbox 적용 */
+  align-items: center; /* 수직 가운데 정렬 */
+  justify-content: center;
+  flex-direction: column;
+  background-color: #ffffff;
+  color: #242635;
+  border: 0.0625rem solid #d5d8d8; /* 전체 박스에 테두리 추가 */
+  cursor: pointer;
+  padding: 4%; /* 상하좌우 모두 3%의 패딩 */
+  margin: 1.875rem 1.875rem;
+  width: 30%; /* 너비 설정 */
+}
+
+.notice-final {
+  display: flex; /* Flexbox 적용 */
+  align-items: center; /* 수직 가운데 정렬 */
+  justify-content: center;
+  flex-direction: column;
+}
+
+.notice_text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center; /* 텍스트를 가운데 정렬 */
+  color: #242635;
+  padding-left: 3%;
+  padding-right: 3%;
+}
+
+/* 패턴 css */
+
+.pattern-container {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.background-container {
+  position: relative;
+}
+.overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 16px;
+  z-index: 10;
+  color: #000000;
+}
+.overlay-text div {
+  white-space: nowrap;
+  color: #535353;
+  margin-top: 10px;
+}
+.pattern-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: #000;
+  margin: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pattern-bg {
+  width: 100%;
+  height: auto;
+}
+.pattern-dot.selected {
+  background-color: #555359;
+}
+.pattern-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}

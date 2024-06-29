@@ -1,12 +1,28 @@
 import React, { useRef, useState } from "react";
 import PattrenBg from "../../assets/images/common/PatternBg.png";
-import { useNavigate } from "react-router-dom";
+import { Await, useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 interface PatternProps {
   nextUrl: string;
 }
-
 const Pattern: React.FC<PatternProps> = ({ nextUrl }) => {
+  const location = useLocation();
+
+  const url = `http://${process.env.REACT_APP_BESERVERURI}/api/user/update`;
+
+  const initialFormData = location.state?.formData || {
+    name: "",
+    address: "",
+    birth: null,
+    phone: "",
+    nation: "",
+    email: "",
+    password: "",
+  };
+
+  const [formData, setFormData] = useState(initialFormData);
+
   const [selectedPoints, setSelectedPoints] = useState<number[]>([]);
   const isDrawing = useRef(false);
   const pointsRef = useRef<HTMLDivElement[]>([]);
@@ -31,7 +47,10 @@ const Pattern: React.FC<PatternProps> = ({ nextUrl }) => {
       if (element && element instanceof HTMLElement && element.dataset.index) {
         const index = parseInt(element.dataset.index, 10);
         if (!selectedPoints.includes(index)) {
-          setSelectedPoints((prevSelectedPoints) => [...prevSelectedPoints, index]);
+          setSelectedPoints((prevSelectedPoints) => [
+            ...prevSelectedPoints,
+            index,
+          ]);
         }
       }
     }
@@ -39,30 +58,55 @@ const Pattern: React.FC<PatternProps> = ({ nextUrl }) => {
   //app
   const handleTouchMove = (event: React.TouchEvent) => {
     if (isDrawing.current) {
-      const element = document.elementFromPoint(event.touches[0].clientX, event.touches[0].clientY);
+      const element = document.elementFromPoint(
+        event.touches[0].clientX,
+        event.touches[0].clientY
+      );
       if (element && element instanceof HTMLElement && element.dataset.index) {
         const index = parseInt(element.dataset.index, 10);
         if (!selectedPoints.includes(index)) {
-          setSelectedPoints((prevSelectedPoints) => [...prevSelectedPoints, index]);
+          setSelectedPoints((prevSelectedPoints) => [
+            ...prevSelectedPoints,
+            index,
+          ]);
         }
       }
     }
   };
 
-  const handleMouseUp = () => {
+  const handleMouseUp = async () => {
     if (isDrawing.current) {
       isDrawing.current = false;
       console.log("Selected Pattern:", selectedPoints);
-      if(selectedPoints.length<4) {
+      if (selectedPoints.length < 4) {
         alert("비밀번호의 길이가 유효하지 않습니다. 다시 그려주세요");
-      }else{
+      } else {
         let password = "";
-        for(let i=0; i<selectedPoints.length; i++){
-          password+= selectedPoints[i];
+        for (let i = 0; i < selectedPoints.length; i++) {
+          password += selectedPoints[i];
         }
-        alert("password: "+password);
-        navigate("/"+`${nextUrl}`);
-        console.log(`${nextUrl}`);
+        const updatedFormData = {
+          ...formData,
+          password,
+        };
+        console.log(updatedFormData);
+
+        axios
+          .put(url, updatedFormData, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+          .then((res) => {
+            if (res.data.status == 200) {
+              navigate("/" + `${nextUrl}`, {
+                state: { formData: updatedFormData },
+              });
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       }
     }
   };
@@ -87,9 +131,12 @@ const Pattern: React.FC<PatternProps> = ({ nextUrl }) => {
   const renderLines = () => {
     const lines = [];
     for (let i = 0; i < selectedPoints.length - 1; i++) {
-      const startPoint = pointsRef.current[selectedPoints[i]].getBoundingClientRect();
-      const endPoint = pointsRef.current[selectedPoints[i + 1]].getBoundingClientRect();
-      const parentRect = pointsRef.current[1].parentElement!.getBoundingClientRect();
+      const startPoint =
+        pointsRef.current[selectedPoints[i]].getBoundingClientRect();
+      const endPoint =
+        pointsRef.current[selectedPoints[i + 1]].getBoundingClientRect();
+      const parentRect =
+        pointsRef.current[1].parentElement!.getBoundingClientRect();
       const startX = startPoint.left - parentRect.left + startPoint.width / 2;
       const startY = startPoint.top - parentRect.top + startPoint.height / 2;
       const endX = endPoint.left - parentRect.left + endPoint.width / 2;
@@ -127,12 +174,10 @@ const Pattern: React.FC<PatternProps> = ({ nextUrl }) => {
         onTouchEnd={handleMouseUp}
       >
         {renderPattern()}
-        <svg className="pattern-lines">
-          {renderLines()}
-        </svg>
+        <svg className="pattern-lines">{renderLines()}</svg>
       </div>
     </>
   );
-}
+};
 
 export default Pattern;

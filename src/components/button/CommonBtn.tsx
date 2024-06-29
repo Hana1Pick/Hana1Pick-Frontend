@@ -1,12 +1,14 @@
-type CommonBtnData = {
+import React from "react";
+
+type CommonBtnProps = {
   type: string;
   value: string;
-  onClick: () => void;
-  disabled: boolean;
+  onClick?: () => void;
+  disabled?: boolean;
 };
 
-function CommonBtn({ type, value, onClick, disabled }: CommonBtnData) {
-  const id = type === 'pink' ? 'basicBtn1' : 'basicBtn2';
+function CommonBtn({ type, value, onClick, disabled }: CommonBtnProps) {
+  const id = type === "pink" ? "basicBtn1" : "basicBtn2";
 
   return (
     <>
@@ -16,5 +18,4 @@ function CommonBtn({ type, value, onClick, disabled }: CommonBtnData) {
     </>
   );
 }
-
 export default CommonBtn;

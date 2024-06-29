@@ -1,18 +1,20 @@
 /* CommonBtn CSS */
 
 #basicBtn1 {
-  width: 90%;
+  width: 85%;
+  height: 2.7rem;
   background-color: #f19ed3;
   border: 0;
   border-radius: 0.5rem;
-  color: azure;
+  color: rgb(255, 255, 255);
   cursor: pointer;
   padding-top: 3%;
   padding-bottom: 3%;
 }
 
 #basicBtn2 {
-  width: 90%;
+  width: 85%;
+  height: 2.7rem;
   background-color: #000000;
   border: 0;
   border-radius: 0.5rem;
@@ -28,31 +30,6 @@
 
 #basicBtn2:disabled {
   background-color: #cfcfcf;
-}
-
-/* CommonInputFile CSS */
-.basicInputFile1 {
-  width: 90%;
-  background-color: #f19ed3;
-  border: 0;
-  border-radius: 0.5rem;
-  color: azure;
-  cursor: pointer;
-  margin: auto;
-  padding-top: 3%;
-  padding-bottom: 3%;
-}
-
-.basicInputFile2 {
-  width: 90%;
-  background-color: #000000;
-  border: 0;
-  border-radius: 0.5rem;
-  color: azure;
-  cursor: pointer;
-  margin: auto;
-  padding-top: 3%;
-  padding-bottom: 3%;
 }
 
 /* Header */
@@ -75,7 +52,9 @@
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   gap: 0.5rem;
-  margin-top: 1rem;
+  margin-top: 3rem;
+  margin-left: 2.5rem;
+  margin-right: 3.5rem;
 }
 
 .background-container {
@@ -100,11 +79,11 @@
 }
 
 .pattern-dot {
-  width: 1rem;
-  height: 1rem;
+  width: 0.7rem;
+  height: 0.7rem;
   border-radius: 50%;
   background-color: #000;
-  margin: 3rem;
+  margin: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -126,4 +105,22 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
+}
+
+#header {
+  height: 2.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 0.1em solid #efefef;
+  font-size: 1em;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
