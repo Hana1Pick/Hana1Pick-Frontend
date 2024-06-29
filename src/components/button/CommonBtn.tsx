@@ -12,7 +12,7 @@ function CommonBtn({ type, value, onClick, disabled }: CommonBtnProps) {
 
   return (
     <>
-      <button id={id} onClick={onClick}>
+      <button id={id} onClick={onClick} disabled={disabled}>
         {value}
       </button>
     </>
