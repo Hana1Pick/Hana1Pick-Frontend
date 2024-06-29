@@ -28,20 +28,11 @@
   background-color: #cfcfcf;
 }
 
-#basicBtn2 {
-  width: 85%;
-  background-color: #000000;
-  border: 0;
-  border-radius: 0.5rem;
-  color: azure;
-  cursor: pointer;
-  padding-top: 3%;
-  padding-bottom: 3%;
-}
-
 #basicBtn2:disabled {
   background-color: #cfcfcf;
 }
+
+/* Header */
 
 #header {
   height: 2.5em;
