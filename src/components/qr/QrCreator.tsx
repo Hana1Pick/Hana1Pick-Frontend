@@ -1,6 +1,7 @@
 import QRCode from 'qrcode.react';
 
 type CashOutData = {
+  name: string;
   accountId: string;
   amount: number;
 };

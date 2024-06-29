@@ -7,7 +7,7 @@ import './QrStyle.scss';
 import { QrContext } from '../../contexts/QrContextProvider';
 
 function CreateQrPage() {
-  const { setInAccId }: any = useContext(QrContext);
+  const { setName, setInAccId }: any = useContext(QrContext);
 
   const userIdx = '550e8400-e29b-41d4-a716-446655440000';
   /* TODO
@@ -32,6 +32,7 @@ function CreateQrPage() {
 
   const navigate = useNavigate();
   const next = (value: any) => {
+    setName(value.name);
     setInAccId(value.accountId);
     navigate('/qr/cash-in/amount');
   };

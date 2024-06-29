@@ -6,6 +6,7 @@ const QrContext = createContext({});
 // Context 내용 설정
 const QrContextProvider = ({ children }: { children: any }) => {
   // 변수
+  const [name, setName] = useState('');
   const [amount, setAmount] = useState(0);
   const [inAccId, setInAccId] = useState('');
 
@@ -13,6 +14,8 @@ const QrContextProvider = ({ children }: { children: any }) => {
   return (
     <QrContext.Provider
       value={{
+        name,
+        setName,
         amount,
         setAmount,
         inAccId,

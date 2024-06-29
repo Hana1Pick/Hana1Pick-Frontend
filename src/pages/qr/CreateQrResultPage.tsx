@@ -5,7 +5,7 @@ import QrCreator from '../../components/qr/QrCreator';
 import CommonBtn from '../../components/button/CommonBtn';
 
 function CreateQrResultPage() {
-  const { inAccId, amount }: any = useContext(QrContext);
+  const { name, inAccId, amount }: any = useContext(QrContext);
 
   const save = () => {
     const canvas = document.querySelector('canvas');
@@ -17,6 +17,7 @@ function CreateQrResultPage() {
   };
 
   const qrData = {
+    name: name,
     accountId: inAccId,
     amount: amount,
   };
