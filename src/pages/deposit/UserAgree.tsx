@@ -19,8 +19,6 @@ function UserAgree() {
 
   const url = `http://${process.env.REACT_APP_BESERVERURI}/api/deposit`;
 
-  console.log(formData);
-
   const [isChecked, setIsChecked] = useState<CheckboxState>({
     agreeCheckbox1: false,
     agreeCheckbox2: false,
