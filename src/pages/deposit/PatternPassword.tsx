@@ -92,7 +92,7 @@ const Pattern: React.FC<PatternProps> = ({ nextUrl }) => {
         console.log(updatedFormData);
 
         axios
-          .post(url, updatedFormData, {
+          .put(url, updatedFormData, {
             headers: {
               "Content-Type": "application/json",
             },
