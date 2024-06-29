@@ -12,10 +12,10 @@ import CashOutResultPage from './pages/account/CashOutResultPage';
 // QR 계좌 이체
 import { QrContextProvider } from './contexts/QrContextProvider';
 import SelectQrInAccountPage from './pages/qr/SelectQrInAccountPage';
+import SelectQrOutAccountPage from './pages/qr/SelectQrOutAccountPage';
 import GetQrAmountPage from './pages/qr/GetQrAmountPage';
 import CreateQrResultPage from './pages/qr/CreateQrResultPage';
 import GetQrPage from './pages/qr/GetQrPage';
-import AnalyzeQrPage from './pages/qr/AnalyzeQrPage';
 // Celublog
 import CelubPage from './pages/celublog/CelubPage';
 import CelubWithdraw from './pages/celublog/CelubWithdraw';
@@ -45,8 +45,18 @@ function App() {
                   <Route path='pattern' element={<CashOutPatternPage />} />
                   <Route path='result' element={<CashOutResultPage />} />
                   {/* QR */}
-                  <Route path='qr' element={<GetQrPage />} />
-                  <Route path='qr/result' element={<AnalyzeQrPage />} />
+                  <Route
+                    path='/qr/*'
+                    element={
+                      <Routes>
+                        <Route path='' element={<GetQrPage />} />
+                        <Route
+                          path='account'
+                          element={<SelectQrOutAccountPage />}
+                        />
+                      </Routes>
+                    }
+                  />
                 </Routes>
               </AccountContextProvider>
             }
