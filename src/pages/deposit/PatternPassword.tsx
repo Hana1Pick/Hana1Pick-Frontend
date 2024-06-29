@@ -85,17 +85,14 @@ const Pattern: React.FC<PatternProps> = ({ nextUrl }) => {
         for (let i = 0; i < selectedPoints.length; i++) {
           password += selectedPoints[i];
         }
-        alert("password: " + password);
-
         const updatedFormData = {
           ...formData,
           password,
         };
-        setFormData(updatedFormData);
         console.log(updatedFormData);
 
         axios
-          .post(url, updatedFormData, {
+          .put(url, updatedFormData, {
             headers: {
               "Content-Type": "application/json",
             },

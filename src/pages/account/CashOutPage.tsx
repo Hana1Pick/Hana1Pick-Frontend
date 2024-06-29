@@ -1,3 +1,4 @@
+import CircleLogo from '../../assets/images/common/CircleLogo.png';
 import CelublogCircleLogo from '../../assets/images/account/CelublogCircleLogo.png';
 import MoaClubCircleLogo from '../../assets/images/account/MoaClubCircleLogo.png';
 import DepositCircleLogo from '../../assets/images/account/DepositCircleLogo.png';
@@ -17,6 +18,7 @@ function CashOutPage() {
   };
 
   const accountTypeMap: { [key: string]: string } = {
+    default: CircleLogo,
     deposit: DepositCircleLogo,
     celublog: CelublogCircleLogo,
     moaclub: MoaClubCircleLogo,

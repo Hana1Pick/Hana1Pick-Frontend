@@ -1,35 +1,22 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { QrContext } from '../../contexts/QrContextProvider';
 
 import Header from '../../components/Header';
 import CommonBtn from '../../components/button/CommonBtn';
-import './AccountStyle.scss';
-import { AccountContext } from '../../contexts/AccountContextProvider';
 
-function GetAmountPage() {
-  const { outAccId, outAccBalance, amount, setAmount }: any =
-    useContext(AccountContext);
+function GetQrAmountPage() {
+  const { setAmount }: any = useContext(QrContext);
   const [input, setInput] = useState(0);
-  const inputStyle = {
-    color: input > outAccBalance ? 'red' : 'inherit',
-  };
-  const [outAccInfo, setOutAccInfo] = useState(
-    outAccId + ' : ' + outAccBalance + '원'
-  );
-  const [isNextBtnDisabled, setIsNextBtnDisabled] = useState(true);
 
-  useEffect(() => {
-    if (input == 0 || input > outAccBalance) {
-      setIsNextBtnDisabled(true);
-    } else {
-      setIsNextBtnDisabled(false);
-    }
-  }, [input]);
+  const formatInput = (input: number) => {
+    return input == 0 ? '받을 금액' : input + '원';
+  };
 
   const navigate = useNavigate();
   const next = () => {
     setAmount(input);
-    navigate('/cash-out');
+    navigate('/qr/cash-in/result');
   };
 
   const calcByNumber = (value: number) => {
@@ -49,7 +36,7 @@ function GetAmountPage() {
       { text: '+1만', value: 10000 },
       { text: '+5만', value: 50000 },
       { text: '+10만', value: 100000 },
-      { text: '전액', value: outAccBalance },
+      { text: '+50만', value: 500000 },
     ];
 
     return (
@@ -92,27 +79,21 @@ function GetAmountPage() {
 
   return (
     <div>
-      <Header value='이체' />
+      <Header value='QR 코드 발급' />
       <div id='mainForCenter'>
         <div id='amount'>
-          <span style={inputStyle}>{input}</span>원
+          <span>{formatInput(input)}</span>
         </div>
-        <div id='accountInfo'>{outAccInfo}</div>
         <div id='calculator'>
           {btn1()}
           {btn2()}
         </div>
       </div>
       <div id='nextBtn'>
-        <CommonBtn
-          type='black'
-          value='다음'
-          onClick={next}
-          disabled={isNextBtnDisabled}
-        />
+        <CommonBtn type='black' value='생성' onClick={next} disabled={false} />
       </div>
     </div>
   );
 }
 
-export default GetAmountPage;
+export default GetQrAmountPage;
