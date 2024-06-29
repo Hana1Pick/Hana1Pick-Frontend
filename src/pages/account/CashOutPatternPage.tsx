@@ -9,7 +9,8 @@ interface PatternProps {
 }
 
 function CashOutPatternPage() {
-  const { amount, outAccId, inAccId }: any = useContext(AccountContext);
+  const { userIdx, amount, outAccId, inAccId }: any =
+    useContext(AccountContext);
   const [userPassword, setUserPassword] = useState('1236');
   /* TODO
   const userPassword = localStorage.getItem('userPassword');
@@ -88,6 +89,7 @@ function CashOutPatternPage() {
     const url = `http://${process.env.REACT_APP_BESERVERURI}/api/account/cash-out`;
 
     const data = {
+      userIdx: userIdx,
       amount: amount,
       memo: null,
       hashtag: null,
