@@ -79,7 +79,7 @@ function MoaclubModify() {
 			atDate: parseInt(selectedDate),
 		};
 
-		if (candidateIdx !== manager?.userIdx) {
+		if (candidateIdx !== manager?.userIdx && candidateIdx !== null && candidateIdx != '') {
 			const requestUrl = `http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/request-manager`;
 
 			const requestData = {
@@ -97,7 +97,7 @@ function MoaclubModify() {
 				.then((res) => {
 					if (res.data.status === 200) {
 						console.log('요청완료');
-						// 메세지 모달
+						// 메세지 모달 (이미 요청)
 					}
 				})
 				.catch((error) => {
