@@ -131,10 +131,12 @@ const MoaclubPage = () => {
             {accountHistory && accountHistory.length > 0 ? (
               accountHistory.map((history, index) => (
                 <tr key={index}>
-                  <td>{formatDate(history.transDate)}</td>
-                  <td>{history.target}</td>
+                  <td className='moaclubDate'>{formatDate(history.transDate)}</td>
+                  <td className='moaclubTarget'>{history.target}</td>
                   <td className='transaction'>
-                    <span>{history.transAmount >= 0 ? `+${history.transAmount}` : history.transAmount}{currencyValue}</span>
+                    <span id='moaclubTransAmountTxt' className={history.transAmount > 0 ? 'moaclubBlueTxt' : ''}>
+                      {history.transAmount >= 0 ? `+${history.transAmount}` : history.transAmount}{currencyValue}
+                    </span>
                     <span className="moaclubAccHisLast">{history.balance}{currencyValue}</span>
                   </td>
                 </tr>

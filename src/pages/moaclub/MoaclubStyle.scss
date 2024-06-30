@@ -500,7 +500,8 @@ left: 3.9rem;
   padding-top: 0.7rem;
   padding-bottom: 1.2rem;
   border-bottom: 1px solid #E7E9DE;
-  font-weight: 500;
+  font-weight: 450;
+  font-size: 0.95rem;
 }
 
 .background-container {
@@ -520,7 +521,28 @@ left: 3.9rem;
 }
 
 .moaclubAccHisLast {
-  font-size: small;
-  margin-left: 0.4rem;
+  font-size: 0.95rem;
+  margin-right: 1.5rem;
+  color: #585858;
+}
+
+.moaclubBlueTxt {
+  color: #0083D1;
+}
+
+#moaclubTransAmountTxt {
+  font-weight: bold;
+  margin-right: 1.5rem;
+}
+
+.transaction {
+  text-align: right;
+}
+
+.moaclubTarget {
+  text-align: left;
+}
+
+.moaclubDate {
   color: #585858;
 }
