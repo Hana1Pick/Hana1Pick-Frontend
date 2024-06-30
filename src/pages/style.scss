@@ -1,0 +1,113 @@
+.mainPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 4.625em);
+    background-color: #f9f9f9;
+
+    /* header: 74px */
+
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        background-color: #fff;
+        right: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+
+    .profile-pic {
+        width: 40px;
+        height: 40px;
+        background-color: #ccc;
+        border-radius: 50%;
+    }
+
+    .user-name {
+        flex-grow: 1;
+        margin-left: 10px;
+    }
+
+    .menu-icon {
+        // width: 30px;
+        // height: 30px;
+    }
+
+    .account-container {
+        padding: 20px;
+    }
+
+    .account-details {
+        display: flex;
+        align-items: flex-start;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .accountDetail {
+        flex-grow: 1;
+        text-align: left;
+        margin-left: 2rem;
+        // color: #666666;
+
+    }
+
+    .account-type,
+    .account-number,
+    .account-balance {
+        margin: 0;
+    }
+    .accountBox{
+        display: flex;
+    }
+
+    .send-button {
+        margin-top: 10px;
+        background-color: #e0f7fa;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .promotions {
+        margin-top: 20px;
+    }
+
+    .promotion {
+        background-color: #fff;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .promotion .accountTitle {
+        width: 100%;
+        font-size: 1rem;
+        margin-bottom: 0.5rem; /* Adjust as necessary */
+      }
+
+.promotion button {
+  margin-top: 0.5rem; /* Adjust as necessary */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: none;
+}
+.promotion p {
+    margin: 0;
+  }
+ 
+
+
+}
