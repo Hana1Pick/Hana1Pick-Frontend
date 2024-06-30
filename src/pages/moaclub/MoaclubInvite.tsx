@@ -15,7 +15,7 @@ function MoaclubInvite() {
   const { moaclub }: any = useContext(MoaclubContext);
 
   const next = () => {
-    
+    navigate('/moaclub/main/' + moaclub);
   };
 
   return(

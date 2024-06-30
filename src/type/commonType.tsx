@@ -31,6 +31,7 @@ export type CelubAccount = {
 export type MoaClubHeaderData = {
   value: string;
   disabled: boolean;
+  onClick?: () => void;
 };
 
 export type DomesticAuthProps = {

@@ -92,10 +92,19 @@ const MoaclubPage = () => {
     return formattedDate.endsWith('.') ? formattedDate.slice(0, -1) : formattedDate;
   };
 
+  const goSetting = () => {
+    console.log(accountId);
+    navigate(`/moaclub/setting/${accountId}`);
+  }
+
+  const goFeeStatus = () => {
+    navigate(`/moaclub/fee/${accountId}`);
+  }
+
   return(
     <>
-      <div className='background-container'>
-        <Header value={moaclub?.name!} disabled={true}/>
+      <div className='moaclub-background-container'>
+        <Header value={moaclub?.name!} disabled={true} onClick={goSetting}/>
         <img src={PattrenBg} alt='Pattern Background' className='pattern-bg' />
         <div className="overlay-text">
           <div className="moaclubMainInfoContainer">
@@ -112,7 +121,7 @@ const MoaclubPage = () => {
               />
             ))}
           </div>
-          <div className="moaclubFee">
+          <div className="moaclubFee" onClick={goFeeStatus}>
             <span className="moaclubFeeRule">매월 {moaclub?.atDate}일, {moaclub?.clubFee}{currencyValue}씩</span>
           </div>
 

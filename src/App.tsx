@@ -45,6 +45,8 @@ import { MoaclubContextProvider } from './contexts/MoaclubContextProvider';
 import MoaclubInvite from './pages/moaclub/MoaclubInvite';
 import MoaclubJoin from "./pages/moaclub/MoaclubJoin";
 import MoaclubPage from "./pages/moaclub/MoaclubPage";
+import MoaclubFeeStatus from './pages/moaclub/MoaclubFeeStatus';
+import MoaclubSetting from './pages/moaclub/MoaclubSetting';
 
 function App() {
   return (
@@ -141,6 +143,8 @@ function App() {
           />
           <Route path="/moaclub/join/:accountId" element={<MoaclubJoin />} />
           <Route path="/moaclub/main/:accountId" element={<MoaclubPage />} />
+          <Route path="/moaclub/fee/:accountId" element={<MoaclubFeeStatus />} />
+          <Route path="/moaclub/setting/:accountId" element={<MoaclubSetting />} />
 
           {/* User */}
           <Route
