@@ -682,3 +682,44 @@ header {
 	height: 1rem;
 	margin-right: 2rem;
 }
+
+.moaclubModify {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	text-align: left;
+	margin: 0 2rem;
+	font-size: 0.9rem;
+
+	label {
+		margin-bottom: -0.4rem;
+		margin-left: 0.1rem;
+		font-weight: 450;
+	}
+
+	input,
+	select {
+		padding: 0.5rem;
+		border: none;
+		border-radius: 0.5rem;
+		background-color: #f5f5f5;
+	}
+
+	.feeSettings {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+
+		input {
+			width: 5rem;
+		}
+	}
+
+	.managerSelect {
+		width: 9rem;
+	}
+
+	.moaclubModifyElement {
+		margin-top: 0.8rem;
+	}
+}
