@@ -564,3 +564,100 @@ left: 3.9rem;
 .moaclubDate {
   color: #585858;
 }
+
+.moaclubFeeSelect {
+  background-color: #EFEFEF;
+  border-style: none;
+  width: 8rem;
+  height: 2.3rem;
+  padding-left: 1rem;
+  justify-content: center;
+  border-radius: 1rem;
+  font-size: 0.9rem;
+  font-weight: 500
+}
+
+.clubFeeBalance {
+  margin-top: 1.8rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.clubFeeRule {
+  font-size: small;
+  margin-top: 0.1rem;
+  color: #696969;
+  margin-bottom: 2.5rem;
+}
+
+.moaclubFeeContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.moaclubFeeStatusBtn {
+  background-color: #F2F2F2;
+  color: #C0C0C0 !important;
+  font-weight: 600;
+  font-size: 0.8rem;
+  width: 4rem;
+  height: 1.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  margin: 0 0.2rem 0 0.2rem;
+  padding: 0 0.2rem;
+
+  &.selected {
+    background-color: #F19ED3;
+    color: #FFFFFF !important;
+  }
+}
+
+.moaclubFeeDesc {
+  color: #A9A9A9;
+  font-size: 0.6rem;
+}
+
+.moaclubFeeProfile {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.moaclubFeeContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.3rem;
+}
+
+.moaclubFeeTable {
+  width: 80%;
+  border-collapse: collapse;
+}
+
+.moaclubFeeTable tr {
+  justify-content: center;
+  align-items: center;
+}
+
+.moaclubFeeTable td {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-top: 1px solid #E7E9DE;
+  border-bottom: 1px solid #E7E9DE;
+  font-weight: 450;
+  font-size: 0.95rem;
+}
+
+.moaclubFeeMemberName {
+  text-align: left;
+}
+
+.moaclubFeeAmount {
+  width: 120px;
+}

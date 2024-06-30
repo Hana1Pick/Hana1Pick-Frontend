@@ -48,25 +48,33 @@ export type DomesticAuthProps = {
 };
 
 export type MoaclubInfo = {
-    name: string;
-    accountId: string;
-    balance: number;
-    clubFee: number;
-    atDate: number;
-    currency: string;
-    memberList: memberList[];
-  }
-
-export type memberList = {
-    userName: string;
-    profile: string;
-    role: string;
+  name: string;
+  accountId: string;
+  balance: number;
+  clubFee: number;
+  atDate: number;
+  currency: string;
+  createDate: string;
+  memberList: memberList[];
 }
 
-export type accountInfo = {
-    transDate: string;
-    transType: string;
-    target: string;
-    transAmount: number;
-    balance: number;
+export type memberList = {
+  userName: string;
+  profile: string;
+  role: string;
+}
+
+export type MoaclubAccHis = {
+  transDate: string;
+  transType: string;
+  target: string;
+  transAmount: number;
+  balance: number;
+}
+
+export type MemeberFeeStatus = {
+  name: string;
+  profile: string;
+  amount: number;
+  status: string;
 }
