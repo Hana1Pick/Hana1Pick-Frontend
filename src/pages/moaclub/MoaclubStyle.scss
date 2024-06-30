@@ -24,7 +24,7 @@
   box-sizing: border-box;
 }
 
-.moaclubHeader2 img {
+.moaclubHeader2 .back {
   position: absolute;
   left: 1.5rem;
 }
@@ -32,6 +32,18 @@
 .back {
   height: 20px; // 이미지 높이 설정 (필요에 따라 조정)
   width: auto;
+}
+
+.settingContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.moaclubHeader2 .setting {
+  height: 23px;
+  position: absolute;
+  right: 1.5rem;
+  margin-top: -0.1rem;
 }
 
 h4 {
@@ -421,4 +433,94 @@ left: 3.9rem;
   font-weight: 300;
   color: #7e7e7e;
   margin-bottom: 3rem;
+}
+
+.moaclubMainInfoContainer {
+  margin-top: 2.3rem !important;
+}
+
+.moaclubMainBalance {
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+.memberListContainer {
+  display: flex;
+  justify-content: center;
+  margin-left: 0.5rem;
+}
+
+.memberProfile {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  object-fit: cover;
+  overflow: hidden;
+  margin-left: -0.5rem;
+}
+
+.moaclubFee {
+  background-color: #222222;
+  color: white !important;
+  border-radius: 0.4rem;
+  width: 11rem;
+  height: 1.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #91DDCF !important;
+  font-weight: 500;
+}
+
+.moaClubMainBtnContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.4rem !important;
+}
+
+.moaclubMainTrsf {
+  background-color: #F2EEF8;
+  color: #F19ED3 !important;
+  font-weight: 600;
+  width: 5rem;
+  height: 1.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  margin: 0 0.2rem 0 0.2rem;
+}
+
+.moaclubAccHisTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.moaclubAccHisTable td {
+  padding-top: 0.7rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid #E7E9DE;
+  font-weight: 500;
+}
+
+.background-container {
+  position: fixed;
+  z-index: 10;
+}
+
+.moaclub {
+  position: relative;
+  top: 292px;
+}
+
+.transaction {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.moaclubAccHisLast {
+  font-size: small;
+  margin-left: 0.4rem;
+  color: #585858;
 }

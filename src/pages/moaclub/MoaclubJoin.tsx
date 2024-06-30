@@ -59,7 +59,7 @@ function MoaclubJoin() {
         },
       })
       .then((res) => {
-        if (res.data.status == 202) {
+        if (res.data.status === 202) {
           alert('이미 가입된 클럽입니다!');
         } else {
           navigate('/moaclub/main/' + accountId);
