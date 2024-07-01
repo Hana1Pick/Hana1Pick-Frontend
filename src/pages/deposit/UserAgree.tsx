@@ -5,6 +5,7 @@ import BlackArrow from "../../assets/images/deposit/BlackArrow.png";
 import "./style.css"; // LegalNotice.css 파일은 스타일링을 위한 CSS 파일입니다.
 import CommonBtn from "../../components/button/CommonBtn";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function UserAgree() {
   interface CheckboxState {
@@ -15,6 +16,8 @@ function UserAgree() {
 
   const location = useLocation();
   const formData = location.state.formData;
+
+  const url = `http://${process.env.REACT_APP_BESERVERURI}/api/deposit`;
 
   const [isChecked, setIsChecked] = useState<CheckboxState>({
     agreeCheckbox1: false,
@@ -49,7 +52,20 @@ function UserAgree() {
 
   const handleNext = () => {
     if (areAllChecked()) {
-      navigate("/deposit5");
+      axios
+        .post(url, formData, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          if (res.data.status == 201) {
+            navigate("/deposit5");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     } else {
       alert("모든 약관에 동의해 주세요.");
     }

@@ -5,12 +5,13 @@ import { IoSearchOutline } from 'react-icons/io5';
 
 import Header from '../../components/Header';
 import CommonBtn from '../../components/button/CommonBtn';
-import AccountCard from '../../components/card/AccountCard';
-import './../../common/styles/scss/AccountStyle.scss';
+import AccountCard from '../../components/account/AccountCard';
+import './AccountStyle.scss';
 import { AccountContext } from '../../contexts/AccountContextProvider';
 
 function SearchAccountPage() {
-  const { outAccId }: any = useContext(AccountContext);
+  const { outAccId, setInAccType, setInAccId, setInAccName }: any =
+    useContext(AccountContext);
   const [accId, setAccId] = useState([]);
 
   const handleInputChange = (event: any) => {
@@ -39,7 +40,11 @@ function SearchAccountPage() {
         <div className='blockContent'>
           {accounts && accounts.length > 0 ? (
             accounts.map((item, index) => (
-              <AccountCard key={index} value={item} />
+              <AccountCard
+                key={index}
+                value={item}
+                onClick={() => next(item)}
+              />
             ))
           ) : (
             <span className='blockContentSpan'>
@@ -52,7 +57,14 @@ function SearchAccountPage() {
   };
 
   const navigate = useNavigate();
-  const next = () => {
+  const next = (value: any) => {
+    setInAccType(value.accountType);
+    setInAccId(value.accountId);
+    setInAccName(value.name);
+    navigate('/cash-out/amount');
+  };
+
+  const nextWithNewAccID = () => {
     navigate('/cash-out/amount');
   };
 
@@ -72,7 +84,12 @@ function SearchAccountPage() {
         {renderAccounts('계좌번호', accId)}
       </div>
       <div id='nextBtn'>
-        <CommonBtn type='black' value='다음' onClick={next} disabled={false} />
+        <CommonBtn
+          type='black'
+          value='다음'
+          onClick={nextWithNewAccID}
+          disabled={false}
+        />
       </div>
     </div>
   );
