@@ -79,3 +79,11 @@ export type MemeberFeeStatus = {
 	amount: number;
 	status: string;
 };
+
+export type MoaClubVoteResult = {
+	accountId: string;
+	userName: string;
+	candidateName: string;
+	requestTime: string;
+	votes: Record<string, boolean>;
+};

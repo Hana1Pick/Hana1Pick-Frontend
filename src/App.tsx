@@ -49,6 +49,8 @@ import MoaclubFeeStatus from './pages/moaclub/MoaclubFeeStatus';
 import MoaclubSetting from './pages/moaclub/MoaclubSetting';
 import MoaclubModify from './pages/moaclub/MoaclubModify';
 import MoaclubVoteSelect from './pages/moaclub/MoaclubVoteSelect';
+import MoaclubVoteManager from './pages/moaclub/MoaclubVoteManager';
+import MoaclubVoteTrsf from './pages/moaclub/MoaclubVoteTrsf';
 
 function App() {
 	return (
@@ -140,6 +142,8 @@ function App() {
 					<Route path='/moaclub/setting/:accountId' element={<MoaclubSetting />} />
 					<Route path='/moaclub/modify/:accountId' element={<MoaclubModify />} />
 					<Route path='/moaclub/vote/:accountId' element={<MoaclubVoteSelect />} />
+					<Route path='/moaclub/vote/manager/:accountId' element={<MoaclubVoteManager />} />
+					<Route path='/moaclub/vote/trsf/:accountId' element={<MoaclubVoteTrsf />} />
 
 					{/* User */}
 					<Route

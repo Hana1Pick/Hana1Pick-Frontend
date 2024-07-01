@@ -723,3 +723,99 @@ header {
 		margin-top: 0.8rem;
 	}
 }
+
+.candidateContainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 1rem;
+	.memberProfile {
+		margin-right: 0.3rem;
+	}
+	.managerWrapper {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		margin: 21px 0.5rem 0 0.5rem;
+	}
+}
+
+.voteStatusIcon {
+	width: 1.8rem;
+}
+
+.voteTable {
+	width: 80%;
+	border-collapse: collapse;
+}
+
+.voteTable tr {
+	justify-content: center;
+	align-items: center;
+}
+
+.voteTable td {
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	border-top: 1px solid #e7e9de;
+	border-bottom: 1px solid #e7e9de;
+	font-weight: 450;
+	font-size: 0.95rem;
+}
+
+.voteMemberTxt {
+	text-align: left;
+}
+
+.voteTimeTxt {
+	font-size: small;
+	margin-bottom: 0.5rem;
+	color: #747474;
+}
+
+.timeLeft {
+	color: #ff9191;
+}
+
+.moaclubVoteContent {
+	margin-top: 4.5rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.moaclubVoteStatusContent {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 2rem;
+	height: 10rem;
+}
+
+.candidateWrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 0 0.5rem;
+}
+
+.moaVoteProfileDesc {
+	text-align: center;
+	width: 100%;
+	margin-top: 0.4rem;
+}
+
+.voteProfile {
+	width: 2.4rem;
+	height: 2.4rem;
+	border-radius: 50%;
+	object-fit: cover;
+	overflow: hidden;
+}
+
+.mintTxt {
+	color: #91ddcf;
+	font-weight: bold;
+}
