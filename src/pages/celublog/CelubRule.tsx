@@ -47,12 +47,12 @@ function CelubRule() {
         axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/rule`,
             data)
             .then((res)=>{
-                console.log(res.data.data);
+                console.log("확인하는중"+res.data.data);
                 alert('규칙이 추가되었습니다.');
                 axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/list/detail`,
                     qs.stringify({accountId:data.accountId}))
                     .then((res)=>{
-                        console.log(res.data.data);
+                        console.log("되는건가?"+res.data.data);
                         navigate("/celub/detail", {state:res.data.data});
                     }).catch((error)=>{
                         alert("실패");

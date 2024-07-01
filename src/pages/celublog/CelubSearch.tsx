@@ -33,9 +33,9 @@ function CelubSearch(){
         }
         axios.get(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/list/search`,{
                 params:{
-                    userIdx: userIdx,
-                    type: selectJob,
-                    name: keyword
+                        userIdx: userIdx,
+                        type: selectJob,
+                        name: keyword
                 }
             }).then((res)=>{
                 console.log("검색리스트",res.data.data);
@@ -75,7 +75,7 @@ function CelubSearch(){
             <div className="celub-list-box">
                 {celubList && celubList.length === 0 ? (
                     <div className="celub-rule-box1"> 
-                        선택할 수 있는 연예인이 없습니다. 다시 검색해주세요.
+                        선택할 수 있는 연예인이 없습니다. <br/>다시 검색해주세요.
                     </div>
                 ) : (
                     <div className="celub-search-box">

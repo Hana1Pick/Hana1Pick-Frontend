@@ -12,7 +12,6 @@ function CelubAccountList(){
         axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/list/detail`,
             qs.stringify({accountId:accountId}))
             .then((res)=>{
-                console.log(res.data.data);
                 navigate("/celub/detail", {state:res.data.data});
             }).catch((error)=>{
                 alert("실패");

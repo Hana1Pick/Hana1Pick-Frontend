@@ -3,14 +3,12 @@ import React, { useRef, useState, useContext } from 'react';
 import PattrenBg from '../../assets/images/common/PatternBg.png';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Header from "../../layouts/MoaclubHeader2";
-import { MoaclubContext } from '../../contexts/MoaclubContextProvider';
 
 interface PatternProps {
   nextUrl: string;
 }
 
 function CelubPattern() {
-  const { userIdx, accountId, name, clubFee, atDate, currency, setMoaclub }: any = useContext(MoaclubContext);
   const [attemptCnt, setAttemptCnt] = useState(0);
   const location = useLocation();
   const withdrawInfo = location.state;
@@ -109,7 +107,7 @@ function CelubPattern() {
       })
       .then((res) => {
         if (res.data.status == 201) {
-          navigate('/celub/complete');
+          navigate('/celub/complete', {state: withdrawInfo.outAccId});
         }
       })
       .catch((error) => {

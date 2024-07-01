@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ChangeEvent  } from 'react';
 import CelubHeader3 from "../../layouts/CelubHeader3";
 import { CelubHistoryType, CelubRuleType } from '../../type/commonType';
 import { useLocation, useNavigate } from "react-router-dom";
+import CommonBtn from '../../components/button/CommonBtn';
+import axios from 'axios';
+import qs from 'qs';
 
 const CelubDetail: React.FC = () => {
     const navigate = useNavigate();
@@ -12,8 +15,14 @@ const CelubDetail: React.FC = () => {
     const [isHistory, setIsHistory] = useState(false);
     const [ruleList, setRuleList] = useState<CelubRuleType[]>([]);
     const [historyList, setHistoryList] = useState<CelubHistoryType[]>([]);
+    const [selectRule, setSelectRule] = useState("");
+    const [selectRuleMoney, setSelectRuleMoney] = useState(0);
+    const [isBoxVisible, setIsBoxVisible] = useState(false);
+    const [selectedValue, setSelectedValue] = useState('#공통');
     const location = useLocation();
     const detailList = location.state;
+    
+    console.log(detailList);
     useEffect(() => {
         history();
         rule();
@@ -66,6 +75,35 @@ const CelubDetail: React.FC = () => {
     const setting =()=>{
         alert('변경');
     }
+    const handleSelectChange =(e:ChangeEvent<HTMLSelectElement>)=>{
+        setSelectedValue(e.target.value);
+    }
+    const insertMoney = (ruleName:string, ruleMoney:number) =>{
+        setSelectRule(ruleName);
+        setSelectRuleMoney(ruleMoney);
+        setIsBoxVisible(true);
+    }
+    const sendMoney = () =>{
+        const data={
+            accountId: detailList.accountInfo.accountId,
+            amount: selectRuleMoney,
+            memo: selectRule,
+            hashtag: selectedValue
+        }
+        axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/in`,data)
+            .then((res)=>{
+                setIsBoxVisible(false);
+                axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/list/detail`,
+                    qs.stringify({accountId:detailList.accountInfo.accountId}))
+                    .then((res)=>{
+                        navigate("/celub/detail", {state:res.data.data});
+                    }).catch((error)=>{
+                        alert("실패");
+                    });
+            }).catch((error)=>{
+                alert("실패");
+            });
+    }
     return (
         <>
             <CelubHeader3 onClick1={share} onClick2={setting} />
@@ -103,7 +141,7 @@ const CelubDetail: React.FC = () => {
                                 ):
                                 (
                                         ruleList.map((rule, index)=>(
-                                            <div key={index}>
+                                            <div key={index} onClick={() => insertMoney(rule.ruleName, rule.ruleMoney)}>
                                                 <div className="celub-rule-box2">
                                                     {rule.ruleName} :  {rule.ruleMoney}원
                                                 </div>
@@ -135,6 +173,22 @@ const CelubDetail: React.FC = () => {
                     </div>
                 </div>
             </div>
+{     isBoxVisible  &&   <div className="celub-detail-box2 add-box">
+                <div className="celub-detail-box3">
+                        <div className="celub-detail-deco"/>
+                        <div className="celub-deposit-box">
+                            <p>{selectRule} {selectRuleMoney}원을 입금할게요.</p>
+                            <select value={selectedValue} onChange={handleSelectChange}>
+                                <option value="공통">#해시태그를 선택하세요</option>
+                                <option value="공카댓글">#공카댓글</option>
+                                <option value="이달의생일">#이달의생일</option>
+                                <option value="개인셀카">#개인셀카</option>
+                            </select>
+                        </div>
+                        <CommonBtn type='pink' value="입금하기" onClick={sendMoney} />
+                </div>
+            </div>}
+
         </>
     );
 };
