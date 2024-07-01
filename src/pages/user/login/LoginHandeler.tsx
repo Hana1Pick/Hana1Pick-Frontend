@@ -38,10 +38,12 @@ const LoginHandler = (props:any) => {
       .get(url2, { params: data })
       .then((response) => {
         console.log(response);
-        const { userIdx, name, email } = response.data.data;
+        const { userIdx, name, email, profile } = response.data.data;
         localStorage.setItem("userIdx", userIdx);
         localStorage.setItem("name", name);
         localStorage.setItem("email", email);
+        localStorage.setItem('profile', profile); // 프로필 사진 URL 저장
+
 
         // 회원가입 일때는 계좌 생성 페이지로 이동
         if(name){
@@ -59,7 +61,7 @@ const LoginHandler = (props:any) => {
     <div className="LoginHandler">
       <div className="notice">
         <p>로그인 중입니다.</p>
-        <p>잠시만 기다려주세요.</p>
+        <p>잠시만 기다려주세요...</p>
         <div className="spinner"></div>
       </div>
     </div>
