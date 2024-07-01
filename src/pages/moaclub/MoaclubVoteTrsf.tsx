@@ -3,7 +3,6 @@ import './MoaclubStyle.scss';
 import '../../common/styles/scss/CommonStyle.scss';
 import checkSelect from '../../assets/images/moaclub/check-fill-select.png';
 import checkUnselect from '../../assets/images/moaclub/check-fill-unselect.png';
-import voteUnselect from '../../assets/images/moaclub/vote-unselect.png';
 import xSelect from '../../assets/images/moaclub/x-fill-select.png';
 import xUnselect from '../../assets/images/moaclub/x-fill-unselect.png';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -165,7 +164,7 @@ function MoaclubVoteTrsf() {
 		if (voteResult && voteResult.votes.hasOwnProperty(name)) {
 			return voteResult.votes[name] ? checkSelect : xSelect;
 		}
-		return voteUnselect;
+		return '-';
 	};
 
 	const isButtonDisabled = () => {
@@ -231,7 +230,11 @@ function MoaclubVoteTrsf() {
 									</td>
 									<td className='voteMemberTxt'>{member.userName}</td>
 									<td className='voteTableLastTd'>
-										<img src={getVoteStatus(member.userName)} alt='투표 상태 아이콘' className='voteStatusIcon' />
+										{getVoteStatus(member.userName) === '-' ? (
+											<span className='voteStatusIcon'>-</span>
+										) : (
+											<img src={getVoteStatus(member.userName)} alt='투표 상태 아이콘' className='voteStatusIcon' />
+										)}
 									</td>
 								</tr>
 							))}
