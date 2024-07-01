@@ -7,9 +7,7 @@ const MoaclubContext = createContext({});
 const MoaclubContextProvider = ({ children }: { children: any }) => {
   // 변수
   /* TODO */
-  const [userIdx, setUserIdx] = useState(
-    '550e8400-e29b-41d4-a716-446655440000'
-  );
+  const userIdx = localStorage.getItem("userIdx") as string;
   const [accountId, setAccountId] = useState('');
   const [name, setName] = useState('');
   const [clubFee, setClubFee] = useState(0);
@@ -24,7 +22,6 @@ const MoaclubContextProvider = ({ children }: { children: any }) => {
         accountId,
         setAccountId,
         userIdx,
-        setUserIdx,
         name,
         setName,
         clubFee,

@@ -30,10 +30,9 @@ function MoaclubSelectAcc() {
   const navigate = useNavigate();
   const [account, setAccount] = useState<Account | null>(null);
   const [selectedAccount, setSelectedAccount] = useState<string | null>(null);
-  const userIdx = "550e8400-e29b-41d4-a716-446655440000";
   const type = "DEPOSIT";
 
-  const { setAccountId }: any = useContext(MoaclubContext);
+  const { userIdx, setAccountId }: any = useContext(MoaclubContext);
 
   useEffect(() => {
     const fetchAccounts = async () => {

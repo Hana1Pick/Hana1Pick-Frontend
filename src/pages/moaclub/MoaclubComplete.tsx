@@ -1,13 +1,16 @@
 import { useContext } from 'react';
 import moaImg from '../../assets/images/moaclub/moaclub-complete.png';
 import { MoaclubContext } from '../../contexts/MoaclubContextProvider';
+import { useNavigate } from 'react-router-dom';
+import CommonBtn from '../../components/button/CommonBtn';
 
 function MoaclubComplete(){
+  const navigate = useNavigate();
   const currentDate = new Date().toLocaleDateString().replace(/\.$/, '');
   const { name, moaclub }: any = useContext(MoaclubContext);
 
-  const goList=()=>{
-
+  const next = () => {
+    navigate('/moaclub/invite', { state: { moaclub } });
   }
   
   return(
@@ -38,7 +41,9 @@ function MoaclubComplete(){
             </tr>
           </table>
         </div>
-        <button id="basicBtn1" onClick={goList}>완료</button>
+        <div className="buttonContainer">
+          <CommonBtn type='pink' value="완료" onClick={next} disabled={false}/>
+        </div>
       </div>
     </>
   );
