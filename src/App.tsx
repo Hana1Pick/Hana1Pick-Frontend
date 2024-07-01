@@ -129,15 +129,15 @@ function App() {
 									<Route path='/complete' element={<MoaclubComplete />} />
 									<Route path='/pattern' element={<MoaclubPattern />} />
 									<Route path='/invite' element={<MoaclubInvite />} />
+									<Route path='/moaclub/join/:accountId' element={<MoaclubJoin />} />
+									<Route path='/moaclub/main/:accountId' element={<MoaclubPage />} />
+									<Route path='/moaclub/fee/:accountId' element={<MoaclubFeeStatus />} />
+									<Route path='/moaclub/setting/:accountId' element={<MoaclubSetting />} />
+									<Route path='/moaclub/modify/:accountId' element={<MoaclubModify />} />
 								</Routes>
 							</MoaclubContextProvider>
 						}
 					/>
-					<Route path='/moaclub/join/:accountId' element={<MoaclubJoin />} />
-					<Route path='/moaclub/main/:accountId' element={<MoaclubPage />} />
-					<Route path='/moaclub/fee/:accountId' element={<MoaclubFeeStatus />} />
-					<Route path='/moaclub/setting/:accountId' element={<MoaclubSetting />} />
-					<Route path='/moaclub/modify/:accountId' element={<MoaclubModify />} />
 
 					{/* User */}
 					<Route
