@@ -1,10 +1,12 @@
-button{
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+@import "~swiper/swiper-bundle.css";
+
+button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
 }
 
 .header {
@@ -12,7 +14,7 @@ button{
     align-items: center;
     justify-content: space-between;
     padding: 0.5rem 1.5rem;
-    background-color: #fff;
+    // background-color: #fff;
     right: 0;
     position: fixed;
     top: 0;
@@ -24,10 +26,9 @@ button{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: calc(100vh - 4.625em);
-    background-color: #f9f9f9;
-
-    /* header: 74px */
+    height: 100%; /* 부모 요소의 높이에 따라 다르게 설정 */
+    min-height: calc(100vh -  2rem); /* 최소 높이를 설정하여 원하는 높이 확보 */    background-color: #f9f9f9;
+    overflow: hidden;
 
     .profile-pic {
         width: 40px;
@@ -46,90 +47,152 @@ button{
     }
 
     .account-container {
-        padding: 1rem;
-        margin-top: 5rem;
-        overflow: hidden; /* 세로 스크롤 방지 */
-
+        display: flex;
+        overflow: hidden;
+        /* 컨테이너를 벗어난 요소들을 숨깁니다 */
+        width: 100%;
+        /* 컨테이너의 너비를 설정합니다 */
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-top: 2rem;
+        position: relative;
+        /* 스크롤바를 절대 위치시키기 위해 필요합니다 */
+        margin-bottom: 0.7rem;
+        
     }
 
     .account-details {
+
+        // width: 70%;
+        // flex-shrink: 0;
+        margin: 1rem;
         display: flex;
-        align-items: flex-start;
+        /* accountBox들을 가로로 정렬합니다 */
+        transition: transform 0.3s ease-in-out;
+        /* 애니메이션을 추가하여 부드러운 전환 효과를 줍니다 */
+        width: 100%;
+        /* account-details의 너비를 컨테이너와 동일하게 설정합니다 */
+    }
+
+    .accountBox {
+        flex: 0 0 80%;
+        display: flex;
         background-color: #fff;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 20px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        /* padding: 0.5rem; */
+        margin-right: 2.3rem;
+        min-width: 340px;
         
     }
 
     .accountDetail {
         flex-grow: 1;
         text-align: left;
-        margin-left: 2rem;
-        // color: #666666;
-
+        margin-left: 1rem;
+        padding: 1rem;
     }
 
     .account-type,
     .account-number,
     .account-balance {
         margin: 0;
+        padding: 0.2rem;
     }
-    .accountBox{
-        display: flex;
+
+    .account-number {
+        color: #C4C4C4;
     }
 
     .send-button {
+        width: 55%;
+        height: 2.7rem;
+        background-color: #f19ed3;
+        border: 0;
+        border-radius: 0.5rem;
+        color: rgb(255, 255, 255);
         margin-top: 10px;
-        background-color: #e0f7fa;
         border: none;
         padding: 10px;
-        border-radius: 5px;
+        border-radius: 0.7rem;
         cursor: pointer;
+        margin-left: 5rem;
+        font-weight: bold;
+    }
+
+    .scrollbar {
+        position: absolute;
+        bottom: 0px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        /* 스크롤바의 전체 너비를 설정합니다 */
+        height: 4px;
+        /* 스크롤바의 높이를 설정합니다 */
+        background-color: #D9D9D9;
+        /* 스크롤바의 배경색을 설정합니다 */
+        border-radius: 2px;
+        overflow: hidden;
+    }
+
+    .scrollbar-indicator {
+        height: 100%;
+        /* 인디케이터의 높이를 스크롤바와 동일하게 설정합니다 */
+        background-color: #ABABAB;
+        /* 인디케이터의 색상을 설정합니다 */
+        transition: transform 0.3s ease-in-out;
+        /* 애니메이션을 추가하여 부드러운 전환 효과를 줍니다 */
     }
 
     .promotions {
         margin-top: 20px;
+        width: 90%;
     }
 
     .promotion {
         background-color: #fff;
         padding: 15px;
-        border-radius: 10px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 1rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         display: flex;
         align-items: center;
-        margin-bottom: 10px;
+        margin-bottom: 2rem;
     }
+
     .promotion .promotionDetail {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         margin-left: 1rem;
-      }
-      
+    }
+
     .promotion .accountTitle {
         width: 100%;
         font-size: 1rem;
-        margin-bottom: 0.5rem; /* Adjust as necessary */
+        margin-bottom: 0.5rem;
+        /* Adjust as necessary */
         color: #666666;
-      }
+    }
 
-.promotion button {
-  margin-top: 0.1rem; /* Adjust as necessary */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  background: none;
-}
-.promotion p {
-    margin: 0;
-  }
- 
-  @import "~slick-carousel/slick/slick.css";
-  @import "~slick-carousel/slick/slick-theme.css";
-  
-  /* 여기에 다른 사용자 정의 스타일을 추가할 수 있습니다. */
-  
+    .promotion button {
+        margin-top: 0.1rem;
+        /* Adjust as necessary */
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        background: none;
+    }
 
+    .promotion p {
+        margin: 0;
+    }
+
+    .imgContainer {
+        /* display: flex; */
+        justify-content: center;
+        align-items: center;
+        margin-top: 2rem;
+        margin-left: 2.5rem;
+
+    }
 }
