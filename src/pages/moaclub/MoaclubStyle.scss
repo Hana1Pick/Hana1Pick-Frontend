@@ -24,7 +24,7 @@
   box-sizing: border-box;
 }
 
-.moaclubHeader2 img {
+.moaclubHeader2 .back {
   position: absolute;
   left: 1.5rem;
 }
@@ -32,6 +32,18 @@
 .back {
   height: 20px; // 이미지 높이 설정 (필요에 따라 조정)
   width: auto;
+}
+
+.settingContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.moaclubHeader2 .setting {
+  height: 23px;
+  position: absolute;
+  right: 1.5rem;
+  margin-top: -0.1rem;
 }
 
 h4 {
@@ -52,7 +64,7 @@ h5 {
 }
 
 .content {
-  margin-top: 5rem;
+  margin-top: 6rem;
 }
 
 .allAgree {
@@ -115,6 +127,15 @@ h5 {
   align-items: center;
   position: fixed;
   bottom: 2rem;
+  width: 100%;
+}
+
+.moaInviteBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 3rem;
   width: 100%;
 }
 
@@ -341,4 +362,165 @@ header {
   font-weight: bold !important;
   color: #424242 !important;
   font-size: large !important;
+}
+
+.inviteTxt {
+  margin-top: 7rem;
+}
+
+.inviteIcon {
+  width: 10%;
+  margin-top: 3rem;
+}
+
+.bubble
+{
+position: absolute;
+width: 9rem;
+height: 2.5rem;
+background: #F3DFF1;
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+font-size: small;
+bottom: 4rem;
+left: 7.5rem;
+text-align: center;
+justify-content: center;
+align-items: center;
+display: flex;
+animation: bounce 1.5s infinite;
+}
+
+.bubble:after
+{
+content: '';
+position: absolute;
+border-style: solid;
+border-width: 1rem 0.5rem 0;
+border-color: #F3DFF1 transparent;
+display: block;
+width: 0;
+z-index: 1;
+bottom: -0.8rem;
+left: 3.9rem;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.3rem);
+  }
+}
+
+.buttonContainerInvite {
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 2rem;
+  width: 100%;
+}
+
+.joinGif {
+  width: 50%;
+  margin-left: 1rem;
+}
+
+.inviteClubNameTxt2 {
+  margin-top: -1rem;
+  font-weight: 300;
+  color: #7e7e7e;
+  margin-bottom: 3rem;
+}
+
+.moaclubMainInfoContainer {
+  margin-top: 2.3rem !important;
+}
+
+.moaclubMainBalance {
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+.memberListContainer {
+  display: flex;
+  justify-content: center;
+  margin-left: 0.5rem;
+}
+
+.memberProfile {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  object-fit: cover;
+  overflow: hidden;
+  margin-left: -0.5rem;
+}
+
+.moaclubFee {
+  background-color: #222222;
+  color: white !important;
+  border-radius: 0.4rem;
+  width: 11rem;
+  height: 1.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #91DDCF !important;
+  font-weight: 500;
+}
+
+.moaClubMainBtnContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.4rem !important;
+}
+
+.moaclubMainTrsf {
+  background-color: #F2EEF8;
+  color: #F19ED3 !important;
+  font-weight: 600;
+  width: 5rem;
+  height: 1.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  margin: 0 0.2rem 0 0.2rem;
+}
+
+.moaclubAccHisTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.moaclubAccHisTable td {
+  padding-top: 0.7rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid #E7E9DE;
+  font-weight: 500;
+}
+
+.background-container {
+  position: fixed;
+  z-index: 10;
+}
+
+.moaclub {
+  position: relative;
+  top: 292px;
+}
+
+.transaction {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.moaclubAccHisLast {
+  font-size: small;
+  margin-left: 0.4rem;
+  color: #585858;
 }
