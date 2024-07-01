@@ -5,7 +5,7 @@ import '../../common/styles/scss/CommonStyle.scss'
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { accountInfo, MoaclubInfo } from '../../type/commonType';
+import { MoaclubAccHis, MoaclubInfo } from '../../type/commonType';
     
 const MoaclubPage = () => {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ const MoaclubPage = () => {
   const userIdx = localStorage.getItem("userIdx") as string;
   
   const [moaclub, setMoaclub] = useState<MoaclubInfo | null>(null);
-  const [accountHistory, setAccountHistory] = useState<accountInfo[] | null>(null);
+  const [accountHistory, setAccountHistory] = useState<MoaclubAccHis[] | null>(null);
   const [isManager, setIsManager] = useState<boolean>(false);
 
   const getManagerCheck = async (userIdx: string, accountId: string) => {
@@ -92,10 +92,19 @@ const MoaclubPage = () => {
     return formattedDate.endsWith('.') ? formattedDate.slice(0, -1) : formattedDate;
   };
 
+  const goSetting = () => {
+    console.log(accountId);
+    navigate(`/moaclub/setting/${accountId}`);
+  }
+
+  const goFeeStatus = () => {
+    navigate(`/moaclub/fee/${accountId}`);
+  }
+
   return(
     <>
-      <div className='background-container'>
-        <Header value={moaclub?.name!} disabled={true}/>
+      <div className='moaclub-background-container'>
+        <Header value={moaclub?.name!} disabled={true} onClick={goSetting}/>
         <img src={PattrenBg} alt='Pattern Background' className='pattern-bg' />
         <div className="overlay-text">
           <div className="moaclubMainInfoContainer">
@@ -112,11 +121,11 @@ const MoaclubPage = () => {
               />
             ))}
           </div>
-          <div className="moaclubFee">
+          <div className="moaclubFee" onClick={goFeeStatus}>
             <span className="moaclubFeeRule">매월 {moaclub?.atDate}일, {moaclub?.clubFee}{currencyValue}씩</span>
           </div>
 
-          <div className="moaClubMainBtnContainer">
+          <div className="moaclubFeeContainer">
             <div className="moaclubMainTrsf">이체하기</div>
             {isManager && (
               <div className="moaclubMainTrsf">출금하기</div>
@@ -131,10 +140,12 @@ const MoaclubPage = () => {
             {accountHistory && accountHistory.length > 0 ? (
               accountHistory.map((history, index) => (
                 <tr key={index}>
-                  <td>{formatDate(history.transDate)}</td>
-                  <td>{history.target}</td>
+                  <td className='moaclubDate'>{formatDate(history.transDate)}</td>
+                  <td className='moaclubTarget'>{history.target}</td>
                   <td className='transaction'>
-                    <span>{history.transAmount >= 0 ? `+${history.transAmount}` : history.transAmount}{currencyValue}</span>
+                    <span id='moaclubTransAmountTxt' className={history.transAmount > 0 ? 'moaclubBlueTxt' : ''}>
+                      {history.transAmount >= 0 ? `+${history.transAmount}` : history.transAmount}{currencyValue}
+                    </span>
                     <span className="moaclubAccHisLast">{history.balance}{currencyValue}</span>
                   </td>
                 </tr>
