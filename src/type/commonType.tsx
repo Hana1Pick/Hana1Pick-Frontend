@@ -84,6 +84,7 @@ export type MoaClubVoteResult = {
 	accountId: string;
 	userName: string;
 	candidateName: string;
+	amount: number;
 	requestTime: string;
 	votes: Record<string, boolean>;
 };

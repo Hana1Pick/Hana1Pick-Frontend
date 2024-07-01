@@ -215,11 +215,11 @@ function MoaclubVoteManager() {
 							.filter((member) => member.role != 'MANAGER')
 							.map((member: memberList, index: number) => (
 								<tr key={index}>
-									<td>
+									<td className='voteTableFirstTd'>
 										<img src={member.profile} alt={`${member.userName} 프로필`} className='voteProfile' />
 									</td>
 									<td className='voteMemberTxt'>{member.userName}</td>
-									<td>
+									<td className='voteTableLastTd'>
 										<img src={getVoteStatus(member.userName)} alt='투표 상태 아이콘' className='voteStatusIcon' />
 									</td>
 								</tr>

@@ -793,6 +793,14 @@ header {
 	height: 10rem;
 }
 
+.moaclubVoteStatusContent2 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 2rem;
+	height: 13rem;
+}
+
 .candidateWrapper {
 	display: flex;
 	flex-direction: column;
@@ -818,4 +826,30 @@ header {
 .mintTxt {
 	color: #91ddcf;
 	font-weight: bold;
+}
+
+.moaTrsfBox {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 1rem;
+}
+
+.moaVoteAmountTxt {
+	color: #91ddcf;
+	font-weight: bold;
+	font-size: large;
+	margin-left: 0.5rem;
+}
+
+.voteTableFirstTd {
+	width: 4.5rem;
+}
+
+.voteTableLastTd {
+	width: 3.5rem;
+}
+
+.voteTableLastTd2 {
+	width: 6rem;
 }
