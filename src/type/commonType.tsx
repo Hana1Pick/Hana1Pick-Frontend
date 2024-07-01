@@ -50,3 +50,19 @@ export type DomesticAuthProps = {
     password: string;
   };
 };
+
+export type CelubListType = {
+  idx:number,
+  name: string,
+  thumbnail: string,
+  type: string
+}
+
+export type CelubWithdrawType = {
+  userIdx: string,
+  accPw: number,
+  name: string,
+  imgSrc: string,
+  outAccId: string,
+  celebrityIdx: number
+}

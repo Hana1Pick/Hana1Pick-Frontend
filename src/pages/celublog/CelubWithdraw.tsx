@@ -1,4 +1,4 @@
-import CelubHeader from "../../layouts/CelubHeader1";
+import Header from "../../layouts/MoaclubHeader1";
 import './CelublogStyle.scss';
 function CelubWithdraw(){
     const nextStage =()=>{
@@ -27,7 +27,7 @@ function CelubWithdraw(){
     }
     return(
         <>
-            <CelubHeader></CelubHeader>
+            <Header value="셀럽로그" disabled={false} />
             <div className="celub-withdraw-overlay" id="celub-withdraw-overlay"></div>
             <div className="withdraw-box3">
                 <div>

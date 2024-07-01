@@ -491,3 +491,31 @@
 .accountNum, .balance, .accountName{
   position: absolute;
 }
+
+.celub-search-box{
+  margin-top: 1rem;
+  select{
+    margin-right: 0.2rem;
+  }
+}
+
+.celub-search-img{
+  width: 5%;
+  height: 7%;
+  margin-left: 0.2rem;
+}
+
+.celub-table{
+  width: 80%;
+  margin: 0 auto;
+  tbody{
+    tr, td{
+      margin: 0 auto;
+    }
+  }
+}
+.celub-img{
+  width: 3rem;
+  height: 3rem;
+}
+

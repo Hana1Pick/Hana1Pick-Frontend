@@ -1,10 +1,18 @@
 import React, { useState, ChangeEvent } from "react";
 import CelubHeader1 from "../../layouts/CelubHeader1";
 import { CelubRuleType } from "../../type/commonType";
+import axios from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
+import qs from 'qs';
 
 function CelubRule() {
+    const location = useLocation();
+    const detailList = location.state;
+    const navigate = useNavigate();
+    console.log("룰 규칙 정하는 곳", detailList);
+    console.log(detailList.accountInfo.accountId);
     const [rules, setRules] = useState<CelubRuleType[]>([
-        { ruleName: '', ruleMoney: 0 }
+        Array.isArray(detailList.ruleInfo) ? detailList.ruleInfo : []
     ]);
 
     const addInput = () => {
@@ -28,6 +36,31 @@ function CelubRule() {
         }
         setRules(newRules);
     };
+    const addRules=()=>{
+        let data = {
+            accountId: detailList.accountInfo.accountId,
+            ruleList: rules.map(rule => ({
+                ruleName: rule.ruleName,
+                ruleMoney: rule.ruleMoney
+            }))
+        }
+        axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/rule`,
+            data)
+            .then((res)=>{
+                console.log(res.data.data);
+                alert('규칙이 추가되었습니다.');
+                axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/list/detail`,
+                    qs.stringify({accountId:data.accountId}))
+                    .then((res)=>{
+                        console.log(res.data.data);
+                        navigate("/celub/detail", {state:res.data.data});
+                    }).catch((error)=>{
+                        alert("실패");
+                    });
+            }).catch((error)=>{
+                alert("실패");
+            });
+    }
 
     return (
         <>
@@ -67,7 +100,7 @@ function CelubRule() {
 
                 <div className="celub-rulemake-box4">
                     <button className="celub-addrule-btn" onClick={addInput}>추가</button>
-                    <button id="basicBtn1">완료</button>
+                    <button id="basicBtn1" onClick={addRules}>완료</button>
                 </div>
             </div>
         </>

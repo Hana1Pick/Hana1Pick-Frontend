@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import CelubHeader3 from "../../layouts/CelubHeader3";
-import bgImg from "../../assets/images/celub/cha.png";
 import { CelubHistoryType, CelubRuleType } from '../../type/commonType';
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const CelubDetail: React.FC = () => {
+    const navigate = useNavigate();
     const [isExpanded, setIsExpanded] = useState(false);
     const [startY, setStartY] = useState(0);
     const [startHeight, setStartHeight] = useState(0);
@@ -14,7 +14,10 @@ const CelubDetail: React.FC = () => {
     const [historyList, setHistoryList] = useState<CelubHistoryType[]>([]);
     const location = useLocation();
     const detailList = location.state;
-    console.log(detailList);
+    useEffect(() => {
+        history();
+        rule();
+    }, []); 
     const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
         setStartY(e.touches[0].clientY);
         setStartHeight(document.documentElement.clientHeight - e.currentTarget.getBoundingClientRect().top);
@@ -41,27 +44,31 @@ const CelubDetail: React.FC = () => {
     };
 
     const rule=()=>{
-        console.log(detailList);
         setRuleList(detailList.ruleInfo);
         setIsHistory(false);
         setIsRule(true);
     }
 
     const history=()=>{
-        console.log(detailList.accountReport)
         setHistoryList(detailList.accountReport);
         setIsHistory(true);
         setIsRule(false);
     }
     const goMakeRule=()=>{
-        window.location.href="/celub/rule";
+        navigate("/celub/rule",{state:detailList});
     }
     const goDeposit=()=>{
-        window.location.href="/celub/deposit";
+        navigate("/celub/deposit");
+    }
+    const share=()=>{
+        alert('공유');
+    }
+    const setting =()=>{
+        alert('변경');
     }
     return (
         <>
-            <CelubHeader3 />
+            <CelubHeader3 onClick1={share} onClick2={setting} />
             <div id="celubBox1">
                 <div className="celub-detail-box1" id="celubContainer">
                     <img id="celubBgImg" src={detailList.accountInfo.imgSrc} alt="Background" />
