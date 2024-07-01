@@ -183,7 +183,9 @@
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   gap: 0.5rem;
-  margin-top: 1rem;
+  margin-top: 3rem;
+  margin-left: 2.5rem;
+  margin-right: 3.5rem;
 }
 
 .background-container {
@@ -196,7 +198,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  font-size: 1rem;
+  font-size: 16px;
   z-index: 10;
   color: #000000;
 }
@@ -204,15 +206,15 @@
 .overlay-text div {
   white-space: nowrap;
   color: #535353;
-  margin-top: 0.625rem; /* 10px를 rem 단위로 변환 */
+  margin-top: 10px;
 }
 
 .pattern-dot {
-  width: 0.5rem;
-  height: 0.5rem;
+  width: 0.7rem;
+  height: 0.7rem;
   border-radius: 50%;
   background-color: #000;
-  margin: 3rem;
+  margin: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -224,7 +226,7 @@
 }
 
 .pattern-dot.selected {
-  background-color: #555359;
+  background-color: #f19ed3;
 }
 
 .pattern-lines {
@@ -235,6 +237,7 @@
   height: 100%;
   pointer-events: none;
 }
+
 /* user agree */
 
 .legal-notice-box {

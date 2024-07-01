@@ -26,7 +26,7 @@ function MoaclubOpening() {
       <>
         <Header value="모아클럽" disabled={false}/>
         <div className="content">
-          <img className="banner" src={banner} />
+          <img className="banner" alt="banner" src={banner} />
         </div>
         
         <div>
