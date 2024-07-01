@@ -10,6 +10,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { memberList, MoaClubVoteResult } from '../../type/commonType';
 import CommonBtn from '../../components/button/CommonBtn';
+import MoaclubModal from '../../components/modal/MoaClubModal';
 
 function MoaclubVoteManager() {
 	const navigate = useNavigate();
@@ -23,6 +24,10 @@ function MoaclubVoteManager() {
 	const [myProfile, setMyProfile] = useState<memberList | null>(null);
 	const [timeLeft, setTimeLeft] = useState<string>('');
 	const [manager, setManager] = useState<memberList | null>(null);
+	const [modalIsOpen, setModalIsOpen] = useState(false);
+
+	const openModal = () => setModalIsOpen(true);
+	const closeModal = () => setModalIsOpen(false);
 
 	const getManagerCheck = async (userIdx: string, accountId: string) => {
 		try {
@@ -115,31 +120,32 @@ function MoaclubVoteManager() {
 	};
 
 	const next = () => {
-		const url = `http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/vote`;
+		openModal();
+		// const url = `http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/vote`;
 
-		const data = {
-			accountId: accountId,
-			userIdx: userIdx,
-			agree: selectVote,
-		};
+		// const data = {
+		// 	accountId: accountId,
+		// 	userIdx: userIdx,
+		// 	agree: selectVote,
+		// };
 
-		axios
-			.post(url, data, {
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				params: {
-					type: 0,
-				},
-			})
-			.then((res) => {
-				if (res.data.status === 201) {
-					navigate(`/moaclub/main/${accountId}`);
-				}
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+		// axios
+		// 	.post(url, data, {
+		// 		headers: {
+		// 			'Content-Type': 'application/json',
+		// 		},
+		// 		params: {
+		// 			type: 0,
+		// 		},
+		// 	})
+		// 	.then((res) => {
+		// 		if (res.data.status === 201) {
+		// 			navigate(`/moaclub/main/${accountId}`);
+		// 		}
+		// 	})
+		// 	.catch((error) => {
+		// 		console.log(error);
+		// 	});
 	};
 
 	const getVoteStatus = (name: string) => {
@@ -269,6 +275,8 @@ function MoaclubVoteManager() {
 			<div className='buttonContainer'>
 				<CommonBtn type='pink' value='완료' onClick={next} disabled={isButtonDisabled()} />
 			</div>
+
+			<MoaclubModal isOpen={modalIsOpen} onClose={closeModal} message='success' onConfirm={closeModal} />
 		</>
 	);
 }
