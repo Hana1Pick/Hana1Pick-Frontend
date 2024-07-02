@@ -64,6 +64,9 @@ import MoaclubVoteTrsf from './pages/moaclub/MoaclubVoteTrsf';
 import MoaclubWithdraw from './pages/moaclub/MoaclubWithdraw';
 import MoaclubAutoTrsf from './pages/moaclub/MoaclubAutoTrsf';
 import MoaclubAutoTrsfDetail from './pages/moaclub/MoaclubAutoTrsfDetail';
+import MoaclubAutoTrsfRegister from './pages/moaclub/MoaclubAutoTrsfRegister';
+import MoaclubAutoTrsfPw from './pages/moaclub/MoaclubAutoTrsfPw';
+import MoaclubAutoTrsfComplete from './pages/moaclub/MoaclubAutoTrsfComplete';
 
 function App() {
 	return (
@@ -194,6 +197,15 @@ function App() {
 					<Route
 						path='/moaclub/autotrsf/detail/:accountId'
 						element={<MoaclubAutoTrsfDetail />}
+					/>
+					<Route
+						path='/moaclub/autotrsf/register/:accountId'
+						element={<MoaclubAutoTrsfRegister />}
+					/>
+					<Route path='/moaclub/autotrsf/pw' element={<MoaclubAutoTrsfPw />} />
+					<Route
+						path='/moaclub/autotrsf/complete'
+						element={<MoaclubAutoTrsfComplete />}
 					/>
 
 					<Route
