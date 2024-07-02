@@ -1,7 +1,7 @@
 import Header from '../../layouts/MoaclubHeader4';
 import './MoaclubStyle.scss';
 import '../../common/styles/scss/CommonStyle.scss';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { MemeberFeeStatus, MoaclubInfo } from '../../type/commonType';
 import axios from 'axios';
@@ -12,7 +12,6 @@ type StatusNumType = {
 };
 
 function MoaclubFeeStatus() {
-	const navigate = useNavigate();
 	const { accountId } = useParams();
 
 	const userIdx = localStorage.getItem('userIdx') as string;
@@ -23,7 +22,10 @@ function MoaclubFeeStatus() {
 	const [moaclub, setMoaclub] = useState<MoaclubInfo | null>(null);
 	const [feeStatus, setFeeStatus] = useState<MemeberFeeStatus[]>([]);
 	const [selectedBtn, setSelectedBtn] = useState<string>('전체'); // 초기값은 "전체"로 설정
-	const [statusNum, setStatusNum] = useState<StatusNumType>({ unpaid: 0, paid: 0 });
+	const [statusNum, setStatusNum] = useState<StatusNumType>({
+		unpaid: 0,
+		paid: 0,
+	});
 	const [yearMonths, setYearMonths] = useState<string[]>([]); // 배열로 년-월 형식의 날짜 리스트 관리
 	const [selectedMonth, setSelectedMonth] = useState(
 		`${currentYear}-${currentMonth < 10 ? '0' + currentMonth : currentMonth}`
@@ -31,10 +33,13 @@ function MoaclubFeeStatus() {
 
 	const getMoaclubInfo = async (userIdx: string, accountId: string) => {
 		try {
-			const response = await axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`, {
-				userIdx,
-				accountId,
-			});
+			const response = await axios.post(
+				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`,
+				{
+					userIdx,
+					accountId,
+				}
+			);
 			console.log('MoaclubInfo:', response.data.data);
 			return response.data.data;
 		} catch (error) {
@@ -45,10 +50,13 @@ function MoaclubFeeStatus() {
 
 	const getMoaclubFeeStatus = async (accountId: string, checkDate: string) => {
 		try {
-			const response = await axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/fee`, {
-				accountId,
-				checkDate,
-			});
+			const response = await axios.post(
+				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/fee`,
+				{
+					accountId,
+					checkDate,
+				}
+			);
 			console.log('MemeberFeeStatus:', response.data.data);
 			return response.data.data;
 		} catch (error) {
@@ -59,12 +67,21 @@ function MoaclubFeeStatus() {
 
 	const getYearMonthList = () => {
 		const yearMonths = [];
-		console.log('moaclub?.createDate.year', moaclub?.createDate?.substring(0, 4));
+		console.log(
+			'moaclub?.createDate.year',
+			moaclub?.createDate?.substring(0, 4)
+		);
 
 		// 현재 년-월부터 moaclub.createDate까지의 리스트 생성
-		for (let year = Number(moaclub?.createDate?.substring(0, 4)); year <= currentYear; year++) {
+		for (
+			let year = Number(moaclub?.createDate?.substring(0, 4));
+			year <= currentYear;
+			year++
+		) {
 			const startMonth =
-				year === Number(moaclub?.createDate?.substring(0, 4)) ? Number(moaclub?.createDate?.substring(5, 7)) : 1;
+				year === Number(moaclub?.createDate?.substring(0, 4))
+					? Number(moaclub?.createDate?.substring(5, 7))
+					: 1;
 			const endMonth = year === currentYear ? currentMonth : 12;
 
 			console.log('start, end >> ', startMonth, endMonth);
@@ -83,8 +100,14 @@ function MoaclubFeeStatus() {
 		const fetchMoaclubInfo = async () => {
 			if (userIdx && accountId) {
 				const moaClubInfoRes = await getMoaclubInfo(userIdx, accountId);
-				const feeStatusRes = await getMoaclubFeeStatus(accountId!, selectedMonth!);
-				const feeStatus = feeStatusRes.sort((a: MemeberFeeStatus, b: MemeberFeeStatus) => a.name.localeCompare(b.name));
+				const feeStatusRes = await getMoaclubFeeStatus(
+					accountId!,
+					selectedMonth!
+				);
+				const feeStatus = feeStatusRes.sort(
+					(a: MemeberFeeStatus, b: MemeberFeeStatus) =>
+						a.name.localeCompare(b.name)
+				);
 				setMoaclub(moaClubInfoRes);
 				setFeeStatus(feeStatus);
 			}
@@ -95,8 +118,12 @@ function MoaclubFeeStatus() {
 
 	useEffect(() => {
 		setStatusNum({
-			unpaid: feeStatus.filter((member: MemeberFeeStatus) => member.status === 'UNPAID').length,
-			paid: feeStatus.filter((member: MemeberFeeStatus) => member.status === 'PAID').length,
+			unpaid: feeStatus.filter(
+				(member: MemeberFeeStatus) => member.status === 'UNPAID'
+			).length,
+			paid: feeStatus.filter(
+				(member: MemeberFeeStatus) => member.status === 'PAID'
+			).length,
 		});
 	}, [feeStatus]);
 
@@ -121,7 +148,9 @@ function MoaclubFeeStatus() {
 
 	const currencyValue = getCurrencySymbol(moaclub?.currency!);
 
-	const handleSelectChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
+	const handleSelectChange = async (
+		event: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		setSelectedMonth(event.target.value);
 	};
 
@@ -133,7 +162,11 @@ function MoaclubFeeStatus() {
 		<>
 			<Header value='회비 입금현황' disabled={false} />
 			<div className='content'>
-				<select className='moaclubFeeSelect' onChange={handleSelectChange} value={selectedMonth!}>
+				<select
+					className='moaclubFeeSelect'
+					onChange={handleSelectChange}
+					value={selectedMonth!}
+				>
 					{yearMonths.map((yearMonth, index) => (
 						<option key={index} value={yearMonth}>
 							{yearMonth}
@@ -176,10 +209,18 @@ function MoaclubFeeStatus() {
 						{feeStatus.map((member: MemeberFeeStatus, index: number) => (
 							<tr key={index}>
 								<td>
-									<img className='moaclubFeeProfile' src={member.profile} alt='프로필 사진' />
+									<img
+										className='moaclubFeeProfile'
+										src={member.profile}
+										alt='프로필 사진'
+									/>
 								</td>
 								<td className='moaclubFeeMemberName'>{member.name}</td>
-								<td className='moaclubFeeAmount'>{member.amount === 0 ? '-' : `${member.amount}${currencyValue}`}</td>
+								<td className='moaclubFeeAmount'>
+									{member.amount === 0
+										? '-'
+										: `${member.amount}${currencyValue}`}
+								</td>
 							</tr>
 						))}
 					</table>
@@ -190,15 +231,23 @@ function MoaclubFeeStatus() {
 					<table className='moaclubFeeTable'>
 						<tbody>
 							{feeStatus
-								.filter((member: MemeberFeeStatus) => member.status === 'UNPAID')
+								.filter(
+									(member: MemeberFeeStatus) => member.status === 'UNPAID'
+								)
 								.map((member: MemeberFeeStatus, index: number) => (
 									<tr key={index}>
 										<td>
-											<img className='moaclubFeeProfile' src={member.profile} alt='프로필 사진' />
+											<img
+												className='moaclubFeeProfile'
+												src={member.profile}
+												alt='프로필 사진'
+											/>
 										</td>
 										<td className='moaclubFeeMemberName'>{member.name}</td>
 										<td className='moaclubFeeAmount'>
-											{member.amount === 0 ? '-' : `${member.amount}${currencyValue}`}
+											{member.amount === 0
+												? '-'
+												: `${member.amount}${currencyValue}`}
 										</td>
 									</tr>
 								))}
@@ -215,11 +264,17 @@ function MoaclubFeeStatus() {
 								.map((member: MemeberFeeStatus, index: number) => (
 									<tr key={index}>
 										<td>
-											<img className='moaclubFeeProfile' src={member.profile} alt='프로필 사진' />
+											<img
+												className='moaclubFeeProfile'
+												src={member.profile}
+												alt='프로필 사진'
+											/>
 										</td>
 										<td className='moaclubFeeMemberName'>{member.name}</td>
 										<td className='moaclubFeeAmount'>
-											{member.amount === 0 ? '-' : `${member.amount}${currencyValue}`}
+											{member.amount === 0
+												? '-'
+												: `${member.amount}${currencyValue}`}
 										</td>
 									</tr>
 								))}
@@ -229,7 +284,9 @@ function MoaclubFeeStatus() {
 			)}
 
 			<div className='buttonContainer'>
-				<span className='moaclubFeeDesc'>* 멤버 이름을 포함한 입금 내역은 해당 멤버가 낸 회비로 집계됩니다.</span>
+				<span className='moaclubFeeDesc'>
+					* 멤버 이름을 포함한 입금 내역은 해당 멤버가 낸 회비로 집계됩니다.
+				</span>
 			</div>
 		</>
 	);
