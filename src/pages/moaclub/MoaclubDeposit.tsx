@@ -2,6 +2,8 @@ import Header from '../../layouts/MoaclubHeader1';
 import './MoaclubStyle.scss';
 import '../../common/styles/scss/CommonStyle.scss';
 import MoaClubCircleLogo from '../../assets/images/account/MoaClubCircleLogo.png';
+import CircleLogo from '../../assets/images/common/circle-logo.png';
+import deleteicon from '../../assets/images/common/deleteicon.png';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
@@ -18,6 +20,7 @@ function MoaclubDeposit() {
 	const [selectedAccount, setSelectedAccount] = useState<string | null>(null);
 	const [amount, setAmount] = useState<string>('');
 	const [amountKRW, setAmountKRW] = useState<string>('');
+	const [isDisabled, setIsDisabled] = useState<boolean>(false);
 	const type = 'DEPOSIT';
 
 	const { setInAccId, setOutAccId, setName, setTrsfAmount, setCurrency }: any = useContext(MoaclubTrsfContext);
@@ -107,9 +110,38 @@ function MoaclubDeposit() {
 		navigate(`/moaclub/deposit/pw`);
 	};
 
+	const nextStage = () => {
+		const div1 = document.getElementById('withdraw-box4');
+		const div2 = document.getElementById('celub-withdraw-overlay');
+
+		if (div1) {
+			div1.style.display = 'block';
+		}
+		if (div2) {
+			div2.style.display = 'block';
+		}
+
+		setIsDisabled(true);
+	};
+
+	const beforeStage = () => {
+		const div1 = document.getElementById('withdraw-box4');
+		const div2 = document.getElementById('celub-withdraw-overlay');
+
+		if (div1) {
+			div1.style.display = 'none';
+		}
+		if (div2) {
+			div2.style.display = 'none';
+		}
+
+		setIsDisabled(false);
+	};
+
 	return (
 		<>
-			<Header value='모아클럽 입금' disabled={false} />
+			<div className='celub-withdraw-overlay' id='celub-withdraw-overlay'></div>
+			<Header value='모아클럽 입금' disabled={isDisabled} />
 			<div className='content'>
 				<div className='moaDepositContainer'>
 					<div className='moaDepositTxt'>입금계좌</div>
@@ -182,7 +214,32 @@ function MoaclubDeposit() {
 			</div>
 
 			<div className='buttonContainer'>
-				<CommonBtn type='pink' value='다음' onClick={next} disabled={!selectedAccount} />
+				<CommonBtn type='pink' value='다음' onClick={nextStage} disabled={!selectedAccount} />
+			</div>
+
+			<div>
+				<div className='withdraw-box4' id='withdraw-box4'>
+					<div className='moaclub-box6'>
+						<img className='deleteicon' src={deleteicon} onClick={beforeStage} />
+					</div>
+					<div>
+						<img src={CircleLogo} className='moaAccCircle' style={{ marginBottom: '1rem' }} />
+						<div>
+							"<span className='moaWithdrawStrong'>{moaclub?.name}</span>" 모아클럽에
+						</div>
+						<div>
+							<span className='moaWithdrawStrong'>
+								{amount}
+								{currencyDetails?.currencySymbol}
+							</span>
+							&nbsp;입금하시겠습니까?
+						</div>
+						<div className='moaWithdrawInAccPopUp'>출금계좌: 하나원픽 {selectedAccount}</div>
+					</div>
+					<div className='moaclub-box5'>
+						<CommonBtn type='pink' value='입금하기' onClick={next} disabled={false} />
+					</div>
+				</div>
 			</div>
 		</>
 	);
