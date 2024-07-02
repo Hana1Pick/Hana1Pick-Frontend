@@ -46,6 +46,10 @@ function MoaclubSetting() {
 		navigate(`/moaclub/vote/${accountId}`);
 	};
 
+	const goMoaclubAutoTrsf = () => {
+		navigate(`/moaclub/autotrsf/${accountId}`);
+	};
+
 	return (
 		<>
 			<Header value='모아클럽 관리' disabled={false} />
@@ -61,7 +65,7 @@ function MoaclubSetting() {
 							<img className='rightIcon' alt='right-icon' src={righticon} />
 						</div>
 					)}
-					<div>
+					<div onClick={goMoaclubAutoTrsf}>
 						자동이체 설정
 						<img className='rightIcon' alt='right-icon' src={righticon} />
 					</div>

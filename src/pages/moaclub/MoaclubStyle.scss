@@ -150,22 +150,22 @@ h5 {
 	width: 100%;
 }
 
-.withdrawMsg{
-  margin: 3rem;
-  margin-top: 6rem;
-  div{
-    h3{
-      text-align: left;
-      font-weight: 600;
-    }
-    h4{
-      text-align: left;
-      font-weight: 600;
-      color: #8F8F8F;
-      font-size: small;
-      line-height: 1.1rem;
-    }
-  }
+.withdrawMsg {
+	margin: 3rem;
+	margin-top: 6rem;
+	div {
+		h3 {
+			text-align: left;
+			font-weight: 600;
+		}
+		h4 {
+			text-align: left;
+			font-weight: 600;
+			color: #8f8f8f;
+			font-size: small;
+			line-height: 1.1rem;
+		}
+	}
 }
 
 .moaInviteBtn {
@@ -182,17 +182,16 @@ h5 {
 }
 
 .withdraw-box1 {
-  margin-top: 75%;
-  h4{
-    text-align: left;
-    font-size: small;
-    font-weight: 700;
-    margin-left: 2.3rem;
-    margin-bottom: 0.7rem;
-  }
+	margin-top: 75%;
+	h4 {
+		text-align: left;
+		font-size: small;
+		font-weight: 700;
+		margin-left: 2.3rem;
+		margin-bottom: 0.7rem;
+	}
 	margin-top: 75%;
 }
-
 
 .withdraw-box2 {
 	background-color: #f8f8f9;
@@ -1050,4 +1049,102 @@ header {
 
 .moaWithdrawStrong {
 	font-weight: bold;
+}
+
+// 자동이체
+.moaAutoTrsf {
+	margin-top: 9rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+
+	.autoTrsfBanner {
+		width: 7.5rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.moaAutoTrsfInfo {
+		font-size: 1.1rem;
+		margin-bottom: 0.3rem;
+	}
+
+	.moaAutoTrsfName {
+		font-weight: bold;
+	}
+
+	.moaAutoTrsfHighlight {
+		color: #f19ed3;
+		font-weight: bold;
+	}
+
+	.moaAutoTrsfBox {
+		border: 0.15rem solid #f3dff1;
+		border-radius: 0.3rem;
+		width: 70%;
+		height: 5rem;
+		margin-top: 2rem;
+		padding: 0.8rem 1rem 1.5rem 1rem;
+		hr {
+			margin-top: 0.35rem;
+			margin-bottom: 0.45rem;
+			border: 0;
+			height: 0.9px;
+			background-color: #e2e2e2;
+		}
+
+		span {
+			text-align: left;
+			display: block;
+			width: 100%;
+			font-weight: 500;
+		}
+
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			th {
+				text-align: left;
+				font-weight: 300;
+				font-size: 0.9rem;
+				color: #7d7d7d;
+			}
+			td {
+				text-align: right;
+				font-size: 0.9rem;
+				font-weight: 300;
+			}
+		}
+
+		.moaAutoTrsfBoxHeader {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			width: 100%;
+		}
+
+		.moaAutoTrsfBoxBadge {
+			background-color: #f6f5f5;
+			border-radius: 0.4rem;
+			font-size: 0.7rem;
+			width: 4rem;
+			height: 1.3rem;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: #2c2c2c;
+		}
+	}
+
+	.moaAutoTrsfCreate {
+		background-color: #f19ed3;
+		color: white;
+		width: 5rem;
+		height: 2rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 0.7rem;
+		margin-top: 2rem;
+	}
 }
