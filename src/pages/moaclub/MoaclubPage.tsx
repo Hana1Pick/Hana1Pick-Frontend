@@ -14,15 +14,20 @@ const MoaclubPage = () => {
 	const userIdx = localStorage.getItem('userIdx') as string;
 
 	const [moaclub, setMoaclub] = useState<MoaclubInfo | null>(null);
-	const [accountHistory, setAccountHistory] = useState<MoaclubAccHis[] | null>(null);
+	const [accountHistory, setAccountHistory] = useState<MoaclubAccHis[] | null>(
+		null
+	);
 	const [isManager, setIsManager] = useState<boolean>(false);
 
 	const getManagerCheck = async (userIdx: string, accountId: string) => {
 		try {
-			const response = await axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/manager-check`, {
-				userIdx,
-				accountId,
-			});
+			const response = await axios.post(
+				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/manager-check`,
+				{
+					userIdx,
+					accountId,
+				}
+			);
 			return response.data.data.check;
 		} catch (error) {
 			console.error(error);
@@ -32,10 +37,13 @@ const MoaclubPage = () => {
 
 	const getMoaclubInfo = async (userIdx: string, accountId: string) => {
 		try {
-			const response = await axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`, {
-				userIdx,
-				accountId,
-			});
+			const response = await axios.post(
+				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`,
+				{
+					userIdx,
+					accountId,
+				}
+			);
 			console.log('1', response.data.data);
 			return response.data.data;
 		} catch (error) {
@@ -46,9 +54,12 @@ const MoaclubPage = () => {
 
 	const getAccountHistory = async (accountId: string) => {
 		try {
-			const response = await axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/account`, {
-				accountId,
-			});
+			const response = await axios.post(
+				`http://${process.env.REACT_APP_BESERVERURI}/api/account`,
+				{
+					accountId,
+				}
+			);
 			console.log(response.data.data);
 			return response.data.data;
 		} catch (error) {
@@ -88,8 +99,13 @@ const MoaclubPage = () => {
 
 	const formatDate = (isoDate: string) => {
 		const date = new Date(isoDate);
-		const formattedDate = date.toLocaleDateString('ko-KR', { month: '2-digit', day: '2-digit' });
-		return formattedDate.endsWith('.') ? formattedDate.slice(0, -1) : formattedDate;
+		const formattedDate = date.toLocaleDateString('ko-KR', {
+			month: '2-digit',
+			day: '2-digit',
+		});
+		return formattedDate.endsWith('.')
+			? formattedDate.slice(0, -1)
+			: formattedDate;
 	};
 
 	const goSetting = () => {
@@ -123,7 +139,12 @@ const MoaclubPage = () => {
 					</div>
 					<div className='memberListContainer'>
 						{moaclub?.memberList.map((member, index) => (
-							<img key={index} src={member.profile} alt={member.userName} className='memberProfile' />
+							<img
+								key={index}
+								src={member.profile}
+								alt={member.userName}
+								className='memberProfile'
+							/>
 						))}
 					</div>
 					<div className='moaclubFee' onClick={goFeeStatus}>
@@ -152,11 +173,20 @@ const MoaclubPage = () => {
 						{accountHistory && accountHistory.length > 0 ? (
 							accountHistory.map((history, index) => (
 								<tr key={index}>
-									<td className='moaclubDate'>{formatDate(history.transDate)}</td>
+									<td className='moaclubDate'>
+										{formatDate(history.transDate)}
+									</td>
 									<td className='moaclubTarget'>{history.target}</td>
 									<td className='transaction'>
-										<span id='moaclubTransAmountTxt' className={history.transAmount > 0 ? 'moaclubBlueTxt' : ''}>
-											{history.transAmount >= 0 ? `+${history.transAmount}` : history.transAmount}
+										<span
+											id='moaclubTransAmountTxt'
+											className={
+												history.transAmount > 0 ? 'moaclubBlueTxt' : ''
+											}
+										>
+											{history.transAmount >= 0
+												? `+${history.transAmount}`
+												: history.transAmount}
 											{currencyValue}
 										</span>
 										<span className='moaclubAccHisLast'>

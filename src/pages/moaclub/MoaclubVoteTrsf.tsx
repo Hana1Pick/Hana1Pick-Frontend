@@ -8,7 +8,11 @@ import xUnselect from '../../assets/images/moaclub/x-fill-unselect.png';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { memberList, MoaclubInfo, MoaClubVoteResult } from '../../type/commonType';
+import {
+	memberList,
+	MoaclubInfo,
+	MoaClubVoteResult,
+} from '../../type/commonType';
 import CommonBtn from '../../components/button/CommonBtn';
 
 function MoaclubVoteTrsf() {
@@ -26,10 +30,13 @@ function MoaclubVoteTrsf() {
 
 	const getManagerCheck = async (userIdx: string, accountId: string) => {
 		try {
-			const response = await axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/manager-check`, {
-				userIdx,
-				accountId,
-			});
+			const response = await axios.post(
+				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/manager-check`,
+				{
+					userIdx,
+					accountId,
+				}
+			);
 			return response.data.data.check;
 		} catch (error) {
 			console.error(error);
@@ -65,11 +72,14 @@ function MoaclubVoteTrsf() {
 
 	const getMemberList = async (accountId: string) => {
 		try {
-			const response = await axios.get(`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/member`, {
-				params: {
-					accountId,
-				},
-			});
+			const response = await axios.get(
+				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/member`,
+				{
+					params: {
+						accountId,
+					},
+				}
+			);
 			return response.data.data;
 		} catch (error) {
 			console.error(error);
@@ -79,10 +89,13 @@ function MoaclubVoteTrsf() {
 
 	const getCurrency = async (userIdx: string, accountId: string) => {
 		try {
-			const response = await axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`, {
-				userIdx,
-				accountId,
-			});
+			const response = await axios.post(
+				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`,
+				{
+					userIdx,
+					accountId,
+				}
+			);
 			return response.data.data.currency;
 		} catch (error) {
 			console.error(error);
@@ -103,11 +116,15 @@ function MoaclubVoteTrsf() {
 				setMemberList(memberListRes);
 
 				if (memberListRes) {
-					const myInfo = memberListRes.find((m: memberList) => m.userIdx === userIdx);
+					const myInfo = memberListRes.find(
+						(m: memberList) => m.userIdx === userIdx
+					);
 					if (myInfo) {
 						setMyProfile(myInfo);
 						if (moaClubReqRes.votes) {
-							const myVote = moaClubReqRes.votes.hasOwnProperty(myInfo.userName);
+							const myVote = moaClubReqRes.votes.hasOwnProperty(
+								myInfo.userName
+							);
 							setHasVoted(myVote);
 						}
 					}
@@ -177,7 +194,9 @@ function MoaclubVoteTrsf() {
 	const calculateTimeLeft = () => {
 		if (!voteResult) return '';
 
-		const endTime = new Date(new Date(voteResult.requestTime).getTime() + 24 * 60 * 60 * 1000);
+		const endTime = new Date(
+			new Date(voteResult.requestTime).getTime() + 24 * 60 * 60 * 1000
+		);
 		const now = new Date();
 		const difference = endTime.getTime() - now.getTime();
 
@@ -185,9 +204,16 @@ function MoaclubVoteTrsf() {
 			return '00:00:00';
 		}
 
-		const hours = String(Math.floor(difference / (1000 * 60 * 60))).padStart(2, '0');
-		const minutes = String(Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-		const seconds = String(Math.floor((difference % (1000 * 60)) / 1000)).padStart(2, '0');
+		const hours = String(Math.floor(difference / (1000 * 60 * 60))).padStart(
+			2,
+			'0'
+		);
+		const minutes = String(
+			Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
+		).padStart(2, '0');
+		const seconds = String(
+			Math.floor((difference % (1000 * 60)) / 1000)
+		).padStart(2, '0');
 
 		return `${hours}:${minutes}:${seconds}`;
 	};
@@ -226,14 +252,22 @@ function MoaclubVoteTrsf() {
 							.map((member: memberList, index: number) => (
 								<tr key={index}>
 									<td className='voteTableFirstTd'>
-										<img src={member.profile} alt={`${member.userName} 프로필`} className='voteProfile' />
+										<img
+											src={member.profile}
+											alt={`${member.userName} 프로필`}
+											className='voteProfile'
+										/>
 									</td>
 									<td className='voteMemberTxt'>{member.userName}</td>
 									<td className='voteTableLastTd'>
 										{getVoteStatus(member.userName) === '-' ? (
 											<span className='voteStatusIcon'>-</span>
 										) : (
-											<img src={getVoteStatus(member.userName)} alt='투표 상태 아이콘' className='voteStatusIcon' />
+											<img
+												src={getVoteStatus(member.userName)}
+												alt='투표 상태 아이콘'
+												className='voteStatusIcon'
+											/>
 										)}
 									</td>
 								</tr>
@@ -254,7 +288,11 @@ function MoaclubVoteTrsf() {
 						<table className='voteTable'>
 							<tr>
 								<td className='voteTableFirstTd'>
-									<img src={myProfile?.profile} alt='myProfile' className='voteProfile' />
+									<img
+										src={myProfile?.profile}
+										alt='myProfile'
+										className='voteProfile'
+									/>
 								</td>
 								<td className='moaclubTarget'>{myProfile?.userName}</td>
 								<td className='voteTableLastTd2'>
@@ -278,7 +316,12 @@ function MoaclubVoteTrsf() {
 			</div>
 
 			<div className='buttonContainer'>
-				<CommonBtn type='pink' value='완료' onClick={next} disabled={isButtonDisabled()} />
+				<CommonBtn
+					type='pink'
+					value='완료'
+					onClick={next}
+					disabled={isButtonDisabled()}
+				/>
 			</div>
 		</>
 	);

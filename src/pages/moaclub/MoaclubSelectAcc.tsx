@@ -9,9 +9,12 @@ import { MoaclubContext } from '../../contexts/MoaclubContextProvider';
 // API 호출 함수 정의
 const getAccountListByType = async (userIdx: string, type: string) => {
 	try {
-		const response = await axios.get(`http://${process.env.REACT_APP_BESERVERURI}/api/user/account-list`, {
-			params: { userIdx, type },
-		});
+		const response = await axios.get(
+			`http://${process.env.REACT_APP_BESERVERURI}/api/user/account-list`,
+			{
+				params: { userIdx, type },
+			}
+		);
 		return response.data.data[0]; // 데이터를 직접 반환 (첫 번째 요소)
 	} catch (error) {
 		console.error(error);
@@ -100,7 +103,12 @@ function MoaclubSelectAcc() {
 			</div>
 
 			<div className='buttonContainer'>
-				<CommonBtn type='pink' value='다음' onClick={next} disabled={!selectedAccount} />
+				<CommonBtn
+					type='pink'
+					value='다음'
+					onClick={next}
+					disabled={!selectedAccount}
+				/>
 			</div>
 		</>
 	);

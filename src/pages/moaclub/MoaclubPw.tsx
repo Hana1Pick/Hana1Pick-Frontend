@@ -14,7 +14,8 @@ interface PatternProps {
 function MoaclubPw() {
 	const userIdx = localStorage.getItem('userIdx') as string;
 
-	const { inAccId, outAccId, name, trsfAmount, currency }: any = useContext(MoaclubTrsfContext);
+	const { inAccId, outAccId, name, trsfAmount, currency }: any =
+		useContext(MoaclubTrsfContext);
 
 	const [attemptCnt, setAttemptCnt] = useState(0);
 	/* TODO
@@ -47,7 +48,10 @@ function MoaclubPw() {
 			if (element && element instanceof HTMLElement && element.dataset.index) {
 				const index = parseInt(element.dataset.index, 10);
 				if (!selectedPoints.includes(index)) {
-					setSelectedPoints((prevSelectedPoints) => [...prevSelectedPoints, index]);
+					setSelectedPoints((prevSelectedPoints) => [
+						...prevSelectedPoints,
+						index,
+					]);
 				}
 			}
 		}
@@ -55,11 +59,17 @@ function MoaclubPw() {
 
 	const handleTouchMove = (event: React.TouchEvent) => {
 		if (isDrawing.current) {
-			const element = document.elementFromPoint(event.touches[0].clientX, event.touches[0].clientY);
+			const element = document.elementFromPoint(
+				event.touches[0].clientX,
+				event.touches[0].clientY
+			);
 			if (element && element instanceof HTMLElement && element.dataset.index) {
 				const index = parseInt(element.dataset.index, 10);
 				if (!selectedPoints.includes(index)) {
-					setSelectedPoints((prevSelectedPoints) => [...prevSelectedPoints, index]);
+					setSelectedPoints((prevSelectedPoints) => [
+						...prevSelectedPoints,
+						index,
+					]);
 				}
 			}
 		}
@@ -102,7 +112,9 @@ function MoaclubPw() {
 			})
 			.then((res) => {
 				if (res.data.status === 200) {
-					navigate('/moaclub/deposit/trsf/result', { state: { inAccId, outAccId, name, trsfAmount, currency } });
+					navigate('/moaclub/deposit/trsf/result', {
+						state: { inAccId, outAccId, name, trsfAmount, currency },
+					});
 				}
 			})
 			.catch((error) => {
@@ -157,9 +169,12 @@ function MoaclubPw() {
 	const renderLines = () => {
 		const lines = [];
 		for (let i = 0; i < selectedPoints.length - 1; i++) {
-			const startPoint = pointsRef.current[selectedPoints[i]].getBoundingClientRect();
-			const endPoint = pointsRef.current[selectedPoints[i + 1]].getBoundingClientRect();
-			const parentRect = pointsRef.current[1].parentElement!.getBoundingClientRect();
+			const startPoint =
+				pointsRef.current[selectedPoints[i]].getBoundingClientRect();
+			const endPoint =
+				pointsRef.current[selectedPoints[i + 1]].getBoundingClientRect();
+			const parentRect =
+				pointsRef.current[1].parentElement!.getBoundingClientRect();
 			const startX = startPoint.left - parentRect.left + startPoint.width / 2;
 			const startY = startPoint.top - parentRect.top + startPoint.height / 2;
 			const endX = endPoint.left - parentRect.left + endPoint.width / 2;

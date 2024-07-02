@@ -63,10 +63,16 @@ function App() {
 		<div className='App'>
 			<BrowserRouter>
 				<Routes>
-					<Route path='/pattern' element={<Pattern nextUrl='celub-withdraw/complete' />} />
+					<Route
+						path='/pattern'
+						element={<Pattern nextUrl='celub-withdraw/complete' />}
+					/>
 					<Route path='deposit' element={<DepositCreation1 />} />
 					<Route path='/deposit2' element={<DepositCreation2 />} />
-					<Route path='/deposit3' element={<PatternPassword nextUrl='deposit4' />} />
+					<Route
+						path='/deposit3'
+						element={<PatternPassword nextUrl='deposit4' />}
+					/>
 					<Route path='/deposit4' element={<UserAgree />} />
 					<Route path='/deposit5' element={<DepositComplete />} />
 					<Route path='/' element={<MainPage />} />
@@ -88,7 +94,10 @@ function App() {
 										element={
 											<Routes>
 												<Route path='' element={<GetQrPage />} />
-												<Route path='account' element={<SelectQrOutAccountPage />} />
+												<Route
+													path='account'
+													element={<SelectQrOutAccountPage />}
+												/>
 											</Routes>
 										}
 									/>
@@ -144,13 +153,34 @@ function App() {
 					/>
 					<Route path='/moaclub/join/:accountId' element={<MoaclubJoin />} />
 					<Route path='/moaclub/main/:accountId' element={<MoaclubPage />} />
-					<Route path='/moaclub/fee/:accountId' element={<MoaclubFeeStatus />} />
-					<Route path='/moaclub/setting/:accountId' element={<MoaclubSetting />} />
-					<Route path='/moaclub/modify/:accountId' element={<MoaclubModify />} />
-					<Route path='/moaclub/vote/:accountId' element={<MoaclubVoteSelect />} />
-					<Route path='/moaclub/vote/manager/:accountId' element={<MoaclubVoteManager />} />
-					<Route path='/moaclub/vote/trsf/:accountId' element={<MoaclubVoteTrsf />} />
-					<Route path='/moaclub/withdraw/:accountId' element={<MoaclubWithdraw />} />
+					<Route
+						path='/moaclub/fee/:accountId'
+						element={<MoaclubFeeStatus />}
+					/>
+					<Route
+						path='/moaclub/setting/:accountId'
+						element={<MoaclubSetting />}
+					/>
+					<Route
+						path='/moaclub/modify/:accountId'
+						element={<MoaclubModify />}
+					/>
+					<Route
+						path='/moaclub/vote/:accountId'
+						element={<MoaclubVoteSelect />}
+					/>
+					<Route
+						path='/moaclub/vote/manager/:accountId'
+						element={<MoaclubVoteManager />}
+					/>
+					<Route
+						path='/moaclub/vote/trsf/:accountId'
+						element={<MoaclubVoteTrsf />}
+					/>
+					<Route
+						path='/moaclub/withdraw/:accountId'
+						element={<MoaclubWithdraw />}
+					/>
 
 					<Route
 						path='/moaclub/deposit/*'
