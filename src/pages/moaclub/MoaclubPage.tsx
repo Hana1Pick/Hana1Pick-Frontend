@@ -105,6 +105,10 @@ const MoaclubPage = () => {
 		navigate(`/moaclub/deposit/${accountId}`);
 	};
 
+	const goMoaWithdraw = () => {
+		navigate(`/moaclub/withdraw/${accountId}`);
+	};
+
 	return (
 		<>
 			<div className='moaclub-background-container'>
@@ -133,7 +137,11 @@ const MoaclubPage = () => {
 						<div className='moaclubMainTrsf' onClick={goMoaDeposit}>
 							입금하기
 						</div>
-						{isManager && <div className='moaclubMainTrsf'>출금하기</div>}
+						{isManager && (
+							<div className='moaclubMainTrsf' onClick={goMoaWithdraw}>
+								출금하기
+							</div>
+						)}
 					</div>
 				</div>
 			</div>

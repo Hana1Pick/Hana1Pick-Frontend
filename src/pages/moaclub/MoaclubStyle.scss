@@ -740,6 +740,7 @@ header {
 	padding: 10px;
 	width: 80%;
 	margin-bottom: 2rem;
+	font-size: 0.9rem;
 }
 
 .moaDepositDetailBox {
@@ -752,6 +753,12 @@ header {
 	text-align: left;
 	margin-left: 0.2rem;
 	margin-bottom: 0.5rem;
+}
+
+.moaWithdrawTxt {
+	text-align: left;
+	margin-left: 0.2rem;
+	margin-top: 1.7rem;
 }
 
 .moaDepositContainer {
@@ -1013,4 +1020,23 @@ header {
 
 .voteTableLastTd2 {
 	width: 6rem;
+}
+
+.moaWithdrawInfoTxt {
+	text-align: left;
+	color: #c4c4c4;
+	font-size: small;
+	margin-left: 2.5rem;
+	margin-top: 9rem;
+}
+
+.moaWithdrawWarn {
+	color: #ff9191;
+	font-size: small;
+}
+
+.moaWithdrawBalance {
+	color: #747474;
+	font-size: 0.8rem;
+	margin-left: 3rem;
 }

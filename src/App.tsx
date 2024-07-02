@@ -56,6 +56,7 @@ import MoaclubTrsfResult from './pages/moaclub/MoaclubTrsfResult';
 import MoaclubVoteSelect from './pages/moaclub/MoaclubVoteSelect';
 import MoaclubVoteManager from './pages/moaclub/MoaclubVoteManager';
 import MoaclubVoteTrsf from './pages/moaclub/MoaclubVoteTrsf';
+import MoaclubWithdraw from './pages/moaclub/MoaclubWithdraw';
 
 function App() {
 	return (
@@ -149,6 +150,7 @@ function App() {
 					<Route path='/moaclub/vote/:accountId' element={<MoaclubVoteSelect />} />
 					<Route path='/moaclub/vote/manager/:accountId' element={<MoaclubVoteManager />} />
 					<Route path='/moaclub/vote/trsf/:accountId' element={<MoaclubVoteTrsf />} />
+					<Route path='/moaclub/withdraw/:accountId' element={<MoaclubWithdraw />} />
 
 					<Route
 						path='/moaclub/deposit/*'
