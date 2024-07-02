@@ -72,6 +72,10 @@ function MoaclubAutoTrsf() {
 		navigate(`/moaclub/autotrsf/detail/${accountId}`);
 	};
 
+	const goAutoTrsfRegister = () => {
+		navigate(`/moaclub/autotrsf/register/${accountId}`);
+	};
+
 	return (
 		<>
 			<Header value='자동이체' disabled={false} />
@@ -118,7 +122,9 @@ function MoaclubAutoTrsf() {
 							</table>
 						</div>
 					) : (
-						<div className='moaAutoTrsfCreate'>등록하기</div>
+						<div className='moaAutoTrsfCreate' onClick={goAutoTrsfRegister}>
+							등록하기
+						</div>
 					)}
 				</div>
 			</div>
