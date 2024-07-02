@@ -8,7 +8,12 @@ interface ModalProps {
 	onConfirm: () => void;
 }
 
-const MoaclubModal: React.FC<ModalProps> = ({ isOpen, onClose, message, onConfirm }) => {
+const MoaclubModal: React.FC<ModalProps> = ({
+	isOpen,
+	onClose,
+	message,
+	onConfirm,
+}) => {
 	return (
 		<Modal isOpen={isOpen} onRequestClose={onClose}>
 			<div>

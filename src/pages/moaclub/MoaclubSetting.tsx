@@ -14,10 +14,13 @@ function MoaclubSetting() {
 
 	const getManagerCheck = async (userIdx: string, accountId: string) => {
 		try {
-			const response = await axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/manager-check`, {
-				userIdx,
-				accountId,
-			});
+			const response = await axios.post(
+				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/manager-check`,
+				{
+					userIdx,
+					accountId,
+				}
+			);
 			return response.data.data.check;
 		} catch (error) {
 			console.error(error);

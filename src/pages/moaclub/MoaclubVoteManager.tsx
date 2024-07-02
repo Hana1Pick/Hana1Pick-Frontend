@@ -31,10 +31,13 @@ function MoaclubVoteManager() {
 
 	const getManagerCheck = async (userIdx: string, accountId: string) => {
 		try {
-			const response = await axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/manager-check`, {
-				userIdx,
-				accountId,
-			});
+			const response = await axios.post(
+				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/manager-check`,
+				{
+					userIdx,
+					accountId,
+				}
+			);
 			return response.data.data.check;
 		} catch (error) {
 			console.error(error);
@@ -70,11 +73,14 @@ function MoaclubVoteManager() {
 
 	const getMemberList = async (accountId: string) => {
 		try {
-			const response = await axios.get(`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/member`, {
-				params: {
-					accountId,
-				},
-			});
+			const response = await axios.get(
+				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/member`,
+				{
+					params: {
+						accountId,
+					},
+				}
+			);
 			return response.data.data;
 		} catch (error) {
 			console.error(error);
@@ -93,16 +99,22 @@ function MoaclubVoteManager() {
 				setMemberList(memberListRes);
 
 				if (memberListRes) {
-					const myInfo = memberListRes.find((m: memberList) => m.userIdx === userIdx);
+					const myInfo = memberListRes.find(
+						(m: memberList) => m.userIdx === userIdx
+					);
 					if (myInfo) {
 						setMyProfile(myInfo);
 						if (moaClubReqRes.votes) {
-							const myVote = moaClubReqRes.votes.hasOwnProperty(myInfo.userName);
+							const myVote = moaClubReqRes.votes.hasOwnProperty(
+								myInfo.userName
+							);
 							setHasVoted(myVote);
 						}
 					}
 
-					const managerInfo = memberListRes.find((m: memberList) => m.role === 'MANAGER');
+					const managerInfo = memberListRes.find(
+						(m: memberList) => m.role === 'MANAGER'
+					);
 					setManager(managerInfo);
 				}
 			}
@@ -165,7 +177,9 @@ function MoaclubVoteManager() {
 	const calculateTimeLeft = () => {
 		if (!voteResult) return '';
 
-		const endTime = new Date(new Date(voteResult.requestTime).getTime() + 24 * 60 * 60 * 1000);
+		const endTime = new Date(
+			new Date(voteResult.requestTime).getTime() + 24 * 60 * 60 * 1000
+		);
 		const now = new Date();
 		const difference = endTime.getTime() - now.getTime();
 
@@ -173,9 +187,16 @@ function MoaclubVoteManager() {
 			return '00:00:00';
 		}
 
-		const hours = String(Math.floor(difference / (1000 * 60 * 60))).padStart(2, '0');
-		const minutes = String(Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-		const seconds = String(Math.floor((difference % (1000 * 60)) / 1000)).padStart(2, '0');
+		const hours = String(Math.floor(difference / (1000 * 60 * 60))).padStart(
+			2,
+			'0'
+		);
+		const minutes = String(
+			Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
+		).padStart(2, '0');
+		const seconds = String(
+			Math.floor((difference % (1000 * 60)) / 1000)
+		).padStart(2, '0');
 
 		return `${hours}:${minutes}:${seconds}`;
 	};
@@ -199,14 +220,24 @@ function MoaclubVoteManager() {
 				<div>관리자 변경에 동의하십니까?</div>
 				<div className='candidateContainer'>
 					<div className='managerWrapper'>
-						<img src={manager?.profile} alt='관리자 프로필 사진' className='voteProfile' />
+						<img
+							src={manager?.profile}
+							alt='관리자 프로필 사진'
+							className='voteProfile'
+						/>
 						<span className='moaVoteProfileDesc'>{manager?.userName}</span>
 					</div>
 					<div className='mintTxt'>→</div>
 					<div className='candidateWrapper'>
 						<span>👑</span>
-						<img src={getProfile(voteResult?.candidateName!)} alt='관리자 후보 프로필 사진' className='voteProfile' />
-						<span className='moaVoteProfileDesc'>{voteResult?.candidateName}</span>
+						<img
+							src={getProfile(voteResult?.candidateName!)}
+							alt='관리자 후보 프로필 사진'
+							className='voteProfile'
+						/>
+						<span className='moaVoteProfileDesc'>
+							{voteResult?.candidateName}
+						</span>
 					</div>
 				</div>
 			</div>
@@ -221,14 +252,22 @@ function MoaclubVoteManager() {
 							.map((member: memberList, index: number) => (
 								<tr key={index}>
 									<td className='voteTableFirstTd'>
-										<img src={member.profile} alt={`${member.userName} 프로필`} className='voteProfile' />
+										<img
+											src={member.profile}
+											alt={`${member.userName} 프로필`}
+											className='voteProfile'
+										/>
 									</td>
 									<td className='voteMemberTxt'>{member.userName}</td>
 									<td className='voteTableLastTd'>
 										{getVoteStatus(member.userName) === '-' ? (
 											<span className='voteStatusIcon'>-</span>
 										) : (
-											<img src={getVoteStatus(member.userName)} alt='투표 상태 아이콘' className='voteStatusIcon' />
+											<img
+												src={getVoteStatus(member.userName)}
+												alt='투표 상태 아이콘'
+												className='voteStatusIcon'
+											/>
 										)}
 									</td>
 								</tr>
@@ -249,7 +288,11 @@ function MoaclubVoteManager() {
 						<table className='voteTable'>
 							<tr>
 								<td>
-									<img src={myProfile?.profile} alt='myProfile' className='voteProfile' />
+									<img
+										src={myProfile?.profile}
+										alt='myProfile'
+										className='voteProfile'
+									/>
 								</td>
 								<td className='moaclubTarget'>{myProfile?.userName}</td>
 								<td>
@@ -273,10 +316,20 @@ function MoaclubVoteManager() {
 			</div>
 
 			<div className='buttonContainer'>
-				<CommonBtn type='pink' value='완료' onClick={next} disabled={isButtonDisabled()} />
+				<CommonBtn
+					type='pink'
+					value='완료'
+					onClick={next}
+					disabled={isButtonDisabled()}
+				/>
 			</div>
 
-			<MoaclubModal isOpen={modalIsOpen} onClose={closeModal} message='success' onConfirm={closeModal} />
+			<MoaclubModal
+				isOpen={modalIsOpen}
+				onClose={closeModal}
+				message='success'
+				onConfirm={closeModal}
+			/>
 		</>
 	);
 }

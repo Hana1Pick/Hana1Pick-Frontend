@@ -1,25 +1,22 @@
 import axios from 'axios';
 import React, { useRef, useState, useContext } from 'react';
 import PattrenBg from '../../assets/images/common/PatternBg.png';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Header from '../../layouts/MoaclubHeader2';
 import { MoaclubContext } from '../../contexts/MoaclubContextProvider';
 import '../../common/styles/scss/CommonStyle.scss';
+import { MoaclubTrsfContext } from '../../contexts/MoaclubTrsfContextProvider';
 
 interface PatternProps {
 	nextUrl: string;
 }
 
-function MoaclubPattern() {
-	const {
-		userIdx,
-		accountId,
-		name,
-		clubFee,
-		atDate,
-		currency,
-		setMoaclub,
-	}: any = useContext(MoaclubContext);
+function MoaclubPw() {
+	const userIdx = localStorage.getItem('userIdx') as string;
+
+	const { inAccId, outAccId, name, trsfAmount, currency }: any =
+		useContext(MoaclubTrsfContext);
+
 	const [attemptCnt, setAttemptCnt] = useState(0);
 	/* TODO
   const userPassword = localStorage.getItem('userPassword');
@@ -28,6 +25,8 @@ function MoaclubPattern() {
 	const isDrawing = useRef(false);
 	const pointsRef = useRef<HTMLDivElement[]>([]);
 	const [errorMsg, setErrorMsg] = useState('');
+
+	console.log(name);
 
 	const handleMouseDown = (index: number) => {
 		if (!selectedPoints.includes(index)) {
@@ -94,14 +93,14 @@ function MoaclubPattern() {
 
 	const navigate = useNavigate();
 	const next = () => {
-		const url = `http://${process.env.REACT_APP_BESERVERURI}/api/moaclub`;
+		const url = `http://${process.env.REACT_APP_BESERVERURI}/api/account/cash-out`;
 
 		const data = {
-			accountId: accountId,
 			userIdx: userIdx,
-			name: name,
-			clubFee: clubFee,
-			atDate: atDate,
+			outAccId: outAccId,
+			inAccId: inAccId,
+			amount: trsfAmount,
+			transType: 'DEPOSIT',
 			currency: currency,
 		};
 
@@ -112,9 +111,10 @@ function MoaclubPattern() {
 				},
 			})
 			.then((res) => {
-				if (res.data.status == 201) {
-					setMoaclub(res.data.data.accountId);
-					navigate('/moaclub/complete');
+				if (res.data.status === 200) {
+					navigate('/moaclub/deposit/trsf/result', {
+						state: { inAccId, outAccId, name, trsfAmount, currency },
+					});
 				}
 			})
 			.catch((error) => {
@@ -220,4 +220,4 @@ function MoaclubPattern() {
 	);
 }
 
-export default MoaclubPattern;
+export default MoaclubPw;
