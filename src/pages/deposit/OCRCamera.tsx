@@ -18,7 +18,6 @@ function OCRCamera() {
   //   nation: "CN",
   //   password: "",
   // };
-  // console.log(userData);
 
   const url = `http://${process.env.REACT_APP_BESERVERURI}/api/user/ocr`;
 
@@ -26,6 +25,8 @@ function OCRCamera() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   const userData = location.state.formData;
+
+  console.log(userData);
 
   useEffect(() => {
     const getCameraStream = async () => {
@@ -64,11 +65,11 @@ function OCRCamera() {
 
         canvas.toBlob(async (blob) => {
           if (blob) {
-            const formData = new FormData();
-            formData.append("file", blob, "captured_image.jpg");
+            const requestData = new FormData();
+            requestData.append("file", blob, "captured_image.jpg");
 
             try {
-              const response = await axios.post(url, formData, {
+              const response = await axios.post(url, requestData, {
                 headers: {
                   "Content-Type": "multipart/form-data",
                 },
@@ -106,21 +107,21 @@ function OCRCamera() {
   };
 
   return (
-      <div>
+    <div>
       <Header value="외국인등록증 인증" />
       <div className="camera-container">
-      <div className="camera-preview">
-        <video ref={videoRef} autoPlay playsInline></video>
-        <div className="overlay"></div>
+        <div className="camera-preview">
+          <video ref={videoRef} autoPlay playsInline></video>
+          <div className="overlay"></div>
+        </div>
+        <p className="text-container">
+          영역 안에 외국인등록증이 꽉 차도록 배치 후 <br />
+          하단 버튼을 누르면 촬영됩니다.
+        </p>
+        <button className="capture-button" onClick={captureAndUpload}></button>
+        <div className="text">사진촬영</div>
+        <canvas ref={canvasRef} style={{ display: "none" }}></canvas>
       </div>
-      <p className="text-container">
-        영역 안에 외국인등록증이 꽉 차도록 배치 후 <br />
-        하단 버튼을 누르면 촬영됩니다.
-      </p>
-      <button className="capture-button" onClick={captureAndUpload}></button>
-      <div className="text">사진촬영</div>
-      <canvas ref={canvasRef} style={{ display: "none" }}></canvas>
-    </div>
     </div>
   );
 }
