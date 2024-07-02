@@ -39,12 +39,16 @@ function MoaclubSetting() {
 		navigate(`/moaclub/modify/${accountId}`);
 	};
 
+	const goMoaclubVote = () => {
+		navigate(`/moaclub/vote/${accountId}`);
+	};
+
 	return (
 		<>
 			<Header value='모아클럽 관리' disabled={false} />
 			<div className='content'>
 				<div className='moaclubSettingContainer'>
-					<div>
+					<div onClick={goMoaclubVote}>
 						모아클럽 투표
 						<img className='rightIcon' alt='right-icon' src={righticon} />
 					</div>
