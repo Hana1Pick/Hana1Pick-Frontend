@@ -1,11 +1,12 @@
 import React, { useRef, useState } from "react";
 import "../../common/styles/scss/CommonStyle.scss"; // SCSS 파일 경로
 import Header from "../../components/Header";
-import "./style.css";
+import "./DepositStyle.scss";
 import DomesticAuth from "./DomesticAuth";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Calendar from "../../assets/images/deposit/Calendar.png";
+import { useNavigate } from "react-router-dom";
 
 function DepositCreation2() {
   const [name, setName] = useState<string>("");
@@ -17,6 +18,8 @@ function DepositCreation2() {
   const [password, setPassword] = useState<string>("");
   const [rtcRoomNum, setRtcRoomNum] = useState<string>("");
   const datePickerRef = useRef<DatePicker>(null);
+
+  const navigate = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setNation(event.target.value);
@@ -46,6 +49,10 @@ function DepositCreation2() {
     new (window as any).daum.Postcode({
       oncomplete: handleComplete,
     }).open();
+  };
+
+  const handleClick2 = () => {
+    navigate("/userauth", { state: { formData } });
   };
 
   const handleDateChange = (date: Date | null) => {
@@ -175,11 +182,15 @@ function DepositCreation2() {
             </div>
           </div>
         </div>
-        {nation === "KOR" && (
+        {nation === "KOR" ? (
           <div>
             <DomesticAuth rtcRoomNum={rtcRoomNum} formData={formData} />
           </div>
-        )}
+        ) : nation === "JP" || nation === "CN" ? (
+          <button id="deposit-basicBtn" onClick={handleClick2}>
+            외국인등록증 인증
+          </button>
+        ) : null}
       </div>
     </div>
   );

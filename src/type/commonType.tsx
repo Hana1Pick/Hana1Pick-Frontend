@@ -35,17 +35,28 @@ export type MoaClubHeaderData = {
 };
 
 export type DomesticAuthProps = {
-	rtcRoomNum: string;
-	formData: {
-		name: string;
-		address: string;
-		birth: string | null;
-		phone: string;
-		nation: string;
-		email: string | null;
-		password: string;
-	};
+  rtcRoomNum: string;
+  formData: {
+    name: string;
+    address: string;
+    birth: string | null;
+    phone: string;
+    nation: string;
+    email: string | null; 
+    password: string;
+  };
 };
+
+export type OCRData = {
+  data: {
+    name: string;
+    number: string;
+    address: string;
+    nation: string;
+    date: string;
+    certification: string;
+    };
+  };
 
 export type MoaclubInfo = {
 	name: string;
