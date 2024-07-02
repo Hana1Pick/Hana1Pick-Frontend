@@ -1,7 +1,6 @@
 import arrow from'../assets/images/celub/arrow.png';
 import setting from '../assets/images/celub/setting.png';
-import share from '../assets/images/celub/share.png'
-function CelubHeader3({ onClick1, onClick2 }: { onClick1: () => void, onClick2: () => void }){
+function CelubHeader3({onClick}: {onClick: () => void }){
     return(
         <>
             <div className="celubHeader3" id="celubHeader1">
@@ -9,8 +8,7 @@ function CelubHeader3({ onClick1, onClick2 }: { onClick1: () => void, onClick2: 
                     <img id="arrow_loc" src={arrow} />
                 </div>
                 <div>
-                    <img id="share" onClick={onClick1} src={share} />
-                    <img id="setting" onClick={onClick2} src={setting}/>
+                    <img id="setting" onClick={onClick} src={setting}/>
                 </div>
             </div>
         </>

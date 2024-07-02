@@ -21,6 +21,7 @@ const CelubDetail: React.FC = () => {
     const [selectedValue, setSelectedValue] = useState('#공통');
     const location = useLocation();
     const detailList = location.state;
+    const [fileInput, setFileInput] = useState<File | null>(null);
     
     console.log(detailList);
     useEffect(() => {
@@ -69,12 +70,49 @@ const CelubDetail: React.FC = () => {
     const goDeposit=()=>{
         navigate("/celub/deposit");
     }
-    const share=()=>{
-        alert('공유');
-    }
+
     const setting =()=>{
         alert('변경');
+        const modal = document.getElementById("myModal")!;
+
+        // Get the button that opens the modal
+        const btn = document.getElementById("openModalBtn")!;
+
+        // Get the <span> element that closes the modal
+        const span = document.getElementsByClassName("close")[0] as HTMLElement;
+        modal.style.display = "block";
+        span.onclick = () => {
+            modal.style.display = "none";
+          }
     }
+    // 첨부파일 변경시 실행
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files && event.target.files.length > 0) {
+          setFileInput(event.target.files[0]);
+        }
+      };
+
+    // 사진변경
+    const onSave = () =>{
+        if (!fileInput) {
+            alert('이미지를 선택해주세요');
+            return;
+          }
+          const formData = new FormData();
+          formData.append('accountId', detailList.accountInfo.accountId);
+          formData.append('field', "imgSrc");
+          formData.append('srcImg', fileInput);
+          formData.append('name', detailList.accountInfo.name);
+
+          axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/alteration`, formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          }).then((res)=>{
+            console.log(res);
+          });
+    }
+
     const handleSelectChange =(e:ChangeEvent<HTMLSelectElement>)=>{
         setSelectedValue(e.target.value);
     }
@@ -106,7 +144,7 @@ const CelubDetail: React.FC = () => {
     }
     return (
         <>
-            <CelubHeader3 onClick1={share} onClick2={setting} />
+            <CelubHeader3 onClick={setting} />
             <div id="celubBox1">
                 <div className="celub-detail-box1" id="celubContainer">
                     <img id="celubBgImg" src={detailList.accountInfo.imgSrc} alt="Background" />
@@ -188,6 +226,14 @@ const CelubDetail: React.FC = () => {
                         <CommonBtn type='pink' value="입금하기" onClick={sendMoney} />
                 </div>
             </div>}
+
+            <div id="myModal" className="modal">
+                <div className="modal-content">
+                <span className="close">&times;</span>
+                <input id="uploadImg" type="file" onChange={handleFileChange}/>
+                <CommonBtn type='black' value="저장" onClick={onSave} />
+                </div>
+            </div>
 
         </>
     );
