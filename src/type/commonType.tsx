@@ -106,3 +106,28 @@ export type MemeberFeeStatus = {
 	amount: number;
 	status: string;
 };
+
+// 계좌 데이터 타입 정의
+export interface Account {
+	accountId: string;
+	name: string;
+	accountType: string;
+	balance: number;
+}
+
+export interface MoaTrsf {
+	outAccId: string;
+	inAccId: string;
+	name: string;
+	trsfAmount: number;
+	currency: string;
+}
+
+export type MoaClubVoteResult = {
+	accountId: string;
+	userName: string;
+	candidateName: string;
+	amount: number;
+	requestTime: string;
+	votes: Record<string, boolean>;
+};

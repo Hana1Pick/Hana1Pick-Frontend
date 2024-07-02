@@ -672,12 +672,14 @@ header {
 	margin-top: -1rem;
 }
 
-.moaclubSettingContainer div {
-	padding-left: 2rem;
-	padding-bottom: 1rem;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+.moaclubSettingContainer {
+	div {
+		padding-left: 2rem;
+		padding-bottom: 1rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
 }
 
 .moaclubSettingContainer .rightIcon {
@@ -724,4 +726,328 @@ header {
 	.moaclubModifyElement {
 		margin-top: 0.8rem;
 	}
+}
+
+.moaAccCircle {
+	width: 2.5rem;
+	height: 2.5rem;
+	margin-right: 1rem;
+}
+
+.moaDepositInfoBox {
+	display: flex;
+	align-items: center;
+	border: 0.3px solid #cfcfcf;
+	border-radius: 1rem;
+	padding: 10px;
+	width: 80%;
+	margin-bottom: 2rem;
+	font-size: 0.9rem;
+}
+
+.moaDepositDetailBox {
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+}
+
+.moaDepositTxt {
+	text-align: left;
+	margin-left: 0.2rem;
+	margin-bottom: 0.5rem;
+}
+
+.moaWithdrawTxt {
+	text-align: left;
+	margin-left: 0.2rem;
+	margin-top: 1.7rem;
+}
+
+.moaDepositContainer {
+	margin-left: 2.5rem;
+}
+
+.moaDepositSelectContainer {
+	text-align: left;
+}
+
+.moaClubDepositSelect {
+	border-style: none;
+	border-radius: 0.5rem;
+	background-color: #f8f8f9;
+	width: 18rem;
+	padding: 0.5rem;
+}
+
+.moaDepositAmountInput {
+	border-style: none;
+	border-radius: 0.5rem;
+	background-color: #f8f8f9;
+	width: 7rem;
+	padding: 0.5rem;
+	margin-right: 0.2rem;
+	margin-top: 0.5rem;
+}
+
+.moaExchangeTxt {
+	text-align: left;
+	margin-left: 0.2rem;
+	margin-top: 2rem;
+	margin-bottom: 0.5rem;
+}
+
+.moaDepositAmountContainer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 18rem;
+	margin-top: 1rem;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.moaDepositAmountBox {
+	display: flex;
+	width: 100%;
+}
+
+.moaDepositFixedBox {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: #f5f5f5;
+	padding: 1rem;
+	height: 1.2rem;
+}
+
+.moaDepositCountry {
+	display: flex;
+	align-items: center;
+}
+
+.moaDepositInputBox {
+	display: flex;
+	align-items: center;
+	margin-left: 5rem;
+	flex-grow: 1;
+	padding: 1rem;
+	height: 1.2rem;
+}
+
+.moaDepositInputBox2 {
+	display: flex;
+	align-items: center;
+	margin-left: 5.6rem;
+	flex-grow: 1;
+	padding: 1rem;
+	height: 1.2rem;
+}
+
+.moaDepositAmountInput2 {
+	width: 50px;
+	text-align: right;
+	border: none;
+	font-size: 1rem;
+	outline: none;
+}
+
+.moaDepositAmountInput2 + div {
+	margin-left: 0.5rem;
+	font-size: 0.9rem;
+	color: #666;
+}
+
+.moaDepositCountry {
+	font-size: 0.8rem;
+}
+
+.moaDepositSymbol {
+	font-size: 0.9rem;
+	font-weight: 400;
+	color: #f19ed3;
+}
+
+.moaDepositChange {
+	margin-top: 0.2rem;
+	margin-left: 9rem;
+	margin-bottom: -0.3rem;
+}
+
+.moaTrsfResultContainer {
+	margin: 6rem 0rem;
+}
+
+.moaTrsfResultIcon {
+	width: 4rem;
+	margin-bottom: 2rem;
+}
+
+.moaTrsfResultDesc {
+	font-size: small;
+	color: #7e7e7e;
+}
+
+.moaTrsfResultMint {
+	color: #91ddcf;
+	font-weight: bold;
+}
+
+.candidateContainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 1rem;
+	.memberProfile {
+		margin-right: 0.3rem;
+	}
+	.managerWrapper {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		margin: 21px 0.5rem 0 0.5rem;
+	}
+}
+
+.voteStatusIcon {
+	width: 1.8rem;
+}
+
+.voteTable {
+	width: 80%;
+	border-collapse: collapse;
+}
+
+.voteTable tr {
+	justify-content: center;
+	align-items: center;
+}
+
+.voteTable td {
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	border-top: 1px solid #e7e9de;
+	border-bottom: 1px solid #e7e9de;
+	font-weight: 450;
+	font-size: 0.95rem;
+}
+
+.voteMemberTxt {
+	text-align: left;
+}
+
+.voteTimeTxt {
+	font-size: small;
+	margin-bottom: 0.5rem;
+	color: #747474;
+}
+
+.timeLeft {
+	color: #ff9191;
+}
+
+.moaclubVoteContent {
+	margin-top: 4.5rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.moaclubVoteStatusContent {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 2rem;
+	height: 10rem;
+}
+
+.moaclubVoteStatusContent2 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 2rem;
+	height: 13rem;
+}
+
+.candidateWrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 0 0.5rem;
+}
+
+.moaVoteProfileDesc {
+	text-align: center;
+	width: 100%;
+	margin-top: 0.4rem;
+}
+
+.voteProfile {
+	width: 2.4rem;
+	height: 2.4rem;
+	border-radius: 50%;
+	object-fit: cover;
+	overflow: hidden;
+}
+
+.mintTxt {
+	color: #91ddcf;
+	font-weight: bold;
+}
+
+.moaTrsfBox {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 1rem;
+}
+
+.moaVoteAmountTxt {
+	color: #91ddcf;
+	font-weight: bold;
+	font-size: large;
+	margin-left: 0.5rem;
+}
+
+.voteTableFirstTd {
+	width: 4.5rem;
+}
+
+.voteTableLastTd {
+	width: 3.5rem;
+}
+
+.voteTableLastTd2 {
+	width: 6rem;
+}
+
+.moaWithdrawInfoTxt {
+	text-align: left;
+	color: #c4c4c4;
+	font-size: small;
+	margin-left: 2.5rem;
+	margin-top: 9rem;
+}
+
+.moaWithdrawWarn {
+	color: #ff9191;
+	font-size: small;
+}
+
+.moaWithdrawBalance {
+	color: #747474;
+	font-size: 0.8rem;
+	margin-left: 3rem;
+}
+
+.moaWithdrawInAccPopUp {
+	color: #c4c4c4;
+	font-size: small;
+}
+
+.moaWithdrawStrong {
+	font-weight: bold;
 }
