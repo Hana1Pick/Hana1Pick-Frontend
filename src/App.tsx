@@ -41,6 +41,7 @@ import MoaclubPattern from './pages/moaclub/MoaclubPattern';
 // User
 import KakaoLoginPage from './pages/user/login/KakaoLoginPage';
 import LoginHandeler from './pages/user/login/LoginHandeler';
+// MoaClub
 import { MoaclubContextProvider } from './contexts/MoaclubContextProvider';
 import MoaclubInvite from './pages/moaclub/MoaclubInvite';
 import MoaclubJoin from './pages/moaclub/MoaclubJoin';
@@ -52,6 +53,9 @@ import MoaclubDeposit from './pages/moaclub/MoaclubDeposit';
 import { MoaclubTrsfContextProvider } from './contexts/MoaclubTrsfContextProvider';
 import MoaclubPw from './pages/moaclub/MoaclubPw';
 import MoaclubTrsfResult from './pages/moaclub/MoaclubTrsfResult';
+import MoaclubVoteSelect from './pages/moaclub/MoaclubVoteSelect';
+import MoaclubVoteManager from './pages/moaclub/MoaclubVoteManager';
+import MoaclubVoteTrsf from './pages/moaclub/MoaclubVoteTrsf';
 
 function App() {
 	return (
@@ -142,6 +146,9 @@ function App() {
 					<Route path='/moaclub/fee/:accountId' element={<MoaclubFeeStatus />} />
 					<Route path='/moaclub/setting/:accountId' element={<MoaclubSetting />} />
 					<Route path='/moaclub/modify/:accountId' element={<MoaclubModify />} />
+					<Route path='/moaclub/vote/:accountId' element={<MoaclubVoteSelect />} />
+					<Route path='/moaclub/vote/manager/:accountId' element={<MoaclubVoteManager />} />
+					<Route path='/moaclub/vote/trsf/:accountId' element={<MoaclubVoteTrsf />} />
 
 					<Route
 						path='/moaclub/deposit/*'
