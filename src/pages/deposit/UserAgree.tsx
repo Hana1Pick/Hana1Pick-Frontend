@@ -2,7 +2,7 @@ import Header from "../../components/Header";
 import React, { useState } from "react";
 import WhiteArrow from "../../assets/images/deposit/WhiteArrow.png";
 import BlackArrow from "../../assets/images/deposit/BlackArrow.png";
-import "./style.css"; // LegalNotice.css 파일은 스타일링을 위한 CSS 파일입니다.
+import "./DepositStyle.scss"; 
 import CommonBtn from "../../components/button/CommonBtn";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";

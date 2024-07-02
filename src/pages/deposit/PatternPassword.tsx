@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import PattrenBg from "../../assets/images/common/PatternBg.png";
 import { Await, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./DepositStyle.scss";
 
 interface PatternProps {
   nextUrl: string;

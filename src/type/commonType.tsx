@@ -50,3 +50,14 @@ export type DomesticAuthProps = {
     password: string;
   };
 };
+
+export type OCRData = {
+  data: {
+    name: string;
+    number: string;
+    address: string;
+    nation: string;
+    date: string;
+    certification: string;
+    };
+  };

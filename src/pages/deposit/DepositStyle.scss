@@ -2,9 +2,10 @@
   text-align: left;
 }
 
-#basicBtn2 {
+#deposit-basicBtn {
   width: 100%;
-  background-color: #1e1b1e;
+  height: 2.7rem;
+  background-color: #000000;
   border: 0;
   border-radius: 0.5rem;
   color: azure;
@@ -183,7 +184,9 @@
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   gap: 0.5rem;
-  margin-top: 1rem;
+  margin-top: 3rem;
+  margin-left: 2.5rem;
+  margin-right: 3.5rem;
 }
 
 .background-container {
@@ -196,7 +199,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  font-size: 1rem;
+  font-size: 16px;
   z-index: 10;
   color: #000000;
 }
@@ -204,15 +207,15 @@
 .overlay-text div {
   white-space: nowrap;
   color: #535353;
-  margin-top: 0.625rem; /* 10px를 rem 단위로 변환 */
+  margin-top: 10px;
 }
 
 .pattern-dot {
-  width: 0.5rem;
-  height: 0.5rem;
+  width: 0.7rem;
+  height: 0.7rem;
   border-radius: 50%;
   background-color: #000;
-  margin: 3rem;
+  margin: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -224,7 +227,7 @@
 }
 
 .pattern-dot.selected {
-  background-color: #555359;
+  background-color: #1be8ff;
 }
 
 .pattern-lines {
@@ -235,6 +238,7 @@
   height: 100%;
   pointer-events: none;
 }
+
 /* user agree */
 
 .legal-notice-box {
@@ -434,4 +438,165 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
+}
+
+/*camera css */
+
+.camera-container {
+  margin-top: 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+
+  //overflow: hidden;
+
+  .camera-preview {
+    position: relative;
+    width: 100%;
+    max-width: 25rem;
+    aspect-ratio: 8.6 / 5.4; /* 민증 사진 비율 */
+  }
+
+  video {
+    width: 100%;
+    height: 100%;
+    overflow: clip;
+    border-radius: 0.5rem;
+    object-fit: cover;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0.125rem solid #fff;
+    box-sizing: border-box;
+  }
+
+  .capture-button {
+    position: relative;
+    margin-top: 1.25rem;
+    padding: 1.25rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 3.75rem;
+    height: 3.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .capture-button::before {
+    content: "";
+    width: 1.25rem; /* 작은 동그라미의 크기 */
+    height: 1.25rem;
+    background-color: white;
+    border-radius: 100%;
+  }
+
+  .text-container {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    color: #3498db;
+    text-align: center;
+  }
+
+  .text {
+    margin-top: 1rem;
+    color: #3498db;
+  }
+}
+
+/* index scss */
+
+.Auth {
+  padding: 1.25rem;
+  height: 100vh;
+  margin: auto;
+  border: 0.0625remx solid #ddd;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1);
+  background-color: #f0f0f0;
+
+  .container {
+    text-align: center;
+  }
+
+  .id-card {
+    margin: 1.25rem 0;
+  }
+
+  .id-card img {
+    max-width: 100%;
+    border: 0.0625rem solid #ddd;
+    border-radius: 0.5rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    color: #000000;
+  }
+
+  input[type="text"],
+  input[type="date"] {
+    padding: 0.5rem;
+    border: 0.0625rem solid #ddd;
+    border-radius: 0.25rem;
+  }
+
+  input[type="text"]:focus,
+  input[type="date"]:focus {
+    border-color: #000000;
+    outline: none;
+  }
+
+  .text-container {
+    margin-top: 1.875rem;
+    margin-bottom: 1.875rem;
+    padding-top: 1.875rem;
+    padding-bottom: 1.875rem;
+
+    color: #000000;
+    text-align: center;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .button-container button {
+    margin-left: 0.625rem;
+    margin-right: 0.625rem;
+  }
+}
+
+.match-text {
+  margin-top: 0.5rem;
+  text-align: left;
+  color: #2a66ff;
+}
+
+// 기존 스타일 코드들 위에 추가
+.captured-image {
+  width: 20rem; // 원하는 크기로 설정
+  height: auto; // 비율을 유지하면서 높이를 자동으로 조절
+  display: block; // 이미지가 블록 요소로 표시되도록 설정
+  margin: 0 auto; // 이미지가 가운데 정렬되도록 설정 (선택 사항)
 }
