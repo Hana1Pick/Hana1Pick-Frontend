@@ -1148,3 +1148,96 @@ header {
 		margin-top: 2rem;
 	}
 }
+
+.moaAutoTrsfDetail {
+	margin: 1.5rem;
+	display: flex;
+	flex-direction: column;
+
+	.moaAutoTrsfDetailTxt {
+		text-align: left;
+		font-weight: 550;
+		font-size: 1rem;
+		margin-top: -1rem;
+		margin-bottom: 1rem;
+	}
+
+	.moaAutoTrsfDetailTable {
+		width: 100%;
+		border-collapse: collapse;
+
+		th,
+		td {
+			padding: 0.5rem;
+			border-bottom: 1px solid #ddd;
+			vertical-align: middle;
+		}
+
+		th {
+			text-align: left;
+			font-weight: 300;
+			font-size: 0.9rem;
+			color: #7d7d7d;
+		}
+
+		td {
+			text-align: right;
+			font-size: 0.9rem;
+			font-weight: 300;
+		}
+
+		tr:last-child th,
+		tr:last-child td {
+			border-bottom: none;
+		}
+	}
+
+	.moaAutoTrsfDelete {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.moaAutoTrsfDeleteTxt {
+		border: 1px solid #ddd;
+		color: #6e6e6e;
+		margin-top: 2.5rem;
+		font-size: 0.9rem;
+		height: 1.7rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 0.3rem;
+		width: 19rem;
+	}
+}
+
+.moaAutoTrsfDetailPopUp {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 2rem;
+}
+
+.moaAutoTrsfDetailPopUpTable {
+	width: 77%;
+	border-collapse: collapse;
+
+	th,
+	td {
+		padding: 0.5rem;
+	}
+
+	th {
+		text-align: left;
+		font-weight: 300;
+		font-size: 0.9rem;
+		color: #7d7d7d;
+	}
+
+	td {
+		text-align: right;
+		font-size: 0.9rem;
+		font-weight: 300;
+	}
+}

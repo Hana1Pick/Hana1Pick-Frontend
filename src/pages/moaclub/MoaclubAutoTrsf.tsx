@@ -103,12 +103,12 @@ function MoaclubAutoTrsf() {
 							<table>
 								<tbody>
 									<tr>
-										<th>청구기관명</th>
+										<th>은행명</th>
 										<td>하나원픽</td>
 									</tr>
 									<tr>
-										<th>청구기관번호</th>
-										<td>2002</td>
+										<th>출금계좌정보</th>
+										<td>{autoTrsf.outAccId}</td>
 									</tr>
 									<tr>
 										<th>납부자번호</th>
