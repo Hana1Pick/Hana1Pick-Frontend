@@ -41,9 +41,15 @@ import MoaclubCreatePage from "./pages/moaclub/MoaclubCreatePage";
 import MoaclubComplete from "./pages/moaclub/MoaclubComplete";
 import MoaclubPattern from "./pages/moaclub/MoaclubPattern";
 // User
-import KakaoLoginPage from "./pages/user/login/KakaoLoginPage";
-import LoginHandeler from "./pages/user/login/LoginHandeler";
-import { MoaclubContextProvider } from "./contexts/MoaclubContextProvider";
+import KakaoLoginPage from './pages/user/login/KakaoLoginPage';
+import LoginHandeler from './pages/user/login/LoginHandeler';
+import { MoaclubContextProvider } from './contexts/MoaclubContextProvider';
+import MoaclubInvite from './pages/moaclub/MoaclubInvite';
+import MoaclubJoin from './pages/moaclub/MoaclubJoin';
+import MoaclubPage from './pages/moaclub/MoaclubPage';
+import MoaclubFeeStatus from './pages/moaclub/MoaclubFeeStatus';
+import MoaclubSetting from './pages/moaclub/MoaclubSetting';
+import MoaclubModify from './pages/moaclub/MoaclubModify';
 
 function App() {
   return (
@@ -130,15 +136,19 @@ function App() {
             element={
               <MoaclubContextProvider>
                 <Routes>
-                  <Route path="/opening" element={<MoaclubOpening />} />
-                  <Route path="/select-acc" element={<MoaclubSelectAcc />} />
-                  <Route path="/create" element={<MoaclubCreatePage />} />
-                  <Route path="/complete" element={<MoaclubComplete />} />
-                  <Route path="/pattern" element={<MoaclubPattern />} />
+                  <Route path='/opening' element={<MoaclubOpening />} />
+                  <Route path='/select-acc' element={<MoaclubSelectAcc />} />
+                  <Route path='/create' element={<MoaclubCreatePage />} />
+                  <Route path='/complete' element={<MoaclubComplete />} />
+                  <Route path='/pattern' element={<MoaclubPattern />} />
+                  <Route path='/invite' element={<MoaclubInvite />} />
                 </Routes>
               </MoaclubContextProvider>
             }
           />
+          <Route path='/moaclub/join/:accountId' element={<MoaclubJoin />} />
+          <Route path='/moaclub/main/:accountId' element={<MoaclubPage />} />
+
           {/* User */}
           <Route
             path="/user/*"
