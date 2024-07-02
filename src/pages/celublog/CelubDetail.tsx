@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ChangeEvent  } from 'react';
 import CelubHeader3 from "../../layouts/CelubHeader3";
-import bgImg from "../../assets/images/celub/cha.png";
 import { CelubHistoryType, CelubRuleType } from '../../type/commonType';
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import CommonBtn from '../../components/button/CommonBtn';
+import axios from 'axios';
+import qs from 'qs';
 
 const CelubDetail: React.FC = () => {
+    const navigate = useNavigate();
     const [isExpanded, setIsExpanded] = useState(false);
     const [startY, setStartY] = useState(0);
     const [startHeight, setStartHeight] = useState(0);
@@ -12,9 +15,19 @@ const CelubDetail: React.FC = () => {
     const [isHistory, setIsHistory] = useState(false);
     const [ruleList, setRuleList] = useState<CelubRuleType[]>([]);
     const [historyList, setHistoryList] = useState<CelubHistoryType[]>([]);
+    const [selectRule, setSelectRule] = useState("");
+    const [selectRuleMoney, setSelectRuleMoney] = useState(0);
+    const [isBoxVisible, setIsBoxVisible] = useState(false);
+    const [selectedValue, setSelectedValue] = useState('#공통');
     const location = useLocation();
     const detailList = location.state;
+    const [fileInput, setFileInput] = useState<File | null>(null);
+    
     console.log(detailList);
+    useEffect(() => {
+        history();
+        rule();
+    }, []); 
     const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
         setStartY(e.touches[0].clientY);
         setStartHeight(document.documentElement.clientHeight - e.currentTarget.getBoundingClientRect().top);
@@ -41,27 +54,97 @@ const CelubDetail: React.FC = () => {
     };
 
     const rule=()=>{
-        console.log(detailList);
         setRuleList(detailList.ruleInfo);
         setIsHistory(false);
         setIsRule(true);
     }
 
     const history=()=>{
-        console.log(detailList.accountReport)
         setHistoryList(detailList.accountReport);
         setIsHistory(true);
         setIsRule(false);
     }
     const goMakeRule=()=>{
-        window.location.href="/celub/rule";
+        navigate("/celub/rule",{state:detailList});
     }
     const goDeposit=()=>{
-        window.location.href="/celub/deposit";
+        navigate("/celub/deposit");
+    }
+
+    const setting =()=>{
+        alert('변경');
+        const modal = document.getElementById("myModal")!;
+
+        // Get the button that opens the modal
+        const btn = document.getElementById("openModalBtn")!;
+
+        // Get the <span> element that closes the modal
+        const span = document.getElementsByClassName("close")[0] as HTMLElement;
+        modal.style.display = "block";
+        span.onclick = () => {
+            modal.style.display = "none";
+          }
+    }
+    // 첨부파일 변경시 실행
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files && event.target.files.length > 0) {
+          setFileInput(event.target.files[0]);
+        }
+      };
+
+    // 사진변경
+    const onSave = () =>{
+        if (!fileInput) {
+            alert('이미지를 선택해주세요');
+            return;
+          }
+          const formData = new FormData();
+          formData.append('accountId', detailList.accountInfo.accountId);
+          formData.append('field', "imgSrc");
+          formData.append('srcImg', fileInput);
+          formData.append('name', detailList.accountInfo.name);
+
+          axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/alteration`, formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          }).then((res)=>{
+            console.log(res);
+          });
+    }
+
+    const handleSelectChange =(e:ChangeEvent<HTMLSelectElement>)=>{
+        setSelectedValue(e.target.value);
+    }
+    const insertMoney = (ruleName:string, ruleMoney:number) =>{
+        setSelectRule(ruleName);
+        setSelectRuleMoney(ruleMoney);
+        setIsBoxVisible(true);
+    }
+    const sendMoney = () =>{
+        const data={
+            accountId: detailList.accountInfo.accountId,
+            amount: selectRuleMoney,
+            memo: selectRule,
+            hashtag: selectedValue
+        }
+        axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/in`,data)
+            .then((res)=>{
+                setIsBoxVisible(false);
+                axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/list/detail`,
+                    qs.stringify({accountId:detailList.accountInfo.accountId}))
+                    .then((res)=>{
+                        navigate("/celub/detail", {state:res.data.data});
+                    }).catch((error)=>{
+                        alert("실패");
+                    });
+            }).catch((error)=>{
+                alert("실패");
+            });
     }
     return (
         <>
-            <CelubHeader3 />
+            <CelubHeader3 onClick={setting} />
             <div id="celubBox1">
                 <div className="celub-detail-box1" id="celubContainer">
                     <img id="celubBgImg" src={detailList.accountInfo.imgSrc} alt="Background" />
@@ -96,7 +179,7 @@ const CelubDetail: React.FC = () => {
                                 ):
                                 (
                                         ruleList.map((rule, index)=>(
-                                            <div key={index}>
+                                            <div key={index} onClick={() => insertMoney(rule.ruleName, rule.ruleMoney)}>
                                                 <div className="celub-rule-box2">
                                                     {rule.ruleName} :  {rule.ruleMoney}원
                                                 </div>
@@ -128,6 +211,30 @@ const CelubDetail: React.FC = () => {
                     </div>
                 </div>
             </div>
+{     isBoxVisible  &&   <div className="celub-detail-box2 add-box">
+                <div className="celub-detail-box3">
+                        <div className="celub-detail-deco"/>
+                        <div className="celub-deposit-box">
+                            <p>{selectRule} {selectRuleMoney}원을 입금할게요.</p>
+                            <select value={selectedValue} onChange={handleSelectChange}>
+                                <option value="공통">#해시태그를 선택하세요</option>
+                                <option value="공카댓글">#공카댓글</option>
+                                <option value="이달의생일">#이달의생일</option>
+                                <option value="개인셀카">#개인셀카</option>
+                            </select>
+                        </div>
+                        <CommonBtn type='pink' value="입금하기" onClick={sendMoney} />
+                </div>
+            </div>}
+
+            <div id="myModal" className="modal">
+                <div className="modal-content">
+                <span className="close">&times;</span>
+                <input id="uploadImg" type="file" onChange={handleFileChange}/>
+                <CommonBtn type='black' value="저장" onClick={onSave} />
+                </div>
+            </div>
+
         </>
     );
 };

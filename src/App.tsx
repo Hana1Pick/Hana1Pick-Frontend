@@ -16,6 +16,7 @@ import GetAmountPage from './pages/account/GetAmountPage';
 import CashOutPage from './pages/account/CashOutPage';
 import CashOutPatternPage from './pages/account/CashOutPatternPage';
 import CashOutResultPage from './pages/account/CashOutResultPage';
+
 // QR 계좌 이체
 import { QrContextProvider } from './contexts/QrContextProvider';
 import SelectQrInAccountPage from './pages/qr/SelectQrInAccountPage';
@@ -23,14 +24,18 @@ import SelectQrOutAccountPage from './pages/qr/SelectQrOutAccountPage';
 import GetQrAmountPage from './pages/qr/GetQrAmountPage';
 import CreateQrResultPage from './pages/qr/CreateQrResultPage';
 import GetQrPage from './pages/qr/GetQrPage';
+
 // Celublog
 import CelubPage from './pages/celublog/CelubPage';
-import CelubWithdraw from './pages/celublog/CelubWithdraw';
 import CelubComplete from './pages/celublog/CelubComplete';
 import CelubAccountList from './pages/celublog/CelubAccountList';
 import CelubDetail from './pages/celublog/CelubDetail';
 import CelubRule from './pages/celublog/CelubRule';
-import CelubDeposit from './pages/celublog/CelubDeposit';
+import CelubSelect from "./pages/celublog/CelubSearch";
+import CelubAcc from "./pages/celublog/CelubAcc";
+import CelubName from "./pages/celublog/CelubName";
+import CelubPattern from "./pages/celublog/CelubPattern";
+
 // Moaclub
 import Pattern from './components/pattern/PatternPage';
 import MoaclubOpening from './pages/moaclub/MoaclubOpening';
@@ -63,10 +68,6 @@ function App() {
 		<div className='App'>
 			<BrowserRouter>
 				<Routes>
-					<Route
-						path='/pattern'
-						element={<Pattern nextUrl='celub-withdraw/complete' />}
-					/>
 					<Route path='deposit' element={<DepositCreation1 />} />
 					<Route path='/deposit2' element={<DepositCreation2 />} />
 					<Route
@@ -119,22 +120,23 @@ function App() {
 						}
 					/>
 					{/* Celublog */}
-					<Route
-						path='/celub/*'
-						element={
-							<AccountContextProvider>
-								<Routes>
-									<Route path='' element={<CelubPage />} />
-									<Route path='withdraw' element={<CelubWithdraw />} />
-									<Route path='withdraw/complete' element={<CelubComplete />} />
-									<Route path='list' element={<CelubAccountList />} />
-									<Route path='detail' element={<CelubDetail />} />
-									<Route path='rule' element={<CelubRule />} />
-									<Route path='deposit' element={<CelubDeposit />} />
-								</Routes>
-							</AccountContextProvider>
-						}
-					/>
+					<Route path='/celub/*' element={
+						<AccountContextProvider>
+							<Routes>
+							<Route path="" element={<CelubPage/>}/>
+							<Route path="withdraw" element={<CelubAcc/>}/>
+							<Route path="complete" element={<CelubComplete/>}/>
+							<Route path="list" element={<CelubAccountList/>}/>
+							<Route path="detail" element={<CelubDetail/>}/>
+							<Route path="rule" element={<CelubRule/>}/>
+							<Route path="search" element={<CelubSelect/>}/>
+							<Route path="name" element={<CelubName/>}/>
+							<Route path="pattern" element={<CelubPattern/>}/>
+							{/* <Route path="acc" element={<CelubAcc/>}/> */}
+							</Routes>
+						</AccountContextProvider>
+					}
+				    />
 					{/* Moaclub */}
 					<Route
 						path='/moaclub/*'
