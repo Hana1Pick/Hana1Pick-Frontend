@@ -3,6 +3,7 @@ import CelubHeader from "../../layouts/CelubHeader2";
 import { CelubAccount } from '../../type/commonType';
 import axios from "axios";
 import qs from 'qs';
+import { useState } from "react";
 function CelubAccountList(){
     const location = useLocation();
     const navigate = useNavigate();
@@ -17,7 +18,7 @@ function CelubAccountList(){
                 alert("실패");
             });
     }
-
+  
     return(
         <>
             <CelubHeader/>
@@ -39,6 +40,7 @@ function CelubAccountList(){
                         </div>
                     </div>
                 </div>
+                
 
                 ))
             }      

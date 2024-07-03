@@ -62,17 +62,17 @@ export type CelubWithdrawType = {
 	outAccId: string;
 	celebrityIdx: number;
 };
-// rtcRoomNum: string;
-// formData: {
-// 	name: string;
-// 	address: string;
-// 	birth: string | null;
-// 	phone: string;
-// 	nation: string;
-// 	email: string | null;
-// 	password: string;
-// };
-// };
+rtcRoomNum: string;
+  formData: {
+    name: string;
+    address: string;
+    birth: string | null;
+    phone: string;
+    nation: string;
+    email: string | null;
+    password: string;
+  };
+};
 
 export type MoaclubInfo = {
 	name: string;
@@ -139,4 +139,10 @@ export interface MoaAutoTrsf {
 	outAccId: string;
 	currency: string;
 	createDate: string;
+// ModalType
+export type CommonModalType={
+    msg: string,
+    show: boolean,
+    onCancle: () => void,
+    onConfirm: () => void
 }
