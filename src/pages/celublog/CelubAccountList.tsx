@@ -5,7 +5,6 @@ import axios from "axios";
 import qs from 'qs';
 import { useState } from "react";
 function CelubAccountList(){
-    const[look, setLook] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
     const accList: CelubAccount[] = location.state;
