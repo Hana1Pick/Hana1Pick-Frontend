@@ -3,7 +3,10 @@ import CelubHeader from "../../layouts/CelubHeader2";
 import { CelubAccount } from '../../type/commonType';
 import axios from "axios";
 import qs from 'qs';
+import CommonModal from "../../components/button/CommonModal";
+import { useState } from "react";
 function CelubAccountList(){
+    const[look, setLook] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
     const accList: CelubAccount[] = location.state;
@@ -17,10 +20,20 @@ function CelubAccountList(){
                 alert("실패");
             });
     }
-
+    const cancle = () => {
+        setLook(false);
+    }
+    const check = () =>{
+        alert("확인");
+    }
+    const test = () =>{
+        setLook(true);
+    }
     return(
         <>
             <CelubHeader/>
+            <button onClick={test}>모달테스트</button>
+            <CommonModal msg="모달테스트 모달테스트 모달테스트 모달테스트 모달테스트" show={look} onCancle={cancle} onConfirm={check} />
             <div className="celubListBox1">
                 <span>조회할 계좌를 선택해주세요</span>
             </div>
@@ -39,6 +52,7 @@ function CelubAccountList(){
                         </div>
                     </div>
                 </div>
+                
 
                 ))
             }      
