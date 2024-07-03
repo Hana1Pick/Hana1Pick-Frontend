@@ -16,17 +16,16 @@ const ServicePage = () => {
   return (
     <>
       <Header value="상품/서비스" />
-      <div className="service-box">        
-        <div className="modalBody">
+      <div className="service-box">
+        <div className="service-banner">
           <img
             src={photoBanner}
             alt="photoBanner"
-            style={{ width: "300px", marginBottom: "3rem", cursor: "pointer" }}
             onClick={() => handleNavigate("/photo")}
           />
         </div>
-        <div className="modalBody">
-          <img src={rankingBanner} alt="rankingBanner" style={{ width: "300px" }} />
+        <div className="service-banner">
+          <img src={rankingBanner} alt="rankingBanner" />
         </div>
       </div>
       {/* // 컨페티 */}
