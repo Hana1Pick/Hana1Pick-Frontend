@@ -1,52 +1,69 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useScript from "./useScript";
+import "./DepositStyle.scss";
+import { DomesticAuthProps } from "../../type/commonType";
 import CommonBtn from "../../components/button/CommonBtn";
-import "./style.css";
-import { DomesticAuthProps } from "../../type/commonType"
-
 
 function DomesticAuth({ rtcRoomNum, formData }: DomesticAuthProps) {
-  console.log(formData);
   const navigate = useNavigate();
+  const { vipId } = useParams();
+  const [show, setShow] = useState(false);
+  const ws = useRef<WebSocket | null>(null);
+
+  useScript("https://code.jquery.com/jquery-1.12.4.min.js");
+  useScript("https://cdn.iamport.kr/js/iamport.payment-1.2.0.js");
 
   const handleClose = () => {
     setShow(false);
     navigate("/deposit3", { state: { formData } });
   };
 
-  const ws = useRef<WebSocket | null>(null);
-  const { params } = useParams();
-  const queryParams = new URLSearchParams(params);
-  const vipId = queryParams.get("vipId");
-  const [show, setShow] = useState(false);
-
-  useScript("https://code.jquery.com/jquery-1.12.4.min.js");
-  useScript("https://cdn.iamport.kr/js/iamport.payment-1.2.0.js");
-
   useEffect(() => {
+    if (!rtcRoomNum) {
+      console.error("rtcRoomNum is required");
+      return;
+    }
+
     ws.current = new WebSocket(
       `${process.env.REACT_APP_SUGGESTIONLISTWS}/${rtcRoomNum}`
     );
+
     ws.current.onopen = () => {
       console.log("WebSocket connection opened");
     };
 
     ws.current.onmessage = (event: MessageEvent) => {
-      const receivedData = event.data;
-      receivedData.text().then((text: string) => {
-        if (JSON.parse(text).type === "authResult") {
-          alert(JSON.parse(text).authResult);
+      try {
+        const receivedData = JSON.parse(event.data);
+        if (receivedData.type === "authResult") {
+          alert(receivedData.authResult);
         }
-      });
+      } catch (error) {
+        console.error("Failed to parse WebSocket message", error);
+      }
     };
+
+    ws.current.onclose = () => {
+      console.log("WebSocket connection closed");
+    };
+
+    ws.current.onerror = (error) => {
+      console.error("WebSocket error", error);
+    };
+
     return () => {
       ws.current?.close();
     };
-  }, []);
+  }, [rtcRoomNum]);
 
   const certify = () => {
     const { IMP } = window as any;
+    if (!IMP) {
+      console.error("IMP is not available");
+      return;
+    }
+
     IMP.init("imp74352341");
     IMP.certification(
       {
@@ -72,14 +89,14 @@ function DomesticAuth({ rtcRoomNum, formData }: DomesticAuthProps) {
 
   return (
     <div>
-      <CommonBtn type="black" value="간편인증" onClick={certify} />
+      <button id="deposit-basicBtn" onClick={certify}>간편인증</button>
       {show && (
-        <div className="modal">
-          <div className="modal-content">
+        <div className="deposit-modal">
+          <div className="deposit-modal-content">
             <h3>본인인증 완료</h3>
             <p>본인인증이 성공적으로 완료되었습니다.</p>
-            <div className="input-container">
-              <CommonBtn type="black" value="닫기" onClick={handleClose} />
+            <div className="deposit-input-container">
+              <button id="deposit-basicBtn" onClick={handleClose}>닫기</button>
             </div>
           </div>
         </div>
