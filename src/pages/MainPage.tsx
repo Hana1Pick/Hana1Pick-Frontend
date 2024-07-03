@@ -3,13 +3,14 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { To, useNavigate } from "react-router-dom";
 import Logo from "../assets/images/common/CircleLogo.png";
-import menuIcon from "../assets/images/main/hambuger_icon.png";
+import menuIcon from "../assets/images/alarm/black_alarm_icon.png";
 import celubIcon from "../assets/images/main/main_celub_icon.png";
 import moaIcon from "../assets/images/main/main_moa_icon.png";
 import MenuBar from "../components/menubar/MenuBar";
 import "./style.scss";
 import { useSwipeable } from "react-swipeable";
-import NavBar from "../components/hambuger/NavBar";
+import NavBar from "../components/alarm/NavBar";
+import Exchange from "../components/exchange";
 
 interface Account {
   id: string;
@@ -45,17 +46,23 @@ const MainPage = () => {
         },
       })
       .then((response) => {
-        setAccounts(response.data.data);
-        console.log("Accounts data:", response.data.data); // accounts 데이터 출력
+        if (response.data && response.data.data) {
+          setAccounts(response.data.data);
+          console.log("Accounts data:", response.data.data); // accounts 데이터 출력
+        } else {
+          console.error("No data found in response", response);
+        }
       })
       .catch((error) => {
         console.error(error);
       });
   }, []);
+
   // 페이지 이동 함수
   const handleNavigate = (path: To) => {
     navigate(path);
   };
+
   // 스와이프 이벤트 핸들러
   const handlers = useSwipeable({
     onSwipedLeft: () =>
@@ -90,7 +97,7 @@ const MainPage = () => {
           <div className="menu-icon" onClick={() => setIsNavOpen(true)}>
             {" "}
             {/* 햄버거 메뉴바 부분 */}
-            <img src={menuIcon} alt="menu-icon" />
+            <img src={menuIcon} alt="menu-icon" style={{width:"30px"}} />
           </div>
         </div>
 
@@ -98,7 +105,7 @@ const MainPage = () => {
           <div
             className="account-details"
             style={{
-              transform: `translateX(-${currentIndex * 100}%)`,
+              transform: accounts.length > 0 ? `translateX(-${currentIndex * 100}%)` : "none",
             }}
           >
             {accounts.length > 0 ? (
@@ -140,13 +147,15 @@ const MainPage = () => {
             )}
           </div>
           <div className="scrollbar">
-            <div
-              className="scrollbar-indicator"
-              style={{
-                width: `${100 / accounts.length}%`,
-                transform: `translateX(${currentIndex * 100}%)`,
-              }}
-            ></div>
+            {accounts.length > 0 && (
+              <div
+                className="scrollbar-indicator"
+                style={{
+                  width: `${100 / accounts.length}%`,
+                  transform: `translateX(${currentIndex * 100}%)`,
+                }}
+              ></div>
+            )}
           </div>
         </div>
 
@@ -155,12 +164,12 @@ const MainPage = () => {
             <img src={celubIcon} alt="celubIcon" />
 
             <div className="promotionDetail">
-              <p className="accountTitle" style={{ fontSize: "0.9rem" }}>
+              <p className="promotionSubTitle" style={{ fontSize: "0.9rem" }}>
                 최애와 함께 저축 습관 들이기!
               </p>
               <button
                 onClick={() => handleNavigate("/celub/")}
-                style={{ fontWeight: "500" }}
+                style={{ fontWeight: "600" }}
               >
                 셀럽로그 시작하기
               </button>
@@ -169,16 +178,22 @@ const MainPage = () => {
           <div className="promotion">
             <img src={moaIcon} alt="moaIcon" />
             <div className="promotionDetail">
-              <p className="accountTitle" style={{ fontSize: "0.9rem" }}>
+              <p className="promotionSubTitle" style={{ fontSize: "0.9rem" }}>
                 최애가 같다면 함께 쓰는 모임통장!
               </p>
               <button
                 onClick={() => handleNavigate("/moaclub/opening")}
-                style={{ fontWeight: "500" }}
+                style={{ fontWeight: "600" }}
               >
                 모아클럽 시작하기
               </button>
             </div>
+          </div>
+
+          {/* // TODO: 실시간 환율 정보  */}
+          <div className="exchange-container">
+            <Exchange/>
+
           </div>
         </div>
       </div>

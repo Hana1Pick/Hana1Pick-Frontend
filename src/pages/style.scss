@@ -14,11 +14,12 @@ button {
     align-items: center;
     justify-content: space-between;
     padding: 0.5rem 1.5rem;
-    // background-color: #fff;
     right: 0;
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
+    width: 85%;
+    margin: 0 auto;
 }
 
 .mainPage {
@@ -26,9 +27,13 @@ button {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%; /* 부모 요소의 높이에 따라 다르게 설정 */
-    min-height: calc(100vh -  2rem); /* 최소 높이를 설정하여 원하는 높이 확보 */    background-color: #f9f9f9;
+    height: 100%;
+    /* 부모 요소의 높이에 따라 다르게 설정 */
+    min-height: calc(100vh - 2rem);
+    /* 최소 높이를 설정하여 원하는 높이 확보 */
+    background-color: #f9f9f9;
     overflow: hidden;
+    margin-bottom: 5rem;
 
     .profile-pic {
         width: 40px;
@@ -54,11 +59,10 @@ button {
         /* 컨테이너의 너비를 설정합니다 */
         margin-left: 1rem;
         margin-right: 1rem;
-        margin-top: 2rem;
+        // margin-top: -1rem;
         position: relative;
         /* 스크롤바를 절대 위치시키기 위해 필요합니다 */
         margin-bottom: 0.7rem;
-        
     }
 
     .account-details {
@@ -83,7 +87,7 @@ button {
         /* padding: 0.5rem; */
         margin-right: 2.3rem;
         min-width: 340px;
-        
+
     }
 
     .accountDetail {
@@ -166,9 +170,9 @@ button {
         margin-left: 1rem;
     }
 
-    .promotion .accountTitle {
+    .promotion .promotionSubTitle {
         width: 100%;
-        font-size: 1rem;
+        font-size: 1.2rem;
         margin-bottom: 0.5rem;
         /* Adjust as necessary */
         color: #666666;
@@ -194,5 +198,15 @@ button {
         margin-top: 2rem;
         margin-left: 2.5rem;
 
+    }
+
+    .exchange-container {
+        background-color: #fff;
+        padding: 15px;
+        border-radius: 1rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        margin-bottom: 2rem;
     }
 }
