@@ -98,7 +98,7 @@ const Exchange = () => {
     <div className="exchange-rate-container">
       <div className="exchange-rate-header">
         <div className="exchange-title">오늘의 환율</div>
-        <div className="exchange-date">{lastUpdate}</div>
+        <div className="exchange-date">기준일: {lastUpdate}</div>
       </div>
       <div className="exchange-rate-values">
         <div className="rate-item">
@@ -111,8 +111,7 @@ const Exchange = () => {
         </div>
         <div className="rate-item">
           <div className="currency">🇨🇳 CNY</div>
-          <div className="value" style={{ marginLeft: "0.7rem" }}>
-            {calExchangeRates.CNY}
+          <div className="value" style={{ marginLeft: "0.7rem" }}>            {calExchangeRates.CNY}
           </div>
         </div>
       </div>
