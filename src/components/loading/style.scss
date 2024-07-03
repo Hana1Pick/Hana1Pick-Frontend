@@ -1,0 +1,19 @@
+/* 로딩 스피너 스타일 */
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border-left-color: #f19ed3;
+    animation: spin 1s ease infinite;
+    margin: auto;
+    /* 중앙 정렬 */
+    margin-top: 20px;
+    /* 상단 여백 */
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
