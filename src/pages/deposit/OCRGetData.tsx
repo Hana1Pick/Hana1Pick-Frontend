@@ -130,7 +130,7 @@ function OCRGetData() {
               체류 자격
             </label>
             <input
-              type="text"
+              type="text" 
               className="deposit-input-field"
               id="certification"
               value={ocrData.data.certification}
