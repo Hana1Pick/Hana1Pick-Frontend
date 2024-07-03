@@ -131,3 +131,11 @@ export type MoaClubVoteResult = {
 	requestTime: string;
 	votes: Record<string, boolean>;
 };
+
+// ModalType
+export type CommonModalType={
+    msg: string,
+    show: boolean,
+    onCancle: () => void,
+    onConfirm: () => void
+}
