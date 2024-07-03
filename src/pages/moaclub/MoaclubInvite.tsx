@@ -68,7 +68,8 @@ function MoaclubInvite() {
 					title: '모아클럽 바로가기',
 					link: {
 						mobileWebUrl: url,
-						webUrl: 'http://localhost:3000/moaclub/join/' + moaclub,
+						webUrl:
+							'https://hana1-pick-frontend.vercel.app//moaclub/join/' + moaclub,
 					},
 				},
 			],
