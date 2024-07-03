@@ -91,11 +91,11 @@ function DomesticAuth({ rtcRoomNum, formData }: DomesticAuthProps) {
     <div>
       <button id="deposit-basicBtn" onClick={certify}>간편인증</button>
       {show && (
-        <div className="modal">
-          <div className="modal-content">
+        <div className="deposit-modal">
+          <div className="deposit-modal-content">
             <h3>본인인증 완료</h3>
             <p>본인인증이 성공적으로 완료되었습니다.</p>
-            <div className="input-container">
+            <div className="deposit-input-container">
               <button id="deposit-basicBtn" onClick={handleClose}>닫기</button>
             </div>
           </div>

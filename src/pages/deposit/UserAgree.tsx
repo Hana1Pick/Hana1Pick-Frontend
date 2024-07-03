@@ -2,7 +2,7 @@ import Header from "../../components/Header";
 import React, { useState } from "react";
 import WhiteArrow from "../../assets/images/deposit/WhiteArrow.png";
 import BlackArrow from "../../assets/images/deposit/BlackArrow.png";
-import "./DepositStyle.scss"; 
+import "./DepositStyle.scss";
 import CommonBtn from "../../components/button/CommonBtn";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -74,16 +74,16 @@ function UserAgree() {
   return (
     <>
       <Header value="약관 동의" />
-      <div className="container">
+      <div className="deposit-container">
         <div className="useragree_text">
           상품 개설을 위해 <br />
           약관 및 상품설명서를 꼭 확인해 주세요.
         </div>
-        <div className="black-box">
+        <div className="deposit-black-box">
           <input
             type="checkbox"
             id="agreeCheckbox1"
-            className="checkbox"
+            className="deposit-checkbox"
             checked={isChecked.agreeCheckbox1}
             onChange={handleCheckboxChange}
           />
@@ -95,42 +95,42 @@ function UserAgree() {
             <input
               type="checkbox"
               id="agreeCheckbox2"
-              className="checkbox"
+              className="deposit-checkbox"
               checked={isChecked.agreeCheckbox2}
               onChange={handleCheckboxChange}
             />
-            <label htmlFor="agreeCheckbox2" className="checkbox-label">
+            <label htmlFor="agreeCheckbox2" className="deposit-checkbox-label">
               <strong>전체 상품 이용약관 동의</strong>
             </label>
           </div>
           <div className="legal-notice-content">
-            <p className="checkbox-text">
+            <p className="deposit-checkbox-text">
               <input
                 type="checkbox"
                 id="agreeCheckbox3"
-                className="checkbox"
+                className="deposit-checkbox"
                 checked={isChecked.agreeCheckbox3}
                 onChange={handleCheckboxChange}
               />
               예금거래기본약관
               <img src={BlackArrow} alt="arrow" className="arrow-image" />
             </p>
-            <p className="checkbox-text">
+            <p className="deposit-checkbox-text">
               <input
                 type="checkbox"
                 id="agreeCheckbox4"
-                className="checkbox"
+                className="deposit-checkbox"
                 checked={isChecked.agreeCheckbox4}
                 onChange={handleCheckboxChange}
               />
               입출금이자유로운예금 약관
               <img src={BlackArrow} alt="arrow" className="arrow-image" />
             </p>
-            <p className="checkbox-text">
+            <p className="deposit-checkbox-text">
               <input
                 type="checkbox"
                 id="agreeCheckbox5"
-                className="checkbox"
+                className="deposit-checkbox"
                 checked={isChecked.agreeCheckbox5}
                 onChange={handleCheckboxChange}
               />
@@ -144,11 +144,11 @@ function UserAgree() {
             <input
               type="checkbox"
               id="agreeCheckbox6"
-              className="checkbox"
+              className="deposit-checkbox"
               checked={isChecked.agreeCheckbox6}
               onChange={handleCheckboxChange}
             />
-            <label htmlFor="agreeCheckbox6" className="checkbox-label">
+            <label htmlFor="agreeCheckbox6" className="deposit-checkbox-label">
               <strong>불법·탈법 차명거래 금지 설명 확인</strong>
             </label>
           </div>
@@ -168,11 +168,11 @@ function UserAgree() {
             <input
               type="checkbox"
               id="agreeCheckbox7"
-              className="checkbox"
+              className="deposit-checkbox"
               checked={isChecked.agreeCheckbox7}
               onChange={handleCheckboxChange}
             />
-            <label htmlFor="agreeCheckbox7" className="checkbox-label">
+            <label htmlFor="agreeCheckbox7" className="deposit-checkbox-label">
               <strong>예금자보호법 설명 확인</strong>
             </label>
           </div>
@@ -184,13 +184,13 @@ function UserAgree() {
             </p>
           </div>
         </div>
-        <div className="gray-box">
+        <div className="deposit-gray-box">
           이메일 <span>{formData.email}</span>
         </div>
         <div className="useragree_text">
           계좌개설 이후에는 [계좌관리] 메뉴에서 확인하실 수 있습니다.
         </div>
-        <div className="input-container">
+        <div className="deposit-input-container">
           <CommonBtn type="black" value="확인" onClick={handleNext} />
         </div>
       </div>

@@ -112,14 +112,14 @@ function OCRCamera() {
       <div className="camera-container">
         <div className="camera-preview">
           <video ref={videoRef} autoPlay playsInline></video>
-          <div className="overlay"></div>
+          <div className="deposit-overlay"></div>
         </div>
-        <p className="text-container">
+        <p className="ocr-text-container">
           영역 안에 외국인등록증이 꽉 차도록 배치 후 <br />
           하단 버튼을 누르면 촬영됩니다.
         </p>
         <button className="capture-button" onClick={captureAndUpload}></button>
-        <div className="text">사진촬영</div>
+        <div className="ocr-text">사진촬영</div>
         <canvas ref={canvasRef} style={{ display: "none" }}></canvas>
       </div>
     </div>

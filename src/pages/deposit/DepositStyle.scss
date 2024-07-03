@@ -1,5 +1,6 @@
-.content-box {
+.deposit-content-box {
   text-align: left;
+  margin-bottom: 2rem;
 }
 
 #deposit-basicBtn {
@@ -15,11 +16,11 @@
   align-self: center;
 }
 
-.input-container {
+.deposit-input-container {
   margin-top: 1rem;
 }
 
-.input-field {
+.deposit-input-field {
   width: 100%;
   padding: 0.625rem;
   font-size: 1rem;
@@ -30,7 +31,7 @@
   color: #777777;
 }
 
-.input-label {
+.deposit-input-label {
   margin-bottom: 0.3125rem;
   display: block;
   text-align: left;
@@ -98,7 +99,7 @@
   padding: 1rem; /* 버튼 주변에 패딩 추가 */
 }
 
-.container {
+.deposit-container {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -129,14 +130,18 @@
   justify-content: center;
 }
 
-.image1-container img {
-  width: 30%;
-  height: auto;
+.image1-container {
+  img {
+    width: 30%;
+    height: auto;
+  }
 }
 
-.image2-container img {
-  width: 60%;
-  height: auto;
+.image2-container {
+  img {
+    width: 60%;
+    height: auto;
+  }
 }
 
 .button2-container {
@@ -144,7 +149,7 @@
   border: 0;
 }
 
-.modal {
+.deposit-modal {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -156,7 +161,7 @@
   background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
 }
 
-.modal-content {
+.deposit-modal-content {
   background-color: white;
   padding: 1.25rem; /* 20px를 rem 단위로 변환 */
   border-radius: 0.3125rem; /* 5px를 rem 단위로 변환 */
@@ -174,71 +179,6 @@
   cursor: pointer;
 }
 
-/* PatternComponent.css */
-
-/* pattern CSS */
-
-.pattern-container {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  justify-items: center;
-  gap: 0.5rem;
-  margin-top: 3rem;
-  margin-left: 2.5rem;
-  margin-right: 3.5rem;
-}
-
-.background-container {
-  position: relative;
-}
-
-.overlay-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  font-size: 16px;
-  z-index: 10;
-  color: #000000;
-}
-
-.overlay-text div {
-  white-space: nowrap;
-  color: #535353;
-  margin-top: 10px;
-}
-
-.pattern-dot {
-  width: 0.7rem;
-  height: 0.7rem;
-  border-radius: 50%;
-  background-color: #000;
-  margin: 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.pattern-bg {
-  width: 100%;
-  height: auto;
-}
-
-.pattern-dot.selected {
-  background-color: #f19ed3;
-}
-
-.pattern-lines {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
 /* user agree */
 
 .legal-notice-box {
@@ -253,12 +193,12 @@
   padding: 0.625rem; /* 10px를 rem 단위로 변환 */
 }
 
-.checkbox {
+.deposit-checkbox {
   margin-right: 0.625rem; /* 10px를 rem 단위로 변환 */
   margin-left: 0.625rem;
 }
 
-.checkbox-label {
+.deposit-checkbox-label {
   margin: 0; /* 라벨의 기본 여백 제거 */
 }
 
@@ -278,7 +218,7 @@
   padding-right: 3%;
 }
 
-.black-box {
+.deposit-black-box {
   background-color: #1e1b1e;
   border: 0;
   border-radius: 0.5rem;
@@ -293,7 +233,7 @@
   justify-content: space-between; /* 아이템 사이에 공간을 배분 */
 }
 
-.checkbox {
+.deposit-checkbox {
   margin-right: 0.625rem; /* 10px를 rem 단위로 변환 */
 }
 
@@ -301,13 +241,13 @@
   margin-left: auto; /* 화살표 이미지를 오른쪽으로 정렬 */
 }
 
-.checkbox-text {
+.deposit-checkbox-text {
   display: flex; /* Flexbox 적용 */
   align-items: center; /* 수직 가운데 정렬 */
   justify-content: space-between; /* 아이템 사이에 공간을 배분 */
 }
 
-.gray-box {
+.deposit-gray-box {
   background-color: #f1f0f1;
   border: 0;
   border-radius: 0.5rem;
@@ -320,25 +260,27 @@
   margin-bottom: 1.4rem;
 }
 
-.gray-box span {
-  color: #0c0f12;
-  margin-left: 1rem;
+.deposit-gray-box {
+  span {
+    color: #0c0f12;
+    margin-left: 1rem;
+  }
 }
 
-.bottom {
+.deposit-bottom {
   margin-bottom: 1.4rem;
 }
 
 /* DepostiComplete */
 
-.complete-label {
+.deposit-complete-label {
   display: flex;
   flex-direction: column;
   align-items: center; /* 수직 가운데 정렬 */
   margin-bottom: 0.625rem; /* 이미지와 텍스트 사이에 여백 추가 */
 }
 
-.create-complete-img {
+.deposit-create-complete-img {
   margin-top: 1.4rem;
   margin-bottom: 1.4rem; /* 이미지와 텍스트 사이에 여백 추가 */
 }
@@ -375,7 +317,7 @@
   flex-direction: column;
 }
 
-.notice_text {
+.deposit-notice_text {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -384,60 +326,6 @@
   color: #242635;
   padding-left: 3%;
   padding-right: 3%;
-}
-
-/* 패턴 css */
-
-.pattern-container {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  justify-items: center;
-  gap: 0.5rem;
-  margin-top: 1rem;
-}
-.background-container {
-  position: relative;
-}
-.overlay-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  font-size: 16px;
-  z-index: 10;
-  color: #000000;
-}
-.overlay-text div {
-  white-space: nowrap;
-  color: #535353;
-  margin-top: 10px;
-}
-.pattern-dot {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  background-color: #000;
-  margin: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.pattern-bg {
-  width: 100%;
-  height: auto;
-}
-.pattern-dot.selected {
-  background-color: #555359;
-}
-.pattern-lines {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
 }
 
 /*camera css */
@@ -466,7 +354,7 @@
     object-fit: cover;
   }
 
-  .overlay {
+  .deposit-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -500,7 +388,7 @@
     border-radius: 100%;
   }
 
-  .text-container {
+  .ocr-text-container {
     margin-top: 1rem;
     margin-bottom: 1rem;
     padding-top: 1rem;
@@ -509,89 +397,12 @@
     text-align: center;
   }
 
-  .text {
+  .ocr-text {
     margin-top: 1rem;
     color: #3498db;
   }
 }
 
-/* index scss */
-
-.Auth {
-  padding: 1.25rem;
-  height: 100vh;
-  margin: auto;
-  border: 0.0625remx solid #ddd;
-  border-radius: 0.5rem;
-  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1);
-  background-color: #f0f0f0;
-
-  .container {
-    text-align: center;
-  }
-
-  .id-card {
-    margin: 1.25rem 0;
-  }
-
-  .id-card img {
-    max-width: 100%;
-    border: 0.0625rem solid #ddd;
-    border-radius: 0.5rem;
-  }
-
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 0.625rem;
-  }
-
-  label {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    color: #000000;
-  }
-
-  input[type="text"],
-  input[type="date"] {
-    padding: 0.5rem;
-    border: 0.0625rem solid #ddd;
-    border-radius: 0.25rem;
-  }
-
-  input[type="text"]:focus,
-  input[type="date"]:focus {
-    border-color: #000000;
-    outline: none;
-  }
-
-  .text-container {
-    margin-top: 1.875rem;
-    margin-bottom: 1.875rem;
-    padding-top: 1.875rem;
-    padding-bottom: 1.875rem;
-
-    color: #000000;
-    text-align: center;
-  }
-
-  .button-container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-  .button-container button {
-    margin-left: 0.625rem;
-    margin-right: 0.625rem;
-  }
-}
-
-.match-text {
-  margin-top: 0.5rem;
-  text-align: left;
-  color: #2a66ff;
-}
 
 // 기존 스타일 코드들 위에 추가
 .captured-image {
