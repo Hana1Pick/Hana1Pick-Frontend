@@ -1,5 +1,4 @@
 import React from "react";
-import "../../common/styles/scss/CommonStyle.scss";
 import "./style.css";
 import Logo from "../../assets/images/common/Logo.png";
 import Default from "../../assets/images/deposit/CreateDeposit.jpg";

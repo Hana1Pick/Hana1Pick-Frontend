@@ -19,10 +19,13 @@ function MoaclubModify() {
 
 	const getMoaclubInfo = async (userIdx: string, accountId: string) => {
 		try {
-			const response = await axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`, {
-				userIdx,
-				accountId,
-			});
+			const response = await axios.post(
+				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`,
+				{
+					userIdx,
+					accountId,
+				}
+			);
 			console.log('1', response.data.data);
 			return response.data.data;
 		} catch (error) {
@@ -58,13 +61,19 @@ function MoaclubModify() {
 	};
 
 	const currencyValue = getCurrencySymbol(moaclub?.currency!);
-	const manager = moaclub?.memberList.find((member) => member.role === 'MANAGER');
+	const manager = moaclub?.memberList.find(
+		(member) => member.role === 'MANAGER'
+	);
 
-	const handleSelectChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
+	const handleSelectChange = async (
+		event: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		setSelectedDate(event.target.value);
 	};
 
-	const handleSelectManager = async (event: React.ChangeEvent<HTMLSelectElement>) => {
+	const handleSelectManager = async (
+		event: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		setCandidateIdx(event.target.value);
 	};
 
@@ -79,7 +88,11 @@ function MoaclubModify() {
 			atDate: parseInt(selectedDate),
 		};
 
-		if (candidateIdx !== manager?.userIdx && candidateIdx !== null && candidateIdx != '') {
+		if (
+			candidateIdx !== manager?.userIdx &&
+			candidateIdx !== null &&
+			candidateIdx != ''
+		) {
 			const requestUrl = `http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/request-manager`;
 
 			const requestData = {
@@ -128,7 +141,12 @@ function MoaclubModify() {
 			<div className='content'>
 				<div className='moaclubModify'>
 					<label>모아클럽 이름 수정</label>
-					<input type='text' value={name} onChange={(e) => setName(e.target.value)} defaultValue={moaclub?.name} />
+					<input
+						type='text'
+						value={name}
+						onChange={(e) => setName(e.target.value)}
+						defaultValue={moaclub?.name}
+					/>
 
 					<label className='moaclubModifyElement'>회비 설정</label>
 					<div className='feeSettings'>
