@@ -44,6 +44,8 @@ const MenuBar = () => {
       </div>
       <div
         className="menu-item user"
+        onClick={() => handleNavigate("/user/mypage/")}
+
       >
         <img
           src={beUserIcon}
