@@ -1,13 +1,6 @@
 @import "~swiper/swiper-bundle.css";
 
-button {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-}
+
 
 .header {
     display: flex;
@@ -35,6 +28,15 @@ button {
     overflow: hidden;
     margin-bottom: 5rem;
 
+    button {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+    }
+
     .profile-pic {
         width: 40px;
         height: 40px;
@@ -43,12 +45,18 @@ button {
 
     .user-name {
         flex-grow: 1;
-        margin-left: 1rem;
+        font-size: 1.17em;
+        margin: 1rem 0 1rem -9rem;
+        font-weight: 600;
     }
 
     .menu-icon {
-        // width: 30px;
-        // height: 30px;
+        // SCSS의 중첩 스타일 정의를 사용하면 특정 클래스 내의 요소에만 스타일이 적용
+        cursor: pointer;
+
+        img {
+            width: 30px;
+        }
     }
 
     .account-container {
@@ -66,7 +74,6 @@ button {
     }
 
     .account-details {
-
         // width: 70%;
         // flex-shrink: 0;
         margin: 1rem;
@@ -87,6 +94,10 @@ button {
         /* padding: 0.5rem; */
         margin-right: 2.3rem;
         min-width: 340px;
+
+        img {
+            width: 2.25rem
+        }
 
     }
 
@@ -168,23 +179,18 @@ button {
         flex-direction: column;
         align-items: flex-start;
         margin-left: 1rem;
+
+        button {
+            font-weight: 600;
+            background: none;
+        }
     }
 
     .promotion .promotionSubTitle {
         width: 100%;
-        font-size: 1.2rem;
+        font-size: 0.9rem;
         margin-bottom: 0.5rem;
-        /* Adjust as necessary */
         color: #666666;
-    }
-
-    .promotion button {
-        margin-top: 0.1rem;
-        /* Adjust as necessary */
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        background: none;
     }
 
     .promotion p {
@@ -198,6 +204,9 @@ button {
         margin-top: 2rem;
         margin-left: 2.5rem;
 
+        img {
+            width: 2.25rem
+        }
     }
 
     .exchange-container {
