@@ -1,9 +1,19 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import checkImg from '../../assets/images/celub/celubAcc.png';
 import qs from 'qs';
 import axios from 'axios';
 function CelubComplete(){
     const navigate = useNavigate();
+    const location = useLocation();
+    const accNum = location.state;
+        // 현재 날짜 가져오기
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 1을 더해줌
+    const day = String(today.getDate()).padStart(2, '0');
+
+    // 날짜 형식 설정 (예: YYYY-MM-DD)
+    const formattedDate = `${year}.${month}.${day}`;
     const goList=()=>{
         const data={
             userIdx:"123e4567-e89b-12d3-a456-556655440000"
@@ -34,7 +44,7 @@ function CelubComplete(){
                     <table className="completeInfo">
                         <tr>
                             <th>출금계좌</th>
-                            <td colSpan={2}>김주혜의 통장 <br/> 계좌번호</td>
+                            <td colSpan={2}>김주혜의 통장 <br/>{accNum}</td>
                         </tr>
                         <tr>
                             <th>적용금리</th>
@@ -42,7 +52,7 @@ function CelubComplete(){
                         </tr>
                         <tr>
                             <th>가입일</th>
-                            <td colSpan={2}>2024.06.18</td>
+                            <td colSpan={2}>{formattedDate}</td>
                         </tr>
                     </table>
                 </div>

@@ -3,6 +3,7 @@ import CelubHeader from "../../layouts/CelubHeader2";
 import { CelubAccount } from '../../type/commonType';
 import axios from "axios";
 import qs from 'qs';
+import { useState } from "react";
 function CelubAccountList(){
     const location = useLocation();
     const navigate = useNavigate();
@@ -12,13 +13,12 @@ function CelubAccountList(){
         axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/list/detail`,
             qs.stringify({accountId:accountId}))
             .then((res)=>{
-                console.log(res.data.data);
                 navigate("/celub/detail", {state:res.data.data});
             }).catch((error)=>{
                 alert("실패");
             });
     }
-
+  
     return(
         <>
             <CelubHeader/>
@@ -40,6 +40,7 @@ function CelubAccountList(){
                         </div>
                     </div>
                 </div>
+                
 
                 ))
             }      

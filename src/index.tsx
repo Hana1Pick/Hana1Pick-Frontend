@@ -1,8 +1,8 @@
+import "../src/common/styles/scss/CommonStyle.scss";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter, Router } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
 
 const kakaoKey = process.env.REACT_APP_KAKAO_KEY_SHARE;
