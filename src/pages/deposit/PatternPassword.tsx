@@ -2,11 +2,13 @@ import React, { useRef, useState } from "react";
 import PattrenBg from "../../assets/images/common/PatternBg.png";
 import { Await, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import "../../common/styles/scss/CommonStyle.scss"
 
 interface PatternProps {
   nextUrl: string;
 }
 const Pattern: React.FC<PatternProps> = ({ nextUrl }) => {
+  
   const location = useLocation();
 
   const url = `http://${process.env.REACT_APP_BESERVERURI}/api/user/update`;
@@ -174,7 +176,9 @@ const Pattern: React.FC<PatternProps> = ({ nextUrl }) => {
         onTouchEnd={handleMouseUp}
       >
         {renderPattern()}
-        <svg className="pattern-lines">{renderLines()}</svg>
+        <svg className="pattern-lines">
+          {renderLines()}
+        </svg>
       </div>
     </>
   );
