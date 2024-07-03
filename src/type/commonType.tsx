@@ -35,44 +35,44 @@ export type MoaClubHeaderData = {
 };
 
 export type DomesticAuthProps = {
-  rtcRoomNum: string;
+	rtcRoomNum: string;
+	formData: {
+		name: string;
+		address: string;
+		birth: string | null;
+		phone: string;
+		nation: string;
+		email: string | null;
+		password: string;
+	};
+};
+
+export type CelubListType = {
+	idx: number;
+	name: string;
+	thumbnail: string;
+	type: string;
+};
+
+export type CelubWithdrawType = {
+	userIdx: string;
+	accPw: number;
+	name: string;
+	imgSrc: string;
+	outAccId: string;
+	celebrityIdx: number;
+};
+rtcRoomNum: string;
   formData: {
     name: string;
     address: string;
     birth: string | null;
     phone: string;
     nation: string;
-    email: string | null; 
+    email: string | null;
     password: string;
   };
 };
-
-export type CelubListType = {
-  idx:number,
-  name: string,
-  thumbnail: string,
-  type: string
-}
-
-export type CelubWithdrawType = {
-  userIdx: string,
-  accPw: number,
-  name: string,
-  imgSrc: string,
-  outAccId: string,
-  celebrityIdx: number
-}
-	// rtcRoomNum: string;
-	// formData: {
-	// 	name: string;
-	// 	address: string;
-	// 	birth: string | null;
-	// 	phone: string;
-	// 	nation: string;
-	// 	email: string | null;
-	// 	password: string;
-	// };
-// };
 
 export type MoaclubInfo = {
 	name: string;
@@ -132,6 +132,13 @@ export type MoaClubVoteResult = {
 	votes: Record<string, boolean>;
 };
 
+export interface MoaAutoTrsf {
+	atDate: number;
+	amount: number;
+	inAccId: string;
+	outAccId: string;
+	currency: string;
+	createDate: string;
 // ModalType
 export type CommonModalType={
     msg: string,

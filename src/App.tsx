@@ -31,10 +31,10 @@ import CelubComplete from './pages/celublog/CelubComplete';
 import CelubAccountList from './pages/celublog/CelubAccountList';
 import CelubDetail from './pages/celublog/CelubDetail';
 import CelubRule from './pages/celublog/CelubRule';
-import CelubSelect from "./pages/celublog/CelubSearch";
-import CelubAcc from "./pages/celublog/CelubAcc";
-import CelubName from "./pages/celublog/CelubName";
-import CelubPattern from "./pages/celublog/CelubPattern";
+import CelubSelect from './pages/celublog/CelubSearch';
+import CelubAcc from './pages/celublog/CelubAcc';
+import CelubName from './pages/celublog/CelubName';
+import CelubPattern from './pages/celublog/CelubPattern';
 
 // Moaclub
 import Pattern from './components/pattern/PatternPage';
@@ -62,6 +62,11 @@ import MoaclubVoteSelect from './pages/moaclub/MoaclubVoteSelect';
 import MoaclubVoteManager from './pages/moaclub/MoaclubVoteManager';
 import MoaclubVoteTrsf from './pages/moaclub/MoaclubVoteTrsf';
 import MoaclubWithdraw from './pages/moaclub/MoaclubWithdraw';
+import MoaclubAutoTrsf from './pages/moaclub/MoaclubAutoTrsf';
+import MoaclubAutoTrsfDetail from './pages/moaclub/MoaclubAutoTrsfDetail';
+import MoaclubAutoTrsfRegister from './pages/moaclub/MoaclubAutoTrsfRegister';
+import MoaclubAutoTrsfPw from './pages/moaclub/MoaclubAutoTrsfPw';
+import MoaclubAutoTrsfComplete from './pages/moaclub/MoaclubAutoTrsfComplete';
 
 function App() {
 	return (
@@ -120,23 +125,25 @@ function App() {
 						}
 					/>
 					{/* Celublog */}
-					<Route path='/celub/*' element={
-						<AccountContextProvider>
-							<Routes>
-							<Route path="" element={<CelubPage/>}/>
-							<Route path="withdraw" element={<CelubAcc/>}/>
-							<Route path="complete" element={<CelubComplete/>}/>
-							<Route path="list" element={<CelubAccountList/>}/>
-							<Route path="detail" element={<CelubDetail/>}/>
-							<Route path="rule" element={<CelubRule/>}/>
-							<Route path="search" element={<CelubSelect/>}/>
-							<Route path="name" element={<CelubName/>}/>
-							<Route path="pattern" element={<CelubPattern/>}/>
-							{/* <Route path="acc" element={<CelubAcc/>}/> */}
-							</Routes>
-						</AccountContextProvider>
-					}
-				    />
+					<Route
+						path='/celub/*'
+						element={
+							<AccountContextProvider>
+								<Routes>
+									<Route path='' element={<CelubPage />} />
+									<Route path='withdraw' element={<CelubAcc />} />
+									<Route path='complete' element={<CelubComplete />} />
+									<Route path='list' element={<CelubAccountList />} />
+									<Route path='detail' element={<CelubDetail />} />
+									<Route path='rule' element={<CelubRule />} />
+									<Route path='search' element={<CelubSelect />} />
+									<Route path='name' element={<CelubName />} />
+									<Route path='pattern' element={<CelubPattern />} />
+									{/* <Route path="acc" element={<CelubAcc/>}/> */}
+								</Routes>
+							</AccountContextProvider>
+						}
+					/>
 					{/* Moaclub */}
 					<Route
 						path='/moaclub/*'
@@ -182,6 +189,23 @@ function App() {
 					<Route
 						path='/moaclub/withdraw/:accountId'
 						element={<MoaclubWithdraw />}
+					/>
+					<Route
+						path='/moaclub/autotrsf/:accountId'
+						element={<MoaclubAutoTrsf />}
+					/>
+					<Route
+						path='/moaclub/autotrsf/detail/:accountId'
+						element={<MoaclubAutoTrsfDetail />}
+					/>
+					<Route
+						path='/moaclub/autotrsf/register/:accountId'
+						element={<MoaclubAutoTrsfRegister />}
+					/>
+					<Route path='/moaclub/autotrsf/pw' element={<MoaclubAutoTrsfPw />} />
+					<Route
+						path='/moaclub/autotrsf/complete'
+						element={<MoaclubAutoTrsfComplete />}
 					/>
 
 					<Route
