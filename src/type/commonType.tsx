@@ -35,17 +35,44 @@ export type MoaClubHeaderData = {
 };
 
 export type DomesticAuthProps = {
-	rtcRoomNum: string;
-	formData: {
-		name: string;
-		address: string;
-		birth: string | null;
-		phone: string;
-		nation: string;
-		email: string | null;
-		password: string;
-	};
+  rtcRoomNum: string;
+  formData: {
+    name: string;
+    address: string;
+    birth: string | null;
+    phone: string;
+    nation: string;
+    email: string | null; 
+    password: string;
+  };
 };
+
+export type CelubListType = {
+  idx:number,
+  name: string,
+  thumbnail: string,
+  type: string
+}
+
+export type CelubWithdrawType = {
+  userIdx: string,
+  accPw: number,
+  name: string,
+  imgSrc: string,
+  outAccId: string,
+  celebrityIdx: number
+}
+	// rtcRoomNum: string;
+	// formData: {
+	// 	name: string;
+	// 	address: string;
+	// 	birth: string | null;
+	// 	phone: string;
+	// 	nation: string;
+	// 	email: string | null;
+	// 	password: string;
+	// };
+// };
 
 export type MoaclubInfo = {
 	name: string;
@@ -79,3 +106,36 @@ export type MemeberFeeStatus = {
 	amount: number;
 	status: string;
 };
+
+// 계좌 데이터 타입 정의
+export interface Account {
+	accountId: string;
+	name: string;
+	accountType: string;
+	balance: number;
+}
+
+export interface MoaTrsf {
+	outAccId: string;
+	inAccId: string;
+	name: string;
+	trsfAmount: number;
+	currency: string;
+}
+
+export type MoaClubVoteResult = {
+	accountId: string;
+	userName: string;
+	candidateName: string;
+	amount: number;
+	requestTime: string;
+	votes: Record<string, boolean>;
+};
+
+// ModalType
+export type CommonModalType={
+    msg: string,
+    show: boolean,
+    onCancle: () => void,
+    onConfirm: () => void
+}

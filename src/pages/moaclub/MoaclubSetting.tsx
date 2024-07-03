@@ -14,10 +14,13 @@ function MoaclubSetting() {
 
 	const getManagerCheck = async (userIdx: string, accountId: string) => {
 		try {
-			const response = await axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/manager-check`, {
-				userIdx,
-				accountId,
-			});
+			const response = await axios.post(
+				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/manager-check`,
+				{
+					userIdx,
+					accountId,
+				}
+			);
 			return response.data.data.check;
 		} catch (error) {
 			console.error(error);
@@ -39,12 +42,16 @@ function MoaclubSetting() {
 		navigate(`/moaclub/modify/${accountId}`);
 	};
 
+	const goMoaclubVote = () => {
+		navigate(`/moaclub/vote/${accountId}`);
+	};
+
 	return (
 		<>
 			<Header value='모아클럽 관리' disabled={false} />
 			<div className='content'>
 				<div className='moaclubSettingContainer'>
-					<div>
+					<div onClick={goMoaclubVote}>
 						모아클럽 투표
 						<img className='rightIcon' alt='right-icon' src={righticon} />
 					</div>

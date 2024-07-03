@@ -1,0 +1,16 @@
+/* Modal.module.scss */
+.modalContent {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	right: auto;
+	bottom: auto;
+	margin-right: -50%;
+	transform: translate(-50%, -50%);
+	padding: 20px;
+	max-width: 400px; /* 모달의 최대 너비 */
+	background-color: white; /* 배경색 */
+	border: 1px solid #ccc; /* 테두리 */
+	border-radius: 4px; /* 테두리 둥글게 */
+	width: 10rem;
+}
