@@ -72,6 +72,8 @@ import MoaclubAutoTrsfComplete from "./pages/moaclub/MoaclubAutoTrsfComplete";
 
 // 서비스
 import ServicePage from './pages/service/ServicePage';
+// 마이페이지
+import MyPage from "./pages/user/mypage";
 
 
 function App() {
@@ -239,6 +241,9 @@ function App() {
               <AccountContextProvider>
                 <Routes>
                   <Route path="login" element={<KakaoLoginPage />} />
+                </Routes>
+                <Routes>
+                  <Route path="mypage" element={<MyPage />} />
                 </Routes>
               </AccountContextProvider>
             }
