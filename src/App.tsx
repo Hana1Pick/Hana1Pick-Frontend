@@ -32,22 +32,26 @@ import CelubDetail from './pages/celublog/CelubDetail';
 import CelubRule from './pages/celublog/CelubRule';
 import CelubDeposit from './pages/celublog/CelubDeposit';
 // Moaclub
+import { MoaclubContextProvider } from './contexts/MoaclubContextProvider';
 import Pattern from './components/pattern/PatternPage';
 import MoaclubOpening from './pages/moaclub/MoaclubOpening';
 import MoaclubSelectAcc from './pages/moaclub/MoaclubSelectAcc';
 import MoaclubCreatePage from './pages/moaclub/MoaclubCreatePage';
 import MoaclubComplete from './pages/moaclub/MoaclubComplete';
 import MoaclubPattern from './pages/moaclub/MoaclubPattern';
-// User
-import KakaoLoginPage from './pages/user/login/KakaoLoginPage';
-import LoginHandeler from './pages/user/login/LoginHandeler';
-import { MoaclubContextProvider } from './contexts/MoaclubContextProvider';
-import MoaclubInvite from './pages/moaclub/MoaclubInvite';
-import MoaclubJoin from './pages/moaclub/MoaclubJoin';
-import MoaclubPage from './pages/moaclub/MoaclubPage';
 import MoaclubFeeStatus from './pages/moaclub/MoaclubFeeStatus';
 import MoaclubSetting from './pages/moaclub/MoaclubSetting';
 import MoaclubModify from './pages/moaclub/MoaclubModify';
+import MoaclubInvite from './pages/moaclub/MoaclubInvite';
+import MoaclubJoin from './pages/moaclub/MoaclubJoin';
+import MoaclubPage from './pages/moaclub/MoaclubPage';
+// User
+import KakaoLoginPage from './pages/user/login/KakaoLoginPage';
+import LoginHandeler from './pages/user/login/LoginHandeler';
+// Photo Card
+import { PhotoCardContextProvider } from './contexts/PhotoCardContextProvider';
+import ImagePage from './pages/photocard/ImagePage';
+import StickerPage from './pages/photocard/StickerPage';
 
 function App() {
   return (
@@ -159,6 +163,19 @@ function App() {
           <Route
             path='/api/user/oauth/kakao' //redirect_url
             element={<LoginHandeler />} //당신이 redirect_url에 맞춰 꾸밀 컴포넌트
+          />
+
+          {/* Photo Card */}
+          <Route
+            path='/photo-card/*'
+            element={
+              <PhotoCardContextProvider>
+                <Routes>
+                  <Route path='image' element={<ImagePage />} />
+                  <Route path='sticker' element={<StickerPage />} />
+                </Routes>
+              </PhotoCardContextProvider>
+            }
           />
         </Routes>
       </BrowserRouter>
