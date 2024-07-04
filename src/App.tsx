@@ -38,8 +38,11 @@ import CelubAcc from './pages/celublog/CelubAcc';
 import CelubName from './pages/celublog/CelubName';
 import CelubPattern from './pages/celublog/CelubPattern';
 
-// Moaclub
-import Pattern from './components/pattern/PatternPage';
+// Photo Card
+import { PhotoCardContextProvider } from './contexts/PhotoCardContextProvider';
+import ImagePage from './pages/photocard/ImagePage';
+import StickerPage from './pages/photocard/StickerPage';
+
 import MoaclubOpening from './pages/moaclub/MoaclubOpening';
 import MoaclubSelectAcc from './pages/moaclub/MoaclubSelectAcc';
 import MoaclubCreatePage from './pages/moaclub/MoaclubCreatePage';
@@ -70,6 +73,9 @@ import MoaclubAutoTrsfRegister from './pages/moaclub/MoaclubAutoTrsfRegister';
 import MoaclubAutoTrsfPw from './pages/moaclub/MoaclubAutoTrsfPw';
 import MoaclubAutoTrsfComplete from './pages/moaclub/MoaclubAutoTrsfComplete';
 
+// 서비스
+import ServicePage from './pages/service/ServicePage';
+
 function App() {
 	return (
 		<div className='App'>
@@ -85,7 +91,10 @@ function App() {
 					/>
 					<Route path='/deposit4' element={<UserAgree />} />
 					<Route path='/deposit5' element={<DepositComplete />} />
+					{/* 메인 페이지*/}
 					<Route path='/' element={<MainPage />} />
+					{/* 상품/서비스 페이지: 최애 실시간 랭킹, 최애와 한컷 페이지로 이동 */}
+					<Route path='/service' element={<ServicePage />} />
 					{/* 계좌 이체 */}
 					<Route
 						path='/cash-out/*'
@@ -239,6 +248,19 @@ function App() {
 					<Route
 						path='/api/user/oauth/kakao' //redirect_url
 						element={<LoginHandeler />} //당신이 redirect_url에 맞춰 꾸밀 컴포넌트
+					/>
+
+					{/* Photo Card */}
+					<Route
+						path='/photo-card/*'
+						element={
+							<PhotoCardContextProvider>
+								<Routes>
+									<Route path='image' element={<ImagePage />} />
+									<Route path='sticker' element={<StickerPage />} />
+								</Routes>
+							</PhotoCardContextProvider>
+						}
 					/>
 				</Routes>
 			</BrowserRouter>

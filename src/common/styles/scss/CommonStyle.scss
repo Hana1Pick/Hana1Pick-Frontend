@@ -50,6 +50,30 @@ body {
   background-color: #cfcfcf;
 }
 
+.basicInputFile1 {
+  width: 85%;
+  background-color: #f19ed3;
+  border: 0;
+  border-radius: 0.5rem;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  margin: auto;
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+
+.basicInputFile2 {
+  width: 85% !important;
+  background-color: #000000;
+  border: 0;
+  border-radius: 0.5rem;
+  color: rgb(255, 255, 255) !important;
+  cursor: pointer;
+  margin: auto;
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+
 /* Header */
 
 #header {

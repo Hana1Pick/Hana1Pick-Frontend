@@ -6,7 +6,8 @@ import { useState } from "react";
 import axios from "axios";
 function CelubSearch(){
     //TODO
-    const userIdx = '123e4567-e89b-12d3-a456-556655440000';
+    const userIdx =localStorage.getItem("userIdx"); 
+
     const location = useLocation();
     const celubList = location.state;
     const [selectJob, setSelectJob] = useState<string>("ACTOR");
@@ -15,7 +16,7 @@ function CelubSearch(){
     const navigate = useNavigate();
     const [keyword, setKeyword] = useState<string>("");
     const [celubWithdraw, setCelubWithdraw] = useState<CelubWithdrawType>({
-        userIdx: userIdx,
+        userIdx: userIdx??"",
         accPw: 0,
         name: "",
         imgSrc: "",
