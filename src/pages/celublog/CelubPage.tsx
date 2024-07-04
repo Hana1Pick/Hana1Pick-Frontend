@@ -1,7 +1,27 @@
+import axios from 'axios';
 import bgImg from '../../assets/images/celub/CelubBack.png';
 import logo from '../../assets/images/celub/heart.png'; 
+import CommonBtn from '../../components/button/CommonBtn';
 import './CelublogStyle.scss';
+import { useNavigate } from 'react-router-dom';
 function CelubPage(){
+    //TODO
+    const userIdx = localStorage.getItem("userIdx");
+
+    const navigate = useNavigate();
+    const selectCelub = () =>{
+        axios.get(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/list`,{
+            params:{
+                userIdx:userIdx
+            }
+        }).then((res)=>{
+            console.log("최애리슽",res.data.data);
+            navigate('/celub/search', {state:res.data.data})
+        }).catch((error)=>{
+            alert("실패");
+        });
+    }
+
     return(
         <>
             <div id="celubBox1">
@@ -9,14 +29,13 @@ function CelubPage(){
                     <img id="celubBgImg" src={bgImg}/>
                     <div id="celubLogo">
                         <img src={logo}/>
-                        <h4 style={{"marginTop":"20%"}}>샐럽로그</h4>
-                        <h2 style={{"margin":"0 0 0 0"}}>0원</h2>
+                        <h2 style={{"marginTop":"30%"}}>샐럽로그</h2>
                     </div>
                 </div>
             </div>
             <div id="celubBox2">
-                <h3>먼저, 최애 사진을 선택해주세요.</h3>
-                <button id="basicBtn1" style={{"marginTop":"15%"}}>사진 선택하기</button>
+                <h3>셀럽로그에서 내 최애 응원해요😍</h3>
+                <CommonBtn type='pink' value='셀럽로그 시작하기' onClick={selectCelub} />
             </div>
         </>
     )

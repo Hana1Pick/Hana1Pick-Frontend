@@ -8,6 +8,8 @@ import DepositCreation2 from './pages/deposit/DepositCreation2';
 import PatternPassword from './pages/deposit/PatternPassword';
 import UserAgree from './pages/deposit/UserAgree';
 import DepositComplete from './pages/deposit/DepositComplete';
+import OCRCamera from './pages/deposit/OCRCamera';
+import OCRGetData from './pages/deposit/OCRGetData';
 // 계좌 이체
 import { AccountContextProvider } from './contexts/AccountContextProvider';
 import SelectAccountPage from './pages/account/SelectAccountPage';
@@ -16,6 +18,7 @@ import GetAmountPage from './pages/account/GetAmountPage';
 import CashOutPage from './pages/account/CashOutPage';
 import CashOutPatternPage from './pages/account/CashOutPatternPage';
 import CashOutResultPage from './pages/account/CashOutResultPage';
+
 // QR 계좌 이체
 import { QrContextProvider } from './contexts/QrContextProvider';
 import SelectQrInAccountPage from './pages/qr/SelectQrInAccountPage';
@@ -23,54 +26,75 @@ import SelectQrOutAccountPage from './pages/qr/SelectQrOutAccountPage';
 import GetQrAmountPage from './pages/qr/GetQrAmountPage';
 import CreateQrResultPage from './pages/qr/CreateQrResultPage';
 import GetQrPage from './pages/qr/GetQrPage';
+
 // Celublog
 import CelubPage from './pages/celublog/CelubPage';
-import CelubWithdraw from './pages/celublog/CelubWithdraw';
 import CelubComplete from './pages/celublog/CelubComplete';
 import CelubAccountList from './pages/celublog/CelubAccountList';
 import CelubDetail from './pages/celublog/CelubDetail';
 import CelubRule from './pages/celublog/CelubRule';
-import CelubDeposit from './pages/celublog/CelubDeposit';
-// Moaclub
-import { MoaclubContextProvider } from './contexts/MoaclubContextProvider';
-import Pattern from './components/pattern/PatternPage';
+import CelubSelect from './pages/celublog/CelubSearch';
+import CelubAcc from './pages/celublog/CelubAcc';
+import CelubName from './pages/celublog/CelubName';
+import CelubPattern from './pages/celublog/CelubPattern';
+
+// Photo Card
+import { PhotoCardContextProvider } from './contexts/PhotoCardContextProvider';
+import ImagePage from './pages/photocard/ImagePage';
+import StickerPage from './pages/photocard/StickerPage';
+
 import MoaclubOpening from './pages/moaclub/MoaclubOpening';
 import MoaclubSelectAcc from './pages/moaclub/MoaclubSelectAcc';
 import MoaclubCreatePage from './pages/moaclub/MoaclubCreatePage';
 import MoaclubComplete from './pages/moaclub/MoaclubComplete';
 import MoaclubPattern from './pages/moaclub/MoaclubPattern';
-import MoaclubFeeStatus from './pages/moaclub/MoaclubFeeStatus';
-import MoaclubSetting from './pages/moaclub/MoaclubSetting';
-import MoaclubModify from './pages/moaclub/MoaclubModify';
-import MoaclubInvite from './pages/moaclub/MoaclubInvite';
-import MoaclubJoin from './pages/moaclub/MoaclubJoin';
-import MoaclubPage from './pages/moaclub/MoaclubPage';
 // User
 import KakaoLoginPage from './pages/user/login/KakaoLoginPage';
 import LoginHandeler from './pages/user/login/LoginHandeler';
-// Photo Card
-import { PhotoCardContextProvider } from './contexts/PhotoCardContextProvider';
-import ImagePage from './pages/photocard/ImagePage';
-import StickerPage from './pages/photocard/StickerPage';
+// MoaClub
+import { MoaclubContextProvider } from './contexts/MoaclubContextProvider';
+import MoaclubInvite from './pages/moaclub/MoaclubInvite';
+import MoaclubJoin from './pages/moaclub/MoaclubJoin';
+import MoaclubPage from './pages/moaclub/MoaclubPage';
+import MoaclubFeeStatus from './pages/moaclub/MoaclubFeeStatus';
+import MoaclubSetting from './pages/moaclub/MoaclubSetting';
+import MoaclubModify from './pages/moaclub/MoaclubModify';
+import MoaclubDeposit from './pages/moaclub/MoaclubDeposit';
+import { MoaclubTrsfContextProvider } from './contexts/MoaclubTrsfContextProvider';
+import MoaclubPw from './pages/moaclub/MoaclubPw';
+import MoaclubTrsfResult from './pages/moaclub/MoaclubTrsfResult';
+import MoaclubVoteSelect from './pages/moaclub/MoaclubVoteSelect';
+import MoaclubVoteManager from './pages/moaclub/MoaclubVoteManager';
+import MoaclubVoteTrsf from './pages/moaclub/MoaclubVoteTrsf';
+import MoaclubWithdraw from './pages/moaclub/MoaclubWithdraw';
+import MoaclubAutoTrsf from './pages/moaclub/MoaclubAutoTrsf';
+import MoaclubAutoTrsfDetail from './pages/moaclub/MoaclubAutoTrsfDetail';
+import MoaclubAutoTrsfRegister from './pages/moaclub/MoaclubAutoTrsfRegister';
+import MoaclubAutoTrsfPw from './pages/moaclub/MoaclubAutoTrsfPw';
+import MoaclubAutoTrsfComplete from './pages/moaclub/MoaclubAutoTrsfComplete';
+
+// 서비스
+import ServicePage from './pages/service/ServicePage';
 
 function App() {
   return (
     <div className='App'>
       <BrowserRouter>
         <Routes>
-          <Route
-            path='/pattern'
-            element={<Pattern nextUrl='celub-withdraw/complete' />}
-          />
           <Route path='deposit' element={<DepositCreation1 />} />
           <Route path='/deposit2' element={<DepositCreation2 />} />
+          <Route path='/userauth' element={<OCRCamera />} />
+          <Route path='/userauth2' element={<OCRGetData />} />
           <Route
             path='/deposit3'
             element={<PatternPassword nextUrl='deposit4' />}
           />
           <Route path='/deposit4' element={<UserAgree />} />
           <Route path='/deposit5' element={<DepositComplete />} />
+          {/* 메인 페이지*/}
           <Route path='/' element={<MainPage />} />
+          {/* 상품/서비스 페이지: 최애 실시간 랭킹, 최애와 한컷 페이지로 이동 */}
+          <Route path='/service' element={<ServicePage />} />
           {/* 계좌 이체 */}
           <Route
             path='/cash-out/*'
@@ -120,12 +144,15 @@ function App() {
               <AccountContextProvider>
                 <Routes>
                   <Route path='' element={<CelubPage />} />
-                  <Route path='withdraw' element={<CelubWithdraw />} />
-                  <Route path='withdraw/complete' element={<CelubComplete />} />
+                  <Route path='withdraw' element={<CelubAcc />} />
+                  <Route path='complete' element={<CelubComplete />} />
                   <Route path='list' element={<CelubAccountList />} />
                   <Route path='detail' element={<CelubDetail />} />
                   <Route path='rule' element={<CelubRule />} />
-                  <Route path='deposit' element={<CelubDeposit />} />
+                  <Route path='search' element={<CelubSelect />} />
+                  <Route path='name' element={<CelubName />} />
+                  <Route path='pattern' element={<CelubPattern />} />
+                  {/* <Route path="acc" element={<CelubAcc/>}/> */}
                 </Routes>
               </AccountContextProvider>
             }
@@ -148,6 +175,64 @@ function App() {
           />
           <Route path='/moaclub/join/:accountId' element={<MoaclubJoin />} />
           <Route path='/moaclub/main/:accountId' element={<MoaclubPage />} />
+          <Route
+            path='/moaclub/fee/:accountId'
+            element={<MoaclubFeeStatus />}
+          />
+          <Route
+            path='/moaclub/setting/:accountId'
+            element={<MoaclubSetting />}
+          />
+          <Route
+            path='/moaclub/modify/:accountId'
+            element={<MoaclubModify />}
+          />
+          <Route
+            path='/moaclub/vote/:accountId'
+            element={<MoaclubVoteSelect />}
+          />
+          <Route
+            path='/moaclub/vote/manager/:accountId'
+            element={<MoaclubVoteManager />}
+          />
+          <Route
+            path='/moaclub/vote/trsf/:accountId'
+            element={<MoaclubVoteTrsf />}
+          />
+          <Route
+            path='/moaclub/withdraw/:accountId'
+            element={<MoaclubWithdraw />}
+          />
+          <Route
+            path='/moaclub/autotrsf/:accountId'
+            element={<MoaclubAutoTrsf />}
+          />
+          <Route
+            path='/moaclub/autotrsf/detail/:accountId'
+            element={<MoaclubAutoTrsfDetail />}
+          />
+          <Route
+            path='/moaclub/autotrsf/register/:accountId'
+            element={<MoaclubAutoTrsfRegister />}
+          />
+          <Route path='/moaclub/autotrsf/pw' element={<MoaclubAutoTrsfPw />} />
+          <Route
+            path='/moaclub/autotrsf/complete'
+            element={<MoaclubAutoTrsfComplete />}
+          />
+
+          <Route
+            path='/moaclub/deposit/*'
+            element={
+              <MoaclubTrsfContextProvider>
+                <Routes>
+                  <Route path='/:accountId' element={<MoaclubDeposit />} />
+                  <Route path='/pw' element={<MoaclubPw />} />
+                  <Route path='/trsf/result' element={<MoaclubTrsfResult />} />
+                </Routes>
+              </MoaclubTrsfContextProvider>
+            }
+          />
 
           {/* User */}
           <Route
