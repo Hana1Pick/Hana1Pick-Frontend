@@ -6,7 +6,8 @@ import './CelublogStyle.scss';
 import { useNavigate } from 'react-router-dom';
 function CelubPage(){
     //TODO
-    const userIdx = '123e4567-e89b-12d3-a456-556655440000';
+    const userIdx = localStorage.getItem("userIdx");
+
     const navigate = useNavigate();
     const selectCelub = () =>{
         axios.get(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/list`,{

@@ -8,7 +8,7 @@ const AccountContextProvider = ({ children }: { children: any }) => {
   // 변수
   /* TODO */
   const [userIdx, setUserIdx] = useState(
-    '550e8400-e29b-41d4-a716-446655440000'
+localStorage.getItem("userIdx") || ""
   );
   const [amount, setAmount] = useState(0);
   const [outAccId, setOutAccId] = useState('02-00-0010124');

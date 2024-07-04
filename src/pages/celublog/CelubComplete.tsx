@@ -16,7 +16,7 @@ function CelubComplete(){
     const formattedDate = `${year}.${month}.${day}`;
     const goList=()=>{
         const data={
-            userIdx:"123e4567-e89b-12d3-a456-556655440000"
+            userIdx: localStorage.getItem("userIdx")??"",
         }
         axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/account-list`,
             qs.stringify(data)
