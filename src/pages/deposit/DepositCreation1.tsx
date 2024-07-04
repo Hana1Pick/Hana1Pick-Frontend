@@ -1,5 +1,4 @@
-import React from "react";
-import "./style.css";
+import "./DepositStyle.scss";
 import Logo from "../../assets/images/common/Logo.png";
 import Default from "../../assets/images/deposit/CreateDeposit.jpg";
 import { useNavigate } from "react-router-dom";

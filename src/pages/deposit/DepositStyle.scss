@@ -1,10 +1,12 @@
-.content-box {
+.deposit-content-box {
   text-align: left;
+  margin-bottom: 2rem;
 }
 
-/* #basicBtn2 {
+#deposit-basicBtn {
   width: 100%;
-  background-color: #1e1b1e;
+  height: 2.7rem;
+  background-color: #000000;
   border: 0;
   border-radius: 0.5rem;
   color: azure;
@@ -12,13 +14,12 @@
   padding-top: 3%;
   padding-bottom: 3%;
   align-self: center;
-} */
-
-.input-container {
+}
+.deposit-input-container {
   margin-top: 1rem;
 }
 
-.input-field {
+.deposit-input-field {
   width: 100%;
   padding: 0.625rem;
   font-size: 1rem;
@@ -29,7 +30,7 @@
   color: #777777;
 }
 
-.input-label {
+.deposit-input-label {
   margin-bottom: 0.3125rem;
   display: block;
   text-align: left;
@@ -68,7 +69,7 @@
 }
 
 .date-picker-input-field {
-  padding-right: "2rem";
+  padding-right: '2rem';
 }
 
 .date-picker-label {
@@ -97,7 +98,7 @@
   padding: 1rem; /* 버튼 주변에 패딩 추가 */
 }
 
-.container {
+.deposit-container {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -128,14 +129,18 @@
   justify-content: center;
 }
 
-.image1-container img {
-  width: 30%;
-  height: auto;
+.image1-container {
+  img {
+    width: 30%;
+    height: auto;
+  }
 }
 
-.image2-container img {
-  width: 60%;
-  height: auto;
+.image2-container {
+  img {
+    width: 60%;
+    height: auto;
+  }
 }
 
 .button2-container {
@@ -143,7 +148,7 @@
   border: 0;
 }
 
-.modal {
+.deposit-modal {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -155,7 +160,7 @@
   background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
 }
 
-.modal-content {
+.deposit-modal-content {
   background-color: white;
   padding: 1.25rem; /* 20px를 rem 단위로 변환 */
   border-radius: 0.3125rem; /* 5px를 rem 단위로 변환 */
@@ -173,71 +178,6 @@
   cursor: pointer;
 }
 
-/* PatternComponent.css */
-
-/* pattern CSS */
-/* 
-.pattern-container {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  justify-items: center;
-  gap: 0.5rem;
-  margin-top: 3rem;
-  margin-left: 2.5rem;
-  margin-right: 3.5rem;
-}
-
-.background-container {
-  position: relative;
-}
-
-.overlay-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  font-size: 16px;
-  z-index: 10;
-  color: #000000;
-}
-
-.overlay-text div {
-  white-space: nowrap;
-  color: #535353;
-  margin-top: 10px;
-}
-
-.pattern-dot {
-  width: 0.7rem;
-  height: 0.7rem;
-  border-radius: 50%;
-  background-color: #000;
-  margin: 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.pattern-bg {
-  width: 100%;
-  height: auto;
-}
-
-.pattern-dot.selected {
-  background-color: #f19ed3;
-}
-
-.pattern-lines {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-} */
-
 /* user agree */
 
 .legal-notice-box {
@@ -252,12 +192,12 @@
   padding: 0.625rem; /* 10px를 rem 단위로 변환 */
 }
 
-.checkbox {
+.deposit-checkbox {
   margin-right: 0.625rem; /* 10px를 rem 단위로 변환 */
   margin-left: 0.625rem;
 }
 
-.checkbox-label {
+.deposit-checkbox-label {
   margin: 0; /* 라벨의 기본 여백 제거 */
 }
 
@@ -277,7 +217,7 @@
   padding-right: 3%;
 }
 
-.black-box {
+.deposit-black-box {
   background-color: #1e1b1e;
   border: 0;
   border-radius: 0.5rem;
@@ -292,7 +232,7 @@
   justify-content: space-between; /* 아이템 사이에 공간을 배분 */
 }
 
-.checkbox {
+.deposit-checkbox {
   margin-right: 0.625rem; /* 10px를 rem 단위로 변환 */
 }
 
@@ -300,13 +240,13 @@
   margin-left: auto; /* 화살표 이미지를 오른쪽으로 정렬 */
 }
 
-.checkbox-text {
+.deposit-checkbox-text {
   display: flex; /* Flexbox 적용 */
   align-items: center; /* 수직 가운데 정렬 */
   justify-content: space-between; /* 아이템 사이에 공간을 배분 */
 }
 
-.gray-box {
+.deposit-gray-box {
   background-color: #f1f0f1;
   border: 0;
   border-radius: 0.5rem;
@@ -319,25 +259,27 @@
   margin-bottom: 1.4rem;
 }
 
-.gray-box span {
-  color: #0c0f12;
-  margin-left: 1rem;
+.deposit-gray-box {
+  span {
+    color: #0c0f12;
+    margin-left: 1rem;
+  }
 }
 
-.bottom {
+.deposit-bottom {
   margin-bottom: 1.4rem;
 }
 
 /* DepostiComplete */
 
-.complete-label {
+.deposit-complete-label {
   display: flex;
   flex-direction: column;
   align-items: center; /* 수직 가운데 정렬 */
   margin-bottom: 0.625rem; /* 이미지와 텍스트 사이에 여백 추가 */
 }
 
-.create-complete-img {
+.deposit-create-complete-img {
   margin-top: 1.4rem;
   margin-bottom: 1.4rem; /* 이미지와 텍스트 사이에 여백 추가 */
 }
@@ -374,7 +316,7 @@
   flex-direction: column;
 }
 
-.notice_text {
+.deposit-notice_text {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -383,4 +325,85 @@
   color: #242635;
   padding-left: 3%;
   padding-right: 3%;
+}
+
+.camera-container {
+  margin-top: 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+
+  //overflow: hidden;
+
+  .camera-preview {
+    position: relative;
+    width: 100%;
+    max-width: 25rem;
+    aspect-ratio: 8.6 / 5.4; /* 민증 사진 비율 */
+  }
+
+  video {
+    width: 100%;
+    height: 100%;
+    overflow: clip;
+    border-radius: 0.5rem;
+    object-fit: cover;
+  }
+
+  .deposit-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0.125rem solid #fff;
+    box-sizing: border-box;
+  }
+
+  .capture-button {
+    position: relative;
+    margin-top: 1.25rem;
+    padding: 1.25rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 3.75rem;
+    height: 3.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .capture-button::before {
+    content: '';
+    width: 1.25rem; /* 작은 동그라미의 크기 */
+    height: 1.25rem;
+    background-color: white;
+    border-radius: 100%;
+  }
+
+  .ocr-text-container {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    color: #3498db;
+    text-align: center;
+  }
+
+  .ocr-text {
+    margin-top: 1rem;
+    color: #3498db;
+  }
+}
+
+// 기존 스타일 코드들 위에 추가
+.captured-image {
+  width: 20rem; // 원하는 크기로 설정
+  height: auto; // 비율을 유지하면서 높이를 자동으로 조절
+  display: block; // 이미지가 블록 요소로 표시되도록 설정
+  margin: 0 auto; // 이미지가 가운데 정렬되도록 설정 (선택 사항)
 }
