@@ -4,7 +4,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import 'react-datepicker/dist/react-datepicker.css';
-// import './i18n'
+import './i18n'
 
 
 const kakaoKey = process.env.REACT_APP_KAKAO_KEY_SHARE;

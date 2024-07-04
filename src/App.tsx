@@ -75,12 +75,14 @@ import MoaclubAutoTrsfComplete from './pages/moaclub/MoaclubAutoTrsfComplete';
 
 // 서비스
 import ServicePage from './pages/service/ServicePage';
+import Test from './test';
 
 function App() {
   return (
     <div className='App'>
       <BrowserRouter>
         <Routes>
+          <Route path="/testing" element={<Test />}/>
           <Route path='deposit' element={<DepositCreation1 />} />
           <Route path='/deposit2' element={<DepositCreation2 />} />
           <Route path='/userauth' element={<OCRCamera />} />
