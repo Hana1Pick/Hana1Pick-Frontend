@@ -3,6 +3,7 @@ import CelubHeader3 from "../../layouts/CelubHeader3";
 import { CelubHistoryType, CelubRuleType } from '../../type/commonType';
 import { useLocation, useNavigate } from "react-router-dom";
 import CommonBtn from '../../components/button/CommonBtn';
+import "./CelublogStyle.scss";
 import axios from 'axios';
 import qs from 'qs';
 
@@ -72,18 +73,7 @@ const CelubDetail: React.FC = () => {
     }
 
     const setting =()=>{
-        alert('변경');
-        const modal = document.getElementById("myModal")!;
-
-        // Get the button that opens the modal
-        const btn = document.getElementById("openModalBtn")!;
-
-        // Get the <span> element that closes the modal
-        const span = document.getElementsByClassName("close")[0] as HTMLElement;
-        modal.style.display = "block";
-        span.onclick = () => {
-            modal.style.display = "none";
-          }
+        navigate("/celub/setting", {state:detailList})
     }
     // 첨부파일 변경시 실행
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -190,9 +180,8 @@ const CelubDetail: React.FC = () => {
                             (historyList.length==0?(
                                 <>
                                 <div className="celub-rule-box1"> 
-                                    아직 거래내역이 없어요<br/>
-                                    최애적금을 이용해보세요!
-                                    <button id="basicBtn1" onClick={goDeposit}>응원하러 가기</button>
+                                    <p>아직 거래내역이 없어요<br/>
+                                    최애적금을 이용해보세요!</p>
                                 </div>                             
                             </>
                             ):(
@@ -217,10 +206,10 @@ const CelubDetail: React.FC = () => {
                         <div className="celub-deposit-box">
                             <p>{selectRule} {selectRuleMoney}원을 입금할게요.</p>
                             <select value={selectedValue} onChange={handleSelectChange}>
-                                <option value="공통">#해시태그를 선택하세요</option>
-                                <option value="공카댓글">#공카댓글</option>
-                                <option value="이달의생일">#이달의생일</option>
-                                <option value="개인셀카">#개인셀카</option>
+                                <option value="공통"># 해시태그를 선택하세요</option>
+                                <option value="공카댓글"># 공카댓글</option>
+                                <option value="이달의생일"># 이달의생일</option>
+                                <option value="개인셀카"># 개인셀카</option>
                             </select>
                         </div>
                         <CommonBtn type='pink' value="입금하기" onClick={sendMoney} />
@@ -229,6 +218,10 @@ const CelubDetail: React.FC = () => {
 
             <div id="myModal" className="modal">
                 <div className="modal-content">
+                <CommonBtn type='black' value="규칙 설정" />
+                <CommonBtn type='black' value="셀럽로그 이름 변경" />
+                <CommonBtn type='black' value="커버 사진 변경" />
+
                 <span className="close">&times;</span>
                 <input id="uploadImg" type="file" onChange={handleFileChange}/>
                 <CommonBtn type='black' value="저장" onClick={onSave} />

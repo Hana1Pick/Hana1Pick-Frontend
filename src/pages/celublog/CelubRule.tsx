@@ -1,9 +1,10 @@
-import React, { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent } from "react";
 import CelubHeader1 from "../../layouts/CelubHeader1";
 import { CelubRuleType } from "../../type/commonType";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import qs from 'qs';
+import "./CelublogStyle.scss";
 
 function CelubRule() {
     const location = useLocation();

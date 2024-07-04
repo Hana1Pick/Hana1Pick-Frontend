@@ -62,6 +62,7 @@ import MoaclubVoteSelect from './pages/moaclub/MoaclubVoteSelect';
 import MoaclubVoteManager from './pages/moaclub/MoaclubVoteManager';
 import MoaclubVoteTrsf from './pages/moaclub/MoaclubVoteTrsf';
 import MoaclubWithdraw from './pages/moaclub/MoaclubWithdraw';
+import CelubSetting from './pages/celublog/CelubSetting';
 
 function App() {
 	return (
@@ -132,6 +133,7 @@ function App() {
 							<Route path="search" element={<CelubSelect/>}/>
 							<Route path="name" element={<CelubName/>}/>
 							<Route path="pattern" element={<CelubPattern/>}/>
+							<Route path="setting" element={<CelubSetting/>}/>
 							{/* <Route path="acc" element={<CelubAcc/>}/> */}
 							</Routes>
 						</AccountContextProvider>

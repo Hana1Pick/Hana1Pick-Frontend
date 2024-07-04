@@ -98,7 +98,7 @@ function CelubPattern() {
       outAccId: withdrawInfo.outAccId,
       celebrityIdx: withdrawInfo.celebrityIdx
     };
-
+   
     axios
       .post(url, data, {
         headers: {

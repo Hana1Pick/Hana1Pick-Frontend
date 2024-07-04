@@ -63,21 +63,17 @@ body {
 }
 
 /* pattern CSS */
-
 .pattern-container {
   position: relative;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   gap: 0.5rem;
-  margin-top: 3rem;
-  margin: auto;
+  margin-top: 1rem;
 }
-
 .background-container {
   position: relative;
 }
-
 .overlay-text {
   position: absolute;
   top: 50%;
@@ -88,33 +84,28 @@ body {
   z-index: 10;
   color: #000000;
 }
-
 .overlay-text div {
   white-space: nowrap;
   color: #535353;
   margin-top: 10px;
 }
-
 .pattern-dot {
-  width: 0.7rem;
-  height: 0.7rem;
+  width: 0.5rem;
+  height: 0.5rem;
   border-radius: 50%;
   background-color: #000;
-  margin: 2.5rem;
+  margin: 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 .pattern-bg {
   width: 100%;
   height: auto;
 }
-
 .pattern-dot.selected {
   background-color: #f19ed3;
 }
-
 .pattern-lines {
   position: absolute;
   top: 0;
@@ -140,7 +131,7 @@ body {
 
 .commonModal {
   background: white;
-  padding: 20px;
+  padding: 20px 20px 10px 20px;
   border-radius: 8px;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -157,9 +148,6 @@ body {
   align-items: center;
   justify-content: space-between;
   padding-top: 5px;
-}
-
-.commonModal-buttons {
   button{
     background: none;
     border: none;
@@ -167,9 +155,6 @@ body {
     padding: 10px 0;
     flex: 1;
   }
-}
-
-.commonModal-buttons {
   button:first-child{
     border-right: 1px solid #ccc;
   }

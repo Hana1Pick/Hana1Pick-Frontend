@@ -2,9 +2,8 @@ import React, { useState, ChangeEvent, useEffect } from "react";
 import Header from "../../components/Header";
 import CommonBtn from '../../components/button/CommonBtn';
 import { useLocation, useNavigate } from "react-router-dom";
+import "./CelublogStyle.scss";
 import axios from "axios";
-import { CelubWithdrawType } from '../../type/commonType';
-import CelubWithdraw from './CelubWithdraw';
 // 계좌 데이터 타입 정의
 interface Account {
     accountId: string;
@@ -20,15 +19,6 @@ function CelubAcc() {
     const location = useLocation();
     const navigate = useNavigate();
     const celubWithdraw = location.state;
-
-  //   const [celubWithdraw, setCelubWithdraw] = useState<CelubWithdrawType>({
-  //     userIdx: location.state.userIdx,
-  //     accPw: 0,
-  //     name: "",
-  //     imgSrc: "",
-  //     outAccId: "",
-  //     celebrityIdx: location.state.celebrityIdx
-  // });
     const userIdx=location.state.userIdx;
     useEffect(() => {
         const fetchAccounts = async () => {
@@ -52,10 +42,6 @@ const getAccountListByType = async (userIdx: string, type: string) => {
   };
       const next=()=>{
         console.log("확인",accountId);
-        // setCelubWithdraw((prevData)=>({
-        //   ...prevData,
-        //   outAccId: accountId
-        // }))
         navigate('/celub/name', { state: { ...celubWithdraw, outAccId: accountId } });
       }
       const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -69,9 +55,9 @@ const getAccountListByType = async (userIdx: string, type: string) => {
         <>
             <Header value="셀럽로그 출금계좌" />
  
-               <div className="content">
+      <div className="">
         <div>
-          <div className="withdrawMsg">
+          <div className="celub-withdrawMsg">
             <div>
               <h3 className="narrowLine">셀럽로그에 연결될 계좌를<br />
                 선택해 주세요.</h3>
