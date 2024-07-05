@@ -11,7 +11,7 @@ import "./style.scss";
 import { useSwipeable } from "react-swipeable";
 import NavBar from "../components/alarm/NavBar";
 import Exchange from "../components/exchange";
-import LoadingSpinner from "../components/loading/"; // 로딩 스피너 컴포넌트 임포트
+import LoadingSpinner from "../components/loading/boxLoading"; // 로딩 스피너 컴포넌트 임포트
 
 interface Account {
   id: string;
