@@ -76,13 +76,13 @@ import MoaclubAutoTrsfComplete from './pages/moaclub/MoaclubAutoTrsfComplete';
 // 서비스
 import ServicePage from './pages/service/ServicePage';
 import Test from './test';
+import CamTest from './CamTest';
 
 function App() {
   return (
     <div className='App'>
       <BrowserRouter>
         <Routes>
-          <Route path="/testing" element={<Test />}/>
           <Route path='deposit' element={<DepositCreation1 />} />
           <Route path='/deposit2' element={<DepositCreation2 />} />
           <Route path='/userauth' element={<OCRCamera />} />
@@ -263,6 +263,10 @@ function App() {
               </PhotoCardContextProvider>
             }
           />
+        </Routes>
+        <Routes>
+            <Route path="/testing" element={<Test />}/>
+            <Route path="/camera-test" element={<CamTest />}/>
         </Routes>
       </BrowserRouter>
     </div>

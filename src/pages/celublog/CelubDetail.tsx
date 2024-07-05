@@ -73,7 +73,7 @@ const CelubDetail: React.FC = () => {
     }
 
     const setting =()=>{
-        navigate("/celub/setting", {state:detailList})
+        //navigate("/celub/setting", {state:detailList})
     }
     // 첨부파일 변경시 실행
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -67,9 +67,13 @@ body {
   position: relative;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   justify-items: center;
   gap: 0.5rem;
-  margin-top: 1rem;
+  width: 18.75rem;
+  height: 18.75rem;
+  margin: auto;
+  margin-top: 2rem;
 }
 .background-container {
   position: relative;
@@ -94,7 +98,7 @@ body {
   height: 0.5rem;
   border-radius: 50%;
   background-color: #000;
-  margin: 3rem;
+  margin: auto;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -73,8 +73,8 @@ function CelubPattern() {
       isDrawing.current = false;
       console.log('Selected Pattern:', selectedPoints);
       if (selectedPoints.length < 4) {
-        setErrorMsg('4개 이상의 점을 연결해주세요.')
-
+        setErrorMsg('4개 이상의 점을 연결해주세요.');
+        setSelectedPoints([]);
       } else {
         let password = '';
         for (let i = 0; i < selectedPoints.length; i++) {
