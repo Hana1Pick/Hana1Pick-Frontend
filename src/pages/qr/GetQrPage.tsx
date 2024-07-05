@@ -69,7 +69,7 @@ function GetQrPage() {
   };
 
   const verifyAccountInQr = (data: QrData) => {
-    const url = `http://${process.env.REACT_APP_BESERVERURI}/api/account/qr/history`;
+    const url = `${process.env.REACT_APP_BESERVERURI}/api/account/qr/history`;
     axios
       .get(url, { params: data })
       .then((res) => {
