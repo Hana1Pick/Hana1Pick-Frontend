@@ -73,6 +73,9 @@ import MoaclubAutoTrsfRegister from './pages/moaclub/MoaclubAutoTrsfRegister';
 import MoaclubAutoTrsfPw from './pages/moaclub/MoaclubAutoTrsfPw';
 import MoaclubAutoTrsfComplete from './pages/moaclub/MoaclubAutoTrsfComplete';
 
+// Chat
+import ChatRoom from './pages/chat/ChatRoom';
+
 // 서비스
 import ServicePage from './pages/service/ServicePage';
 
@@ -233,6 +236,9 @@ function App() {
               </MoaclubTrsfContextProvider>
             }
           />
+
+          {/* Chat */}
+          <Route path='/moaclub/chat/:roomId' element={<ChatRoom />} />
 
           {/* User */}
           <Route

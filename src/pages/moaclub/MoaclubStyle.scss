@@ -1,1247 +1,1258 @@
 .moaclubHeader {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	position: fixed;
-	top: 0;
-	width: 100%;
-	padding: 1rem 1.5rem 1rem 1.5rem;
-	background-color: white;
-	z-index: 1000;
-	box-sizing: border-box;
-	border-bottom: 0.05rem solid rgb(232, 232, 232);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1rem 1.5rem 1rem 1.5rem;
+  background-color: white;
+  z-index: 1000;
+  box-sizing: border-box;
+  border-bottom: 0.05rem solid rgb(232, 232, 232);
 }
 
 .moaclubHeader2 {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position: fixed;
-	top: 0;
-	width: 100%;
-	padding: 1rem 1.5rem 1rem 1.5rem;
-	z-index: 1000;
-	box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1rem 1.5rem 1rem 1.5rem;
+  z-index: 1000;
+  box-sizing: border-box;
 }
 
 .moaclubHeader2 .back {
-	position: absolute;
-	left: 1.5rem;
+  position: absolute;
+  left: 1.5rem;
 }
 
 .moaclubHeader4 {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position: fixed;
-	top: 0;
-	width: 100%;
-	padding: 1rem 1.5rem 1rem 1.5rem;
-	z-index: 1000;
-	box-sizing: border-box;
-	border-bottom: 0.05rem solid rgb(232, 232, 232);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1rem 1.5rem 1rem 1.5rem;
+  z-index: 1000;
+  box-sizing: border-box;
+  border-bottom: 0.05rem solid rgb(232, 232, 232);
 }
 
 .moaclubHeader4 .back {
-	position: absolute;
-	left: 1.5rem;
+  position: absolute;
+  left: 1.5rem;
 }
 
 .back {
-	height: 20px; // 이미지 높이 설정 (필요에 따라 조정)
-	width: auto;
+  height: 20px; // 이미지 높이 설정 (필요에 따라 조정)
+  width: auto;
 }
 
 .settingContainer {
-	display: flex;
-	justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .moaclubHeader2 .setting {
-	height: 23px;
-	position: absolute;
-	right: 1.5rem;
-	margin-top: -0.1rem;
+  height: 23px;
+  position: absolute;
+  right: 1.5rem;
+  margin-top: -0.1rem;
 }
 
 h4 {
-	margin: 0;
+  margin: 0;
 }
 
 h5 {
-	margin: 0;
-	font-weight: 400;
+  margin: 0;
+  font-weight: 400;
 }
 
 .banner {
-	width: 15rem;
+  width: 15rem;
 }
 
 .MoaImg {
-	width: 10rem;
+  width: 10rem;
 }
 
 .content {
-	margin-top: 6rem;
+  margin-top: 6rem;
 }
 
 .allAgree {
-	background-color: #e6e3e4;
-	height: 2.7rem;
-	width: 19rem;
-	border-radius: 10px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+  background-color: #e6e3e4;
+  height: 2.7rem;
+  width: 19rem;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .allAgree.agreed {
-	background-color: #f19ed3;
+  background-color: #f19ed3;
 }
 
 .agreeItem {
-	background-color: #ffffff;
-	height: 2rem;
-	width: 18rem;
-	border-radius: 10px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-top: 0.1rem;
+  background-color: #ffffff;
+  height: 2rem;
+  width: 18rem;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.1rem;
 }
 
 .allAgreeBox {
-	display: flex;
-	justify-content: center;
-	margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
 }
 
 .agreeItems {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.5rem;
 }
 
 .leftContent {
-	display: flex;
-	align-items: center;
-	margin-left: 1rem;
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
 }
 
 .righticon,
 .checkicon,
 .deleteicon {
-	height: 1rem;
-	margin-right: 1rem;
+  height: 1rem;
+  margin-right: 1rem;
 }
 
 .leftContent > span {
-	font-size: small;
-	margin-left: 0.2rem;
+  font-size: small;
+  margin-left: 0.2rem;
 }
 
 .buttonContainer {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position: fixed;
-	bottom: 2rem;
-	width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 2rem;
+  width: 100%;
 }
 
 .withdrawMsg {
-	margin: 3rem;
-	margin-top: 6rem;
-	div {
-		h3 {
-			text-align: left;
-			font-weight: 600;
-		}
-		h4 {
-			text-align: left;
-			font-weight: 600;
-			color: #8f8f8f;
-			font-size: small;
-			line-height: 1.1rem;
-		}
-	}
+  margin: 3rem;
+  margin-top: 6rem;
+  div {
+    h3 {
+      text-align: left;
+      font-weight: 600;
+    }
+    h4 {
+      text-align: left;
+      font-weight: 600;
+      color: #8f8f8f;
+      font-size: small;
+      line-height: 1.1rem;
+    }
+  }
 }
 
 .moaInviteBtn {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position: fixed;
-	bottom: 3rem;
-	width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 3rem;
+  width: 100%;
 }
 
 .narrowLine {
-	line-height: 1.5rem;
+  line-height: 1.5rem;
 }
 
 .withdraw-box1 {
-	margin-top: 75%;
-	h4 {
-		text-align: left;
-		font-size: small;
-		font-weight: 700;
-		margin-left: 2.3rem;
-		margin-bottom: 0.7rem;
-	}
-	margin-top: 75%;
+  margin-top: 75%;
+  h4 {
+    text-align: left;
+    font-size: small;
+    font-weight: 700;
+    margin-left: 2.3rem;
+    margin-bottom: 0.7rem;
+  }
+  margin-top: 75%;
 }
 
 .withdraw-box2 {
-	background-color: #f8f8f9;
-	width: 75%;
-	height: 50%;
-	padding: 5%;
-	margin: auto;
-	border-radius: 0.5rem;
-	display: flex;
-	justify-content: space-between;
-	color: #6b6b6b;
-	font-size: 12px;
-	font-weight: 600;
+  background-color: #f8f8f9;
+  width: 75%;
+  height: 50%;
+  padding: 5%;
+  margin: auto;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  color: #6b6b6b;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 .moaclubTitleSetting {
-	margin-top: 7rem;
-	line-height: 1.7rem;
+  margin-top: 7rem;
+  line-height: 1.7rem;
 }
 
 .accountNameInput {
-	width: 70%;
-	padding: 10px 0;
-	border: none;
-	border-bottom: 1px solid #d3d3d3; /* 회색 밑줄 */
-	outline: none;
-	font-size: 16px;
-	text-align: center;
-	margin-top: 2.5rem;
+  width: 70%;
+  padding: 10px 0;
+  border: none;
+  border-bottom: 1px solid #d3d3d3; /* 회색 밑줄 */
+  outline: none;
+  font-size: 16px;
+  text-align: center;
+  margin-top: 2.5rem;
 
-	&::placeholder {
-		color: #d3d3d3; /* 회색 플레이스홀더 */
-		text-align: center;
-	}
+  &::placeholder {
+    color: #d3d3d3; /* 회색 플레이스홀더 */
+    text-align: center;
+  }
 
-	&:focus {
-		border-bottom: 1px solid #000; /* 클릭 시 밑줄 색상 변경 */
-	}
+  &:focus {
+    border-bottom: 1px solid #000; /* 클릭 시 밑줄 색상 변경 */
+  }
 }
 
 .deleteicon {
-	position: absolute;
-	top: 1.5rem;
-	right: 1rem;
+  position: absolute;
+  top: 1.5rem;
+  right: 1rem;
 }
 
 .leftAlignedText {
-	text-align: left;
-	line-height: 1.5rem;
-	display: block;
+  text-align: left;
+  line-height: 1.5rem;
+  display: block;
 }
 
 .currencySelect {
-	margin-top: 2.2rem;
-	margin-bottom: -3rem;
-	color: #6b6b6b;
-	font-weight: 600;
-	text-align: center;
-	border-style: none;
-	border-radius: 0.7rem;
-	width: 48%;
-	height: 2rem;
+  margin-top: 2.2rem;
+  margin-bottom: -3rem;
+  color: #6b6b6b;
+  font-weight: 600;
+  text-align: center;
+  border-style: none;
+  border-radius: 0.7rem;
+  width: 48%;
+  height: 2rem;
 }
 
 header {
-	position: fixed; /* Or whatever your default is */
-	top: 0;
-	left: 0;
-	width: 100%;
-	z-index: 2; /* Ensure it stays above the overlay */
-	transition: background-color 0.3s; /* Smooth transition for background color change */
+  position: fixed; /* Or whatever your default is */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2; /* Ensure it stays above the overlay */
+  transition: background-color 0.3s; /* Smooth transition for background color change */
 }
 
 .withdraw-box7 {
-	display: none;
-	z-index: 1;
-	border-top-left-radius: 2rem;
-	border-top-right-radius: 2rem;
-	background-color: whitesmoke;
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	height: 50%;
+  display: none;
+  z-index: 1;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  background-color: whitesmoke;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
 }
 
 .datePicker {
-	display: flex;
+  display: flex;
 }
 
 .picker {
-	margin-top: 1.1rem;
+  margin-top: 1.1rem;
 }
 
 .centeredText {
-	text-align: center;
-	margin-top: 5rem;
-	margin-left: 4rem;
-	margin-right: 4rem;
+  text-align: center;
+  margin-top: 5rem;
+  margin-left: 4rem;
+  margin-right: 4rem;
 }
 
 .moaclub-box6 {
-	margin: 3rem 3rem 1rem 3rem;
-	p {
-		font-size: 1.2rem;
-		font-weight: 500;
-	}
-	span {
-		font-size: 0.8rem;
-		color: #6b6b6b;
-	}
+  margin: 3rem 3rem 1rem 3rem;
+  p {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+  span {
+    font-size: 0.8rem;
+    color: #6b6b6b;
+  }
 }
 
 .moaclub-box5 {
-	display: flex;
-	justify-content: center;
-	margin-top: 2rem;
-	button {
-		border: 0;
-		border-radius: 0.5rem;
-		padding: 1.2rem;
-		width: 50%;
-		background-color: #c4c4c4;
-	}
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  button {
+    border: 0;
+    border-radius: 0.5rem;
+    padding: 1.2rem;
+    width: 50%;
+    background-color: #c4c4c4;
+  }
 }
 
 .completeBox1 {
-	height: 50%;
-	padding: 6rem 6rem 4rem 6rem;
+  height: 50%;
+  padding: 6rem 6rem 4rem 6rem;
 }
 .tableBox {
-	width: 100%;
+  width: 100%;
 }
 .completeInfo {
-	width: 80%;
-	border-top: 1px solid #d5d5d5;
-	margin: auto;
+  width: 80%;
+  border-top: 1px solid #d5d5d5;
+  margin: auto;
 
-	th,
-	td {
-		border-bottom: 1px solid #d5d5d5;
-		padding: 10px;
-		font-weight: 400;
-		font-size: 0.9rem;
-	}
-	th {
-		text-align: left;
-		color: #666666;
-	}
-	td {
-		text-align: right;
-	}
+  th,
+  td {
+    border-bottom: 1px solid #d5d5d5;
+    padding: 10px;
+    font-weight: 400;
+    font-size: 0.9rem;
+  }
+  th {
+    text-align: left;
+    color: #666666;
+  }
+  td {
+    text-align: right;
+  }
 }
 
 .textBox1 {
-	margin-top: 1rem;
-	p {
-		font-size: 1.5rem;
-		font-weight: 700;
-		line-height: 2rem;
-		margin: 0;
-	}
+  margin-top: 1rem;
+  p {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 2rem;
+    margin: 0;
+  }
 }
 
 .completeBox3 {
-	button {
-		margin-top: 6rem;
-	}
+  button {
+    margin-top: 6rem;
+  }
 }
 
 .overlay-text .errorMsg {
-	color: rgb(255, 107, 107);
-	font-size: small;
+  color: rgb(255, 107, 107);
+  font-size: small;
 }
 
 .clubFeeText {
-	border-style: none;
-	border-radius: 2rem;
-	width: 70%;
-	height: 60%;
-	text-align: center;
+  border-style: none;
+  border-radius: 2rem;
+  width: 70%;
+  height: 60%;
+  text-align: center;
 }
 
 .clubFeeBox {
-	margin-top: 2rem;
-	display: flex;
+  margin-top: 2rem;
+  display: flex;
 }
 
 .currencySymbol {
-	margin-left: 0.5rem !important;
-	font-weight: bold !important;
-	color: #424242 !important;
-	font-size: large !important;
+  margin-left: 0.5rem !important;
+  font-weight: bold !important;
+  color: #424242 !important;
+  font-size: large !important;
 }
 
 .inviteTxt {
-	margin-top: 7rem;
+  margin-top: 7rem;
 }
 
 .inviteIcon {
-	width: 10%;
-	margin-top: 3rem;
+  width: 10%;
+  margin-top: 3rem;
 }
 
 .bubble {
-	position: absolute;
-	width: 9rem;
-	height: 2.5rem;
-	background: #f3dff1;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	font-size: small;
-	bottom: 4rem;
-	left: 7.5rem;
-	text-align: center;
-	justify-content: center;
-	align-items: center;
-	display: flex;
-	animation: bounce 1.5s infinite;
+  position: absolute;
+  width: 9rem;
+  height: 2.5rem;
+  background: #f3dff1;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  font-size: small;
+  bottom: 4rem;
+  left: 7.5rem;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  animation: bounce 1.5s infinite;
 }
 
 .bubble:after {
-	content: '';
-	position: absolute;
-	border-style: solid;
-	border-width: 1rem 0.5rem 0;
-	border-color: #f3dff1 transparent;
-	display: block;
-	width: 0;
-	z-index: 1;
-	bottom: -0.8rem;
-	left: 3.9rem;
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 1rem 0.5rem 0;
+  border-color: #f3dff1 transparent;
+  display: block;
+  width: 0;
+  z-index: 1;
+  bottom: -0.8rem;
+  left: 3.9rem;
 }
 
 @keyframes bounce {
-	0%,
-	100% {
-		transform: translateY(0);
-	}
-	50% {
-		transform: translateY(-0.3rem);
-	}
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.3rem);
+  }
 }
 
 .buttonContainerInvite {
-	justify-content: center;
-	align-items: center;
-	position: fixed;
-	bottom: 2rem;
-	width: 100%;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 2rem;
+  width: 100%;
 }
 
 .joinGif {
-	width: 50%;
-	margin-left: 1rem;
+  width: 50%;
+  margin-left: 1rem;
 }
 
 .inviteClubNameTxt2 {
-	margin-top: -1rem;
-	font-weight: 300;
-	color: #7e7e7e;
-	margin-bottom: 3rem;
+  margin-top: -1rem;
+  font-weight: 300;
+  color: #7e7e7e;
+  margin-bottom: 3rem;
 }
 
 .moaclubMainInfoContainer {
-	margin-top: 2.3rem !important;
+  margin-top: 2.3rem !important;
 }
 
 .moaclubMainBalance {
-	font-size: xx-large;
-	font-weight: bold;
+  font-size: xx-large;
+  font-weight: bold;
 }
 
 .memberListContainer {
-	display: flex;
-	justify-content: center;
-	margin-left: 0.5rem;
+  display: flex;
+  justify-content: center;
+  margin-left: 0.5rem;
 }
 
 .memberProfile {
-	width: 2.4rem;
-	height: 2.4rem;
-	border-radius: 50%;
-	object-fit: cover;
-	overflow: hidden;
-	margin-left: -0.5rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  object-fit: cover;
+  overflow: hidden;
+  margin-left: -0.5rem;
 }
 
 .moaclubFee {
-	background-color: #222222;
-	color: white !important;
-	border-radius: 0.4rem;
-	width: 11rem;
-	height: 1.9rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	color: #91ddcf !important;
-	font-weight: 500;
+  background-color: #222222;
+  color: white !important;
+  border-radius: 0.4rem;
+  width: 11rem;
+  height: 1.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #91ddcf !important;
+  font-weight: 500;
 }
 
 .moaClubMainBtnContainer {
-	display: flex;
-	justify-content: center;
-	margin-top: 0.4rem !important;
+  display: flex;
+  justify-content: center;
+  margin-top: 0.4rem !important;
 }
 
 .moaclubMainTrsf {
-	background-color: #f2eef8;
-	color: #f19ed3 !important;
-	font-weight: 600;
-	width: 5rem;
-	height: 1.6rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-radius: 1rem;
-	margin: 0 0.2rem 0 0.2rem;
+  background-color: #f2eef8;
+  color: #f19ed3 !important;
+  font-weight: 600;
+  width: 5rem;
+  height: 1.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  margin: 0 0.2rem 0 0.2rem;
+}
+
+.moaclubChatBtn {
+  width: 100%;
+  height: 2rem;
+  border-bottom: 0.1em solid #f2eef8;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  font-size: 1em;
+  font-weight: 500;
 }
 
 .moaclubAccHisTable {
-	width: 100%;
-	border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 .moaclubAccHisTable td {
-	padding-top: 0.7rem;
-	padding-bottom: 1.2rem;
-	border-bottom: 1px solid #e7e9de;
-	font-weight: 450;
-	font-size: 0.95rem;
+  padding-top: 0.7rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid #e7e9de;
+  font-weight: 450;
+  font-size: 0.95rem;
 }
 
 .moaclub-background-container {
-	position: fixed;
-	z-index: 10;
+  position: fixed;
+  z-index: 10;
 }
 
 .moaclub {
-	position: relative;
-	top: 292px;
+  position: relative;
+  top: 292px;
 }
 
 .transaction {
-	display: flex;
-	flex-direction: column;
-	margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
 }
 
 .moaclubAccHisLast {
-	font-size: 0.95rem;
-	margin-right: 1.5rem;
-	color: #585858;
+  font-size: 0.95rem;
+  margin-right: 1.5rem;
+  color: #585858;
 }
 
 .moaclubBlueTxt {
-	color: #0083d1;
+  color: #0083d1;
 }
 
 #moaclubTransAmountTxt {
-	font-weight: bold;
-	margin-right: 1.5rem;
+  font-weight: bold;
+  margin-right: 1.5rem;
 }
 
 .transaction {
-	text-align: right;
+  text-align: right;
 }
 
 .moaclubTarget {
-	text-align: left;
+  text-align: left;
 }
 
 .moaclubDate {
-	color: #585858;
+  color: #585858;
 }
 
 .moaclubFeeSelect {
-	background-color: #efefef;
-	border-style: none;
-	width: 8rem;
-	height: 2.3rem;
-	padding-left: 1rem;
-	justify-content: center;
-	border-radius: 1rem;
-	font-size: 0.9rem;
-	font-weight: 500;
+  background-color: #efefef;
+  border-style: none;
+  width: 8rem;
+  height: 2.3rem;
+  padding-left: 1rem;
+  justify-content: center;
+  border-radius: 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
 .clubFeeBalance {
-	margin-top: 1.8rem;
-	font-size: 2rem;
-	font-weight: bold;
+  margin-top: 1.8rem;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 .clubFeeRule {
-	font-size: small;
-	margin-top: 0.1rem;
-	color: #696969;
-	margin-bottom: 2.5rem;
+  font-size: small;
+  margin-top: 0.1rem;
+  color: #696969;
+  margin-bottom: 2.5rem;
 }
 
 .moaclubFeeContainer {
-	display: flex;
-	justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .moaclubFeeStatusBtn {
-	background-color: #f2f2f2;
-	color: #c0c0c0 !important;
-	font-weight: 600;
-	font-size: 0.8rem;
-	width: 4rem;
-	height: 1.6rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-radius: 1rem;
-	margin: 0 0.2rem 0 0.2rem;
-	padding: 0 0.2rem;
+  background-color: #f2f2f2;
+  color: #c0c0c0 !important;
+  font-weight: 600;
+  font-size: 0.8rem;
+  width: 4rem;
+  height: 1.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  margin: 0 0.2rem 0 0.2rem;
+  padding: 0 0.2rem;
 
-	&.selected {
-		background-color: #f19ed3;
-		color: #ffffff !important;
-	}
+  &.selected {
+    background-color: #f19ed3;
+    color: #ffffff !important;
+  }
 }
 
 .moaclubFeeDesc {
-	color: #a9a9a9;
-	font-size: 0.6rem;
+  color: #a9a9a9;
+  font-size: 0.6rem;
 }
 
 .moaclubFeeProfile {
-	width: 2.4rem;
-	height: 2.4rem;
-	border-radius: 50%;
-	object-fit: cover;
-	overflow: hidden;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  object-fit: cover;
+  overflow: hidden;
 }
 
 .moaclubFeeContent {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-top: 1.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.3rem;
 }
 
 .moaclubFeeTable {
-	width: 80%;
-	border-collapse: collapse;
+  width: 80%;
+  border-collapse: collapse;
 }
 
 .moaclubFeeTable tr {
-	justify-content: center;
-	align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .moaclubFeeTable td {
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	border-top: 1px solid #e7e9de;
-	border-bottom: 1px solid #e7e9de;
-	font-weight: 450;
-	font-size: 0.95rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-top: 1px solid #e7e9de;
+  border-bottom: 1px solid #e7e9de;
+  font-weight: 450;
+  font-size: 0.95rem;
 }
 
 .moaclubFeeMemberName {
-	text-align: left;
+  text-align: left;
 }
 
 .moaclubFeeAmount {
-	width: 120px;
+  width: 120px;
 }
 
 .moaclubSettingContainer {
-	text-align: left;
-	margin-top: -1rem;
+  text-align: left;
+  margin-top: -1rem;
 }
 
 .moaclubSettingContainer {
-	div {
-		padding-left: 2rem;
-		padding-bottom: 1rem;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
+  div {
+    padding-left: 2rem;
+    padding-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 
 .moaclubSettingContainer .rightIcon {
-	height: 1rem;
-	margin-right: 2rem;
+  height: 1rem;
+  margin-right: 2rem;
 }
 
 .moaclubModify {
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
-	text-align: left;
-	margin: 0 2rem;
-	font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: left;
+  margin: 0 2rem;
+  font-size: 0.9rem;
 
-	label {
-		margin-bottom: -0.4rem;
-		margin-left: 0.1rem;
-		font-weight: 450;
-	}
+  label {
+    margin-bottom: -0.4rem;
+    margin-left: 0.1rem;
+    font-weight: 450;
+  }
 
-	input,
-	select {
-		padding: 0.5rem;
-		border: none;
-		border-radius: 0.5rem;
-		background-color: #f5f5f5;
-	}
+  input,
+  select {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #f5f5f5;
+  }
 
-	.feeSettings {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
+  .feeSettings {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 
-		input {
-			width: 5rem;
-		}
-	}
+    input {
+      width: 5rem;
+    }
+  }
 
-	.managerSelect {
-		width: 9rem;
-	}
+  .managerSelect {
+    width: 9rem;
+  }
 
-	.moaclubModifyElement {
-		margin-top: 0.8rem;
-	}
+  .moaclubModifyElement {
+    margin-top: 0.8rem;
+  }
 }
 
 .moaAccCircle {
-	width: 2.5rem;
-	height: 2.5rem;
-	margin-right: 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-right: 1rem;
 }
 
 .moaDepositInfoBox {
-	display: flex;
-	align-items: center;
-	border: 0.3px solid #cfcfcf;
-	border-radius: 1rem;
-	padding: 10px;
-	width: 80%;
-	margin-bottom: 2rem;
-	font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  border: 0.3px solid #cfcfcf;
+  border-radius: 1rem;
+  padding: 10px;
+  width: 80%;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
 }
 
 .moaDepositDetailBox {
-	display: flex;
-	flex-direction: column;
-	text-align: left;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
 }
 
 .moaDepositTxt {
-	text-align: left;
-	margin-left: 0.2rem;
-	margin-bottom: 0.5rem;
+  text-align: left;
+  margin-left: 0.2rem;
+  margin-bottom: 0.5rem;
 }
 
 .moaWithdrawTxt {
-	text-align: left;
-	margin-left: 0.2rem;
-	margin-top: 1.7rem;
+  text-align: left;
+  margin-left: 0.2rem;
+  margin-top: 1.7rem;
 }
 
 .moaDepositContainer {
-	margin-left: 2.5rem;
+  margin-left: 2.5rem;
 }
 
 .moaDepositSelectContainer {
-	text-align: left;
+  text-align: left;
 }
 
 .moaClubDepositSelect {
-	border-style: none;
-	border-radius: 0.5rem;
-	background-color: #f8f8f9;
-	width: 18rem;
-	padding: 0.5rem;
+  border-style: none;
+  border-radius: 0.5rem;
+  background-color: #f8f8f9;
+  width: 18rem;
+  padding: 0.5rem;
 }
 
 .moaDepositAmountInput {
-	border-style: none;
-	border-radius: 0.5rem;
-	background-color: #f8f8f9;
-	width: 7rem;
-	padding: 0.5rem;
-	margin-right: 0.2rem;
-	margin-top: 0.5rem;
+  border-style: none;
+  border-radius: 0.5rem;
+  background-color: #f8f8f9;
+  width: 7rem;
+  padding: 0.5rem;
+  margin-right: 0.2rem;
+  margin-top: 0.5rem;
 }
 
 .moaExchangeTxt {
-	text-align: left;
-	margin-left: 0.2rem;
-	margin-top: 2rem;
-	margin-bottom: 0.5rem;
+  text-align: left;
+  margin-left: 0.2rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
 }
 
 .moaDepositAmountContainer {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	width: 18rem;
-	margin-top: 1rem;
-	border: 1px solid #ddd;
-	border-radius: 5px;
-	overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 18rem;
+  margin-top: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 .moaDepositAmountBox {
-	display: flex;
-	width: 100%;
+  display: flex;
+  width: 100%;
 }
 
 .moaDepositFixedBox {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	background-color: #f5f5f5;
-	padding: 1rem;
-	height: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5;
+  padding: 1rem;
+  height: 1.2rem;
 }
 
 .moaDepositCountry {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .moaDepositInputBox {
-	display: flex;
-	align-items: center;
-	margin-left: 5rem;
-	flex-grow: 1;
-	padding: 1rem;
-	height: 1.2rem;
+  display: flex;
+  align-items: center;
+  margin-left: 5rem;
+  flex-grow: 1;
+  padding: 1rem;
+  height: 1.2rem;
 }
 
 .moaDepositInputBox2 {
-	display: flex;
-	align-items: center;
-	margin-left: 5.6rem;
-	flex-grow: 1;
-	padding: 1rem;
-	height: 1.2rem;
+  display: flex;
+  align-items: center;
+  margin-left: 5.6rem;
+  flex-grow: 1;
+  padding: 1rem;
+  height: 1.2rem;
 }
 
 .moaDepositAmountInput2 {
-	width: 50px;
-	text-align: right;
-	border: none;
-	font-size: 1rem;
-	outline: none;
+  width: 50px;
+  text-align: right;
+  border: none;
+  font-size: 1rem;
+  outline: none;
 }
 
 .moaDepositAmountInput2 + div {
-	margin-left: 0.5rem;
-	font-size: 0.9rem;
-	color: #666;
+  margin-left: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
 }
 
 .moaDepositCountry {
-	font-size: 0.8rem;
+  font-size: 0.8rem;
 }
 
 .moaDepositSymbol {
-	font-size: 0.9rem;
-	font-weight: 400;
-	color: #f19ed3;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #f19ed3;
 }
 
 .moaDepositChange {
-	margin-top: 0.2rem;
-	margin-left: 9rem;
-	margin-bottom: -0.3rem;
+  margin-top: 0.2rem;
+  margin-left: 9rem;
+  margin-bottom: -0.3rem;
 }
 
 .moaTrsfResultContainer {
-	margin: 6rem 0rem;
+  margin: 6rem 0rem;
 }
 
 .moaTrsfResultIcon {
-	width: 4rem;
-	margin-bottom: 2rem;
+  width: 4rem;
+  margin-bottom: 2rem;
 }
 
 .moaTrsfResultDesc {
-	font-size: small;
-	color: #7e7e7e;
+  font-size: small;
+  color: #7e7e7e;
 }
 
 .moaTrsfResultMint {
-	color: #91ddcf;
-	font-weight: bold;
+  color: #91ddcf;
+  font-weight: bold;
 }
 
 .candidateContainer {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-top: 1rem;
-	.memberProfile {
-		margin-right: 0.3rem;
-	}
-	.managerWrapper {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		margin: 21px 0.5rem 0 0.5rem;
-	}
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  .memberProfile {
+    margin-right: 0.3rem;
+  }
+  .managerWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 21px 0.5rem 0 0.5rem;
+  }
 }
 
 .voteStatusIcon {
-	width: 1.8rem;
+  width: 1.8rem;
 }
 
 .voteTable {
-	width: 80%;
-	border-collapse: collapse;
+  width: 80%;
+  border-collapse: collapse;
 }
 
 .voteTable tr {
-	justify-content: center;
-	align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .voteTable td {
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	border-top: 1px solid #e7e9de;
-	border-bottom: 1px solid #e7e9de;
-	font-weight: 450;
-	font-size: 0.95rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-top: 1px solid #e7e9de;
+  border-bottom: 1px solid #e7e9de;
+  font-weight: 450;
+  font-size: 0.95rem;
 }
 
 .voteMemberTxt {
-	text-align: left;
+  text-align: left;
 }
 
 .voteTimeTxt {
-	font-size: small;
-	margin-bottom: 0.5rem;
-	color: #747474;
+  font-size: small;
+  margin-bottom: 0.5rem;
+  color: #747474;
 }
 
 .timeLeft {
-	color: #ff9191;
+  color: #ff9191;
 }
 
 .moaclubVoteContent {
-	margin-top: 4.5rem;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+  margin-top: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .moaclubVoteStatusContent {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin-top: 2rem;
-	height: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  height: 10rem;
 }
 
 .moaclubVoteStatusContent2 {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin-top: 2rem;
-	height: 13rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  height: 13rem;
 }
 
 .candidateWrapper {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	margin: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0.5rem;
 }
 
 .moaVoteProfileDesc {
-	text-align: center;
-	width: 100%;
-	margin-top: 0.4rem;
+  text-align: center;
+  width: 100%;
+  margin-top: 0.4rem;
 }
 
 .voteProfile {
-	width: 2.4rem;
-	height: 2.4rem;
-	border-radius: 50%;
-	object-fit: cover;
-	overflow: hidden;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  object-fit: cover;
+  overflow: hidden;
 }
 
 .mintTxt {
-	color: #91ddcf;
-	font-weight: bold;
+  color: #91ddcf;
+  font-weight: bold;
 }
 
 .moaTrsfBox {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
 }
 
 .moaVoteAmountTxt {
-	color: #91ddcf;
-	font-weight: bold;
-	font-size: large;
-	margin-left: 0.5rem;
+  color: #91ddcf;
+  font-weight: bold;
+  font-size: large;
+  margin-left: 0.5rem;
 }
 
 .voteTableFirstTd {
-	width: 4.5rem;
+  width: 4.5rem;
 }
 
 .voteTableLastTd {
-	width: 3.5rem;
+  width: 3.5rem;
 }
 
 .voteTableLastTd2 {
-	width: 6rem;
+  width: 6rem;
 }
 
 .moaWithdrawInfoTxt {
-	text-align: left;
-	color: #c4c4c4;
-	font-size: small;
-	margin-left: 2.5rem;
-	margin-top: 9rem;
+  text-align: left;
+  color: #c4c4c4;
+  font-size: small;
+  margin-left: 2.5rem;
+  margin-top: 9rem;
 }
 
 .moaWithdrawWarn {
-	color: #ff9191;
-	font-size: small;
+  color: #ff9191;
+  font-size: small;
 }
 
 .moaWithdrawBalance {
-	color: #747474;
-	font-size: 0.8rem;
-	margin-left: 3rem;
+  color: #747474;
+  font-size: 0.8rem;
+  margin-left: 3rem;
 }
 
 .moaWithdrawInAccPopUp {
-	color: #c4c4c4;
-	font-size: small;
+  color: #c4c4c4;
+  font-size: small;
 }
 
 .moaWithdrawStrong {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 // 자동이체
 .moaAutoTrsf {
-	margin-top: 9rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
+  margin-top: 9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
-	.autoTrsfBanner {
-		width: 7.5rem;
-		margin-bottom: 1.5rem;
-	}
+  .autoTrsfBanner {
+    width: 7.5rem;
+    margin-bottom: 1.5rem;
+  }
 
-	.moaAutoTrsfInfo {
-		font-size: 1.1rem;
-		margin-bottom: 0.3rem;
-	}
+  .moaAutoTrsfInfo {
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+  }
 
-	.moaAutoTrsfName {
-		font-weight: bold;
-	}
+  .moaAutoTrsfName {
+    font-weight: bold;
+  }
 
-	.moaAutoTrsfHighlight {
-		color: #f19ed3;
-		font-weight: bold;
-	}
+  .moaAutoTrsfHighlight {
+    color: #f19ed3;
+    font-weight: bold;
+  }
 
-	.moaAutoTrsfBox {
-		border: 0.15rem solid #f3dff1;
-		border-radius: 0.3rem;
-		width: 70%;
-		height: 5rem;
-		margin-top: 2rem;
-		padding: 0.8rem 1rem 1.5rem 1rem;
-		hr {
-			margin-top: 0.35rem;
-			margin-bottom: 0.45rem;
-			border: 0;
-			height: 0.9px;
-			background-color: #e2e2e2;
-		}
+  .moaAutoTrsfBox {
+    border: 0.15rem solid #f3dff1;
+    border-radius: 0.3rem;
+    width: 70%;
+    height: 5rem;
+    margin-top: 2rem;
+    padding: 0.8rem 1rem 1.5rem 1rem;
+    hr {
+      margin-top: 0.35rem;
+      margin-bottom: 0.45rem;
+      border: 0;
+      height: 0.9px;
+      background-color: #e2e2e2;
+    }
 
-		span {
-			text-align: left;
-			display: block;
-			width: 100%;
-			font-weight: 500;
-		}
+    span {
+      text-align: left;
+      display: block;
+      width: 100%;
+      font-weight: 500;
+    }
 
-		table {
-			width: 100%;
-			border-collapse: collapse;
-			th {
-				text-align: left;
-				font-weight: 300;
-				font-size: 0.9rem;
-				color: #7d7d7d;
-			}
-			td {
-				text-align: right;
-				font-size: 0.9rem;
-				font-weight: 300;
-			}
-		}
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      th {
+        text-align: left;
+        font-weight: 300;
+        font-size: 0.9rem;
+        color: #7d7d7d;
+      }
+      td {
+        text-align: right;
+        font-size: 0.9rem;
+        font-weight: 300;
+      }
+    }
 
-		.moaAutoTrsfBoxHeader {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			width: 100%;
-		}
+    .moaAutoTrsfBoxHeader {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
 
-		.moaAutoTrsfBoxBadge {
-			background-color: #f6f5f5;
-			border-radius: 0.4rem;
-			font-size: 0.7rem;
-			width: 4rem;
-			height: 1.3rem;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			color: #2c2c2c;
-		}
-	}
+    .moaAutoTrsfBoxBadge {
+      background-color: #f6f5f5;
+      border-radius: 0.4rem;
+      font-size: 0.7rem;
+      width: 4rem;
+      height: 1.3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #2c2c2c;
+    }
+  }
 
-	.moaAutoTrsfCreate {
-		background-color: #f19ed3;
-		color: white;
-		width: 5rem;
-		height: 2rem;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border-radius: 0.7rem;
-		margin-top: 2rem;
-	}
+  .moaAutoTrsfCreate {
+    background-color: #f19ed3;
+    color: white;
+    width: 5rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.7rem;
+    margin-top: 2rem;
+  }
 }
 
 .moaAutoTrsfDetail {
-	margin: 1.5rem;
-	display: flex;
-	flex-direction: column;
+  margin: 1.5rem;
+  display: flex;
+  flex-direction: column;
 
-	.moaAutoTrsfDetailTxt {
-		text-align: left;
-		font-weight: 550;
-		font-size: 1rem;
-		margin-top: -1rem;
-		margin-bottom: 1rem;
-	}
+  .moaAutoTrsfDetailTxt {
+    text-align: left;
+    font-weight: 550;
+    font-size: 1rem;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+  }
 
-	.moaAutoTrsfDetailTable {
-		width: 100%;
-		border-collapse: collapse;
+  .moaAutoTrsfDetailTable {
+    width: 100%;
+    border-collapse: collapse;
 
-		th,
-		td {
-			padding: 0.5rem;
-			border-bottom: 1px solid #ddd;
-			vertical-align: middle;
-		}
+    th,
+    td {
+      padding: 0.5rem;
+      border-bottom: 1px solid #ddd;
+      vertical-align: middle;
+    }
 
-		th {
-			text-align: left;
-			font-weight: 300;
-			font-size: 0.9rem;
-			color: #7d7d7d;
-		}
+    th {
+      text-align: left;
+      font-weight: 300;
+      font-size: 0.9rem;
+      color: #7d7d7d;
+    }
 
-		td {
-			text-align: right;
-			font-size: 0.9rem;
-			font-weight: 300;
-		}
+    td {
+      text-align: right;
+      font-size: 0.9rem;
+      font-weight: 300;
+    }
 
-		tr:last-child th,
-		tr:last-child td {
-			border-bottom: none;
-		}
-	}
+    tr:last-child th,
+    tr:last-child td {
+      border-bottom: none;
+    }
+  }
 
-	.moaAutoTrsfDelete {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
+  .moaAutoTrsfDelete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-	.moaAutoTrsfDeleteTxt {
-		border: 1px solid #ddd;
-		color: #6e6e6e;
-		margin-top: 2.5rem;
-		font-size: 0.9rem;
-		height: 1.7rem;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border-radius: 0.3rem;
-		width: 19rem;
-	}
+  .moaAutoTrsfDeleteTxt {
+    border: 1px solid #ddd;
+    color: #6e6e6e;
+    margin-top: 2.5rem;
+    font-size: 0.9rem;
+    height: 1.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.3rem;
+    width: 19rem;
+  }
 }
 
 .moaAutoTrsfDetailPopUp {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
 }
 
 .moaAutoTrsfDetailPopUpTable {
-	width: 77%;
-	border-collapse: collapse;
+  width: 77%;
+  border-collapse: collapse;
 
-	th,
-	td {
-		padding: 0.5rem;
-	}
+  th,
+  td {
+    padding: 0.5rem;
+  }
 
-	th {
-		text-align: left;
-		font-weight: 300;
-		font-size: 0.9rem;
-		color: #7d7d7d;
-	}
+  th {
+    text-align: left;
+    font-weight: 300;
+    font-size: 0.9rem;
+    color: #7d7d7d;
+  }
 
-	td {
-		text-align: right;
-		font-size: 0.9rem;
-		font-weight: 300;
-	}
+  td {
+    text-align: right;
+    font-size: 0.9rem;
+    font-weight: 300;
+  }
 }
 
 .MoaAutoTrsfCompleteCheck {
-	width: 5rem;
+  width: 5rem;
 }
