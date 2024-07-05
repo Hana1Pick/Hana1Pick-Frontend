@@ -39,7 +39,7 @@ const MainPage = () => {
 	const getNotifications = async (userIdx: string) => {
 		try {
 			const response = await axios.get(
-				`http://${process.env.REACT_APP_BESERVERURI}/api/notification/${userIdx}`
+				`${process.env.REACT_APP_BESERVERURI}/api/notification/${userIdx}`
 			);
 			console.log(response.data.data);
 			return response.data.data;
@@ -90,7 +90,7 @@ const MainPage = () => {
 		// 	return;
 		// }
 
-		const url = `http://${process.env.REACT_APP_BESERVERURI}/api/user/accounts/list`;
+		const url = `${process.env.REACT_APP_BESERVERURI}/api/user/accounts/list`;
 
 		axios
 			.get(url, {

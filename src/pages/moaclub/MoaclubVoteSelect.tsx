@@ -15,7 +15,7 @@ function MoaclubVoteSelect() {
 	const [disabled, setDisabled] = useState(false);
 
 	const goMoaclubVoteManager = () => {
-		const url = `http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/vote-result`;
+		const url = `${process.env.REACT_APP_BESERVERURI}/api/moaclub/vote-result`;
 
 		axios
 			.post(
@@ -44,7 +44,7 @@ function MoaclubVoteSelect() {
 	};
 
 	const goMoaclubVoteTrsf = () => {
-		const url = `http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/vote-result`;
+		const url = `${process.env.REACT_APP_BESERVERURI}/api/moaclub/vote-result`;
 
 		axios
 			.post(

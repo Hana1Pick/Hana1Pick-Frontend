@@ -162,3 +162,11 @@ export type CommonModalType2 = {
 	show: boolean;
 	onConfirm: () => void;
 };
+
+//patternLineType
+export type Line = {
+  startX: number;
+  startY: number;
+  endX: number;
+  endY: number;
+}

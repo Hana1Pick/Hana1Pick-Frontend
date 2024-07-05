@@ -21,7 +21,7 @@ function MoaclubSetting() {
 	const getManagerCheck = async (userIdx: string, accountId: string) => {
 		try {
 			const response = await axios.post(
-				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/manager-check`,
+				`${process.env.REACT_APP_BESERVERURI}/api/moaclub/manager-check`,
 				{
 					userIdx,
 					accountId,
@@ -57,7 +57,7 @@ function MoaclubSetting() {
 	};
 
 	const next = () => {
-		const requestUrl = `http://${process.env.REACT_APP_BESERVERURI}/api/moaclub`;
+		const requestUrl = `${process.env.REACT_APP_BESERVERURI}/api/moaclub`;
 
 		axios
 			.delete(requestUrl, {

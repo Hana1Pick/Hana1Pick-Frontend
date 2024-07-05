@@ -55,7 +55,7 @@ const MoaclubPage = () => {
 	const getManagerCheck = async (userIdx: string, accountId: string) => {
 		try {
 			const response = await axios.post(
-				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/manager-check`,
+				`${process.env.REACT_APP_BESERVERURI}/api/moaclub/manager-check`,
 				{
 					userIdx,
 					accountId,
@@ -71,7 +71,7 @@ const MoaclubPage = () => {
 	const getMoaclubInfo = async (userIdx: string, accountId: string) => {
 		try {
 			const response = await axios.post(
-				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`,
+				`${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`,
 				{
 					userIdx,
 					accountId,
@@ -88,7 +88,7 @@ const MoaclubPage = () => {
 	const getAccountHistory = async (accountId: string) => {
 		try {
 			const response = await axios.post(
-				`http://${process.env.REACT_APP_BESERVERURI}/api/account`,
+				`${process.env.REACT_APP_BESERVERURI}/api/account`,
 				{
 					accountId,
 				}

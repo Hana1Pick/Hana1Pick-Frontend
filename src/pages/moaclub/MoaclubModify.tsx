@@ -25,7 +25,7 @@ function MoaclubModify() {
 	const getMoaclubInfo = async (userIdx: string, accountId: string) => {
 		try {
 			const response = await axios.post(
-				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`,
+				`${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`,
 				{
 					userIdx,
 					accountId,
@@ -83,7 +83,7 @@ function MoaclubModify() {
 	};
 
 	const next = () => {
-		const updateUrl = `http://${process.env.REACT_APP_BESERVERURI}/api/moaclub`;
+		const updateUrl = `${process.env.REACT_APP_BESERVERURI}/api/moaclub`;
 
 		const updateData = {
 			accountId: accountId,
@@ -98,7 +98,7 @@ function MoaclubModify() {
 			candidateIdx !== null &&
 			candidateIdx !== ''
 		) {
-			const requestUrl = `http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/request-manager`;
+			const requestUrl = `${process.env.REACT_APP_BESERVERURI}/api/moaclub/request-manager`;
 
 			const requestData = {
 				accountId: accountId,

@@ -20,7 +20,7 @@ const NavBar: React.FC<NavBarProps> = ({ isOpen, onClose }) => {
 	const getNotifications = async (userIdx: string) => {
 		try {
 			const response = await axios.get(
-				`http://${process.env.REACT_APP_BESERVERURI}/api/notification/${userIdx}`
+				`${process.env.REACT_APP_BESERVERURI}/api/notification/${userIdx}`
 			);
 			return response.data.data;
 		} catch (error) {

@@ -22,7 +22,7 @@ function SelectAccountPage() {
     navigate('/cash-out/amount');
   };
 
-  const url = `http://${process.env.REACT_APP_BESERVERURI}/api/account/cash-out`;
+  const url = `${process.env.REACT_APP_BESERVERURI}/api/account/cash-out`;
   const data = {
     userIdx: userIdx,
     outAccId: outAccId,

@@ -27,7 +27,7 @@ function MoaclubWithdraw() {
 	const getAccountListByType = async (userIdx: string, type: string) => {
 		try {
 			const response = await axios.get(
-				`http://${process.env.REACT_APP_BESERVERURI}/api/user/account-list`,
+				`${process.env.REACT_APP_BESERVERURI}/api/user/account-list`,
 				{
 					params: { userIdx, type },
 				}
@@ -64,7 +64,7 @@ function MoaclubWithdraw() {
 	const getMoaClubInfo = async (userIdx: string, accountId: string) => {
 		try {
 			const response = await axios.post(
-				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`,
+				`${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`,
 				{
 					userIdx,
 					accountId,
@@ -105,7 +105,7 @@ function MoaclubWithdraw() {
 	const currencyDetails = getCurrencyDetails(moaclub?.currency!);
 
 	const next = () => {
-		const requestUrl = `http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/request-withdraw`;
+		const requestUrl = `${process.env.REACT_APP_BESERVERURI}/api/moaclub/request-withdraw`;
 
 		const requestData = {
 			accountId: accountId,

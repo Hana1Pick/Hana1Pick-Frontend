@@ -39,7 +39,7 @@ function MoaclubVoteTrsf() {
 	const getManagerCheck = async (userIdx: string, accountId: string) => {
 		try {
 			const response = await axios.post(
-				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/manager-check`,
+				`${process.env.REACT_APP_BESERVERURI}/api/moaclub/manager-check`,
 				{
 					userIdx,
 					accountId,
@@ -55,7 +55,7 @@ function MoaclubVoteTrsf() {
 	const getMoaClubRequest = async (accountId: string, userIdx: string) => {
 		try {
 			const response = await axios.post(
-				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/vote-result`,
+				`${process.env.REACT_APP_BESERVERURI}/api/moaclub/vote-result`,
 				{
 					accountId,
 					userIdx,
@@ -81,7 +81,7 @@ function MoaclubVoteTrsf() {
 	const getMemberList = async (accountId: string) => {
 		try {
 			const response = await axios.get(
-				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/member`,
+				`${process.env.REACT_APP_BESERVERURI}/api/moaclub/member`,
 				{
 					params: {
 						accountId,
@@ -98,7 +98,7 @@ function MoaclubVoteTrsf() {
 	const getMoaClubInfo = async (userIdx: string, accountId: string) => {
 		try {
 			const response = await axios.post(
-				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`,
+				`${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`,
 				{
 					userIdx,
 					accountId,
@@ -160,7 +160,7 @@ function MoaclubVoteTrsf() {
 	const currencyValue = getCurrencySymbol(currency);
 
 	const goVote = () => {
-		const url = `http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/vote`;
+		const url = `${process.env.REACT_APP_BESERVERURI}/api/moaclub/vote`;
 
 		const data = {
 			accountId: accountId,
