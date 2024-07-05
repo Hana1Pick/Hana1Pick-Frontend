@@ -217,16 +217,13 @@
 	}
 
 	// Notification
-	.alarmStatus {
-		position: relative;
-		.red-dot {
-			background-color: #fc5c50;
-			position: fixed;
-			top: 1.05rem;
-			right: 1.5rem;
-			width: 0.4rem;
-			height: 0.4rem;
-			border-radius: 50%;
-		}
+	.red-dot {
+		background-color: #fc5c50;
+		position: absolute;
+		top: 1.05rem;
+		right: 1.3rem;
+		width: 0.4rem;
+		height: 0.4rem;
+		border-radius: 50%;
 	}
 }

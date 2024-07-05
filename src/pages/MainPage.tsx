@@ -154,9 +154,7 @@ const MainPage = () => {
 						{' '}
 						{/* 햄버거 메뉴바 부분 */}
 						<img src={menuIcon} alt='menu-icon' />
-						<div className='alarmStatus'>
-							{notificationCount > 0 && <div className='red-dot'></div>}
-						</div>
+						{notificationCount > 0 && <div className='red-dot'></div>}
 					</div>
 				</div>
 
