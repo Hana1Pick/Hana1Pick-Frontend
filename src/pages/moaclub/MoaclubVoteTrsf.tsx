@@ -14,6 +14,7 @@ import {
 	MoaClubVoteResult,
 } from '../../type/commonType';
 import CommonBtn from '../../components/button/CommonBtn';
+import CommonModal2 from '../../components/button/CommonModal2';
 
 function MoaclubVoteTrsf() {
 	const navigate = useNavigate();
@@ -27,6 +28,8 @@ function MoaclubVoteTrsf() {
 	const [myProfile, setMyProfile] = useState<memberList | null>(null);
 	const [timeLeft, setTimeLeft] = useState<string>('');
 	const [currency, setCurrency] = useState('');
+	const [look, setLook] = useState(false);
+	const [disabled, setDisabled] = useState(false);
 
 	const getManagerCheck = async (userIdx: string, accountId: string) => {
 		try {
@@ -149,7 +152,7 @@ function MoaclubVoteTrsf() {
 
 	const currencyValue = getCurrencySymbol(currency);
 
-	const next = () => {
+	const goVote = () => {
 		const url = `http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/vote`;
 
 		const data = {
@@ -175,6 +178,12 @@ function MoaclubVoteTrsf() {
 			.catch((error) => {
 				console.log(error);
 			});
+	};
+
+	const next = () => {
+		console.log('modal');
+		setLook(true);
+		setDisabled(true);
 	};
 
 	const getVoteStatus = (name: string) => {
@@ -232,7 +241,7 @@ function MoaclubVoteTrsf() {
 
 	return (
 		<>
-			<Header value='모아클럽 출금 동의' disabled={false} />
+			<Header value='모아클럽 출금 동의' disabled={disabled} />
 			<div className='content'>
 				<div>모아클럽 출금에 동의하십니까?</div>
 				<div className='moaTrsfBox'>
@@ -241,7 +250,6 @@ function MoaclubVoteTrsf() {
 					{currencyValue}
 				</div>
 			</div>
-
 			<div className='moaclubVoteStatusContent2'>
 				<span className='voteTimeTxt'>투표 현황</span>
 				<table className='moaclubFeeTable'>
@@ -274,7 +282,6 @@ function MoaclubVoteTrsf() {
 							))}
 				</table>
 			</div>
-
 			<div className='moaclubVoteContent'>
 				{isManager ? (
 					<div className='timeLeft'>관리자는 투표 권한이 없습니다.</div>
@@ -314,7 +321,6 @@ function MoaclubVoteTrsf() {
 					</>
 				)}
 			</div>
-
 			<div className='buttonContainer'>
 				<CommonBtn
 					type='pink'
@@ -323,6 +329,15 @@ function MoaclubVoteTrsf() {
 					disabled={isButtonDisabled()}
 				/>
 			</div>
+
+			<CommonModal2
+				msg={`재투표가 불가합니다.\n 투표를 진행하시겠습니까?`}
+				show={look}
+				onCancle={() => {
+					setLook(false);
+				}}
+				onConfirm={goVote}
+			/>
 		</>
 	);
 }
