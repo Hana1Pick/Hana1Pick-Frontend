@@ -1,10 +1,7 @@
 import Header from "../../../components/Header";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Logo from "../../../assets/images/common/CircleLogo.png";
 import KakaoLoginButton from "../../../assets/images/kakao/kakao_login.png";
 import "./style.scss";
-import React from 'react';
 
 const KakaoLoginPage = () => {
 const CLIENT_ID = process.env.REACT_APP_REST_API_KEY;

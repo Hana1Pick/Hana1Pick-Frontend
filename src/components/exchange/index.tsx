@@ -24,7 +24,7 @@ const Exchange = () => {
   }> => {
     try {
       const response = await axios.get(
-        `http://${process.env.REACT_APP_BESERVERURI}/api/exchange-rates/current`
+        `${process.env.REACT_APP_BESERVERURI}/api/exchange-rates/current`
       );
       console.log(response.data);
      
@@ -36,7 +36,7 @@ const Exchange = () => {
 
 
         const previousDayResponse = await axios.get(
-          `http://${process.env.REACT_APP_BESERVERURI}/api/exchange-rates/previous-day`
+          `${process.env.REACT_APP_BESERVERURI}/api/exchange-rates/previous-day`
         );
         console.log(previousDayResponse.data);
 
