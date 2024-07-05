@@ -4,7 +4,6 @@ function CelubWithdraw(){
     const nextStage =()=>{
         const div1 = document.getElementById('withdraw-box4');
         const div2 = document.getElementById('celub-withdraw-overlay');
-         
         if(div1){
             div1.style.display = 'block';
         }

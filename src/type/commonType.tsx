@@ -153,3 +153,10 @@ export interface ExchangeRates {
   JPY: number;
   CNY: number;
 }
+  //patternLineType
+export type Line = {
+  startX: number;
+  startY: number;
+  endX: number;
+  endY: number;
+}
