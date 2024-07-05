@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import checkImg from '../../assets/images/celub/celubAcc.png';
+import "./CelublogStyle.scss";
 import qs from 'qs';
 import axios from 'axios';
 function CelubComplete(){
@@ -16,7 +17,7 @@ function CelubComplete(){
     const formattedDate = `${year}.${month}.${day}`;
     const goList=()=>{
         const data={
-            userIdx: localStorage.getItem("userIdx")??"",
+            userIdx: localStorage.getItem("userIdx")
         }
         axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/account-list`,
             qs.stringify(data)
@@ -39,7 +40,7 @@ function CelubComplete(){
                     </div>
                 </div>
             </div>
-            <div className="completeBox3">
+            <div className="completeBox3" style={{"marginTop":"40px"}}>
                 <div className="tableBox">
                     <table className="completeInfo">
                         <tr>

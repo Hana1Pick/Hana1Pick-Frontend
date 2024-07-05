@@ -1,9 +1,12 @@
 import arrow from'../assets/images/celub/arrow.png';
-function CelubHeader(value:string){
+interface CelubHeaderProps {
+    value: string;
+}
+function CelubHeader({ value }: CelubHeaderProps){
     return(
         <>
             <div id="celubHeader1">
-                <img id="arrow_loc" src={arrow} />
+                <img className="back" src={arrow} />
                 <h4>{value}</h4>
             </div>
         </>

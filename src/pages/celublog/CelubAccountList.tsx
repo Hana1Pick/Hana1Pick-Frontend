@@ -1,9 +1,10 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import CelubHeader from "../../layouts/CelubHeader2";
+import CelubHeader from "../../layouts/CelubHeader";
 import { CelubAccount } from '../../type/commonType';
+import "./CelublogStyle.scss";
 import axios from "axios";
 import qs from 'qs';
-import { useState } from "react";
+
 function CelubAccountList(){
     const location = useLocation();
     const navigate = useNavigate();
@@ -18,10 +19,9 @@ function CelubAccountList(){
                 alert("실패");
             });
     }
-  
     return(
         <>
-            <CelubHeader/>
+            <CelubHeader value="셀럽로그 조회"/>
             <div className="celubListBox1">
                 <span>조회할 계좌를 선택해주세요</span>
             </div>
@@ -31,17 +31,15 @@ function CelubAccountList(){
                     <div className="celubCard" onClick={() => goAccount(account.account_id)}>
                         <div className="celubCardInner">
                         <div className="celubCardFront" style={{"backgroundImage": `url(${account.imgSrc})`}}>
-                            <span className="accountName">{account.name}</span>
+                            <span className="celub-accountName">{account.name}</span>
                         </div>
-                        <div className="celubCardBack"  style={{"backgroundImage":  `url(${account.imgSrc})`,  "opacity" : "0.5"}}>
-                            <span className="accountName">{account.name}</span>
-                            <span className="accountNum">{account.account_id}</span>
-                            <span className="balance">{account.balance}원</span>
+                        <div className="celubCardBack"  style={{"backgroundImage":  `url(${account.imgSrc})`,  "opacity" : "0.7"}}>
+                            <span className="celub-accountName">{account.name}</span>
+                            <span className="celub-accountNum">{account.account_id}</span>
+                            <span className="celub-balance">{account.balance}원</span>
                         </div>
                     </div>
                 </div>
-                
-
                 ))
             }      
         </>
