@@ -1,8 +1,9 @@
 import Header from '../../layouts/MoaclubHeader3';
 import PattrenBg from '../../assets/images/common/PatternBg.png';
+import alarmLogo from '../../assets/images/common/hanaCircleLogo.png';
 import './MoaclubStyle.scss';
 import '../../common/styles/scss/CommonStyle.scss';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { MoaclubAccHis, MoaclubInfo } from '../../type/commonType';
@@ -18,6 +19,38 @@ const MoaclubPage = () => {
 		null
 	);
 	const [isManager, setIsManager] = useState<boolean>(false);
+
+	useEffect(() => {
+		if (localStorage.getItem('alarm') === 'true') {
+			showAlarm(localStorage.getItem('alarmMessage')!);
+
+			// flag 초기화
+			localStorage.removeItem('alarm');
+			localStorage.removeItem('alarmMessage');
+		}
+	}, []);
+
+	const showAlarm = (message: String) => {
+		const alarmBox = document.getElementById('moaclubTopAlarmBox');
+		const alarmContent = document.getElementById('moaclubTopAlarmContent');
+		if (alarmBox && alarmContent) {
+			alarmContent.innerHTML = `모아클럽<br/>${message}`;
+			alarmBox.style.display = 'flex';
+			alarmBox.style.animation = 'slideDown 0.5s forwards';
+
+			setTimeout(() => {
+				alarmBox.style.display = 'flex';
+				alarmBox.style.animation = 'slideDown 0.5s forwards';
+
+				setTimeout(() => {
+					alarmBox.style.animation = 'slideUp 0.5s forwards';
+					setTimeout(() => {
+						alarmBox.style.display = 'none';
+					}, 500); // slideUp 애니메이션의 지속 시간
+				}, 2500); // slideDown 애니메이션 지속 시간 + 알림 표시 시간
+			}, 1000); // 알림이 나타나기 전 지연 시간
+		}
+	};
 
 	const getManagerCheck = async (userIdx: string, accountId: string) => {
 		try {
@@ -127,6 +160,11 @@ const MoaclubPage = () => {
 
 	return (
 		<>
+			<div id='moaclubTopAlarmBox'>
+				<img src={alarmLogo} alt='alarmTalk' />
+				<div id='moaclubTopAlarmContent'></div>
+				<div className='moaclubTopAlarmTime'>지금</div>
+			</div>
 			<div className='moaclub-background-container'>
 				<Header value={moaclub?.name!} disabled={true} onClick={goSetting} />
 				<img src={PattrenBg} alt='Pattern Background' className='pattern-bg' />

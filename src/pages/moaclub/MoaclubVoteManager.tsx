@@ -11,6 +11,8 @@ import { useEffect, useState } from 'react';
 import { memberList, MoaClubVoteResult } from '../../type/commonType';
 import CommonBtn from '../../components/button/CommonBtn';
 import MoaclubModal from '../../components/modal/MoaClubModal';
+import CommonModal2 from '../../components/button/CommonModal2';
+import CommonModal3 from '../../components/button/\bCommonModal3';
 
 function MoaclubVoteManager() {
 	const navigate = useNavigate();
@@ -24,10 +26,28 @@ function MoaclubVoteManager() {
 	const [myProfile, setMyProfile] = useState<memberList | null>(null);
 	const [timeLeft, setTimeLeft] = useState<string>('');
 	const [manager, setManager] = useState<memberList | null>(null);
-	const [modalIsOpen, setModalIsOpen] = useState(false);
+	const [look, setLook] = useState(false);
+	const [look2, setLook2] = useState(false);
+	const [disabled, setDisabled] = useState(false);
+	const [moaName, setMoaName] = useState('');
+	const alarm = 'true';
+	const alarmValue = '관리자 변경 요청';
 
-	const openModal = () => setModalIsOpen(true);
-	const closeModal = () => setModalIsOpen(false);
+	const getMoaClubInfo = async (userIdx: string, accountId: string) => {
+		try {
+			const response = await axios.post(
+				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`,
+				{
+					userIdx,
+					accountId,
+				}
+			);
+			return response.data.data.name;
+		} catch (error) {
+			console.error(error);
+			return null;
+		}
+	};
 
 	const getManagerCheck = async (userIdx: string, accountId: string) => {
 		try {
@@ -94,9 +114,11 @@ function MoaclubVoteManager() {
 				const moaClubReqRes = await getMoaClubRequest(accountId, userIdx);
 				const memberListRes = await getMemberList(accountId);
 				const isManager = await getManagerCheck(userIdx, accountId);
+				const moaClubInfoRes = await getMoaClubInfo(userIdx, accountId);
 				setIsManager(isManager);
 				setVoteResult(moaClubReqRes);
 				setMemberList(memberListRes);
+				setMoaName(moaClubInfoRes);
 
 				if (memberListRes) {
 					const myInfo = memberListRes.find(
@@ -132,32 +154,66 @@ function MoaclubVoteManager() {
 	};
 
 	const next = () => {
-		openModal();
-		// const url = `http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/vote`;
+		console.log('modal');
+		setLook(true);
+		setDisabled(true);
+	};
 
-		// const data = {
-		// 	accountId: accountId,
-		// 	userIdx: userIdx,
-		// 	agree: selectVote,
-		// };
+	const goConfirm = () => {
+		setLook(false);
+		setLook2(true);
+		setDisabled(true);
+	};
 
-		// axios
-		// 	.post(url, data, {
-		// 		headers: {
-		// 			'Content-Type': 'application/json',
-		// 		},
-		// 		params: {
-		// 			type: 0,
-		// 		},
-		// 	})
-		// 	.then((res) => {
-		// 		if (res.data.status === 201) {
-		// 			navigate(`/moaclub/main/${accountId}`);
-		// 		}
-		// 	})
-		// 	.catch((error) => {
-		// 		console.log(error);
-		// 	});
+	const goVote = () => {
+		const url = `http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/vote`;
+		const data = {
+			accountId: accountId,
+			userIdx: userIdx,
+			agree: selectVote,
+		};
+		axios
+			.post(url, data, {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				params: {
+					type: 0,
+				},
+			})
+			.then((res) => {
+				if (res.data.status === 200) {
+					const checkVoteResult = async () => {
+						const moaClubReqRes = await getMoaClubRequest(accountId!, userIdx);
+						// 모두 동의했고 나도 동의했을 때 > 반영 알림
+						const allAgree = () => {
+							return memberList!
+								.filter((member) => member.role !== 'MANAGER')
+								.every(
+									(member) => moaClubReqRes.votes[member.userName] === true
+								);
+						};
+						if (selectVote && allAgree()) {
+							console.log('agree');
+							const alarmMessage = `${moaName}에서 관리자가 변경되었어요.`;
+							localStorage.setItem('alarm', alarm);
+							localStorage.setItem('alarmMessage', alarmMessage);
+						}
+
+						// 동의하지 않았을 때 > 무조건 거절 > 거절 알림
+						if (!selectVote) {
+							const alarmMessage = `${moaName}의 관리자 변경 요청이 거절되었어요.`;
+							localStorage.setItem('alarm', alarm);
+							localStorage.setItem('alarmMessage', alarmMessage);
+						}
+						navigate(`/moaclub/main/${accountId}`);
+					};
+					checkVoteResult();
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	};
 
 	const getVoteStatus = (name: string) => {
@@ -215,7 +271,7 @@ function MoaclubVoteManager() {
 
 	return (
 		<>
-			<Header value='모아클럽 관리자 변경' disabled={false} />
+			<Header value='모아클럽 관리자 변경' disabled={disabled} />
 			<div className='content'>
 				<div>관리자 변경에 동의하십니까?</div>
 				<div className='candidateContainer'>
@@ -324,11 +380,19 @@ function MoaclubVoteManager() {
 				/>
 			</div>
 
-			<MoaclubModal
-				isOpen={modalIsOpen}
-				onClose={closeModal}
-				message='success'
-				onConfirm={closeModal}
+			<CommonModal2
+				msg={`재투표가 불가합니다.\n 투표를 진행하시겠습니까?`}
+				show={look}
+				onCancle={() => {
+					setLook(false);
+				}}
+				onConfirm={goConfirm}
+			/>
+
+			<CommonModal3
+				msg={`투표가 완료되었습니다.`}
+				show={look2}
+				onConfirm={goVote}
 			/>
 		</>
 	);

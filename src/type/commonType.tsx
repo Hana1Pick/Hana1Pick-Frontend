@@ -156,3 +156,9 @@ export type CommonModalType = {
 	onCancle: () => void;
 	onConfirm: () => void;
 };
+
+export type CommonModalType2 = {
+	msg: string;
+	show: boolean;
+	onConfirm: () => void;
+};
