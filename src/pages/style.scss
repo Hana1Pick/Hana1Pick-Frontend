@@ -183,6 +183,11 @@
         button {
             font-weight: 600;
             background: none;
+            // 사파리 브라우저에서 버튼의 기본 스타일을 제거
+            color: inherit; /* 부모 요소의 색상을 상속받도록 설정 */
+            // color: #000; /* 원하는 색상으로 설정 */
+            border: none; /* 버튼의 기본 테두리를 제거 */
+            text-decoration: none; /* 기본 밑줄 제거 */
         }
     }
 

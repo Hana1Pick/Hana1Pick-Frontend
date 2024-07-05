@@ -1,6 +1,5 @@
 import axios from "axios";
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { To, useNavigate } from "react-router-dom";
 import Logo from "../assets/images/common/CircleLogo.png";
 import menuIcon from "../assets/images/alarm/black_alarm_icon.png";
@@ -76,6 +75,16 @@ const MainPage = () => {
     trackMouse: true,
   });
 
+  // 계좌 클릭 이벤트 핸들러
+  const handleAccountClick = (account: Account) => {
+    if (account.accountType === 'moaclub') {
+      navigate(`/moaclub/main/${account.accountId}`);
+    } else {
+      // 다른 계좌 타입에 대한 처리
+      navigate(`/account/${account.accountId}`);
+    }
+  };
+
   console.log(
     'localStorage에 저장된 userIdx:',
     localStorage.getItem('userIdx')
@@ -122,7 +131,11 @@ const MainPage = () => {
               <>
                 {accounts.length > 0 ? (
                   accounts.map((account) => (
-                    <div className='accountBox' key={account.accountId}>
+                    <div
+                      className='accountBox'
+                      key={account.accountId}
+                      onClick={() => handleAccountClick(account)}
+                    >
                       <div className='imgContainer'>
                         <img src={Logo} alt='logo' />
                       </div>
