@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from "react";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
-import axios from "axios";
-import "./DepositStyle.scss"; // 스타일 시트 추가
-import Header from "../../components/Header";
+import React, { useEffect, useRef } from 'react';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import axios from 'axios';
+import './DepositStyle.scss'; // 스타일 시트 추가
+import Header from '../../components/Header';
 
 function OCRCamera() {
   const location = useLocation();
@@ -19,7 +19,7 @@ function OCRCamera() {
   //   password: "",
   // };
 
-  const url = `http://${process.env.REACT_APP_BESERVERURI}/api/user/ocr`;
+  const url = `${process.env.REACT_APP_BESERVERURI}/api/user/ocr`;
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -33,7 +33,7 @@ function OCRCamera() {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
           video: {
-            facingMode: "environment", // 후면 카메라 사용 설정
+            facingMode: 'environment', // 후면 카메라 사용 설정
             // facingMode: "user", // 전면 카메라 사용 설정
             width: { ideal: 518 }, // 원하는 해상도를 설정
             height: { ideal: 320 }, // 원하는 해상도를 설정
@@ -43,7 +43,7 @@ function OCRCamera() {
           videoRef.current.srcObject = stream;
         }
       } catch (error) {
-        console.error("Error accessing camera:", error);
+        console.error('Error accessing camera:', error);
       }
     };
     getCameraStream();
@@ -53,7 +53,7 @@ function OCRCamera() {
     if (canvasRef.current && videoRef.current) {
       const canvas = canvasRef.current;
       const video = videoRef.current;
-      const context = canvas.getContext("2d");
+      const context = canvas.getContext('2d');
 
       canvas.width = video.videoWidth;
       canvas.height = video.videoHeight;
@@ -61,22 +61,22 @@ function OCRCamera() {
       if (context) {
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-        const dataURL = canvas.toDataURL("image/jpg");
+        const dataURL = canvas.toDataURL('image/jpg');
 
         canvas.toBlob(async (blob) => {
           if (blob) {
             const requestData = new FormData();
-            requestData.append("file", blob, "captured_image.jpg");
+            requestData.append('file', blob, 'captured_image.jpg');
 
             try {
               const response = await axios.post(url, requestData, {
                 headers: {
-                  "Content-Type": "multipart/form-data",
+                  'Content-Type': 'multipart/form-data',
                 },
               });
 
               // 응답 데이터를 localStorage에 저장
-              localStorage.setItem("ocrData", JSON.stringify(response.data));
+              localStorage.setItem('ocrData', JSON.stringify(response.data));
 
               // 비디오 스트림 종료
               if (videoRef.current && videoRef.current.srcObject) {
@@ -98,29 +98,29 @@ function OCRCamera() {
                 navigate(`/userauth2`);
               }
             } catch (error) {
-              console.error("Error uploading image:", error);
+              console.error('Error uploading image:', error);
             }
           }
-        }, "image/jpg");
+        }, 'image/jpg');
       }
     }
   };
 
   return (
     <div>
-      <Header value="외국인등록증 인증" />
-      <div className="camera-container">
-        <div className="camera-preview">
+      <Header value='외국인등록증 인증' />
+      <div className='camera-container'>
+        <div className='camera-preview'>
           <video ref={videoRef} autoPlay playsInline></video>
-          <div className="deposit-overlay"></div>
+          <div className='deposit-overlay'></div>
         </div>
-        <p className="ocr-text-container">
+        <p className='ocr-text-container'>
           영역 안에 외국인등록증이 꽉 차도록 배치 후 <br />
           하단 버튼을 누르면 촬영됩니다.
         </p>
-        <button className="capture-button" onClick={captureAndUpload}></button>
-        <div className="ocr-text">사진촬영</div>
-        <canvas ref={canvasRef} style={{ display: "none" }}></canvas>
+        <button className='capture-button' onClick={captureAndUpload}></button>
+        <div className='ocr-text'>사진촬영</div>
+        <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
       </div>
     </div>
   );
