@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import CommonBtn from '../../components/button/CommonBtn';
 import { MoaclubInfo } from '../../type/commonType';
 import axios from 'axios';
+import CommonModal3 from '../../components/button/\bCommonModal3';
 
 function MoaclubModify() {
 	const navigate = useNavigate();
@@ -16,6 +17,10 @@ function MoaclubModify() {
 	const [clubFee, setClubFee] = useState<string>('');
 	const [selectedDate, setSelectedDate] = useState<string>('');
 	const [candidateIdx, setCandidateIdx] = useState<string>('');
+	const [look, setLook] = useState(false);
+	const [look2, setLook2] = useState(false);
+	const [look3, setLook3] = useState(false);
+	const [disabled, setDisabled] = useState(false);
 
 	const getMoaclubInfo = async (userIdx: string, accountId: string) => {
 		try {
@@ -91,7 +96,7 @@ function MoaclubModify() {
 		if (
 			candidateIdx !== manager?.userIdx &&
 			candidateIdx !== null &&
-			candidateIdx != ''
+			candidateIdx !== ''
 		) {
 			const requestUrl = `http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/request-manager`;
 
@@ -110,7 +115,11 @@ function MoaclubModify() {
 				.then((res) => {
 					if (res.data.status === 200) {
 						console.log('요청완료');
-						// 메세지 모달 (이미 요청)
+						setLook3(true);
+						setDisabled(true);
+					} else {
+						setLook(true);
+						setDisabled(true);
 					}
 				})
 				.catch((error) => {
@@ -126,8 +135,8 @@ function MoaclubModify() {
 			})
 			.then((res) => {
 				if (res.data.status === 200) {
-					console.log('수정완료');
-					window.location.reload();
+					setLook2(true);
+					setDisabled(true);
 				}
 			})
 			.catch((error) => {
@@ -137,7 +146,7 @@ function MoaclubModify() {
 
 	return (
 		<>
-			<Header value='모아클럽 수정' disabled={false} />
+			<Header value='모아클럽 수정' disabled={disabled} />
 			<div className='content'>
 				<div className='moaclubModify'>
 					<label>모아클럽 이름 수정</label>
@@ -181,12 +190,42 @@ function MoaclubModify() {
 								</option>
 							))}
 					</select>
+					<div className='moaWithdrawInfoTxt'>
+						* 이용안내 <br />
+						모아클럽 멤버 전원의 동의가 있는 경우
+						<br />
+						선택한 멤버로 관리자 변경이 이루어집니다.
+					</div>
 				</div>
 			</div>
 
 			<div className='buttonContainer'>
 				<CommonBtn type='pink' value='완료' onClick={next} disabled={false} />
 			</div>
+
+			<CommonModal3
+				msg={`이미 요청이 존재합니다.`}
+				show={look}
+				onConfirm={() => {
+					setLook(false);
+				}}
+			/>
+
+			<CommonModal3
+				msg={`수정되었습니다.`}
+				show={look2}
+				onConfirm={() => {
+					window.location.reload();
+				}}
+			/>
+
+			<CommonModal3
+				msg={`관리자 변경이 요청되었습니다.`}
+				show={look3}
+				onConfirm={() => {
+					setLook(false);
+				}}
+			/>
 		</>
 	);
 }

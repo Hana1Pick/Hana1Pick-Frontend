@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { MoaAutoTrsf } from '../../type/commonType';
 import CommonBtn from '../../components/button/CommonBtn';
+import CommonModal3 from '../../components/button/\bCommonModal3';
 
 function MoaclubAutoTrsfDetail() {
 	const navigate = useNavigate();
@@ -16,6 +17,7 @@ function MoaclubAutoTrsfDetail() {
 	const [moaclubName, setMoaClubName] = useState('');
 	const [autoTrsf, setAutoTrsf] = useState<MoaAutoTrsf | null>(null);
 	const [isDisabled, setIsDisabled] = useState<boolean>(false);
+	const [look, setLook] = useState(false);
 
 	const getMoaclubName = async (userIdx: string, accountId: string) => {
 		try {
@@ -77,7 +79,7 @@ function MoaclubAutoTrsfDetail() {
 			})
 			.then((res) => {
 				if (res.data.status === 200) {
-					navigate(`/moaclub/autotrsf/${accountId}`);
+					setLook(true);
 				}
 			})
 			.catch((error) => {
@@ -245,6 +247,13 @@ function MoaclubAutoTrsfDetail() {
 					</div>
 				</div>
 			</div>
+			<CommonModal3
+				msg={`자동이체가 해지되었습니다.`}
+				show={look}
+				onConfirm={() => {
+					navigate(`/moaclub/autotrsf/${accountId}`);
+				}}
+			/>
 		</>
 	);
 }

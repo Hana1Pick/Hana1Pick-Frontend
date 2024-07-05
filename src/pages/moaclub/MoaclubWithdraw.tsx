@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CommonBtn from '../../components/button/CommonBtn';
 import { Account, MoaclubInfo } from '../../type/commonType';
+import CommonModal3 from '../../components/button/\bCommonModal3';
 
 function MoaclubWithdraw() {
 	const navigate = useNavigate();
@@ -20,6 +21,8 @@ function MoaclubWithdraw() {
 	const [amount, setAmount] = useState<string>('');
 	const [isDisabled, setIsDisabled] = useState<boolean>(false);
 	const type = 'DEPOSIT';
+	const [look, setLook] = useState(false);
+	const [look2, setLook2] = useState(false);
 
 	const getAccountListByType = async (userIdx: string, type: string) => {
 		try {
@@ -118,10 +121,9 @@ function MoaclubWithdraw() {
 			})
 			.then((res) => {
 				if (res.data.status === 200) {
-					console.log('요청완료');
-					// 메세지 모달 (이미 요청)
+					setLook(true);
 				} else {
-					alert('이미 요청 존재');
+					setLook2(true);
 				}
 			})
 			.catch((error) => {
@@ -267,6 +269,22 @@ function MoaclubWithdraw() {
 					</div>
 				</div>
 			</div>
+
+			<CommonModal3
+				msg={`출금 요청이 완료되었습니다.`}
+				show={look}
+				onConfirm={() => {
+					navigate(`/moaclub/vote/trsf/${accountId}`);
+				}}
+			/>
+
+			<CommonModal3
+				msg={`이미 요청이 존재합니다.`}
+				show={look2}
+				onConfirm={() => {
+					navigate(`/moaclub/vote/trsf/${accountId}`);
+				}}
+			/>
 		</>
 	);
 }
