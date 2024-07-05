@@ -140,6 +140,15 @@ export interface MoaAutoTrsf {
 	createDate: string;
 }
 
+// NotificationType
+export interface NotificationType {
+	idx: number;
+	content: string;
+	url: string;
+	createdAt: string;
+	type: string;
+}
+
 // ModalType
 export type CommonModalType = {
 	msg: string;
