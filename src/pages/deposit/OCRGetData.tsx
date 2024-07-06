@@ -13,66 +13,52 @@ function OCRGetData() {
   const [isNameMatched, setIsNameMatched] = useState(false);
   const [isNationMatched, setIsNationMatched] = useState(false);
 
-  const [show, setShow] = useState(false);
-
-  // 예시데이터
-  const formData = {
-    name: "PIAO XUANOING",
-    email: "tlqlapdls@gmail.co`m",
-    address: "02841 서울 성북구 안암로 145 (안암동5가, 고려대학교안암캠퍼스)",
-    birth: "1982-07-08",
-    phone: "01022234523",
-    nation: "CN",
-    password: "",
-  };
-
-  const ocrData = {
-    data: {
-      name: "PIAO XUANOING",
-      number: "123456-123456",
-      nation: "china",
-      certification: "방문취업",
-      date: "2021-22-22",
-    },
-  };
+  const [successShow, setSuccessShow] = useState(false);
+  const [failShow, setFailShow] = useState(false);
 
   const ocrDataString = localStorage.getItem("ocrData");
-  // const ocrData: OCRData = ocrDataString ? JSON.parse(ocrDataString) : null;
-  //const formData = location.state.userData;
+  const ocrData: OCRData = ocrDataString ? JSON.parse(ocrDataString) : null;
+  const formData = location.state.userData;
   const initialCapturedImage = location.state?.capturedImage || null;
   const [capturedImage, setCapturedImage] = useState<string | null>(
     initialCapturedImage
   );
 
-  const handleClose = () => {
-    setShow(false);
+  const handleSuccessClose = () => {
+    setSuccessShow(false);
     navigate("/deposit3", { state: { formData } });
+  };
+
+  const handleFailClose = () => {
+    setFailShow(false);
   };
 
   console.log(formData);
   console.log(ocrData);
 
-  useEffect(() => {
+  const handleConfirm = () => {
+    // 이름과 국적 일치 여부  확인
     if (ocrData) {
-      // 이름 일치 여부 설정
       const nameMatched = formData.name === ocrData.data.name;
-      setIsNameMatched(nameMatched);
-
-      // 국적 일치 여부 설정
       const normalizedUserNation = formData.nation.toLowerCase();
       const normalizedOCRDataNation = ocrData.data.nation.toLowerCase();
       const nationMatched =
         normalizedUserNation === "cn" && normalizedOCRDataNation === "china";
+
+      setIsNameMatched(nameMatched);
       setIsNationMatched(nationMatched);
 
-      // 모달 열기 여부 설정
       if (nameMatched && nationMatched) {
-        setTimeout(() => {
-          setShow(true);
-        }, 3000); // 5초 후에 모달을 열기
+        setSuccessShow(true);
+      } else {
+        setFailShow(true);
       }
     }
-  }, [ocrData, formData]);
+  };
+
+  const handleRecapture = () => {
+    navigate("/userauth", { state: { formData } }); // 재촬영 화면으로 이동
+  };
 
   return (
     <div className="deposit-creation">
@@ -90,6 +76,7 @@ function OCRGetData() {
           </div>
           <p className="deposit-input-container">
             신분증 정보를 확인해주세요. <br />
+            실제 정보와 다른 경우 재촬영해주세요.
           </p>
           <div className="deposit-input-container">
             <label htmlFor="number" className="deposit-input-label">
@@ -130,7 +117,7 @@ function OCRGetData() {
               체류 자격
             </label>
             <input
-              type="text" 
+              type="text"
               className="deposit-input-field"
               id="certification"
               value={ocrData.data.certification}
@@ -147,15 +134,36 @@ function OCRGetData() {
               id="date"
             />
           </div>
+          <div className="deposit-button-container">
+            <button className="ocr_btn1" onClick={handleConfirm}>
+              확인
+            </button>
+            <button className="ocr_btn2" onClick={handleRecapture}>
+              재촬영
+            </button>
+          </div>
         </div>
       </div>
-      {show && (
+      {successShow && (
         <div className="deposit-modal">
           <div className="deposit-modal-content">
             <h3>본인인증 완료</h3>
             <p>본인인증이 성공적으로 완료되었습니다.</p>
             <div className="deposit-input-container">
-              <button id="deposit-basicBtn" onClick={handleClose}>
+              <button id="deposit-basicBtn" onClick={handleSuccessClose}>
+                닫기
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {failShow && (
+        <div className="deposit-modal">
+          <div className="deposit-modal-content">
+            <h3>본인인증 실패</h3>
+            <p>본인인증에 실패하였습니다.</p>
+            <div className="deposit-input-container">
+              <button id="deposit-basicBtn" onClick={handleFailClose}>
                 닫기
               </button>
             </div>
