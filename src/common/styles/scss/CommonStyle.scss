@@ -1,22 +1,13 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 /* CommonBtn CSS */
-
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
 
 #basicBtn1 {
   width: 85%;
@@ -41,7 +32,6 @@ body {
   padding-top: 3%;
   padding-bottom: 3%;
 }
-
 #basicBtn1:disabled {
   background-color: #cfcfcf;
 }
@@ -87,21 +77,21 @@ body {
 }
 
 /* pattern CSS */
-
 .pattern-container {
   position: relative;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   justify-items: center;
   gap: 0.5rem;
-  margin-top: 3rem;
+  width: 18.75rem;
+  height: 18.75rem;
   margin: auto;
+  margin-top: 2rem;
 }
-
 .background-container {
   position: relative;
 }
-
 .overlay-text {
   position: absolute;
   top: 50%;
@@ -112,33 +102,28 @@ body {
   z-index: 10;
   color: #000000;
 }
-
 .overlay-text div {
   white-space: nowrap;
   color: #535353;
   margin-top: 10px;
 }
-
 .pattern-dot {
-  width: 0.7rem;
-  height: 0.7rem;
+  width: 0.5rem;
+  height: 0.5rem;
   border-radius: 50%;
   background-color: #000;
-  margin: 2.5rem;
+  margin: auto;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 .pattern-bg {
   width: 100%;
   height: auto;
 }
-
 .pattern-dot.selected {
   background-color: #f19ed3;
 }
-
 .pattern-lines {
   position: absolute;
   top: 0;
@@ -164,12 +149,12 @@ body {
 
 .commonModal {
   background: white;
-  padding: 20px;
+  padding: 20px 20px 10px 20px;
   border-radius: 8px;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   width: 50%;
-  p {
+  p{
     margin: 0;
     padding: 10px 0 20px 0;
     border-bottom: 1px solid #ccc;
@@ -181,26 +166,20 @@ body {
   align-items: center;
   justify-content: space-between;
   padding-top: 5px;
-}
-
-.commonModal-buttons {
-  button {
+  button{
     background: none;
     border: none;
     font-size: 16px;
     padding: 10px 0;
     flex: 1;
   }
-}
-
-.commonModal-buttons {
-  button:first-child {
+  button:first-child{
     border-right: 1px solid #ccc;
   }
 }
 
 .commonModal-buttons {
-  button:hover {
+  button:hover{
     background-color: #f0f0f0;
   }
 }

@@ -37,7 +37,7 @@ import CelubSelect from './pages/celublog/CelubSearch';
 import CelubAcc from './pages/celublog/CelubAcc';
 import CelubName from './pages/celublog/CelubName';
 import CelubPattern from './pages/celublog/CelubPattern';
-
+import CelubSetting from './pages/celublog/CelubSetting';
 // Photo Card
 import { PhotoCardContextProvider } from './contexts/PhotoCardContextProvider';
 import ImagePage from './pages/photocard/ImagePage';
@@ -78,6 +78,8 @@ import ChatRoom from './pages/chat/ChatRoom';
 
 // 서비스
 import ServicePage from './pages/service/ServicePage';
+import Test from './test';
+import CamTest from './CamTest';
 
 function App() {
   return (
@@ -141,9 +143,7 @@ function App() {
             }
           />
           {/* Celublog */}
-          <Route
-            path='/celub/*'
-            element={
+          <Route path='/celub/*'element={
               <AccountContextProvider>
                 <Routes>
                   <Route path='' element={<CelubPage />} />
@@ -155,6 +155,7 @@ function App() {
                   <Route path='search' element={<CelubSelect />} />
                   <Route path='name' element={<CelubName />} />
                   <Route path='pattern' element={<CelubPattern />} />
+                  <Route path="setting" element={<CelubSetting/>}/>
                   {/* <Route path="acc" element={<CelubAcc/>}/> */}
                 </Routes>
               </AccountContextProvider>
@@ -268,6 +269,10 @@ function App() {
               </PhotoCardContextProvider>
             }
           />
+        </Routes>
+        <Routes>
+            <Route path="/testing" element={<Test />}/>
+            <Route path="/camera-test" element={<CamTest />}/>
         </Routes>
       </BrowserRouter>
     </div>

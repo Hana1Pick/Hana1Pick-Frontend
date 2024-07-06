@@ -147,3 +147,11 @@ export type CommonModalType = {
   onCancle: () => void;
   onConfirm: () => void;
 };
+
+//patternLineType
+export type Line = {
+  startX: number;
+  startY: number;
+  endX: number;
+  endY: number;
+}

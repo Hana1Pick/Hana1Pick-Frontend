@@ -327,64 +327,6 @@
   padding-right: 3%;
 }
 
-/* 패턴 css */
-// 패턴 css가 두번 먹어서 주석처리 함- 다영
-/* 
-.pattern-container {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  justify-items: center;
-  gap: 0.5rem;
-  margin-top: 1rem;
-}
-.background-container {
-  position: relative;
-}
-.overlay-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  font-size: 16px;
-  z-index: 10;
-  color: #000000;
-}
-.overlay-text div {
-  white-space: nowrap;
-  color: #535353;
-  margin-top: 10px;
-}
-  .pattern-dot {
-    width: 0.7rem;
-    height: 0.7rem;
-    border-radius: 50%;
-    background-color: #000;
-    margin: 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  /*
-  // 패턴 css가 두번 먹어서 주석처리 함- 다영
-  .pattern-bg {
-    width: 100%;
-    height: auto;
-  }
-  .pattern-dot.selected {
-    background-color: #555359;
-  }
-  .pattern-lines {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-  } */
-/*camera css */
-
 .camera-container {
   margin-top: 6rem;
   display: flex;
