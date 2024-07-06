@@ -15,7 +15,7 @@ import {
 } from '../../type/commonType';
 import CommonBtn from '../../components/button/CommonBtn';
 import CommonModal2 from '../../components/button/CommonModal2';
-import CommonModal3 from '../../components/button/\bCommonModal3';
+import CommonModal3 from '../../components/button/CommonModal3';
 
 function MoaclubVoteTrsf() {
 	const navigate = useNavigate();

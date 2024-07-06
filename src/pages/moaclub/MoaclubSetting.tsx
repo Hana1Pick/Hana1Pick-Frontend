@@ -7,7 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CommonBtn from '../../components/button/CommonBtn';
-import CommonModal3 from '../../components/button/\bCommonModal3';
+import CommonModal3 from '../../components/button/CommonModal3';
 
 function MoaclubSetting() {
 	const navigate = useNavigate();
