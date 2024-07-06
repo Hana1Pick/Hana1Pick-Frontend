@@ -25,10 +25,10 @@ function MoaclubDeposit() {
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const type = "DEPOSIT";
   const [showExchangeResult, setShowExchangeResult] = useState<boolean>(false); // 환전 결과 표시 상태 추가
-
-  const { setInAccId, setOutAccId, setName, setTrsfAmount, setCurrency }: any =
-    useContext(MoaclubTrsfContext);
-  setInAccId(accountId);
+  
+	const { setInAccId, setOutAccId, setName, setTrsfAmount, setCurrency }: any =
+		useContext(MoaclubTrsfContext);
+	setInAccId(accountId);
 
   const exchangeResultRef = useRef<HTMLDivElement>(null); // 환전 결과 섹션 참조
   const amountInputRef = useRef<HTMLInputElement>(null); // amount input 참조
@@ -54,19 +54,19 @@ function MoaclubDeposit() {
     }
   };
 
-  useEffect(() => {
-    const fetchAccounts = async () => {
-      const accountData = await getAccountListByType(userIdx, type);
-      setAccount(accountData);
-    };
+	useEffect(() => {
+		const fetchAccounts = async () => {
+			const accountData = await getAccountListByType(userIdx, type);
+			setAccount(accountData);
+		};
 
-    fetchAccounts();
-  }, [userIdx, type]);
+		fetchAccounts();
+	}, [userIdx, type]);
 
-  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedAccount(event.target.value);
-    setOutAccId(event.target.value);
-  };
+	const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+		setSelectedAccount(event.target.value);
+		setOutAccId(event.target.value);
+	};
 
   const handleAmountChange = async (
     event: React.ChangeEvent<HTMLInputElement>
@@ -136,77 +136,74 @@ function MoaclubDeposit() {
     }
   };
 
-  const getAccCode = (accountId: string) => {
-    return accountId.slice(-7);
-  };
+	const getAccCode = (accountId: string) => {
+		return accountId.slice(-7);
+	};
 
-  const getMoaClubInfo = async (userIdx: string, accountId: string) => {
-    try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`,
-        {
-          userIdx,
-          accountId,
-        }
-      );
-      console.log(response.data.data);
-      return response.data.data;
-    } catch (error) {
-      console.error(error);
-      return null;
-    }
-  };
+	const getMoaClubInfo = async (userIdx: string, accountId: string) => {
+		try {
+			const response = await axios.post(
+				`${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`,
+				{
+					userIdx,
+					accountId,
+				}
+			);
+			console.log(response.data.data);
+			return response.data.data;
+		} catch (error) {
+			console.error(error);
+			return null;
+		}
+	};
 
-  useEffect(() => {
-    const fetchMoaclubInfo = async () => {
-      if (userIdx && accountId) {
-        const moaClubInfoRes = await getMoaClubInfo(userIdx, accountId);
-        if (moaClubInfoRes) {
-          setMoaclub(moaClubInfoRes);
-          setAmount(moaClubInfoRes.clubFee);
-          setName(moaClubInfoRes.name);
-          setCurrency(moaClubInfoRes.currency);
-          setTrsfAmount(moaClubInfoRes.clubFee);
-        }
-      }
-    };
-    fetchMoaclubInfo();
-  }, [userIdx, accountId]);
+	useEffect(() => {
+		const fetchMoaclubInfo = async () => {
+			if (userIdx && accountId) {
+				const moaClubInfoRes = await getMoaClubInfo(userIdx, accountId);
+				setMoaclub(moaClubInfoRes);
+				setAmount(moaClubInfoRes.clubFee);
+				console.log(moaClubInfoRes);
+				setName(moaClubInfoRes.name);
+				setCurrency(moaClubInfoRes.currency);
+				setTrsfAmount(moaClubInfoRes.clubFee);
+			}
+		};
+		fetchMoaclubInfo();
+	}, [userIdx, accountId]);
 
-  const getCurrencyDetails = (currency: string) => {
-    switch (currency) {
-      case "KRW":
-        return { country: "🇰🇷 한국", symbol: "KRW", currencySymbol: "원" };
-      case "CNY":
-        return { country: "🇨🇳 중국", symbol: "CNY", currencySymbol: "위안" };
-      case "JPY":
-        return { country: "🇯🇵 일본", symbol: "JPY", currencySymbol: "엔" };
-      case "USD":
-        return { country: "🇺🇸 미국", symbol: "USD", currencySymbol: "달러" };
-      default:
-        return { country: "", symbol: "", currencySymbol: "" };
-    }
-  };
+	const getCurrencyDetails = (currency: string) => {
+		switch (currency) {
+			case 'KRW':
+				return { country: '🇰🇷 한국', symbol: 'KRW', currencySymbol: '원' };
+			case 'CNY':
+				return { country: '🇨🇳 중국', symbol: 'CNY', currencySymbol: '위안' };
+			case 'JPY':
+				return { country: '🇯🇵 일본', symbol: 'JPY', currencySymbol: '엔' };
+			case 'USD':
+				return { country: '🇺🇸 미국', symbol: 'USD', currencySymbol: '달러' };
+		}
+	};
 
-  const currencyDetails = getCurrencyDetails(moaclub?.currency || "");
+	const currencyDetails = getCurrencyDetails(moaclub?.currency!);
 
-  const next = () => {
-    navigate(`/moaclub/deposit/pw`);
-  };
+	const next = () => {
+		navigate(`/moaclub/deposit/pw`);
+	};
 
-  const nextStage = () => {
-    const div1 = document.getElementById("withdraw-box4");
-    const div2 = document.getElementById("celub-withdraw-overlay");
+	const nextStage = () => {
+		const div1 = document.getElementById('withdraw-box4');
+		const div2 = document.getElementById('celub-withdraw-overlay');
 
-    if (div1) {
-      div1.style.display = "block";
-    }
-    if (div2) {
-      div2.style.display = "block";
-    }
+		if (div1) {
+			div1.style.display = 'block';
+		}
+		if (div2) {
+			div2.style.display = 'block';
+		}
 
-    setIsDisabled(true);
-  };
+		setIsDisabled(true);
+	};
 
   const beforeStage = () => {
     const div1 = document.getElementById("withdraw-box4");
@@ -219,8 +216,9 @@ function MoaclubDeposit() {
       div2.style.display = "none";
     }
 
-    setIsDisabled(false);
-  };
+
+		setIsDisabled(false);
+	};
 
   const handleAmountBoxClick = () => {
     if (amountInputRef.current) {
