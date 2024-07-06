@@ -173,6 +173,10 @@ const MoaclubPage = () => {
     navigate(`/moaclub/withdraw/${accountId}`);
   };
 
+  const goChat = () => {
+    navigate(`/moaclub/chat/${moaclub?.chatRoomId}`);
+  };
+
   return (
     <>
       <div id='moaclubTopAlarmBox'>
@@ -263,7 +267,12 @@ const MoaclubPage = () => {
           </tbody>
         </table>
       </div>
-      <img className='moaHanaMainChatIcon' src={chatIcon} alt='chhaticon' />
+      <img
+        className='moaHanaMainChatIcon'
+        src={chatIcon}
+        alt='chhaticon'
+        onClick={goChat}
+      />
     </>
   );
 };

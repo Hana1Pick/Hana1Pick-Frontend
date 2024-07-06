@@ -81,6 +81,7 @@ export type MoaclubInfo = {
   atDate: number;
   currency: string;
   createDate: string;
+  chatRoomId: number;
   memberList: memberList[];
 };
 
