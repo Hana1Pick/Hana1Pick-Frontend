@@ -1,6 +1,7 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import MainPage from './pages/MainPage';
+import SplashScreen from './components/splash/SplashScreen';
 
 // Deposit
 import DepositCreation1 from './pages/deposit/DepositCreation1';
@@ -94,7 +95,7 @@ function App() {
           <Route path='/deposit4' element={<UserAgree />} />
           <Route path='/deposit5' element={<DepositComplete />} />
           {/* 메인 페이지*/}
-          <Route path='/' element={<MainPage />} />
+          <Route path='/main' element={<MainPage />} />
           {/* 상품/서비스 페이지: 최애 실시간 랭킹, 최애와 한컷 페이지로 이동 */}
           <Route path='/service' element={<ServicePage />} />
           {/* 계좌 이체 */}
@@ -263,11 +264,15 @@ function App() {
               </PhotoCardContextProvider>
             }
           />
+
+              {/* 초기화면 페이지 */}
+              <Route path="/" element={<SplashScreen />} />
         </Routes>
         <Routes>
             <Route path="/testing" element={<Test />}/>
             <Route path="/camera-test" element={<CamTest />}/>
         </Routes>
+        
       </BrowserRouter>
     </div>
   );
