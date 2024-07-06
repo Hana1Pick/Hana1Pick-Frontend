@@ -13,15 +13,19 @@ function DepositCreation2() {
   const [birth, setBirth] = useState<string | null>(null);
   const [phone, setPhone] = useState<string>("");
   const [nation, setNation] = useState<string>("");
+  const [buttonText, setButtonText] = useState<string>("간편인증");
   const email = localStorage.getItem("email");
   const [password, setPassword] = useState<string>("");
   const [rtcRoomNum, setRtcRoomNum] = useState<string>("");
   const datePickerRef = useRef<DatePicker>(null);
+  const [showDomesticAuth, setShowDomesticAuth] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setNation(event.target.value);
+    const selectedNation = event.target.value;
+    setNation(selectedNation);
+    setButtonText(selectedNation === "KOR" ? "간편인증" : "외국인등록증 인증");
   };
 
   const handleComplete = (data: any) => {
@@ -76,6 +80,17 @@ function DepositCreation2() {
     nation,
     password,
   };
+
+  const isButtonDisabled = !(
+    name &&
+    email &&
+    address &&
+    birth &&
+    phone &&
+    nation
+  );
+
+  const isButtonVisible = nation === "KOR" && name && address && birth && phone;
 
   return (
     <div className="deposit-creation">
@@ -175,20 +190,31 @@ function DepositCreation2() {
                 국적을 선택해주세요.
               </option>
               <option value="KOR">한국</option>
+              <option value="USA">미국</option>
               <option value="JP">일본</option>
               <option value="CN">중국</option>
             </select>
           </div>
         </div>
-        {nation === "KOR" ? (
-          <div>
-            <DomesticAuth rtcRoomNum={rtcRoomNum} formData={formData} />
-          </div>
-        ) : nation === "JP" || nation === "CN" ? (
-          <button id="deposit-basicBtn" onClick={handleClick2}>
-            외국인등록증 인증
-          </button>
-        ) : null}
+
+        {/* 모든 국적에 "본인인증하기" 버튼 표시 */}
+        <button
+          id="deposit-basicBtn"
+          onClick={() => {
+            if (nation === "KOR") {
+              setShowDomesticAuth(true);
+            } else {
+              navigate("/userauth", { state: { formData } });
+            }
+          }}
+          disabled={isButtonDisabled}
+        >
+          본인인증하기
+        </button>
+
+        {showDomesticAuth && (
+          <DomesticAuth rtcRoomNum={rtcRoomNum} formData={formData} />
+        )}
       </div>
     </div>
   );
