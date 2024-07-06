@@ -19,56 +19,55 @@ function MoaclubAutoTrsfDetail() {
 	const [isDisabled, setIsDisabled] = useState<boolean>(false);
 	const [look, setLook] = useState(false);
 
+	const getMoaclubName = async (userIdx: string, accountId: string) => {
+		try {
+			const response = await axios.post(
+				`${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`,
+				{
+					userIdx,
+					accountId,
+				}
+			);
+			return response.data.data.name;
+		} catch (error) {
+			console.error(error);
+			return null;
+		}
+	};
 
-  const getMoaclubName = async (userIdx: string, accountId: string) => {
-    try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`,
-        {
-          userIdx,
-          accountId,
-        }
-      );
-      return response.data.data.name;
-    } catch (error) {
-      console.error(error);
-      return null;
-    }
-  };
+	const getAutoTrsf = async (userIdx: string, accountId: string) => {
+		try {
+			const response = await axios.post(
+				`${process.env.REACT_APP_BESERVERURI}/api/moaclub/auto-transfer`,
+				{
+					userIdx,
+					accountId,
+				}
+			);
+			console.log(response.data);
+			return response.data.data;
+		} catch (error) {
+			console.error(error);
+			return null;
+		}
+	};
 
-  const getAutoTrsf = async (userIdx: string, accountId: string) => {
-    try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_BESERVERURI}/api/moaclub/auto-transfer`,
-        {
-          userIdx,
-          accountId,
-        }
-      );
-      console.log(response.data);
-      return response.data.data;
-    } catch (error) {
-      console.error(error);
-      return null;
-    }
-  };
+	useEffect(() => {
+		const fetchAutoTrsfInfo = async () => {
+			if (userIdx && accountId) {
+				const moaClubNameRes = await getMoaclubName(userIdx, accountId);
+				const autoTrsfRes = await getAutoTrsf(userIdx, accountId);
+				setMoaClubName(moaClubNameRes);
+				if (autoTrsfRes) {
+					setAutoTrsf(autoTrsfRes);
+				}
+			}
+		};
+		fetchAutoTrsfInfo();
+	}, [userIdx, accountId]);
 
-  useEffect(() => {
-    const fetchAutoTrsfInfo = async () => {
-      if (userIdx && accountId) {
-        const moaClubNameRes = await getMoaclubName(userIdx, accountId);
-        const autoTrsfRes = await getAutoTrsf(userIdx, accountId);
-        setMoaClubName(moaClubNameRes);
-        if (autoTrsfRes) {
-          setAutoTrsf(autoTrsfRes);
-        }
-      }
-    };
-    fetchAutoTrsfInfo();
-  }, [userIdx, accountId]);
-
-  const deleteAutoTrsf = () => {
-    const url = `${process.env.REACT_APP_BESERVERURI}/api/moaclub/auto-transfer`;
+	const deleteAutoTrsf = () => {
+		const url = `${process.env.REACT_APP_BESERVERURI}/api/moaclub/auto-transfer`;
 
 		axios
 			.delete(url, {
@@ -88,120 +87,128 @@ function MoaclubAutoTrsfDetail() {
 			});
 	};
 
-  const getCurrencyValue = (currency: string) => {
-    switch (currency) {
-      case 'KRW':
-        return '원';
-      case 'CNY':
-        return '위안';
-      case 'JPY':
-        return '엔';
-      case 'USD':
-        return '달러';
-    }
-  };
+	const getCurrencyValue = (currency: string) => {
+		switch (currency) {
+			case 'KRW':
+				return '원';
+			case 'CNY':
+				return '¥';
+			case 'JPY':
+				return '¥';
+			case 'USD':
+				return '$';
+		}
+	};
 
-  const currencyValue = getCurrencyValue(autoTrsf?.currency!);
+	const formatCurrency = (amount: number) => {
+		if (amount === undefined) {
+			return '';
+		}
+		const currencySymbol = getCurrencyValue(autoTrsf?.currency!);
 
-  const nextStage = () => {
-    const div1 = document.getElementById('withdraw-box4');
-    const div2 = document.getElementById('celub-withdraw-overlay');
+		if (autoTrsf?.currency === 'KRW') {
+			return `${amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}${currencySymbol}`;
+		} else {
+			return `${currencySymbol}${amount.toFixed(2)}`;
+		}
+	};
 
-    if (div1) {
-      div1.style.display = 'block';
-    }
-    if (div2) {
-      div2.style.display = 'block';
-    }
+	const nextStage = () => {
+		const div1 = document.getElementById('withdraw-box4');
+		const div2 = document.getElementById('celub-withdraw-overlay');
 
-    setIsDisabled(true);
-  };
+		if (div1) {
+			div1.style.display = 'block';
+		}
+		if (div2) {
+			div2.style.display = 'block';
+		}
 
-  const beforeStage = () => {
-    const div1 = document.getElementById('withdraw-box4');
-    const div2 = document.getElementById('celub-withdraw-overlay');
+		setIsDisabled(true);
+	};
 
-    if (div1) {
-      div1.style.display = 'none';
-    }
-    if (div2) {
-      div2.style.display = 'none';
-    }
+	const beforeStage = () => {
+		const div1 = document.getElementById('withdraw-box4');
+		const div2 = document.getElementById('celub-withdraw-overlay');
 
-    setIsDisabled(false);
-  };
+		if (div1) {
+			div1.style.display = 'none';
+		}
+		if (div2) {
+			div2.style.display = 'none';
+		}
 
-  return (
-    <>
-      <div className='celub-withdraw-overlay' id='celub-withdraw-overlay'></div>
-      <Header value='자동이체' disabled={isDisabled} />
-      <div className='content'>
-        <div className='moaAutoTrsfDetail'>
-          <div className='moaAutoTrsfDetailTxt'>{moaclubName} 자동이체</div>
-          <table>
-            <tbody className='moaAutoTrsfDetailTable'>
-              <tr>
-                <th>은행명</th>
-                <td>하나원픽</td>
-              </tr>
-              <tr>
-                <th>입금계좌정보</th>
-                <td>
-                  {autoTrsf?.inAccId} <br />
-                  하나원픽 모아클럽
-                </td>
-              </tr>
-              <tr>
-                <th>출금계좌정보</th>
-                <td>
-                  {autoTrsf?.outAccId} <br />
-                  하나원픽 입출금 통장
-                </td>
-              </tr>
-              <tr>
-                <th>예금주</th>
-                <td>{userName}</td>
-              </tr>
-              <tr>
-                <th>청구구분</th>
-                <td>즉시출금</td>
-              </tr>
-              <tr>
-                <th>적금가입통화</th>
-                <td>{autoTrsf?.currency}</td>
-              </tr>
-              <tr>
-                <th>이체기준통화</th>
-                <td>{autoTrsf?.currency === 'KRW' ? '원화' : '외화'}</td>
-              </tr>
-              <tr>
-                <th>이체금액</th>
-                <td>
-                  {autoTrsf?.amount}
-                  {currencyValue}
-                </td>
-              </tr>
-              <tr>
-                <th>이체일</th>
-                <td>매월 / {autoTrsf?.atDate}일</td>
-              </tr>
-              <tr>
-                <th>납부자번호</th>
-                <td>{userIdx.split('-').pop()}</td>
-              </tr>
-              <tr>
-                <th>자동이체신청일</th>
-                <td>{autoTrsf?.createDate}</td>
-              </tr>
-            </tbody>
-          </table>
-          <div className='moaAutoTrsfDelete'>
-            <div className='moaAutoTrsfDeleteTxt' onClick={nextStage}>
-              자동이체 해지
-            </div>
-          </div>
-        </div>
-      </div>
+		setIsDisabled(false);
+	};
+
+	return (
+		<>
+			<div className='celub-withdraw-overlay' id='celub-withdraw-overlay'></div>
+			<Header value='자동이체' disabled={isDisabled} />
+			<div className='content'>
+				<div className='moaAutoTrsfDetail'>
+					<div className='moaAutoTrsfDetailTxt'>{moaclubName} 자동이체</div>
+					<table>
+						<tbody className='moaAutoTrsfDetailTable'>
+							<tr>
+								<th>은행명</th>
+								<td>하나원픽</td>
+							</tr>
+							<tr>
+								<th>입금계좌정보</th>
+								<td>
+									{autoTrsf?.inAccId} <br />
+									하나원픽 모아클럽
+								</td>
+							</tr>
+							<tr>
+								<th>출금계좌정보</th>
+								<td>
+									{autoTrsf?.outAccId} <br />
+									하나원픽 입출금 통장
+								</td>
+							</tr>
+							<tr>
+								<th>예금주</th>
+								<td>{userName}</td>
+							</tr>
+							<tr>
+								<th>청구구분</th>
+								<td>즉시출금</td>
+							</tr>
+							<tr>
+								<th>적금가입통화</th>
+								<td>{autoTrsf?.currency}</td>
+							</tr>
+							<tr>
+								<th>이체기준통화</th>
+								<td>{autoTrsf?.currency === 'KRW' ? '원화' : '외화'}</td>
+							</tr>
+							<tr>
+								<th>이체금액</th>
+								<td>{formatCurrency(autoTrsf?.amount!)}</td>
+							</tr>
+							<tr>
+								<th>이체일</th>
+								<td>매월 / {autoTrsf?.atDate}일</td>
+							</tr>
+							<tr>
+								<th>납부자번호</th>
+								<td>{userIdx.split('-').pop()}</td>
+							</tr>
+							<tr>
+								<th>자동이체신청일</th>
+								<td>{autoTrsf?.createDate}</td>
+							</tr>
+						</tbody>
+					</table>
+					<div className='moaAutoTrsfDelete'>
+						<div className='moaAutoTrsfDeleteTxt' onClick={nextStage}>
+							자동이체 해지
+						</div>
+					</div>
+				</div>
+			</div>
 
 			<div>
 				<div className='withdraw-box7' id='withdraw-box4'>
@@ -230,8 +237,8 @@ function MoaclubAutoTrsfDetail() {
 									<tr>
 										<th>이체정보</th>
 										<td>
-											매월 {autoTrsf?.atDate}일 {autoTrsf?.amount}
-											{currencyValue}
+											매월 {autoTrsf?.atDate}일{' '}
+											{formatCurrency(autoTrsf?.amount!)}
 										</td>
 									</tr>
 								</tbody>
