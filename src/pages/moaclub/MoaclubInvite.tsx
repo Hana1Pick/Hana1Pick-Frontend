@@ -45,7 +45,8 @@ function MoaclubInvite() {
 
 	function shareToKakao() {
 		const description = `${userName}님이 모아클럽에 초대했어요.`;
-		const url = 'http://localhost:3000/moaclub/join/' + moaclub;
+		const url =
+			'https://hana1-pick-frontend.vercel.app//moaclub/join/' + moaclub;
 		console.log(url);
 
 		if (!window.Kakao.isInitialized()) {
@@ -68,8 +69,7 @@ function MoaclubInvite() {
 					title: '모아클럽 바로가기',
 					link: {
 						mobileWebUrl: url,
-						webUrl:
-							'https://hana1-pick-frontend.vercel.app//moaclub/join/' + moaclub,
+						webUrl: url,
 					},
 				},
 			],
