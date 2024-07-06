@@ -1,7 +1,9 @@
 import Header from '../../layouts/MoaclubHeader3';
-import PattrenBg from '../../assets/images/common/PatternBg.png';
+import hanaLogo from '../../assets/images/common/hanaBankLogo.png';
 import alarmLogo from '../../assets/images/common/hanaCircleLogo.png';
+import chatIcon from '../../assets/images/moaclub/moa-chat-icon.png';
 import './MoaclubStyle.scss';
+import './MoaclubHanaStyle.scss';
 import '../../common/styles/scss/CommonStyle.scss';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -141,6 +143,19 @@ const MoaclubPage = () => {
 			: formattedDate;
 	};
 
+	const formatCurrency = (amount: number) => {
+		if (amount === undefined) {
+			return '';
+		}
+		const currencySymbol = getCurrencySymbol(moaclub?.currency!);
+
+		if (moaclub?.currency === 'KRW') {
+			return `${amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}${currencySymbol}`;
+		} else {
+			return `${currencySymbol}${amount.toFixed(2)}`;
+		}
+	};
+
 	const goSetting = () => {
 		console.log(accountId);
 		navigate(`/moaclub/setting/${accountId}`);
@@ -165,17 +180,21 @@ const MoaclubPage = () => {
 				<div id='moaclubTopAlarmContent'></div>
 				<div className='moaclubTopAlarmTime'>지금</div>
 			</div>
-			<div className='moaclub-background-container'>
-				<Header value={moaclub?.name!} disabled={true} onClick={goSetting} />
-				<img src={PattrenBg} alt='Pattern Background' className='pattern-bg' />
-				<div className='overlay-text'>
-					<div className='moaclubMainInfoContainer'>
-						<div>{moaclub?.accountId}</div>
-						<div className='moaclubMainBalance'>
-							{moaclub?.balance} {currencyValue}
-						</div>
+
+			<Header value='거래내역조회' disabled={true} onClick={goSetting} />
+			<div className='moaHanaContainer'>
+				<div className='moaHanaInfoContainer'>
+					<div className='moaHanaTitle'>
+						<img src={hanaLogo} alt='hanaLogo' />
+						<div>{moaclub?.name}</div>
 					</div>
-					<div className='memberListContainer'>
+					<div className='moaHanaAccId'>{moaclub?.accountId}</div>
+					<div
+						className='memberListContainerHana'
+						onClick={() => {
+							navigate(`/moaclub/member/${accountId}`);
+						}}
+					>
 						{moaclub?.memberList.map((member, index) => (
 							<img
 								key={index}
@@ -185,27 +204,29 @@ const MoaclubPage = () => {
 							/>
 						))}
 					</div>
-					<div className='moaclubFee' onClick={goFeeStatus}>
-						<span className='moaclubFeeRule'>
-							매월 {moaclub?.atDate}일, {moaclub?.clubFee}
-							{currencyValue}씩
-						</span>
+					<div className='moaHanaAccBalance'>
+						{formatCurrency(moaclub?.balance!)}
 					</div>
-
-					<div className='moaclubFeeContainer'>
-						<div className='moaclubMainTrsf' onClick={goMoaDeposit}>
+					<div className='moaHanaAccInfoBtnContainer'>
+						<div className='moaclubHanaMainDeposit' onClick={goMoaDeposit}>
 							입금하기
 						</div>
 						{isManager && (
-							<div className='moaclubMainTrsf' onClick={goMoaWithdraw}>
+							<div className='moaclubHanaMainWithdraw' onClick={goMoaWithdraw}>
 								출금하기
 							</div>
 						)}
 					</div>
 				</div>
+				<div className='moaHanaFeeRuleContainer' onClick={goFeeStatus}>
+					<span className='moaclubHanaFeeRule'>
+						매월 {moaclub?.atDate}일 {formatCurrency(moaclub?.clubFee!)}씩
+					</span>{' '}
+					| 입금현황 &#62;
+				</div>
 			</div>
 
-			<div className='moaclub'>
+			<div className='moaclubHana'>
 				<table className='moaclubAccHisTable'>
 					<tbody>
 						{accountHistory && accountHistory.length > 0 ? (
@@ -223,13 +244,11 @@ const MoaclubPage = () => {
 											}
 										>
 											{history.transAmount >= 0
-												? `+${history.transAmount}`
-												: history.transAmount}
-											{currencyValue}
+												? `+${formatCurrency(history.transAmount)}`
+												: formatCurrency(history.transAmount)}
 										</span>
 										<span className='moaclubAccHisLast'>
-											{history.balance}
-											{currencyValue}
+											{formatCurrency(history.balance)}
 										</span>
 									</td>
 								</tr>
@@ -244,6 +263,7 @@ const MoaclubPage = () => {
 					</tbody>
 				</table>
 			</div>
+			<img className='moaHanaMainChatIcon' src={chatIcon} alt='chhaticon' />
 		</>
 	);
 };

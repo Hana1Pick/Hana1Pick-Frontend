@@ -92,15 +92,26 @@ function MoaclubAutoTrsfDetail() {
 			case 'KRW':
 				return '원';
 			case 'CNY':
-				return '위안';
+				return '¥';
 			case 'JPY':
-				return '엔';
+				return '¥';
 			case 'USD':
-				return '달러';
+				return '$';
 		}
 	};
 
-	const currencyValue = getCurrencyValue(autoTrsf?.currency!);
+	const formatCurrency = (amount: number) => {
+		if (amount === undefined) {
+			return '';
+		}
+		const currencySymbol = getCurrencyValue(autoTrsf?.currency!);
+
+		if (autoTrsf?.currency === 'KRW') {
+			return `${amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}${currencySymbol}`;
+		} else {
+			return `${currencySymbol}${amount.toFixed(2)}`;
+		}
+	};
 
 	const nextStage = () => {
 		const div1 = document.getElementById('withdraw-box4');
@@ -175,10 +186,7 @@ function MoaclubAutoTrsfDetail() {
 							</tr>
 							<tr>
 								<th>이체금액</th>
-								<td>
-									{autoTrsf?.amount}
-									{currencyValue}
-								</td>
+								<td>{formatCurrency(autoTrsf?.amount!)}</td>
 							</tr>
 							<tr>
 								<th>이체일</th>
@@ -229,8 +237,8 @@ function MoaclubAutoTrsfDetail() {
 									<tr>
 										<th>이체정보</th>
 										<td>
-											매월 {autoTrsf?.atDate}일 {autoTrsf?.amount}
-											{currencyValue}
+											매월 {autoTrsf?.atDate}일{' '}
+											{formatCurrency(autoTrsf?.amount!)}
 										</td>
 									</tr>
 								</tbody>

@@ -122,6 +122,11 @@ function MoaclubVoteTrsf() {
 				setMoaName(moaClubInfoRes.name);
 				setIsManager(isManager);
 				setVoteResult(moaClubReqRes);
+				if (memberListRes) {
+					memberListRes.sort((a: memberList, b: memberList) =>
+						a.userName.localeCompare(b.userName)
+					);
+				}
 				setMemberList(memberListRes);
 				console.log(memberListRes);
 
@@ -277,6 +282,19 @@ function MoaclubVoteTrsf() {
 		setSelectVote(vote);
 	};
 
+	const formatCurrency = (amount: number) => {
+		if (amount === undefined) {
+			return '';
+		}
+		const currencySymbol = getCurrencySymbol(currency!);
+
+		if (currency === 'KRW') {
+			return `${amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}${currencySymbol}`;
+		} else {
+			return `${currencySymbol}${amount.toFixed(2)}`;
+		}
+	};
+
 	return (
 		<>
 			<Header value='모아클럽 출금 동의' disabled={disabled} />
@@ -284,8 +302,9 @@ function MoaclubVoteTrsf() {
 				<div>모아클럽 출금에 동의하십니까?</div>
 				<div className='moaTrsfBox'>
 					<div>출금 금액</div>
-					<span className='moaVoteAmountTxt'>{voteResult?.amount}&nbsp;</span>
-					{currencyValue}
+					<span className='moaVoteAmountTxt'>
+						{formatCurrency(voteResult?.amount!)}&nbsp;
+					</span>
 				</div>
 			</div>
 			<div className='moaclubVoteStatusContent2'>
