@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { MoaAutoTrsf } from '../../type/commonType';
 import CommonBtn from '../../components/button/CommonBtn';
-import CommonModal3 from '../../components/button/\bCommonModal3';
+import CommonModal3 from '../../components/button/CommonModal3';
 
 function MoaclubAutoTrsfDetail() {
 	const navigate = useNavigate();

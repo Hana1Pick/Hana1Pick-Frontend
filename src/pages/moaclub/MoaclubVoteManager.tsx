@@ -12,7 +12,7 @@ import { memberList, MoaClubVoteResult } from '../../type/commonType';
 import CommonBtn from '../../components/button/CommonBtn';
 import MoaclubModal from '../../components/modal/MoaClubModal';
 import CommonModal2 from '../../components/button/CommonModal2';
-import CommonModal3 from '../../components/button/\bCommonModal3';
+import CommonModal3 from '../../components/button/CommonModal3';
 
 function MoaclubVoteManager() {
 	const navigate = useNavigate();

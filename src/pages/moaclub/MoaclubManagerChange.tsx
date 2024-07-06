@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import CommonBtn from '../../components/button/CommonBtn';
 import { MoaclubInfo } from '../../type/commonType';
 import axios from 'axios';
-import CommonModal3 from '../../components/button/\bCommonModal3';
+import CommonModal3 from '../../components/button/CommonModal3';
 
 function MoaclubManagerChange() {
 	const navigate = useNavigate();
