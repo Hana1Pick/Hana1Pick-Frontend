@@ -24,7 +24,7 @@ const CelubPage: React.FC = () => {
     const { t, i18n } = useTranslation(); // useTranslation hook 선언
 
     const selectCelub = () => {
-        axios.get(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/list`, {
+        axios.get(`${process.env.REACT_APP_BESERVERURI}/api/celub/list`, {
             params: {
                 userIdx: userIdx
             }

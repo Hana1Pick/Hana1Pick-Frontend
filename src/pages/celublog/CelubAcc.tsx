@@ -31,7 +31,7 @@ function CelubAcc() {
      // API 호출 함수 정의
 const getAccountListByType = async (userIdx: string, type: string) => {
     try {
-      const response = await axios.get(`http://${process.env.REACT_APP_BESERVERURI}/api/user/account-list`, {
+      const response = await axios.get(`${process.env.REACT_APP_BESERVERURI}/api/user/account-list`, {
         params: { userIdx, type },
       });
       return response.data.data[0]; // 데이터를 직접 반환 (첫 번째 요소)

@@ -4,15 +4,30 @@ import { CelubRuleType } from "../../type/commonType";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./CelublogStyle.scss";
+import qs from 'qs';
+import CommonModal1 from "../../components/button/CommonModal1";
 
 function CelubRule() {
     const location = useLocation();
     const {accountId, ruleList} = location.state;
     const navigate = useNavigate();
     const [rules, setRules] = useState<CelubRuleType[]>(ruleList ||[]);
-    console.log("확인");
-    console.log(accountId);
-    console.log(ruleList);
+    const [look, setLook] = useState(false);
+    useEffect(() => {
+        axios.post(`${process.env.REACT_APP_BESERVERURI}/api/celub/list/detail`,
+            qs.stringify({accountId:accountId}))
+            .then((res)=>{
+                console.log(res.data.data);
+                				setRules(
+					res.data.data.ruleInfo.map((rule:any) => ({
+						ruleName: rule.ruleName,
+						ruleMoney: rule.ruleMoney
+					}))
+				)
+            }).catch((error)=>{
+                console.log("실패");
+            });
+    }, []); 
     const addInput = () => {
         if(rules.length>=10){
             alert('규칙은 최대 10개 까지만 생성 가능합니다.');
@@ -42,15 +57,18 @@ function CelubRule() {
                 ruleMoney: rule.ruleMoney
             }))
         }
-        axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/rule`,
+        axios.post(`${process.env.REACT_APP_BESERVERURI}/api/celub/rule`,
             data)
             .then((res)=>{
                 console.log("확인하는중"+res.data.data);
-                alert('규칙이 변경되었습니다.');
-                navigate("/celub/setting",{state:accountId});
+                setLook(true);
+                
             }).catch((error)=>{
                 alert("실패");
             });
+    }
+    const completeChange = () =>{
+        navigate("/celub/detail",{state:accountId});
     }
 
     return (
@@ -93,6 +111,7 @@ function CelubRule() {
                     <button id="basicBtn1" onClick={addRules}>완료</button>
                 </div>
             </div>
+            <CommonModal1 msg=" 규칙이 변경되었습니다." show={look} onConfirm={completeChange} />
         </>
     );
 }

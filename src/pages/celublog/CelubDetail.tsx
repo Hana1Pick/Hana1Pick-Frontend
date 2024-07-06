@@ -6,9 +6,11 @@ import CommonBtn from '../../components/button/CommonBtn';
 import "./CelublogStyle.scss";
 import axios from 'axios';
 import qs from 'qs';
+import CommonModal1 from '../../components/button/CommonModal1';
 
 const CelubDetail: React.FC = () => {
     const navigate = useNavigate();
+    const [look, setLook] = useState(false);
     const [isExpanded, setIsExpanded] = useState(false);
     const [startY, setStartY] = useState(0);
     const [startHeight, setStartHeight] = useState(0);
@@ -34,19 +36,22 @@ const CelubDetail: React.FC = () => {
     const [selectedValue, setSelectedValue] = useState('#공통');
     const location = useLocation();
     const accountId = location.state;
+    const [outBalance, setOutBalance] = useState(0);
 
     useEffect(() => {
-        axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/list/detail`,
+        axios.post(`${process.env.REACT_APP_BESERVERURI}/api/celub/list/detail`,
             qs.stringify({accountId:accountId}))
             .then((res)=>{
                 console.log(res.data.data);
                 setRuleList(res.data.data.ruleInfo);
                 setHistoryList(res.data.data.accountReport);
                 setAccountInfo(res.data.data.accountInfo);
+                console.log(res.data.data.accountInfo.outAccBalance);
+                setOutBalance(res.data.data.accountInfo.outAccBalance);
             }).catch((error)=>{
                 alert("실패");
             });
-    }, [historyList]); 
+    }, [isHistory]); 
     const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
         setStartY(e.touches[0].clientY);
         setStartHeight(document.documentElement.clientHeight - e.currentTarget.getBoundingClientRect().top);
@@ -77,22 +82,16 @@ const CelubDetail: React.FC = () => {
     }
 
     const rule=()=>{
-        // setRuleList(detailList.ruleInfo);
         setIsHistory(false);
         setIsRule(true);
     }
-
     const history=()=>{
         setIsHistory(true);
         setIsRule(false);
     }
     const goMakeRule=()=>{
-        // navigate("/celub/rule",{state:detailList});
+        navigate("/celub/rule",{state:accountId});
     }
-    const goDeposit=()=>{
-        navigate("/celub/deposit");
-    }
-
     const setting =()=>{
         navigate("/celub/setting", {state: accountId});
     }
@@ -113,21 +112,26 @@ const CelubDetail: React.FC = () => {
             memo: selectRule,
             hashtag: selectedValue
         }
-        axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/in`,data)
+        axios.post(`${process.env.REACT_APP_BESERVERURI}/api/celub/in`,data)
             .then((res)=>{
                 setIsBoxVisible(false);
                 console.log(res);
-                axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/list/detail`,
+                axios.post(`${process.env.REACT_APP_BESERVERURI}/api/celub/list/detail`,
                     qs.stringify({accountId: accountId}))
                     .then((res)=>{
                         setHistoryList(res.data.data.accountReport);
-                        history();
+                        setLook(true);
                     }).catch((error)=>{
                         alert("실패");
                     });
             }).catch((error)=>{
                 alert("실패");
             });
+    }
+    const completeChange = () => {
+        setIsBoxVisible(false);
+        history();
+        setLook(false);
     }
     return (
         <>
@@ -201,7 +205,7 @@ const CelubDetail: React.FC = () => {
                 <div className="celub-detail-box3">
                         <div className="celub-detail-deco"/>
                         <div className="celub-deposit-box">
-                            <p>{selectRule} {formatCurrency(selectRuleMoney)}원을 입금할게요.</p>
+                            <p>{selectRule}의 내역으로<br/> {formatCurrency(selectRuleMoney)}원을 입금할게요.</p>
                             <select value={selectedValue} onChange={handleSelectChange}>
                                 <option value="공통"># 해시태그를 선택하세요</option>
                                 <option value="공카댓글"># 공카댓글</option>
@@ -209,9 +213,14 @@ const CelubDetail: React.FC = () => {
                                 <option value="개인셀카"># 개인셀카</option>
                             </select>
                         </div>
+                        <div className="celub-deposic-balance">
+                            입금 전 입출금통장 잔액: {formatCurrency(outBalance)}원 <br/>
+                            입금 후 입출금통장 잔액: {formatCurrency(selectRuleMoney-selectRuleMoney)}원
+                        </div>
                         <CommonBtn type='pink' value="입금하기" onClick={sendMoney} disabled={isHashTag}/>
                 </div>
             </div>}
+            <CommonModal1 msg=" 입금 되었습니다." show={look} onConfirm={completeChange} />
         </>
     );
 };

@@ -22,7 +22,7 @@ function CelubAccountList(){
         const data={
             userIdx: localStorage.getItem("userIdx")
         }
-        axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/account-list`,
+        axios.post(`${process.env.REACT_APP_BESERVERURI}/api/celub/account-list`,
             qs.stringify(data)
         )
         .then((res)=>{

@@ -88,7 +88,7 @@ function CelubPattern() {
 
   const navigate = useNavigate();
   const next = (password:string) => {
-    const url = `http://${process.env.REACT_APP_BESERVERURI}/api/celub/accession`;
+    const url = `${process.env.REACT_APP_BESERVERURI}/api/celub/accession`;
 
     const data = {
       userIdx: withdrawInfo.userIdx,
@@ -118,7 +118,7 @@ function CelubPattern() {
   const checkPassword = async (password: string) => {
     try {
         const response = await axios.post(
-            `http://${process.env.REACT_APP_BESERVERURI}/api/user/password-check`,
+            `${process.env.REACT_APP_BESERVERURI}/api/user/password-check`,
             {
               userIdx: withdrawInfo.userIdx,
               password: password,

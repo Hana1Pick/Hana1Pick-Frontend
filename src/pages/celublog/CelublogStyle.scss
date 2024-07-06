@@ -304,7 +304,7 @@
     align-items: center;
     text-align: center;
     transition: bottom 0.3s ease-in-out, height 0.3s ease-in-out;
-    z-index: 999;
+    z-index: 2;
     border-top-left-radius: 2rem;
     border-top-right-radius: 2rem;
 }
@@ -406,8 +406,7 @@
 }
 
 .celub-rule-totalbox{
-  padding-left: 10%;
-  padding-right: 10%;
+  padding: 5% 10%;
 }
 
 .celub-rulemake-box3{
@@ -417,7 +416,6 @@
   input{
     border: 0;
     padding: 0.8rem;
-    //background-color: #dfdddd;
     border-radius: 0.5rem;
     border: 1px solid #dfdddd;
     margin-top: 1rem;
@@ -436,14 +434,13 @@
 .celub-addrule-btn{
   margin-top: 1rem;
   margin-bottom: 1rem;
-  width: 90%;
-  height: 1rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  width: 85%;
+  height: 2.7rem;
+  padding-top: 3%;
+  padding-bottom: 3%;
   border: 0;
   border-radius: 0.5rem;
 }
-
 .celub-deposit-box{
   p{
     font-size: 1.1rem;
@@ -465,11 +462,11 @@
   select{
      border: 0;
      width: 70%;
-     height: 50px;
-     padding: 10px;
+     height: 3.125rem;
+     padding: 0.625rem;
      border-radius: 1rem;
-     margin-bottom: 3rem;
-     margin-top: 2rem;
+     margin-bottom: 1rem;
+     margin-top: 1rem;
   }
 }
 
@@ -842,4 +839,10 @@
   color: #999;
   font-size: 1.125rem;
   line-height: 1;
+}
+.celub-deposic-balance{
+  color: #555856;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
 }

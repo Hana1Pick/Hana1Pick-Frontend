@@ -29,7 +29,7 @@ const LoginHandler = (props:any) => {
   }, []);
 
   const getUserInfo = (accessToken:string) => {
-    const url2 = `http://${process.env.REACT_APP_BESERVERURI}/api/user/login`;
+    const url2 = `${process.env.REACT_APP_BESERVERURI}/api/user/login`;
     const data = {
       accessToken: accessToken
     }

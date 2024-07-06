@@ -29,18 +29,29 @@ function CelubSetting() {
         createDate: ""
     });
 	const [rules, setRules] = useState<CelubRuleType[]>([]);
-
+	interface Rule {
+		ruleIdx: number;
+		ruleName: string;
+		ruleMoney: number;
+	}
     useEffect(() => {
-        axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/list/detail`,
+        axios.post(`${process.env.REACT_APP_BESERVERURI}/api/celub/list/detail`,
             qs.stringify({accountId:accountId}))
             .then((res)=>{
                 console.log(res.data.data);
 				setCelubAccount(res.data.data.accountInfo);
-				setRules(res.data.date.ruleInfo);
+				setRules(
+					res.data.data.ruleInfo.map((rule:Rule) => ({
+						ruleName: rule.ruleName,
+						ruleMoney: rule.ruleMoney
+					}))
+				)
+				console.log("됐냐?");
+				console.log(rules);
             }).catch((error)=>{
                 console.log("실패");
             });
-    }, []); 
+    }, [look]); 
     const handleInputChange = (e:React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value);
     };
@@ -74,7 +85,7 @@ function CelubSetting() {
         formData.append('name', inputValue);
         formData.append('srcImg', 'ddd');
 
-        axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/alteration`,
+        axios.post(`${process.env.REACT_APP_BESERVERURI}/api/celub/alteration`,
             formData, {headers: {'Context-Type':'multipart/form-data'}})
             .then((res)=>{
                 console.log(res);
@@ -102,7 +113,7 @@ function CelubSetting() {
 			  formData.append('srcImg', fileInput);
 			  formData.append('name', inputValue);
 	
-			  axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/alteration`, formData, {
+			  axios.post(`${process.env.REACT_APP_BESERVERURI}/api/celub/alteration`, formData, {
 				headers: {
 				  'Content-Type': 'multipart/form-data'
 				}

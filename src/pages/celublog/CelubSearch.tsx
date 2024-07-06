@@ -36,7 +36,7 @@ function CelubSearch() {
       return;
     }
     axios
-      .get(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/list/search`, {
+      .get(`${process.env.REACT_APP_BESERVERURI}/api/celub/list/search`, {
         params: {
           userIdx: userIdx,
           type: selectJob,
