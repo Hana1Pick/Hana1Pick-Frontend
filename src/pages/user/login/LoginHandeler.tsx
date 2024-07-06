@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect } from 'react';
+import SplashScreen from '../../../components/splash/SplashScreen';
 
 const LoginHandler = (props: any) => {
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ const LoginHandler = (props: any) => {
 
         // 회원가입 일때는 계좌 생성 페이지로 이동
         if (name) {
-          navigate('/');
+          navigate('/main');
         } else {
           navigate('/deposit');
         }
@@ -55,13 +56,15 @@ const LoginHandler = (props: any) => {
   };
 
   return (
-    <div className='LoginHandler'>
-      <div className='notice'>
-        <p>로그인 중입니다.</p>
-        <p>잠시만 기다려주세요...</p>
-        <div className='spinner'></div>
-      </div>
-    </div>
+    //TODO: 페이지 로딩 화면으로 대체
+    <SplashScreen/>
+    // <div className='LoginHandler'>
+    //   <div className='notice'>
+    //     <p>로그인 중입니다.</p>
+    //     <p>잠시만 기다려주세요...</p>
+    //     <div className='spinner'></div>
+    //   </div>
+    // </div>
   );
 };
 
