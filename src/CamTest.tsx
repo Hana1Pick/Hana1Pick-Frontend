@@ -9,7 +9,7 @@ const CamTest: React.FC = () => {
   const [timer, setTimer] = useState(0);
   const [photoUrl, setPhotoUrl] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const additionalImageUrl = require('../src/assets/images/celub/dntjr.png');
+  const additionalImageUrl = require('../src/assets/images/photo/dntjr.png');
 
   useEffect(() => {
     const initCamera = async () => {
@@ -81,10 +81,11 @@ const CamTest: React.FC = () => {
   };
 
   const drawAdditionalImage = (context: CanvasRenderingContext2D, image: HTMLImageElement) => {
-    if (canvasRef.current) {
+    if (canvasRef.current && videoRef.current) {
       const scale = 1.5;
-      const imageWidth = image.width * scale;
-      const imageHeight = image.height * scale;
+      const imageWidth = videoRef.current.videoWidth * 0.7;
+      const imageHeight = videoRef.current.videoHeight;
+
 
       const imageX = canvasRef.current.width - imageWidth;
       const imageY = canvasRef.current.height - imageHeight;

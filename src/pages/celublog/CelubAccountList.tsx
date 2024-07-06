@@ -38,7 +38,7 @@ function CelubAccountList(){
     };
 
     const goPhoto = () =>{
-        navigate("/celub/photo");
+        navigate("/photo-card/image");
     }
     
     const settings = {
