@@ -10,6 +10,7 @@ function MoaclubComplete() {
 	const { name, moaclub }: any = useContext(MoaclubContext);
 
 	const next = () => {
+		localStorage.setItem('moaclub', moaclub);
 		navigate('/moaclub/invite', { state: { moaclub } });
 	};
 

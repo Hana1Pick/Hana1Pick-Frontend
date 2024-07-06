@@ -78,6 +78,8 @@ import MoaclubAutoTrsfComplete from './pages/moaclub/MoaclubAutoTrsfComplete';
 import ServicePage from './pages/service/ServicePage';
 import Test from './test';
 import CamTest from './CamTest';
+import MoaclubMember from './pages/moaclub/MoaclubMember';
+import MoaclubManagerChange from './pages/moaclub/MoaclubManagerChange';
 
 function App() {
   return (
@@ -223,34 +225,34 @@ function App() {
             element={<MoaclubAutoTrsfComplete />}
           />
 
-          <Route
-            path='/moaclub/deposit/*'
-            element={
-              <MoaclubTrsfContextProvider>
-                <Routes>
-                  <Route path='/:accountId' element={<MoaclubDeposit />} />
-                  <Route path='/pw' element={<MoaclubPw />} />
-                  <Route path='/trsf/result' element={<MoaclubTrsfResult />} />
-                </Routes>
-              </MoaclubTrsfContextProvider>
-            }
-          />
+					<Route
+						path='/moaclub/deposit/*'
+						element={
+							<MoaclubTrsfContextProvider>
+								<Routes>
+									<Route path='/:accountId' element={<MoaclubDeposit />} />
+									<Route path='/pw' element={<MoaclubPw />} />
+									<Route path='/trsf/result' element={<MoaclubTrsfResult />} />
+								</Routes>
+							</MoaclubTrsfContextProvider>
+						}
+					/>
 
-          {/* User */}
-          <Route
-            path='/user/*'
-            element={
-              <AccountContextProvider>
-                <Routes>
-                  <Route path='login' element={<KakaoLoginPage />} />
-                </Routes>
-              </AccountContextProvider>
-            }
-          />
-          <Route
-            path='/api/user/oauth/kakao' //redirect_url
-            element={<LoginHandeler />} //당신이 redirect_url에 맞춰 꾸밀 컴포넌트
-          />
+					{/* User */}
+					<Route
+						path='/user/*'
+						element={
+							<AccountContextProvider>
+								<Routes>
+									<Route path='login' element={<KakaoLoginPage />} />
+								</Routes>
+							</AccountContextProvider>
+						}
+					/>
+					<Route
+						path='/api/user/oauth/kakao' //redirect_url
+						element={<LoginHandeler />} //당신이 redirect_url에 맞춰 꾸밀 컴포넌트
+					/>
 
           {/* Photo Card */}
           <Route
