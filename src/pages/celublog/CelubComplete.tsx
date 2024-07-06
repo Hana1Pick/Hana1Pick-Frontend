@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import checkImg from '../../assets/images/celub/celubAcc.png';
+import checkImg from '../../assets/images/celub/celubAcc.gif';
 import "./CelublogStyle.scss";
 import qs from 'qs';
 import axios from 'axios';

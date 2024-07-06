@@ -153,7 +153,7 @@ function App() {
                   <Route path='name' element={<CelubName />} />
                   <Route path='pattern' element={<CelubPattern />} />
                   <Route path="setting" element={<CelubSetting/>}/>
-                  {/* <Route path="acc" element={<CelubAcc/>}/> */}
+                  <Route path="photo" element={<CamTest />}/>
                 </Routes>
               </AccountContextProvider>
             }

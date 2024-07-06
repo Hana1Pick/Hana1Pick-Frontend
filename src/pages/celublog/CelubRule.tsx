@@ -1,21 +1,18 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import CelubHeader1 from "../../layouts/CelubHeader1";
 import { CelubRuleType } from "../../type/commonType";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
-import qs from 'qs';
 import "./CelublogStyle.scss";
 
 function CelubRule() {
     const location = useLocation();
-    const detailList = location.state;
+    const {accountId, ruleList} = location.state;
     const navigate = useNavigate();
-    console.log("룰 규칙 정하는 곳", detailList);
-    console.log(detailList.accountInfo.accountId);
-    const [rules, setRules] = useState<CelubRuleType[]>([
-        Array.isArray(detailList.ruleInfo) ? detailList.ruleInfo : []
-    ]);
-
+    const [rules, setRules] = useState<CelubRuleType[]>(ruleList ||[]);
+    console.log("확인");
+    console.log(accountId);
+    console.log(ruleList);
     const addInput = () => {
         if(rules.length>=10){
             alert('규칙은 최대 10개 까지만 생성 가능합니다.');
@@ -39,7 +36,7 @@ function CelubRule() {
     };
     const addRules=()=>{
         let data = {
-            accountId: detailList.accountInfo.accountId,
+            accountId: accountId,
             ruleList: rules.map(rule => ({
                 ruleName: rule.ruleName,
                 ruleMoney: rule.ruleMoney
@@ -49,15 +46,8 @@ function CelubRule() {
             data)
             .then((res)=>{
                 console.log("확인하는중"+res.data.data);
-                alert('규칙이 추가되었습니다.');
-                axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/list/detail`,
-                    qs.stringify({accountId:data.accountId}))
-                    .then((res)=>{
-                        console.log("되는건가?"+res.data.data);
-                        navigate("/celub/detail", {state:res.data.data});
-                    }).catch((error)=>{
-                        alert("실패");
-                    });
+                alert('규칙이 변경되었습니다.');
+                navigate("/celub/setting",{state:accountId});
             }).catch((error)=>{
                 alert("실패");
             });
@@ -77,7 +67,6 @@ function CelubRule() {
                             규칙은 나중에도 수정할 수 있어요.</p>
                     </div>
                 </div>
-
                 {rules.map((rule, index) => (
                     <div key={index} className="celub-rulemake-box3">
                         <input

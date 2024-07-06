@@ -26,7 +26,18 @@ export type CelubAccount = {
   imgSrc: string;
   ruleMoney: number;
   totalBalance: number;
+  createDate: string;
 };
+export type CelubAccountInfo = {
+  accountId: string,
+  balance: number,
+  name: string,
+  imgSrc: string,
+  outAccId: string,
+  celebrityIdx: number,
+  duration: number
+  createDate: string
+}
 
 export type MoaClubHeaderData = {
   value: string;
@@ -144,6 +155,11 @@ export type CommonModalType = {
   msg: string;
   show: boolean;
   onCancle: () => void;
+  onConfirm: () => void;
+};
+export type CommonModalType1 = {
+  msg: string;
+  show: boolean;
   onConfirm: () => void;
 };
 

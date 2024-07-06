@@ -12,7 +12,7 @@ body {
 #basicBtn1 {
   width: 85%;
   height: 2.7rem;
-  background-color: #f19ed3;
+  background-color: #019178;
   border: 0;
   border-radius: 0.5rem;
   color: rgb(255, 255, 255);
@@ -42,7 +42,7 @@ body {
 
 .basicInputFile1 {
   width: 85%;
-  background-color: #f19ed3;
+  background-color: #019178;
   border: 0;
   border-radius: 0.5rem;
   color: rgb(255, 255, 255);
@@ -100,13 +100,14 @@ body {
   text-align: center;
   font-size: 16px;
   z-index: 10;
-  color: #000000;
+  color: whitesmoke;
+  div{
+    white-space: nowrap;
+    color: whitesmoke;
+    margin-top: 10px;
+  }
 }
-.overlay-text div {
-  white-space: nowrap;
-  color: #535353;
-  margin-top: 10px;
-}
+
 .pattern-dot {
   width: 0.5rem;
   height: 0.5rem;
@@ -122,7 +123,7 @@ body {
   height: auto;
 }
 .pattern-dot.selected {
-  background-color: #f19ed3;
+  background-color: #019178;
 }
 .pattern-lines {
   position: absolute;
