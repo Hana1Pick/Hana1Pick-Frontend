@@ -161,7 +161,7 @@ function OCRGetData() {
             </div>
           </div>
         </div>
-      )}
+      ) }
     </div>
   );
 }
