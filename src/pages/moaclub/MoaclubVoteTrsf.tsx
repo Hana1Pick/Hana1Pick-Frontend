@@ -122,6 +122,11 @@ function MoaclubVoteTrsf() {
 				setMoaName(moaClubInfoRes.name);
 				setIsManager(isManager);
 				setVoteResult(moaClubReqRes);
+				if (memberListRes) {
+					memberListRes.sort((a: memberList, b: memberList) =>
+						a.userName.localeCompare(b.userName)
+					);
+				}
 				setMemberList(memberListRes);
 				console.log(memberListRes);
 

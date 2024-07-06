@@ -189,7 +189,12 @@ const MoaclubPage = () => {
 						<div>{moaclub?.name}</div>
 					</div>
 					<div className='moaHanaAccId'>{moaclub?.accountId}</div>
-					<div className='memberListContainerHana'>
+					<div
+						className='memberListContainerHana'
+						onClick={() => {
+							navigate(`/moaclub/member/${accountId}`);
+						}}
+					>
 						{moaclub?.memberList.map((member, index) => (
 							<img
 								key={index}

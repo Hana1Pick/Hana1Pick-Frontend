@@ -108,3 +108,83 @@
 	right: 20px;
 	filter: drop-shadow(0px 3px 3px #b9b9b9);
 }
+
+// 모임원 관리 페이지
+.moaclubMemberContainer {
+	margin: 4.5rem 2rem 0 2rem;
+	.moaHanaMemberInfoBox {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.moaHanaMemberInviteBtn {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: #eff0f4;
+		padding: 0.5rem;
+		border-radius: 0.8rem;
+		font-size: 0.8rem;
+		color: rgb(75, 75, 75);
+	}
+
+	.moaHanaMemberInfoBox {
+		padding-bottom: 1rem;
+		border-bottom: 0.1em solid #efefef;
+	}
+
+	.moaHanaMemberRole {
+		margin-top: 1rem;
+		.moaHanaMemberRoleTitle {
+			text-align: left;
+			font-size: small;
+			color: #595959;
+		}
+	}
+
+	.moaHanaMemberRole:nth-of-type(2) {
+		margin-top: 2rem;
+	}
+
+	.moaHanaMemberItem {
+		display: flex;
+		align-items: center;
+		margin: 1rem 0;
+
+		.moaHanaMemberName {
+			margin-left: 0.5rem;
+		}
+
+		.moaHanaChangeManager {
+			font-size: small;
+			text-decoration: underline;
+			color: #8a8a8a;
+			margin-left: 9.5rem;
+		}
+	}
+}
+
+.moaHanaDepositInfoBox {
+	display: flex;
+	align-items: center;
+	border: 0.3px solid #cfcfcf;
+	border-radius: 1rem;
+	padding: 10px;
+	width: 80%;
+
+	font-size: 0.9rem;
+}
+
+.moaclubManagerChangeTxt {
+	font-size: large;
+	font-weight: 600;
+}
+
+.moaHanaWithdrawInfoTxt {
+	text-align: left;
+	color: #c4c4c4;
+	font-size: small;
+	margin-left: 2.5rem;
+	margin-top: 12rem;
+}

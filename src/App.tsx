@@ -77,6 +77,8 @@ import MoaclubAutoTrsfComplete from './pages/moaclub/MoaclubAutoTrsfComplete';
 import ServicePage from './pages/service/ServicePage';
 import Test from './test';
 import CamTest from './CamTest';
+import MoaclubMember from './pages/moaclub/MoaclubMember';
+import MoaclubManagerChange from './pages/moaclub/MoaclubManagerChange';
 
 function App() {
 	return (
@@ -222,6 +224,14 @@ function App() {
 					<Route
 						path='/moaclub/autotrsf/complete'
 						element={<MoaclubAutoTrsfComplete />}
+					/>
+					<Route
+						path='/moaclub/member/:accountId'
+						element={<MoaclubMember />}
+					/>
+					<Route
+						path='/moaclub/manager-change/:accountId'
+						element={<MoaclubManagerChange />}
 					/>
 
 					<Route

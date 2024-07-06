@@ -117,6 +117,11 @@ function MoaclubVoteManager() {
 				const moaClubInfoRes = await getMoaClubInfo(userIdx, accountId);
 				setIsManager(isManager);
 				setVoteResult(moaClubReqRes);
+				if (memberListRes) {
+					memberListRes.sort((a: memberList, b: memberList) =>
+						a.userName.localeCompare(b.userName)
+					);
+				}
 				setMemberList(memberListRes);
 				setMoaName(moaClubInfoRes);
 
