@@ -156,7 +156,7 @@ function OCRCamera() {
         <canvas ref={canvasRef} style={{ display: "none" }}></canvas>
       </div>
     </div>
-  );
+   );
 }
 
 export default OCRCamera;
