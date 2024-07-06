@@ -10,6 +10,7 @@ import CommonModal1 from "../../components/button/CommonModal1";
 function CelubRule() {
     const location = useLocation();
     const {accountId, ruleList} = location.state;
+    console.log(accountId);
     const navigate = useNavigate();
     const [rules, setRules] = useState<CelubRuleType[]>(ruleList ||[]);
     const [look, setLook] = useState(false);
@@ -48,6 +49,7 @@ function CelubRule() {
             newRules[index].ruleMoney = parseFloat(value);
         }
         setRules(newRules);
+        console.log(rules);
     };
     const addRules=()=>{
         let data = {
@@ -64,7 +66,7 @@ function CelubRule() {
                 setLook(true);
                 
             }).catch((error)=>{
-                alert("실패");
+                console.log("실패");
             });
     }
     const completeChange = () =>{

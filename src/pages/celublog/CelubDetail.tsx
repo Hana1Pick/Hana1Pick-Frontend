@@ -90,7 +90,7 @@ const CelubDetail: React.FC = () => {
         setIsRule(false);
     }
     const goMakeRule=()=>{
-        navigate("/celub/rule",{state:accountId});
+        navigate("/celub/rule",{state:{accountId, ruleList}});
     }
     const setting =()=>{
         navigate("/celub/setting", {state: accountId});
@@ -140,9 +140,11 @@ const CelubDetail: React.FC = () => {
                 <div className="celub-detail-box1" id="celubContainer">
                     <img id="celubBgImg" src={accountInfo.imgSrc} alt="Background" />
                     <div className="celub-detail">
-                        <p>D+{accountInfo.duration} ♥</p>
-                        <h4>{accountInfo.name}</h4>
-                        <h1>{formatCurrency(accountInfo.balance)}원</h1>
+                        <p>D+{accountInfo.duration}</p>
+                        <div className="celub-detail-title">
+                            <h4>{accountInfo.name}</h4>
+                            <h1>{formatCurrency(accountInfo.balance)}원</h1>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -214,10 +216,15 @@ const CelubDetail: React.FC = () => {
                             </select>
                         </div>
                         <div className="celub-deposic-balance">
+                            {outBalance < selectRuleMoney && (
+                                <div style={{ color: 'red', fontSize: '1.3rem' }}>
+                                    ⚠️ 계좌 잔액이 부족합니다.
+                                </div>
+                            )}
                             입금 전 입출금통장 잔액: {formatCurrency(outBalance)}원 <br/>
-                            입금 후 입출금통장 잔액: {formatCurrency(selectRuleMoney-selectRuleMoney)}원
+                            입금 후 입출금통장 잔액: {formatCurrency(outBalance-selectRuleMoney)}원
                         </div>
-                        <CommonBtn type='pink' value="입금하기" onClick={sendMoney} disabled={isHashTag}/>
+                        <CommonBtn type='pink' value="입금하기" onClick={sendMoney} disabled={isHashTag||outBalance-selectRuleMoney<0}/>
                 </div>
             </div>}
             <CommonModal1 msg=" 입금 되었습니다." show={look} onConfirm={completeChange} />
