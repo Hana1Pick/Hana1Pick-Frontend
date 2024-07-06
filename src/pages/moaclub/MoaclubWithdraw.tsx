@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CommonBtn from '../../components/button/CommonBtn';
 import { Account, MoaclubInfo } from '../../type/commonType';
+import CommonModal3 from '../../components/button/CommonModal3';
 
 function MoaclubWithdraw() {
 	const navigate = useNavigate();
@@ -20,11 +21,13 @@ function MoaclubWithdraw() {
 	const [amount, setAmount] = useState<string>('');
 	const [isDisabled, setIsDisabled] = useState<boolean>(false);
 	const type = 'DEPOSIT';
+	const [look, setLook] = useState(false);
+	const [look2, setLook2] = useState(false);
 
 	const getAccountListByType = async (userIdx: string, type: string) => {
 		try {
 			const response = await axios.get(
-				`http://${process.env.REACT_APP_BESERVERURI}/api/user/account-list`,
+				`${process.env.REACT_APP_BESERVERURI}/api/user/account-list`,
 				{
 					params: { userIdx, type },
 				}
@@ -61,7 +64,7 @@ function MoaclubWithdraw() {
 	const getMoaClubInfo = async (userIdx: string, accountId: string) => {
 		try {
 			const response = await axios.post(
-				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`,
+				`${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`,
 				{
 					userIdx,
 					accountId,
@@ -102,7 +105,7 @@ function MoaclubWithdraw() {
 	const currencyDetails = getCurrencyDetails(moaclub?.currency!);
 
 	const next = () => {
-		const requestUrl = `http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/request-withdraw`;
+		const requestUrl = `${process.env.REACT_APP_BESERVERURI}/api/moaclub/request-withdraw`;
 
 		const requestData = {
 			accountId: accountId,
@@ -118,10 +121,9 @@ function MoaclubWithdraw() {
 			})
 			.then((res) => {
 				if (res.data.status === 200) {
-					console.log('요청완료');
-					// 메세지 모달 (이미 요청)
+					setLook(true);
 				} else {
-					alert('이미 요청 존재');
+					setLook2(true);
 				}
 			})
 			.catch((error) => {
@@ -267,6 +269,22 @@ function MoaclubWithdraw() {
 					</div>
 				</div>
 			</div>
+
+			<CommonModal3
+				msg={`출금 요청이 완료되었습니다.`}
+				show={look}
+				onConfirm={() => {
+					navigate(`/moaclub/vote/trsf/${accountId}`);
+				}}
+			/>
+
+			<CommonModal3
+				msg={`이미 요청이 존재합니다.`}
+				show={look2}
+				onConfirm={() => {
+					navigate(`/moaclub/vote/trsf/${accountId}`);
+				}}
+			/>
 		</>
 	);
 }

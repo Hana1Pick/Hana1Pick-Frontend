@@ -14,8 +14,8 @@ const List = styled.ul`
 
 const ListCenter = styled.div`
 	box-sizing: border-box;
-	border-top: 2px solid #91ddcf;
-	border-bottom: 2px solid #91ddcf;
+	border-top: 2px solid #16a077;
+	border-bottom: 2px solid #16a077;
 	height: 50px;
 	position: sticky;
 	top: 50px;

@@ -77,200 +77,210 @@ import MoaclubAutoTrsfComplete from './pages/moaclub/MoaclubAutoTrsfComplete';
 import ServicePage from './pages/service/ServicePage';
 import Test from './test';
 import CamTest from './CamTest';
+import MoaclubMember from './pages/moaclub/MoaclubMember';
+import MoaclubManagerChange from './pages/moaclub/MoaclubManagerChange';
 
 function App() {
-  return (
-    <div className='App'>
-      <BrowserRouter>
-        <Routes>
-          <Route path='deposit' element={<DepositCreation1 />} />
-          <Route path='/deposit2' element={<DepositCreation2 />} />
-          <Route path='/userauth' element={<OCRCamera />} />
-          <Route path='/userauth2' element={<OCRGetData />} />
-          <Route
-            path='/deposit3'
-            element={<PatternPassword nextUrl='deposit4' />}
-          />
-          <Route path='/deposit4' element={<UserAgree />} />
-          <Route path='/deposit5' element={<DepositComplete />} />
-          {/* 메인 페이지*/}
-          <Route path='/' element={<MainPage />} />
-          {/* 상품/서비스 페이지: 최애 실시간 랭킹, 최애와 한컷 페이지로 이동 */}
-          <Route path='/service' element={<ServicePage />} />
-          {/* 계좌 이체 */}
-          <Route
-            path='/cash-out/*'
-            element={
-              <AccountContextProvider>
-                <Routes>
-                  <Route path='account' element={<SelectAccountPage />} />
-                  <Route path='account-query' element={<SearchAccountPage />} />
-                  <Route path='amount' element={<GetAmountPage />} />
-                  <Route path='' element={<CashOutPage />} />
-                  <Route path='pattern' element={<CashOutPatternPage />} />
-                  <Route path='result' element={<CashOutResultPage />} />
-                  {/* QR */}
-                  <Route
-                    path='/qr/*'
-                    element={
-                      <Routes>
-                        <Route path='' element={<GetQrPage />} />
-                        <Route
-                          path='account'
-                          element={<SelectQrOutAccountPage />}
-                        />
-                      </Routes>
-                    }
-                  />
-                </Routes>
-              </AccountContextProvider>
-            }
-          />
-          {/* QR 계좌 이체 */}
-          <Route
-            path='qr/cash-in/*'
-            element={
-              <QrContextProvider>
-                <Routes>
-                  <Route path='account' element={<SelectQrInAccountPage />} />
-                  <Route path='amount' element={<GetQrAmountPage />} />
-                  <Route path='result' element={<CreateQrResultPage />} />
-                </Routes>
-              </QrContextProvider>
-            }
-          />
-          {/* Celublog */}
-          <Route path='/celub/*'element={
-              <AccountContextProvider>
-                <Routes>
-                  <Route path='' element={<CelubPage />} />
-                  <Route path='withdraw' element={<CelubAcc />} />
-                  <Route path='complete' element={<CelubComplete />} />
-                  <Route path='list' element={<CelubAccountList />} />
-                  <Route path='detail' element={<CelubDetail />} />
-                  <Route path='rule' element={<CelubRule />} />
-                  <Route path='search' element={<CelubSelect />} />
-                  <Route path='name' element={<CelubName />} />
-                  <Route path='pattern' element={<CelubPattern />} />
-                  <Route path="setting" element={<CelubSetting/>}/>
-                  <Route path="photo" element={<CamTest />}/>
-                </Routes>
-              </AccountContextProvider>
-            }
-          />
-          {/* Moaclub */}
-          <Route
-            path='/moaclub/*'
-            element={
-              <MoaclubContextProvider>
-                <Routes>
-                  <Route path='/opening' element={<MoaclubOpening />} />
-                  <Route path='/select-acc' element={<MoaclubSelectAcc />} />
-                  <Route path='/create' element={<MoaclubCreatePage />} />
-                  <Route path='/complete' element={<MoaclubComplete />} />
-                  <Route path='/pattern' element={<MoaclubPattern />} />
-                  <Route path='/invite' element={<MoaclubInvite />} />
-                </Routes>
-              </MoaclubContextProvider>
-            }
-          />
-          <Route path='/moaclub/join/:accountId' element={<MoaclubJoin />} />
-          <Route path='/moaclub/main/:accountId' element={<MoaclubPage />} />
-          <Route
-            path='/moaclub/fee/:accountId'
-            element={<MoaclubFeeStatus />}
-          />
-          <Route
-            path='/moaclub/setting/:accountId'
-            element={<MoaclubSetting />}
-          />
-          <Route
-            path='/moaclub/modify/:accountId'
-            element={<MoaclubModify />}
-          />
-          <Route
-            path='/moaclub/vote/:accountId'
-            element={<MoaclubVoteSelect />}
-          />
-          <Route
-            path='/moaclub/vote/manager/:accountId'
-            element={<MoaclubVoteManager />}
-          />
-          <Route
-            path='/moaclub/vote/trsf/:accountId'
-            element={<MoaclubVoteTrsf />}
-          />
-          <Route
-            path='/moaclub/withdraw/:accountId'
-            element={<MoaclubWithdraw />}
-          />
-          <Route
-            path='/moaclub/autotrsf/:accountId'
-            element={<MoaclubAutoTrsf />}
-          />
-          <Route
-            path='/moaclub/autotrsf/detail/:accountId'
-            element={<MoaclubAutoTrsfDetail />}
-          />
-          <Route
-            path='/moaclub/autotrsf/register/:accountId'
-            element={<MoaclubAutoTrsfRegister />}
-          />
-          <Route path='/moaclub/autotrsf/pw' element={<MoaclubAutoTrsfPw />} />
-          <Route
-            path='/moaclub/autotrsf/complete'
-            element={<MoaclubAutoTrsfComplete />}
-          />
+	return (
+		<div className='App'>
+			<BrowserRouter>
+				<Routes>
+					<Route path='deposit' element={<DepositCreation1 />} />
+					<Route path='/deposit2' element={<DepositCreation2 />} />
+					<Route path='/userauth' element={<OCRCamera />} />
+					<Route path='/userauth2' element={<OCRGetData />} />
+					<Route
+						path='/deposit3'
+						element={<PatternPassword nextUrl='deposit4' />}
+					/>
+					<Route path='/deposit4' element={<UserAgree />} />
+					<Route path='/deposit5' element={<DepositComplete />} />
+					{/* 메인 페이지*/}
+					<Route path='/' element={<MainPage />} />
+					{/* 상품/서비스 페이지: 최애 실시간 랭킹, 최애와 한컷 페이지로 이동 */}
+					<Route path='/service' element={<ServicePage />} />
+					{/* 계좌 이체 */}
+					<Route
+						path='/cash-out/*'
+						element={
+							<AccountContextProvider>
+								<Routes>
+									<Route path='account' element={<SelectAccountPage />} />
+									<Route path='account-query' element={<SearchAccountPage />} />
+									<Route path='amount' element={<GetAmountPage />} />
+									<Route path='' element={<CashOutPage />} />
+									<Route path='pattern' element={<CashOutPatternPage />} />
+									<Route path='result' element={<CashOutResultPage />} />
+									{/* QR */}
+									<Route
+										path='/qr/*'
+										element={
+											<Routes>
+												<Route path='' element={<GetQrPage />} />
+												<Route
+													path='account'
+													element={<SelectQrOutAccountPage />}
+												/>
+											</Routes>
+										}
+									/>
+								</Routes>
+							</AccountContextProvider>
+						}
+					/>
+					{/* QR 계좌 이체 */}
+					<Route
+						path='qr/cash-in/*'
+						element={
+							<QrContextProvider>
+								<Routes>
+									<Route path='account' element={<SelectQrInAccountPage />} />
+									<Route path='amount' element={<GetQrAmountPage />} />
+									<Route path='result' element={<CreateQrResultPage />} />
+								</Routes>
+							</QrContextProvider>
+						}
+					/>
+					{/* Celublog */}
+					<Route path='/celub/*'element={
+						<AccountContextProvider>
+							<Routes>
+							<Route path='' element={<CelubPage />} />
+							<Route path='withdraw' element={<CelubAcc />} />
+							<Route path='complete' element={<CelubComplete />} />
+							<Route path='list' element={<CelubAccountList />} />
+							<Route path='detail' element={<CelubDetail />} />
+							<Route path='rule' element={<CelubRule />} />
+							<Route path='search' element={<CelubSelect />} />
+							<Route path='name' element={<CelubName />} />
+							<Route path='pattern' element={<CelubPattern />} />
+							<Route path="setting" element={<CelubSetting/>}/>
+							<Route path="photo" element={<CamTest />}/>
+							</Routes>
+						</AccountContextProvider>
+            		}
+					/>
+					{/* Moaclub */}
+					<Route
+						path='/moaclub/*'
+						element={
+							<MoaclubContextProvider>
+								<Routes>
+									<Route path='/opening' element={<MoaclubOpening />} />
+									<Route path='/select-acc' element={<MoaclubSelectAcc />} />
+									<Route path='/create' element={<MoaclubCreatePage />} />
+									<Route path='/complete' element={<MoaclubComplete />} />
+									<Route path='/pattern' element={<MoaclubPattern />} />
+									<Route path='/invite' element={<MoaclubInvite />} />
+								</Routes>
+							</MoaclubContextProvider>
+						}
+					/>
+					<Route path='/moaclub/join/:accountId' element={<MoaclubJoin />} />
+					<Route path='/moaclub/main/:accountId' element={<MoaclubPage />} />
+					<Route
+						path='/moaclub/fee/:accountId'
+						element={<MoaclubFeeStatus />}
+					/>
+					<Route
+						path='/moaclub/setting/:accountId'
+						element={<MoaclubSetting />}
+					/>
+					<Route
+						path='/moaclub/modify/:accountId'
+						element={<MoaclubModify />}
+					/>
+					<Route
+						path='/moaclub/vote/:accountId'
+						element={<MoaclubVoteSelect />}
+					/>
+					<Route
+						path='/moaclub/vote/manager/:accountId'
+						element={<MoaclubVoteManager />}
+					/>
+					<Route
+						path='/moaclub/vote/trsf/:accountId'
+						element={<MoaclubVoteTrsf />}
+					/>
+					<Route
+						path='/moaclub/withdraw/:accountId'
+						element={<MoaclubWithdraw />}
+					/>
+					<Route
+						path='/moaclub/autotrsf/:accountId'
+						element={<MoaclubAutoTrsf />}
+					/>
+					<Route
+						path='/moaclub/autotrsf/detail/:accountId'
+						element={<MoaclubAutoTrsfDetail />}
+					/>
+					<Route
+						path='/moaclub/autotrsf/register/:accountId'
+						element={<MoaclubAutoTrsfRegister />}
+					/>
+					<Route path='/moaclub/autotrsf/pw' element={<MoaclubAutoTrsfPw />} />
+					<Route
+						path='/moaclub/autotrsf/complete'
+						element={<MoaclubAutoTrsfComplete />}
+					/>
+					<Route
+						path='/moaclub/member/:accountId'
+						element={<MoaclubMember />}
+					/>
+					<Route
+						path='/moaclub/manager-change/:accountId'
+						element={<MoaclubManagerChange />}
+					/>
 
-          <Route
-            path='/moaclub/deposit/*'
-            element={
-              <MoaclubTrsfContextProvider>
-                <Routes>
-                  <Route path='/:accountId' element={<MoaclubDeposit />} />
-                  <Route path='/pw' element={<MoaclubPw />} />
-                  <Route path='/trsf/result' element={<MoaclubTrsfResult />} />
-                </Routes>
-              </MoaclubTrsfContextProvider>
-            }
-          />
+					<Route
+						path='/moaclub/deposit/*'
+						element={
+							<MoaclubTrsfContextProvider>
+								<Routes>
+									<Route path='/:accountId' element={<MoaclubDeposit />} />
+									<Route path='/pw' element={<MoaclubPw />} />
+									<Route path='/trsf/result' element={<MoaclubTrsfResult />} />
+								</Routes>
+							</MoaclubTrsfContextProvider>
+						}
+					/>
 
-          {/* User */}
-          <Route
-            path='/user/*'
-            element={
-              <AccountContextProvider>
-                <Routes>
-                  <Route path='login' element={<KakaoLoginPage />} />
-                </Routes>
-              </AccountContextProvider>
-            }
-          />
-          <Route
-            path='/api/user/oauth/kakao' //redirect_url
-            element={<LoginHandeler />} //당신이 redirect_url에 맞춰 꾸밀 컴포넌트
-          />
+					{/* User */}
+					<Route
+						path='/user/*'
+						element={
+							<AccountContextProvider>
+								<Routes>
+									<Route path='login' element={<KakaoLoginPage />} />
+								</Routes>
+							</AccountContextProvider>
+						}
+					/>
+					<Route
+						path='/api/user/oauth/kakao' //redirect_url
+						element={<LoginHandeler />} //당신이 redirect_url에 맞춰 꾸밀 컴포넌트
+					/>
 
-          {/* Photo Card */}
-          <Route
-            path='/photo-card/*'
-            element={
-              <PhotoCardContextProvider>
-                <Routes>
-                  <Route path='image' element={<ImagePage />} />
-                  <Route path='sticker' element={<StickerPage />} />
-                </Routes>
-              </PhotoCardContextProvider>
-            }
-          />
-        </Routes>
-        <Routes>
-            <Route path="/testing" element={<Test />}/>
-            <Route path="/camera-test" element={<CamTest />}/>
-        </Routes>
-      </BrowserRouter>
-    </div>
-  );
+					{/* Photo Card */}
+					<Route
+						path='/photo-card/*'
+						element={
+							<PhotoCardContextProvider>
+								<Routes>
+									<Route path='image' element={<ImagePage />} />
+									<Route path='sticker' element={<StickerPage />} />
+								</Routes>
+							</PhotoCardContextProvider>
+						}
+					/>
+				</Routes>
+				<Routes>
+					<Route path='/testing' element={<Test />} />
+					<Route path='/camera-test' element={<CamTest />} />
+				</Routes>
+			</BrowserRouter>
+		</div>
+	);
 }
 
 export default App;

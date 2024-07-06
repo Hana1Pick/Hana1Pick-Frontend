@@ -10,7 +10,7 @@ import { MoaclubContext } from '../../contexts/MoaclubContextProvider';
 const getAccountListByType = async (userIdx: string, type: string) => {
 	try {
 		const response = await axios.get(
-			`http://${process.env.REACT_APP_BESERVERURI}/api/user/account-list`,
+			`${process.env.REACT_APP_BESERVERURI}/api/user/account-list`,
 			{
 				params: { userIdx, type },
 			}

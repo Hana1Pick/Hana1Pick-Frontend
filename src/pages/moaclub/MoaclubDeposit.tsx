@@ -2,7 +2,7 @@ import Header from '../../layouts/MoaclubHeader1';
 import './MoaclubStyle.scss';
 import '../../common/styles/scss/CommonStyle.scss';
 import MoaClubCircleLogo from '../../assets/images/account/MoaClubCircleLogo.png';
-import CircleLogo from '../../assets/images/common/circle-logo.png';
+import CircleLogo from '../../assets/images/common/hanaCircleLogo.png';
 import deleteicon from '../../assets/images/common/deleteicon.png';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
@@ -30,7 +30,7 @@ function MoaclubDeposit() {
 	const getAccountListByType = async (userIdx: string, type: string) => {
 		try {
 			const response = await axios.get(
-				`http://${process.env.REACT_APP_BESERVERURI}/api/user/account-list`,
+				`${process.env.REACT_APP_BESERVERURI}/api/user/account-list`,
 				{
 					params: { userIdx, type },
 				}
@@ -69,7 +69,7 @@ function MoaclubDeposit() {
 	const getMoaClubInfo = async (userIdx: string, accountId: string) => {
 		try {
 			const response = await axios.post(
-				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`,
+				`${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`,
 				{
 					userIdx,
 					accountId,
