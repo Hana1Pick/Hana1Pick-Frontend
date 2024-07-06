@@ -27,7 +27,7 @@ function ChatPage() {
     const loadChatHistory = async () => {
       try {
         const response = await axios.get(
-          `http://${process.env.REACT_APP_BESERVERURI}/api/chat/${roomId}`
+          `${process.env.REACT_APP_BESERVERURI}/api/chat/${roomId}`
         );
         const messages = response.data.data
           .messageList as ChatMessageResponse[];
