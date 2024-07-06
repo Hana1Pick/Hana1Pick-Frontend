@@ -122,12 +122,12 @@ const CamTest: React.FC = () => {
       </div>
       {timer > 0 && <div className="celub-timer">{timer}</div>}
       {isModalOpen && (
-        <div className="modal-overlay" onClick={closeModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className="celub-camera-modal-overlay" onClick={closeModal}>
+          <div className="celub-camera-modal-content" onClick={(e) => e.stopPropagation()}>
             {photoUrl && <img src={photoUrl} alt="Captured" />}
-            <div className="camera-modal-buttons">
-              <button className="close-button" onClick={closeModal}>닫기</button>
-              <button className="save-button" onClick={savePhoto}>저장</button>
+            <div className="celub-camera-amera-modal-buttons">
+              <button className="celub-camera-close-button" onClick={closeModal}>닫기</button>
+              <button className="scelub-camera-save-button" onClick={savePhoto}>저장</button>
             </div>
            
           </div>
