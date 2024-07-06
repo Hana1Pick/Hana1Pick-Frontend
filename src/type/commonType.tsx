@@ -81,7 +81,6 @@ export type MoaclubInfo = {
   atDate: number;
   currency: string;
   createDate: string;
-  chatRoomId: number;
   memberList: memberList[];
 };
 
@@ -140,11 +139,27 @@ export interface MoaAutoTrsf {
   currency: string;
   createDate: string;
 }
+
+// NotificationType
+export interface NotificationType {
+  idx: number;
+  content: string;
+  url: string;
+  createdAt: string;
+  type: string;
+}
+
 // ModalType
 export type CommonModalType = {
   msg: string;
   show: boolean;
   onCancle: () => void;
+  onConfirm: () => void;
+};
+
+export type CommonModalType2 = {
+  msg: string;
+  show: boolean;
   onConfirm: () => void;
 };
 
@@ -154,4 +169,4 @@ export type Line = {
   startY: number;
   endX: number;
   endY: number;
-}
+};

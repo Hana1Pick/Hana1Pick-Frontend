@@ -112,11 +112,11 @@ function MoaclubCreatePage() {
 			case 'KRW':
 				return '₩';
 			case 'CNY':
-				return '¥';
+				return '위안';
 			case 'JPY':
-				return '¥';
+				return '엔';
 			case 'USD':
-				return '$';
+				return '달러';
 		}
 	};
 

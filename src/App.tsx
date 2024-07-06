@@ -73,13 +73,12 @@ import MoaclubAutoTrsfRegister from './pages/moaclub/MoaclubAutoTrsfRegister';
 import MoaclubAutoTrsfPw from './pages/moaclub/MoaclubAutoTrsfPw';
 import MoaclubAutoTrsfComplete from './pages/moaclub/MoaclubAutoTrsfComplete';
 
-// Chat
-import ChatRoom from './pages/chat/ChatRoom';
-
 // 서비스
 import ServicePage from './pages/service/ServicePage';
 import Test from './test';
 import CamTest from './CamTest';
+import MoaclubMember from './pages/moaclub/MoaclubMember';
+import MoaclubManagerChange from './pages/moaclub/MoaclubManagerChange';
 
 function App() {
   return (
@@ -143,7 +142,9 @@ function App() {
             }
           />
           {/* Celublog */}
-          <Route path='/celub/*'element={
+          <Route
+            path='/celub/*'
+            element={
               <AccountContextProvider>
                 <Routes>
                   <Route path='' element={<CelubPage />} />
@@ -155,7 +156,7 @@ function App() {
                   <Route path='search' element={<CelubSelect />} />
                   <Route path='name' element={<CelubName />} />
                   <Route path='pattern' element={<CelubPattern />} />
-                  <Route path="setting" element={<CelubSetting/>}/>
+                  <Route path='setting' element={<CelubSetting />} />
                   {/* <Route path="acc" element={<CelubAcc/>}/> */}
                 </Routes>
               </AccountContextProvider>
@@ -224,6 +225,14 @@ function App() {
             path='/moaclub/autotrsf/complete'
             element={<MoaclubAutoTrsfComplete />}
           />
+          <Route
+            path='/moaclub/member/:accountId'
+            element={<MoaclubMember />}
+          />
+          <Route
+            path='/moaclub/manager-change/:accountId'
+            element={<MoaclubManagerChange />}
+          />
 
           <Route
             path='/moaclub/deposit/*'
@@ -237,9 +246,6 @@ function App() {
               </MoaclubTrsfContextProvider>
             }
           />
-
-          {/* Chat */}
-          <Route path='/moaclub/chat/:roomId' element={<ChatRoom />} />
 
           {/* User */}
           <Route
@@ -271,8 +277,8 @@ function App() {
           />
         </Routes>
         <Routes>
-            <Route path="/testing" element={<Test />}/>
-            <Route path="/camera-test" element={<CamTest />}/>
+          <Route path='/testing' element={<Test />} />
+          <Route path='/camera-test' element={<CamTest />} />
         </Routes>
       </BrowserRouter>
     </div>
