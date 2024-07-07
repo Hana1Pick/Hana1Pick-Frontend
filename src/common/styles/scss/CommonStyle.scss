@@ -69,13 +69,20 @@ body {
 /* Header */
 
 #header {
-	height: 2.5em;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	border-bottom: 0.1em solid #efefef;
-	font-size: 1.17em;
-    font-weight: 500;
+	padding: 1rem 1.5rem 1rem 1.5rem;
+	font-size: 1rem;
+	font-weight: 500;
+}
+.back-header {
+	height: 20px; // 이미지 높이 설정 (필요에 따라 조정)
+	width: auto;
+	position: absolute;
+	left: 1rem;
+	margin-top: 1rem;
 }
 .commonHeader {
 	display: flex;

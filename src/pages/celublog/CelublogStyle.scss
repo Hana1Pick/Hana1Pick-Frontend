@@ -1,760 +1,769 @@
- .celubBox{
-  width:100%;
-  height: 100%;
- }
- #celubBox1 {
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
-  
-  #celubContainer {
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
-  
-  #celubBgImg {
-    width: 100%;
-    height: 26rem;
-    display: block;
-    // background-size: cover;
-    background-repeat: no-repeat;
-    overflow: hidden;
-    object-fit: cover;
-  }
-  
-  #celubLogo {
-    position: absolute !important;
-    top: 20% !important;
-    z-index: 1 !important;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
-  
-  #celubLogo {
-    img{
-      width: 50%;
-      height: auto;
-    }
-    h2{
-      margin: 70px 0 5px 0;
-    }
-  }
-  
-  #celubBox2{
-    text-align: center;
-    // padding-top: 10%;
-    p{
-      margin: 2rem 0 0.5rem 0;
-      text-align: center;
-      font-size: large;
-      word-break: keep-all;
-    }
-    button{
-      margin-top: 1.875rem;
-    }
-  }
-  #celubBox2-2{
-    text-align: center;
-    padding-top: 10%;
-    width: 100%;
-    position: fixed;
-    bottom: 1rem;
-    p{
-      margin: 0 0 3.125rem 10%;
-      text-align: left;
-      font-weight: 500;
-      font-size: large;
-    }
-    // button{
-    //   margin-top: 0.9375rem;
-    // }
-  }
-  
-  #arrow_loc, #share{
-    width: 2rem;
-    height: auto;
-  }
-
-  #setting{
-    width: 2rem;
-    margin-left: 1rem;
-    font-weight: 500;
-  }
-
-  
-  // #celubHeader1{
-  //   display:flex;
-  //   justify-content:space-between;
-  //   padding:1rem;
-  // }
-
-  #celubHeader1{
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    // position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 1rem 1.5rem 1rem 1.5rem;
-    background-color: white;
-    z-index: 1000;
-    box-sizing: border-box;
-    border-bottom: 0.1em solid #efefef;
-    h4{
-      margin-left: 30%;
-    }
-  }
-  
-  .celubHeader3{
-    z-index: 2;
-    position: fixed;
-    top: 0;
-    left: 0;  
-    width: 90%;
-    display:flex;
-    justify-content:space-between;
-    padding:1rem;
-    border-bottom: 0.1em solid #efefef;
-  }
-  .celub-withdraw-total-box{
-    height: 100vh;
-  }
-  #withdraw-box1{
-    margin-top: 80%;
-  }
-  
-  .withdraw-box2{
-    background-color:#F8F8F9;
-    width:80%;
-    height:50%;
-    padding:5%;
-    margin:auto;
-    border-radius: 0.5rem;
-    display:flex;
-    justify-content: space-between;
-    color: #6B6B6B;
-    font-size: 12px;
-    font-weight: 600;
-  }
-
-  .withdraw-box3{
-    padding-left: 5%;
-    padding-right: 5%;
-    div{
-        text-align: left;
-    }
-  }
-
-  .withdraw-box4{
-    display: none;
-    z-index: 1;
-    border-top-left-radius: 2rem;
-    border-top-right-radius: 2rem;
-    background-color: white;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 40%;
-  }
-  .celub-withdraw-overlay{
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* 반투명한 어두운 배경 */
-    z-index: 1;
-
-  }
- .withdraw-box5{
-   display: flex;
-   justify-content: center;
-   margin-top: 3rem;
-   button{
-    border:0;
-    border-radius: 0.5rem;
-    padding: 1.2rem;
-    width: 50%;
-    background-color: #C4C4C4;
-   }
- }
- .withdraw-box5-btn{
-  background-color: #009591 !important;
-  color: whitesmoke;
-  margin-left: 0.2rem;
- }
- .withdraw-box6{
-  margin: 3rem;
-  p{
-    font-size: 1.2rem;
-    font-weight: 500;
-  }
-  span{
-    font-size: 0.8rem;
-    color: #6B6B6B;
-  }
+.celubBox {
+	width: 100%;
+	height: 100%;
+}
+#celubBox1 {
+	position: relative;
+	width: 100%;
+	height: 100%;
 }
 
-  .checkImg{
-    width: 4.5rem;
-    height: 4.5rem;
-  }
+#celubContainer {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
 
-  .completeBox1{
-    height:50%;
-    padding: 6rem;
-  }
-  .tableBox{
-    width:100%;
-  }
-  .completeInfo{
-    width:80%;
-    border-top: 1px solid #D5D5D5;
-    margin: auto;
- 
-    th,td{
-        border-bottom: 1px solid #D5D5D5;
-        padding: 10px;
-    }
-    th{
-        text-align: left;
-        color: #666666;
-    }
-    td{
-        text-align: right;
-    }
-  }
+#celubBgImg {
+	width: 100%;
+	height: 28rem;
+	display: block;
+	// background-size: cover;
+	background-repeat: no-repeat;
+	overflow: hidden;
+	object-fit: cover;
+}
 
-  .textBox1{
-    margin-top: 1rem;
-    p{
-        font-size: 1.3rem;
-        font-weight: 700;
-        margin: 0;
-    }
-  }
+#celubLogo {
+	position: absolute !important;
+	top: 20% !important;
+	z-index: 1 !important;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+}
 
-  .completeBox3{
-    button{
-        margin-top: 6rem;
-    }
-  }
+#celubLogo {
+	img {
+		width: 50%;
+		height: auto;
+	}
+	h2 {
+		margin: 70px 0 5px 0;
+	}
+}
 
-  .celubListBox1{
-    margin: 0.83em 10%;
-    text-align: left;
-    span{
-        font-size: 16px;
-        font-weight: 500;
-    }
-  }
+#celubBox2 {
+	text-align: center;
+	padding-top: 10%;
+	p {
+		margin: 0 0 50px 10%;
+		text-align: left;
+		font-weight: 500;
+		font-size: large;
+		word-break: keep-all;
+	}
+	button {
+		margin-top: 1.875rem;
+	}
+}
+#celubBox2-2 {
+	text-align: center;
+	padding-top: 10%;
+	width: 100%;
+	position: fixed;
+	bottom: 1rem;
+	p {
+		margin: 0 0 3.125rem 10%;
+		text-align: left;
+		font-weight: 500;
+		font-size: large;
+	}
+	// button{
+	//   margin-top: 0.9375rem;
+	// }
+}
 
-  .celubListBox2{
-    padding: 5%;
-    display: grid;
-    grid-template-rows: 5rem 5rem;
-    grid-template-columns: repeat(2,1fr);
-    gap: 1rem;
-    button{
-        padding-top: 3%;
-        padding-bottom: 3%;
-        font-size: 16px;
-        background-color: #009591;
-        border-radius: 0.5rem;
-        color: azure;
-        border: none;
-        outline: none;
-    }
-  }
+#arrow_loc,
+#share {
+	width: 2rem;
+	height: auto;
+}
 
-  .celub-detail{
-    position: absolute !important;
-    z-index: 1 !important;
-    display: flex;
-    flex-direction: column;
-    top: 60%;
-    align-items: center;
-    .celub-detail-title{
-      background-color: rgba(242, 242, 242, 0.4);
-      border-radius: 0.5rem;
-      padding: 0.5rem;
-      h4, h2{
-        margin: 0;
-      }
-      h2{
-        font-weight: 400;
-      }
-    }
-    p{
-      position: fixed !important; 
-      top: 6%;
-      right: 1rem;
-      color: rgb(34,34,34,0.4);
-      border: 2px solid rgb(34,34,34,0.4);
-      border-radius: 0.5rem;
-      padding: 0.2rem;
-    }
-  }
+#setting {
+	width: 2rem;
+	margin-left: 1rem;
+	font-weight: 500;
+}
 
-  .celub-detail-box1{
-    display: flex;
-    justify-content: center;
-  }
+// #celubHeader1{
+//   display:flex;
+//   justify-content:space-between;
+//   padding:1rem;
+// }
+
+#celubHeader1 {
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	// position: fixed;
+	top: 0;
+	width: 100%;
+	padding: 1rem 1.5rem 1rem 1.5rem;
+	background-color: white;
+	z-index: 1000;
+	box-sizing: border-box;
+	border-bottom: 0.1em solid #efefef;
+	h4 {
+		margin-left: 30%;
+	}
+}
+
+.celubHeader3 {
+	z-index: 2;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 90%;
+	display: flex;
+	justify-content: space-between;
+	padding: 1rem;
+	border-bottom: 0.1em solid #efefef;
+}
+.celub-withdraw-total-box {
+	height: 100vh;
+}
+#withdraw-box1 {
+	margin-top: 80%;
+}
+
+.withdraw-box2 {
+	background-color: #f8f8f9;
+	width: 80%;
+	height: 50%;
+	padding: 5%;
+	margin: auto;
+	border-radius: 0.5rem;
+	display: flex;
+	justify-content: space-between;
+	color: #6b6b6b;
+	font-size: 12px;
+	font-weight: 600;
+}
+
+.withdraw-box3 {
+	padding-left: 5%;
+	padding-right: 5%;
+	div {
+		text-align: left;
+	}
+}
+
+.withdraw-box4 {
+	display: none;
+	z-index: 1;
+	border-top-left-radius: 2rem;
+	border-top-right-radius: 2rem;
+	background-color: white;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 40%;
+}
+.celub-withdraw-overlay {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.7); /* 반투명한 어두운 배경 */
+	z-index: 1;
+}
+.withdraw-box5 {
+	display: flex;
+	justify-content: center;
+	margin-top: 3rem;
+	button {
+		border: 0;
+		border-radius: 0.5rem;
+		padding: 1.2rem;
+		width: 50%;
+		background-color: #c4c4c4;
+	}
+}
+.withdraw-box5-btn {
+	background-color: #009591 !important;
+	color: whitesmoke;
+	margin-left: 0.2rem;
+}
+.withdraw-box6 {
+	margin: 3rem;
+	p {
+		font-size: 1.2rem;
+		font-weight: 500;
+	}
+	span {
+		font-size: 0.8rem;
+		color: #6b6b6b;
+	}
+}
+
+.checkImg {
+	width: 4.5rem;
+	height: 4.5rem;
+}
+
+.completeBox1 {
+	height: 50%;
+	padding: 6rem;
+}
+.tableBox {
+	width: 100%;
+}
+.completeInfo {
+	width: 80%;
+	border-top: 1px solid #d5d5d5;
+	margin: auto;
+
+	th,
+	td {
+		border-bottom: 1px solid #d5d5d5;
+		padding: 10px;
+	}
+	th {
+		text-align: left;
+		color: #666666;
+	}
+	td {
+		text-align: right;
+	}
+}
+
+.textBox1 {
+	margin-top: 1rem;
+	p {
+		font-size: 1.3rem;
+		font-weight: 700;
+		margin: 0;
+	}
+}
+
+.completeBox3 {
+	button {
+		margin-top: 6rem;
+	}
+}
+
+.celubListBox1 {
+	margin: 0.83em 10%;
+	text-align: left;
+	span {
+		font-size: 16px;
+		font-weight: 500;
+	}
+}
+
+.celubListBox2 {
+	padding: 5%;
+	display: grid;
+	grid-template-rows: 5rem 5rem;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1rem;
+	button {
+		padding-top: 3%;
+		padding-bottom: 3%;
+		font-size: 16px;
+		background-color: #009591;
+		border-radius: 0.5rem;
+		color: azure;
+		border: none;
+		outline: none;
+	}
+}
+
+.celub-detail {
+	position: absolute !important;
+	z-index: 1 !important;
+	display: flex;
+	flex-direction: column;
+	top: 60%;
+	align-items: center;
+	.celub-detail-title {
+		background-color: rgba(242, 242, 242, 0.4);
+		border-radius: 0.5rem;
+		padding: 0.5rem;
+		h4,
+		h2 {
+			margin: 0;
+		}
+		h2 {
+			font-weight: 400;
+		}
+	}
+	p {
+		position: fixed !important;
+		top: 6%;
+		right: 1rem;
+		color: rgb(34, 34, 34, 0.4);
+		border: 2px solid rgb(34, 34, 34, 0.4);
+		border-radius: 0.5rem;
+		padding: 0.2rem;
+	}
+}
+
+.celub-detail-box1 {
+	display: flex;
+	justify-content: center;
+}
 
 //계좌 상세 스크롤
 .celub-detail-box2 {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 47vh;
-    background-color: #f8f8f9;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    transition: bottom 0.3s ease-in-out, height 0.3s ease-in-out;
-    z-index: 2;
-    border-top-left-radius: 2rem;
-    border-top-right-radius: 2rem;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 47vh;
+	background-color: #f8f8f9;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	transition:
+		bottom 0.3s ease-in-out,
+		height 0.3s ease-in-out;
+	z-index: 2;
+	border-top-left-radius: 2rem;
+	border-top-right-radius: 2rem;
 }
 
 .celub-detail-box2.expanded {
-    bottom: 0; /* 스크롤 시 위치: 화면의 하단 */
-    height: 100vh; /* 확장된 높이: 전체 화면 */
+	bottom: 0; /* 스크롤 시 위치: 화면의 하단 */
+	height: 100vh; /* 확장된 높이: 전체 화면 */
 }
 
-.celub-detail-deco{
-    border-radius: 0.5rem;
-    background-color: rgb(1,145,120,0.33);
-    width: 5rem;
-    height: 0.4rem;
-    margin: auto;
+.celub-detail-deco {
+	border-radius: 0.5rem;
+	background-color: rgb(1, 145, 120, 0.33);
+	width: 5rem;
+	height: 0.4rem;
+	margin: auto;
 }
-.celub-rule-btn, .celub-history-btn{
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    border: 0;
-    background-color: #f8f8f9;
-    font-size: 1.05rem;
-    color: #5353;
-}
-
-.celub-click-event{
-  border-radius:2rem;
-  background-color:#009591 !important;
-  padding: 0.5rem;
-  color: whitesmoke !important;
+.celub-rule-btn,
+.celub-history-btn {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	border: 0;
+	background-color: #f8f8f9;
+	font-size: 1.05rem;
+	color: #5353;
 }
 
-.celub-detail-box3{
-  width: 90%;
-  height: 90%;
-  overflow-y: scroll;
-  margin: auto;
+.celub-click-event {
+	border-radius: 2rem;
+	background-color: #009591 !important;
+	padding: 0.5rem;
+	color: whitesmoke !important;
 }
 
-.detail-text-box{
-  color: #555856 !important;
+.celub-detail-box3 {
+	width: 90%;
+	height: 90%;
+	overflow-y: scroll;
+	margin: auto;
 }
 
-.celub-rule-box1{
-  border-radius: 1rem;
-  background-color: #f3f3f7;
-  color: #555856;
-  margin: 1.7rem auto;
-  padding: 1.5rem;
-  width: 75%;
-  button{
-    margin-top: 10px;
-  }
+.detail-text-box {
+	color: #555856 !important;
 }
 
-.celub-rule-box2{
-  color: #555856;
-  background-color: #e5eaec;
-  border-radius: 1rem;
-  margin: 0.3rem auto;
-  padding: 1.3rem;
-  width: fit-content;
-  float:left;
-  font-weight: 600;
+.celub-rule-box1 {
+	border-radius: 1rem;
+	background-color: #f3f3f7;
+	color: #555856;
+	margin: 1.7rem auto;
+	padding: 1.5rem;
+	width: 75%;
+	button {
+		margin-top: 10px;
+	}
 }
 
-.celub-history-table{
-  width: 100%;
-  color: #555856;
-  border-top: 1px solid #D5D5D5;
-  border-bottom: 1px solid #D5D5D5;
-  padding: 1rem;
-  tr{
-    border-bottom: 1px solid #D5D5D5;
-    td{
-      padding: 2%;
-    }
-  }
-}
-.celub-hashtag{
-  background-color:#D4EEFD;
-  border-radius: 1.5rem;
-  width:fit-content;
-  margin: 0.18rem auto;
-  font-size: 0.82rem;
-  padding: 0.38rem;
-}
-.celub-totalmoney{
-  font-size: 0.8rem;
-  margin-top: 0.4rem;
+.celub-rule-box2 {
+	color: #555856;
+	background-color: #e5eaec;
+	border-radius: 1rem;
+	margin: 0.3rem auto;
+	padding: 1.3rem;
+	width: fit-content;
+	float: left;
+	font-weight: 600;
 }
 
-.celub-rulemake-box1, .celub-rulemake-box2{
-  text-align: left;
-  h2{
-    margin: 0;
-  }
-  p{
-    margin: 1rem 0 0 0;
-    color: #C4C4C4;
-  }
+.celub-history-table {
+	width: 100%;
+	color: #555856;
+	border-top: 1px solid #d5d5d5;
+	border-bottom: 1px solid #d5d5d5;
+	padding: 1rem;
+	tr {
+		border-bottom: 1px solid #d5d5d5;
+		td {
+			padding: 2%;
+		}
+	}
+}
+.celub-hashtag {
+	background-color: #d4eefd;
+	border-radius: 1.5rem;
+	width: fit-content;
+	margin: 0.18rem auto;
+	font-size: 0.82rem;
+	padding: 0.38rem;
+}
+.celub-totalmoney {
+	font-size: 0.8rem;
+	margin-top: 0.4rem;
 }
 
-.celub-rule-totalbox{
-  padding: 5% 10%;
+.celub-rulemake-box1,
+.celub-rulemake-box2 {
+	text-align: left;
+	h2 {
+		margin: 0;
+	}
+	p {
+		margin: 1rem 0 0 0;
+		color: #c4c4c4;
+	}
 }
 
-.celub-rulemake-box3{
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  input{
-    border: 0;
-    padding: 0.8rem;
-    border-radius: 0.5rem;
-    border: 1px solid #dfdddd;
-    margin-top: 1rem;
-    font-weight: 600;
-  }
+.celub-rule-totalbox {
+	padding: 5% 10%;
 }
 
-.celub-rulemake-input1{
-  width: 55%;
-  margin-right: 0.5rem;
-}
-.celub-rulemake-input2{
-  width: 45%;
+.celub-rulemake-box3 {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	input {
+		border: 0;
+		padding: 0.8rem;
+		border-radius: 0.5rem;
+		border: 1px solid #dfdddd;
+		margin-top: 1rem;
+		font-weight: 600;
+	}
 }
 
-.celub-addrule-btn{
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  width: 85%;
-  height: 2.7rem;
-  padding-top: 3%;
-  padding-bottom: 3%;
-  border: 0.0625rem solid black;
-  border-radius: 0.5rem;
+.celub-rulemake-input1 {
+	width: 55%;
+	margin-right: 0.5rem;
 }
-.celub-deposit-box{
-  p{
-    font-size: 1.1rem;
-    font-weight: 500;
-    color:#555856;
-    margin-top: 1rem;
-  }
-  span{
-    font-size: 0.8rem;
-    margin: 20% 0 0 0;
-    color:#A9A9A9;
-  }
-  button{
-    border:0;
-    border-radius: 1rem;
-    padding: 1rem;
-    margin: 5rem;
-  }
-  select{
-     border: 0;
-     width: 70%;
-     height: 3.125rem;
-     padding: 0.625rem;
-     border-radius: 1rem;
-     margin-bottom: 1rem;
-     margin-top: 1rem;
-  }
+.celub-rulemake-input2 {
+	width: 45%;
+}
+
+.celub-addrule-btn {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	width: 85%;
+	height: 2.7rem;
+	padding-top: 3%;
+	padding-bottom: 3%;
+	border: 0.0625rem solid black;
+	border-radius: 0.5rem;
+}
+.celub-deposit-box {
+	p {
+		font-size: 1.1rem;
+		font-weight: 500;
+		color: #555856;
+		margin-top: 1rem;
+	}
+	span {
+		font-size: 0.8rem;
+		margin: 20% 0 0 0;
+		color: #a9a9a9;
+	}
+	button {
+		border: 0;
+		border-radius: 1rem;
+		padding: 1rem;
+		margin: 5rem;
+	}
+	select {
+		border: 0;
+		width: 70%;
+		height: 3.125rem;
+		padding: 0.625rem;
+		border-radius: 1rem;
+		margin-bottom: 1rem;
+		margin-top: 1rem;
+	}
 }
 
 // 셀럽로그 계좌 조회 시작
 .celubCardWrapper {
-  transition: transform 0.3s, background-color 0.3s;
+	transition:
+		transform 0.3s,
+		background-color 0.3s;
 }
 .slick-center .celubCardWrapper {
-  transform: scale(1.0);
+	transform: scale(1);
 }
-.slick-slide:not(.slick-center) .celubCardWrapper{
-  clip-path: polygon(0 40%, 100% 40%, 100% 100%, 0 100%);
-  opacity: 0.7;
-  .celubCardFront{
-    background-color: #FEF2BE; // 다음 슬라이드의 색상
-    border-radius: 0;
-    box-shadow: none;
-  }
+.slick-slide:not(.slick-center) .celubCardWrapper {
+	clip-path: polygon(0 40%, 100% 40%, 100% 100%, 0 100%);
+	opacity: 0.7;
+	.celubCardFront {
+		background-color: #fef2be; // 다음 슬라이드의 색상
+		border-radius: 0;
+		box-shadow: none;
+	}
 }
 
 .celubCard {
-  width: 11rem !important;
-  height: 18.5rem;
-  border-radius: 1rem;
-  margin: auto;
-  margin-top: 3rem;
-  perspective: 2000px;
+	width: 11rem !important;
+	height: 18.5rem;
+	border-radius: 1rem;
+	margin: auto;
+	margin-top: 3rem;
+	perspective: 2000px;
 }
 
 .celubCardInner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform 1s;
-  transform-style: preserve-3d;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	transition: transform 1s;
+	transform-style: preserve-3d;
 }
 
 .celubCard:hover .celubCardInner {
-  transform: rotateY(180deg);
+	transform: rotateY(180deg);
 }
 
-.celubCardFront, .celubCardBack {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5em;
-  font-weight: bold;
-  border-radius: 1rem;
-  box-shadow: 5px 5px 5px 5px rgba(128, 128, 128, 0.18);
-  background-size: cover;
-  background-position: center;
+.celubCardFront,
+.celubCardBack {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.5em;
+	font-weight: bold;
+	border-radius: 1rem;
+	box-shadow: 5px 5px 5px 5px rgba(128, 128, 128, 0.18);
+	background-size: cover;
+	background-position: center;
 }
 
 .celubCardFront {
-  background-color: #019178;
+	background-color: #019178;
 }
 
 .celubCardBack {
-  transform: rotateY(180deg);
+	transform: rotateY(180deg);
 }
 
 .celub-accountList-box {
-  bottom: 2rem;
-  right: 1rem;
-  position: fixed;
-  text-align: right;
+	bottom: 2rem;
+	right: 1rem;
+	position: fixed;
+	text-align: right;
 }
 
-.celub-balance, .celub-accountNum, .celub-balance, .celub-add-info {
-  color: whitesmoke;
-  font-size: 1rem;
-  font-weight: 500;
-  margin-top: 5px;
-  -webkit-font-smoothing: antialiased;
+.celub-balance,
+.celub-accountNum,
+.celub-balance,
+.celub-add-info {
+	color: whitesmoke;
+	font-size: 1rem;
+	font-weight: 500;
+	margin-top: 5px;
+	-webkit-font-smoothing: antialiased;
 }
 
 .celub-add-info {
-  color: whitesmoke;
-  font-size: 0.7rem;
-  font-weight: 400;   
+	color: whitesmoke;
+	font-size: 0.7rem;
+	font-weight: 400;
 }
 
 .celub-logo {
-  width: 2rem;
-  height: 2rem;
-  display: inline !important;
+	width: 2rem;
+	height: 2rem;
+	display: inline !important;
 }
 
-.slick-slider{
-  overflow: hidden !important;
+.slick-slider {
+	overflow: hidden !important;
 }
 
-.celub-photo-banner{
-  background-color: #E4EEFA;
-  width:70%;
-  border-radius: 0.5rem;
-  padding: 3% 10%;
-  margin: 5% auto auto auto;
-  display: flex;
-  img{
-    width: 40%;
-    height: 20%;
-  }
-  div{
-    margin-left: 10%;
-    p{
-      margin-top: 10px;
-      margin-bottom: 0;
-      color: #008E72;
-      font-weight: 500;
-    }
-    span{
-      font-size: 12px;
-      font-weight: 400;
-    }
-  }
+.celub-photo-banner {
+	background-color: #e4eefa;
+	width: 70%;
+	border-radius: 0.5rem;
+	padding: 3% 10%;
+	margin: 5% auto auto auto;
+	display: flex;
+	img {
+		width: 40%;
+		height: 20%;
+	}
+	div {
+		margin-left: 10%;
+		p {
+			margin-top: 10px;
+			margin-bottom: 0;
+			color: #008e72;
+			font-weight: 500;
+		}
+		span {
+			font-size: 12px;
+			font-weight: 400;
+		}
+	}
 }
 // 셀럽로그 계좌 조회 끝
 
-
 .celub-search-box {
-  text-align: center;
-  margin: 20px 0;
+	text-align: center;
+	margin: 20px 0;
 
-  select {
-    margin: 5px 10px 5px 5px;
-    padding: 5px;
-    font-size: 1em;
-    border: 0;
-    width: 27%;
-  }
-  input {
-    border: 0;
-    border-bottom: 1px solid #A9A9A9;
-    font-size: 1em;
-    width: 50%;
-    outline: none;
-  }
+	select {
+		margin: 5px 10px 5px 5px;
+		padding: 5px;
+		font-size: 1em;
+		border: 0;
+		width: 27%;
+	}
+	input {
+		border: 0;
+		border-bottom: 1px solid #a9a9a9;
+		font-size: 1em;
+		width: 50%;
+		outline: none;
+	}
 
-  .celub-search-img {
-    width: 30px;
-    vertical-align: middle;
-  }
+	.celub-search-img {
+		width: 30px;
+		vertical-align: middle;
+	}
 }
 
-.celub-search-img{
-  width: 5%;
-  height: 7%;
-  margin-left: 0.2rem;
+.celub-search-img {
+	width: 5%;
+	height: 7%;
+	margin-left: 0.2rem;
 }
 
-.celub-table{
-  width: 80%;
-  margin: 0 auto;
-  tbody{
-    tr, td{
-      margin: 0 auto;
-    }
-  }
+.celub-table {
+	width: 80%;
+	margin: 0 auto;
+	tbody {
+		tr,
+		td {
+			margin: 0 auto;
+		}
+	}
 }
-.celub-img{
-  width: 3rem;
-  height: 3rem;
-  
+.celub-img {
+	width: 3rem;
+	height: 3rem;
 }
 
 // modal
 .celub-setting-bgModal {
-  display: none; 
-  position: fixed; 
-  z-index: 1; 
-  left: 0;
-  top: 20%;
-  width: 100%; 
-  height: 100%; 
-  overflow: auto; 
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 20%;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
 }
-.celub-setting-modalTitle{
-  display: flex;
-  justify-content: space-between;
-  div{
-    padding-left: 10%;
-    padding-top: 5%;
-    font-weight: 500;
-  }
+.celub-setting-modalTitle {
+	display: flex;
+	justify-content: space-between;
+	div {
+		padding-left: 10%;
+		padding-top: 5%;
+		font-weight: 500;
+	}
 }
 .celub-setting-modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; 
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  border-radius: 0.5rem;
+	background-color: #fefefe;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%;
+	border-radius: 0.5rem;
 }
 
 .celub-setting-modal-close {
-  color: #aaa;
-  float: right;
-  font-size: 1.75rem;
-  font-weight: bold;
+	color: #aaa;
+	float: right;
+	font-size: 1.75rem;
+	font-weight: bold;
 }
-.celub-setting-modal-input{
-  margin: 3rem;
+.celub-setting-modal-input {
+	margin: 3rem;
 }
-.celub-setting-modal-input::file-selector-button{
-  background: #fff;
-  border: 0.0625rem solid rgb(77,77,77);
-  border-radius: 0.5rem;
-  padding: 0.5rem 1rem;
+.celub-setting-modal-input::file-selector-button {
+	background: #fff;
+	border: 0.0625rem solid rgb(77, 77, 77);
+	border-radius: 0.5rem;
+	padding: 0.5rem 1rem;
 }
 .close:hover,
 .close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
 }
 
 //search 재설정
-.celub-profile-box{
-  padding: 5%;
+.celub-profile-box {
+	padding: 5%;
 }
 
 .celub-profile-cover {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  justify-content: center;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	justify-content: center;
 }
 
 .celub-profile-container {
-  text-align: center;
+	text-align: center;
 
-  .celub-profile {
-    img {
-      width: 5rem;
-      height: 5rem;
-      border-radius: 50%;
-      object-fit: cover;
-      transition: box-shadow 0.3s ease-in-out;
-    }
+	.celub-profile {
+		img {
+			width: 5rem;
+			height: 5rem;
+			border-radius: 50%;
+			object-fit: cover;
+			transition: box-shadow 0.3s ease-in-out;
+		}
 
-    p {
-      margin-top: 10px;
-      font-size: 1.2em;
-      color: #000;
-      transition: color 0.3s ease-in-out;
+		p {
+			margin-top: 10px;
+			font-size: 1.2em;
+			color: #000;
+			transition: color 0.3s ease-in-out;
+		}
+	}
 
-    }
-  }
-    
-    .selected {
-      box-shadow: 0 0 20px #008E72;
-    }
-  }
-
-
-.celub-rule-box1 {
-  // text-align: center;
-  // margin: 20px;
-  // font-size: 1.2em;
-  // color: #ff0000;
+	.selected {
+		box-shadow: 0 0 20px #008e72;
+	}
 }
 
-.CelubAccountNameInput{
-  width: 70%;
+.celub-rule-box1 {
+	// text-align: center;
+	// margin: 20px;
+	// font-size: 1.2em;
+	// color: #ff0000;
+}
+
+.CelubAccountNameInput {
+	width: 70%;
 	padding: 10px 0;
 	border: none;
 	border-bottom: 1px solid #d3d3d3;
@@ -773,111 +782,113 @@
 	}
 }
 
-.celub-withdrawMsg{
-  margin: 3rem;
-  div{
-    h3{
-      text-align: left;
-      font-weight: 600;
-    }
-    h4{
-      text-align: left;
-      font-weight: 600;
-      color: #8F8F8F;
-      font-size: small;
-      line-height: 1.1rem;
-    }
-  }
+.celub-withdrawMsg {
+	margin: 3rem;
+	div {
+		h3 {
+			text-align: left;
+			font-weight: 600;
+		}
+		h4 {
+			text-align: left;
+			font-weight: 600;
+			color: #8f8f8f;
+			font-size: small;
+			line-height: 1.1rem;
+		}
+	}
 }
 
 //setting page css
-.celub-acccount-setting{
-  padding: 5%;
+.celub-acccount-setting {
+	padding: 5%;
 }
 
-.celub-setting-box1{
-  .celub-account-name{
-    display:flex;
-    h2{
-      margin-bottom: 0.5rem;
-      font-weight: 400;
-    }
-    img{
-      width: 6%;
-      height: 7%; 
-      margin: 1.5rem 0.5rem 0 0.5rem;    
-    }
-  }
-  .celub-accountId-box{
-    text-align: left;
-    color: #626579;
-    font-weight: 500;
-  }
+.celub-setting-box1 {
+	.celub-account-name {
+		display: flex;
+		h2 {
+			margin-bottom: 0.5rem;
+			font-weight: 400;
+		}
+		img {
+			width: 6%;
+			height: 7%;
+			margin: 1.5rem 0.5rem 0 0.5rem;
+		}
+	}
+	.celub-accountId-box {
+		text-align: left;
+		color: #626579;
+		font-weight: 500;
+	}
 }
-.celub-setting-box2{
-  margin-top: 3rem;
-  font-weight: 500;
-  .celub-accountName-box, .celub-interestRate-box, .celub-createDate-box{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 1rem;
-    .celub-setting-title{
-      color: #626579;
-    }
-  }
+.celub-setting-box2 {
+	margin-top: 3rem;
+	font-weight: 500;
+	.celub-accountName-box,
+	.celub-interestRate-box,
+	.celub-createDate-box {
+		display: flex;
+		justify-content: space-between;
+		margin-top: 1rem;
+		.celub-setting-title {
+			color: #626579;
+		}
+	}
 }
-.celub-setting-box3{
-  margin-top: 3rem;
-  .celub-setting-label{
-    height: 3rem;
-    background-color: #F8F9FD;
-    text-align: left;
-    display: flex;
-    align-items: flex-end;
-    padding-bottom: 0.8rem;
-    span{
-      color: #626579;
-      font-weight: 500;
-    }
-  }
-  .celub-setting1{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid rgb(232, 232, 232);
-    padding: 1rem 0;
-    .celub-setting-right{
-      height: 1rem;
-    }
-  }
+.celub-setting-box3 {
+	margin-top: 3rem;
+	.celub-setting-label {
+		height: 2rem;
+		background-color: #f8f9fd;
+		text-align: left;
+		display: flex;
+		align-items: flex-end;
+		padding-bottom: 0.8rem;
+		span {
+			color: #626579;
+			font-weight: 500;
+		}
+	}
+	.celub-setting1 {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		border-bottom: 1px solid rgb(232, 232, 232);
+		padding: 1rem 0;
+		.celub-setting-right {
+			height: 1rem;
+		}
+	}
 }
 
-.celub-setting-inputBox{
-  position: relative;
-  display: inline-block;
-  .celub-changeName{
-    height: 3rem;
-    border: 0;
-    border-bottom: 2px solid #E8E9F3;
-    outline: none;
-    padding-right: 1.875rem;
-    width: 12.5rem;
-    font-size: 1.025rem;
-  }
+.celub-setting-inputBox {
+	position: relative;
+	display: inline-block;
+	.celub-changeName {
+		height: 3rem;
+		border: 0;
+		border-bottom: 2px solid #e8e9f3;
+		outline: none;
+		padding-right: 1.875rem;
+		width: 12.5rem;
+		font-size: 1.025rem;
+	}
 }
-.celub-setting-inputBox .celub-clear-input{
-  position: absolute;
-  top: 50%;
-  right: 0.625rem;
-  transform: translateY(-50%);
-  cursor: pointer;
-  color: #999;
-  font-size: 1.125rem;
-  line-height: 1;
+.celub-setting-inputBox .celub-clear-input {
+	position: absolute;
+	top: 50%;
+	right: 0.625rem;
+	transform: translateY(-50%);
+	cursor: pointer;
+	color: #999;
+	font-size: 1.125rem;
+	line-height: 1;
 }
-.celub-deposic-balance{
-  color: #555856;
-  font-size: 0.8rem;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
+.celub-deposic-balance {
+	color: #555856;
+	font-size: 0.8rem;
+	font-weight: 500;
+	margin-bottom: 0.5rem;
 }
