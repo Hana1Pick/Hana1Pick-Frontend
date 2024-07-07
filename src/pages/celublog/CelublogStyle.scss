@@ -16,7 +16,7 @@
   
   #celubBgImg {
     width: 100%;
-    height: 28rem;
+    height: 26rem;
     display: block;
     // background-size: cover;
     background-repeat: no-repeat;
@@ -46,11 +46,10 @@
   
   #celubBox2{
     text-align: center;
-    padding-top: 10%;
+    // padding-top: 10%;
     p{
-      margin: 0 0 50px 10%;
-      text-align: left;
-      font-weight: 500;
+      margin: 2rem 0 0.5rem 0;
+      text-align: center;
       font-size: large;
       word-break: keep-all;
     }

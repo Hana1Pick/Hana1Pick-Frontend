@@ -1,5 +1,5 @@
-import React, { useState, useEffect, FormEvent } from "react";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./DepositStyle.scss";
 import { OCRData } from "../../type/commonType";
 import MoaClubHeader from "../../layouts/MoaclubHeader1";
@@ -23,6 +23,32 @@ function OCRGetData() {
   const [capturedImage, setCapturedImage] = useState<string | null>(
     initialCapturedImage
   );
+
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+
+  useEffect(() => {
+    if (initialCapturedImage) {
+      const img = new Image();
+      img.src = initialCapturedImage;
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+
+        if (ctx) {
+          const width = img.width;
+          const height = img.height;
+
+          canvas.width = width / 2;
+          canvas.height = height;
+
+          ctx.drawImage(img, 0, 0, width / 2, height, 0, 0, width / 2, height);
+
+          const dataUrl = canvas.toDataURL();
+          setCapturedImage(dataUrl);
+        }
+      };
+    }
+  }, [initialCapturedImage]);
 
   const handleSuccessClose = () => {
     setSuccessShow(false);
