@@ -149,100 +149,95 @@ function App() {
             }
           />
           {/* Celublog */}
-          <Route
-            path="/celub/*"
-            element={
-              <AccountContextProvider>
-                <Routes>
-                  <Route path="" element={<CelubPage />} />
-                  <Route path="withdraw" element={<CelubAcc />} />
-                  <Route path="complete" element={<CelubComplete />} />
-                  <Route path="list" element={<CelubAccountList />} />
-                  <Route path="detail" element={<CelubDetail />} />
-                  <Route path="rule" element={<CelubRule />} />
-                  <Route path="search" element={<CelubSelect />} />
-                  <Route path="name" element={<CelubName />} />
-                  <Route path="pattern" element={<CelubPattern />} />
-                  <Route path="setting" element={<CelubSetting />} />
-                </Routes>
-              </AccountContextProvider>
-            }
+					<Route path='/celub/*'element={
+						<AccountContextProvider>
+							<Routes>
+							<Route path='' element={<CelubPage />} />
+							<Route path='withdraw' element={<CelubAcc />} />
+							<Route path='complete' element={<CelubComplete />} />
+							<Route path='list' element={<CelubAccountList />} />
+							<Route path='detail' element={<CelubDetail />} />
+							<Route path='rule' element={<CelubRule />} />
+							<Route path='search' element={<CelubSelect />} />
+							<Route path='name' element={<CelubName />} />
+							<Route path='pattern' element={<CelubPattern />} />
+							<Route path="setting" element={<CelubSetting/>}/>
+							<Route path="photo" element={<CamTest />}/>
+							</Routes>
+						</AccountContextProvider>
+            		}
           />
-          {/* Moaclub */}
-          <Route
-            path="/moaclub/*"
-            element={
-              <MoaclubContextProvider>
-                <Routes>
-                  <Route path="/opening" element={<MoaclubOpening />} />
-                  <Route path="/select-acc" element={<MoaclubSelectAcc />} />
-                  <Route path="/create" element={<MoaclubCreatePage />} />
-                  <Route path="/complete" element={<MoaclubComplete />} />
-                  <Route path="/pattern" element={<MoaclubPattern />} />
-                  <Route path="/invite" element={<MoaclubInvite />} />
-                </Routes>
-              </MoaclubContextProvider>
-            }
-          />
-          <Route path="/moaclub/join/:accountId" element={<MoaclubJoin />} />
-          <Route path="/moaclub/main/:accountId" element={<MoaclubPage />} />
-          <Route
-            path="/moaclub/fee/:accountId"
-            element={<MoaclubFeeStatus />}
-          />
-          <Route
-            path="/moaclub/setting/:accountId"
-            element={<MoaclubSetting />}
-          />
-          <Route
-            path="/moaclub/modify/:accountId"
-            element={<MoaclubModify />}
-          />
-          <Route
-            path="/moaclub/vote/:accountId"
-            element={<MoaclubVoteSelect />}
-          />
-          <Route
-            path="/moaclub/vote/manager/:accountId"
-            element={<MoaclubVoteManager />}
-          />
-          <Route
-            path="/moaclub/vote/trsf/:accountId"
-            element={<MoaclubVoteTrsf />}
-          />
-          <Route
-            path="/moaclub/withdraw/:accountId"
-            element={<MoaclubWithdraw />}
-          />
-          <Route
-            path="/moaclub/autotrsf/:accountId"
-            element={<MoaclubAutoTrsf />}
-          />
-          <Route
-            path="/moaclub/autotrsf/detail/:accountId"
-            element={<MoaclubAutoTrsfDetail />}
-          />
-          <Route
-            path="/moaclub/autotrsf/register/:accountId"
-            element={<MoaclubAutoTrsfRegister />}
-          />
-          <Route path="/moaclub/autotrsf/pw" element={<MoaclubAutoTrsfPw />} />
-          <Route
-            path="/moaclub/autotrsf/complete"
-            element={<MoaclubAutoTrsfComplete />}
-          />
-          <Route
-            path="/moaclub/deposit/*"
-            element={
-              <MoaclubTrsfContextProvider>
-                <Routes>
-                  <Route path="/:accountId" element={<MoaclubDeposit />} />
-                  <Route path="/pw" element={<MoaclubPw />} />
-                  <Route path="/trsf/result" element={<MoaclubTrsfResult />} />
-                </Routes>
-              </MoaclubTrsfContextProvider>
-            }
-          />
+       {/* Moaclub */}
+					<Route
+						path='/moaclub/*'
+						element={
+							<MoaclubContextProvider>
+								<Routes>
+									<Route path='/opening' element={<MoaclubOpening />} />
+									<Route path='/select-acc' element={<MoaclubSelectAcc />} />
+									<Route path='/create' element={<MoaclubCreatePage />} />
+									<Route path='/complete' element={<MoaclubComplete />} />
+									<Route path='/pattern' element={<MoaclubPattern />} />
+									<Route path='/invite' element={<MoaclubInvite />} />
+								</Routes>
+							</MoaclubContextProvider>
+						}
+					/>
+					<Route path='/moaclub/join/:accountId' element={<MoaclubJoin />} />
+					<Route path='/moaclub/main/:accountId' element={<MoaclubPage />} />
+					<Route
+						path='/moaclub/fee/:accountId'
+						element={<MoaclubFeeStatus />}
+					/>
+					<Route
+						path='/moaclub/setting/:accountId'
+						element={<MoaclubSetting />}
+					/>
+					<Route
+						path='/moaclub/modify/:accountId'
+						element={<MoaclubModify />}
+					/>
+					<Route
+						path='/moaclub/vote/:accountId'
+						element={<MoaclubVoteSelect />}
+					/>
+					<Route
+						path='/moaclub/vote/manager/:accountId'
+						element={<MoaclubVoteManager />}
+					/>
+					<Route
+						path='/moaclub/vote/trsf/:accountId'
+						element={<MoaclubVoteTrsf />}
+					/>
+					<Route
+						path='/moaclub/withdraw/:accountId'
+						element={<MoaclubWithdraw />}
+					/>
+					<Route
+						path='/moaclub/autotrsf/:accountId'
+						element={<MoaclubAutoTrsf />}
+					/>
+					<Route
+						path='/moaclub/autotrsf/detail/:accountId'
+						element={<MoaclubAutoTrsfDetail />}
+					/>
+					<Route
+						path='/moaclub/autotrsf/register/:accountId'
+						element={<MoaclubAutoTrsfRegister />}
+					/>
+					<Route path='/moaclub/autotrsf/pw' element={<MoaclubAutoTrsfPw />} />
+					<Route
+						path='/moaclub/autotrsf/complete'
+						element={<MoaclubAutoTrsfComplete />}
+					/>
+					<Route
+						path='/moaclub/member/:accountId'
+						element={<MoaclubMember />}
+					/>
+					<Route
+						path='/moaclub/manager-change/:accountId'
+						element={<MoaclubManagerChange />}
+					/>
 
           {/* User */}
           <Route

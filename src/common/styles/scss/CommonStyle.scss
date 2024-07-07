@@ -10,15 +10,15 @@ body {
 /* CommonBtn CSS */
 
 #basicBtn1 {
-	width: 85%;
-	height: 2.7rem;
-	background-color: #1ea698;
-	border: 0;
-	border-radius: 0.5rem;
-	color: rgb(255, 255, 255);
-	cursor: pointer;
-	padding-top: 3%;
-	padding-bottom: 3%;
+  width: 85%;
+  height: 2.7rem;
+  background-color: #019178;
+  border: 0;
+  border-radius: 0.5rem;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  padding-top: 3%;
+  padding-bottom: 3%;
 }
 
 #basicBtn2 {
@@ -41,15 +41,16 @@ body {
 }
 
 .basicInputFile1 {
-	width: 85%;
-	background-color: #f19ed3;
-	border: 0;
-	border-radius: 0.5rem;
-	color: rgb(255, 255, 255);
-	cursor: pointer;
-	margin: auto;
-	padding-top: 3%;
-	padding-bottom: 3%;
+  width: 85%;
+  background-color: #019178;
+//background-color: #f19ed3;
+  border: 0;
+  border-radius: 0.5rem;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  margin: auto;
+  padding-top: 3%;
+  padding-bottom: 3%;
 }
 
 .basicInputFile2 {
@@ -78,7 +79,10 @@ body {
 
 /* pattern CSS */
 .pattern-container {
-	position: relative;
+	// position: relative;
+	position: fixed;
+	left: 10%;
+	bottom: 7%;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-rows: repeat(3, 1fr);
@@ -93,20 +97,21 @@ body {
 	position: relative;
 }
 .overlay-text {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	text-align: center;
-	font-size: 16px;
-	z-index: 10;
-	color: #000000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 16px;
+  z-index: 10;
+  color: whitesmoke;
+  div{
+    white-space: nowrap;
+    color: whitesmoke;
+    margin-top: 10px;
+  }
 }
-.overlay-text div {
-	white-space: nowrap;
-	color: #535353;
-	margin-top: 10px;
-}
+
 .pattern-dot {
 	width: 0.5rem;
 	height: 0.5rem;
@@ -122,7 +127,7 @@ body {
 	height: auto;
 }
 .pattern-dot.selected {
-	background-color: #f19ed3;
+  background-color: #019178;
 }
 .pattern-lines {
 	position: absolute;
@@ -135,30 +140,31 @@ body {
 
 // CommonModal
 .commonModal-backdrop {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
 }
 
 .commonModal {
-	background: white;
-	padding: 20px 20px 10px 20px;
-	border-radius: 8px;
-	text-align: center;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-	width: 50%;
-	p {
-		margin: 0;
-		padding: 10px 0 20px 0;
-		border-bottom: 1px solid #ccc;
-	}
+  background: white;
+  padding: 20px 20px 10px 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 50%;
+  z-index: 999;
+  p{
+    margin: 0;
+    padding: 10px 0 20px 0;
+    border-bottom: 1px solid #ccc;
+  }
 }
 
 .commonModal-buttons {

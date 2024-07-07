@@ -7,7 +7,9 @@ const CamTest: React.FC = () => {
   const additionalImageRef = useRef<HTMLImageElement | null>(null);
   const [isCameraOn, setIsCameraOn] = useState(false);
   const [timer, setTimer] = useState(0);
-  const additionalImageUrl = require('../src/assets/images/celub/dntjr.png');
+  const [photoUrl, setPhotoUrl] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const additionalImageUrl = require('../src/assets/images/photo/dntjr.png');
 
   useEffect(() => {
     const initCamera = async () => {
@@ -50,7 +52,7 @@ const CamTest: React.FC = () => {
       });
     }, 1000);
   };
-  
+
   const takePhoto = () => {
     if (videoRef.current && canvasRef.current && additionalImageRef.current) {
       const context = canvasRef.current.getContext('2d');
@@ -69,7 +71,7 @@ const CamTest: React.FC = () => {
           drawAdditionalImage(context, additionalImage);
         } else {
           additionalImage.onload = () => {
-            if (canvasRef.current) { 
+            if (canvasRef.current) {
               drawAdditionalImage(context, additionalImage);
             }
           };
@@ -79,16 +81,29 @@ const CamTest: React.FC = () => {
   };
 
   const drawAdditionalImage = (context: CanvasRenderingContext2D, image: HTMLImageElement) => {
-    if (canvasRef.current) {
+    if (canvasRef.current && videoRef.current) {
       const scale = 1.5;
-      const imageWidth = image.width * scale;
-      const imageHeight = image.height * scale;
+      const imageWidth = videoRef.current.videoWidth * 0.7;
+      const imageHeight = videoRef.current.videoHeight;
+
 
       const imageX = canvasRef.current.width - imageWidth;
       const imageY = canvasRef.current.height - imageHeight;
-      
+
       context.drawImage(image, imageX, imageY, imageWidth, imageHeight);
 
+      const imageUrl = canvasRef.current.toDataURL('image/png');
+      setPhotoUrl(imageUrl);
+      setIsModalOpen(true);
+    }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const savePhoto = () => {
+    if (canvasRef.current) {
       const imageUrl = canvasRef.current.toDataURL('image/png');
       const link = document.createElement('a');
       link.href = imageUrl;
@@ -106,7 +121,18 @@ const CamTest: React.FC = () => {
         <button className="photo-button" onClick={() => startTimerAndTakePhoto(5)} disabled={!isCameraOn}>촬영</button>
       </div>
       {timer > 0 && <div className="celub-timer">{timer}</div>}
-      {/* <div className="celub-timer">{timer}</div> */}
+      {isModalOpen && (
+        <div className="celub-camera-modal-overlay" onClick={closeModal}>
+          <div className="celub-camera-modal-content" onClick={(e) => e.stopPropagation()}>
+            {photoUrl && <img src={photoUrl} alt="Captured" />}
+            <div className="celub-camera-amera-modal-buttons">
+              <button className="celub-camera-close-button" onClick={closeModal}>닫기</button>
+              <button className="scelub-camera-save-button" onClick={savePhoto}>저장</button>
+            </div>
+           
+          </div>
+        </div>
+      )}
       {isCameraOn && (
         <div className="additional-image">
           <img src={additionalImageUrl} alt="Additional Image" ref={additionalImageRef} />
