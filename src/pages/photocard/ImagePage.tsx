@@ -34,7 +34,7 @@ function ImagePage() {
         </div>
       </div>
       <div id='nextBtn'>
-        <CommonBtn type='pink' value="셀럽한컷 찍기" onClick={goCamera}/>
+        <CommonBtn type='pink' value="최애와 한컷 찍기" onClick={goCamera}/>
         <label htmlFor='file'>
           <div className='basicInputFile1'>사진 선택하기</div>
         </label>
