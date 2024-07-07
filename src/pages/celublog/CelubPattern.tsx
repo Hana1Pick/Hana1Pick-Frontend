@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useRef, useState, useContext } from 'react';
 import PattrenBg from '../../assets/images/common/PatternBg.png';
 import { useNavigate, useLocation } from 'react-router-dom';
-import Header from '../../layouts/MoaclubHeader2';
+import Header from "../../layouts/MoaclubHeader2";
 
 interface PatternProps {
   nextUrl: string;
@@ -12,7 +12,7 @@ function CelubPattern() {
   const [attemptCnt, setAttemptCnt] = useState(0);
   const location = useLocation();
   const withdrawInfo = location.state;
-  console.log('값확인', withdrawInfo);
+  console.log("값확인",   withdrawInfo);
   /* TODO
   const userPassword = localStorage.getItem('userPassword');
   */
@@ -87,7 +87,7 @@ function CelubPattern() {
   };
 
   const navigate = useNavigate();
-  const next = (password: string) => {
+  const next = (password:string) => {
     const url = `${process.env.REACT_APP_BESERVERURI}/api/celub/accession`;
 
     const data = {
@@ -96,9 +96,9 @@ function CelubPattern() {
       name: withdrawInfo.name,
       imgSrc: withdrawInfo.imgSrc,
       outAccId: withdrawInfo.outAccId,
-      celebrityIdx: withdrawInfo.celebrityIdx,
+      celebrityIdx: withdrawInfo.celebrityIdx
     };
-
+   
     axios
       .post(url, data, {
         headers: {
@@ -107,7 +107,7 @@ function CelubPattern() {
       })
       .then((res) => {
         if (res.data.status == 201) {
-          navigate('/celub/complete', { state: withdrawInfo.outAccId });
+          navigate('/celub/complete', {state: withdrawInfo.outAccId});
         }
       })
       .catch((error) => {
@@ -117,30 +117,30 @@ function CelubPattern() {
 
   const checkPassword = async (password: string) => {
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_BESERVERURI}/api/user/password-check`,
-        {
-          userIdx: withdrawInfo.userIdx,
-          password: password,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
+        const response = await axios.post(
+            `${process.env.REACT_APP_BESERVERURI}/api/user/password-check`,
+            {
+              userIdx: withdrawInfo.userIdx,
+              password: password,
+            },
+            {
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }
+        );
 
-      if (response.data.data.check) {
-        next(password);
-      } else {
-        setSelectedPoints([]);
-        setAttemptCnt((prevCnt) => prevCnt + 1);
-        setErrorMsg(`일치하지 않습니다. (${attemptCnt + 1}/5)`);
-      }
-    } catch (error) {
-      console.error(error);
+        if (response.data.data.check) {
+            next(password);
+        } else {
+            setSelectedPoints([]);
+            setAttemptCnt((prevCnt) => prevCnt + 1);
+            setErrorMsg(`일치하지 않습니다. (${attemptCnt + 1}/5)`);
+        }
+    } catch(error) {
+        console.error(error);
     }
-  };
+  }
 
   const renderPattern = () => {
     const patternPoints = [];
@@ -179,7 +179,7 @@ function CelubPattern() {
           y1={startY}
           x2={endX}
           y2={endY}
-          stroke='rgb(233,198,229,0.3)'
+          stroke='rgb(0,149,145,0.3)'
           strokeWidth='20'
           strokeLinecap='round'
         />
@@ -191,7 +191,7 @@ function CelubPattern() {
   return (
     <>
       <div className='background-container'>
-        <Header value='비밀번호 입력' disabled={false} />
+        <Header value="비밀번호 입력" disabled={false} />
         <img src={PattrenBg} alt='Pattern Background' className='pattern-bg' />
         <div className='overlay-text'>
           비밀번호를 입력하세요.

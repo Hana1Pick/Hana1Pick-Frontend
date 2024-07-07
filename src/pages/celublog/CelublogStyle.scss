@@ -15,14 +15,13 @@
   }
   
   #celubBgImg {
-    
     width: 100%;
     height: 28rem;
     display: block;
-    // background-size: contain;
-    background-size: cover;
+    // background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
+    object-fit: cover;
   }
   
   #celubLogo {
@@ -78,7 +77,7 @@
   }
 
   #setting{
-    width: 1.7rem;
+    width: 2rem;
     margin-left: 1rem;
   }
 
@@ -148,7 +147,7 @@
     z-index: 1;
     border-top-left-radius: 2rem;
     border-top-right-radius: 2rem;
-    background-color: whitesmoke;
+    background-color: white;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -179,7 +178,7 @@
    }
  }
  .withdraw-box5-btn{
-  background-color: #F19ED3 !important;
+  background-color: #009591 !important;
   color: whitesmoke;
   margin-left: 0.2rem;
  }
@@ -259,7 +258,7 @@
         padding-top: 3%;
         padding-bottom: 3%;
         font-size: 16px;
-        background-color: #F19ED3;
+        background-color: #009591;
         border-radius: 0.5rem;
         color: azure;
         border: none;
@@ -274,14 +273,22 @@
     flex-direction: column;
     top: 60%;
     align-items: center;
-    h1{
+    .celub-detail-title{
+      background-color: rgba(242, 242, 242, 0.4);
+      border-radius: 0.5rem;
+      padding: 0.5rem;
+      h1, h4{
         margin: 0;
+      }
     }
     p{
       position: fixed !important; 
       top: 6%;
-      right: 2rem;
-      color: #F19ED3;
+      right: 1rem;
+      color: rgb(34,34,34,0.4);
+      border: 2px solid rgb(34,34,34,0.4);
+      border-radius: 0.5rem;
+      padding: 0.2rem;
     }
   }
 
@@ -296,7 +303,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 40vh;
+    height: 47vh;
     background-color: #f8f8f9;
     color: white;
     display: flex;
@@ -304,7 +311,7 @@
     align-items: center;
     text-align: center;
     transition: bottom 0.3s ease-in-out, height 0.3s ease-in-out;
-    z-index: 999;
+    z-index: 2;
     border-top-left-radius: 2rem;
     border-top-right-radius: 2rem;
 }
@@ -316,7 +323,7 @@
 
 .celub-detail-deco{
     border-radius: 0.5rem;
-    background-color: #F3DFF1;
+    background-color: rgb(1,145,120,0.33);
     width: 5rem;
     height: 0.4rem;
     margin: auto;
@@ -332,7 +339,7 @@
 
 .celub-click-event{
   border-radius:2rem;
-  background-color:#F19ED3 !important;
+  background-color:#009591 !important;
   padding: 0.5rem;
   color: whitesmoke !important;
 }
@@ -352,7 +359,7 @@
   border-radius: 1rem;
   background-color: #f3f3f7;
   color: #555856;
-  margin: 1.2rem auto;
+  margin: 1.7rem auto;
   padding: 1.5rem;
   width: 75%;
   button{
@@ -406,8 +413,7 @@
 }
 
 .celub-rule-totalbox{
-  padding-left: 10%;
-  padding-right: 10%;
+  padding: 5% 10%;
 }
 
 .celub-rulemake-box3{
@@ -417,7 +423,6 @@
   input{
     border: 0;
     padding: 0.8rem;
-    //background-color: #dfdddd;
     border-radius: 0.5rem;
     border: 1px solid #dfdddd;
     margin-top: 1rem;
@@ -436,19 +441,19 @@
 .celub-addrule-btn{
   margin-top: 1rem;
   margin-bottom: 1rem;
-  width: 90%;
-  height: 1rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  width: 85%;
+  height: 2.7rem;
+  padding-top: 3%;
+  padding-bottom: 3%;
   border: 0;
   border-radius: 0.5rem;
 }
-
 .celub-deposit-box{
   p{
     font-size: 1.1rem;
     font-weight: 500;
     color:#555856;
+    margin-top: 1rem;
   }
   span{
     font-size: 0.8rem;
@@ -464,47 +469,37 @@
   select{
      border: 0;
      width: 70%;
-     height: 50px;
-     padding: 10px;
+     height: 3.125rem;
+     padding: 0.625rem;
      border-radius: 1rem;
+     margin-bottom: 1rem;
+     margin-top: 1rem;
   }
 }
 
-// .celubAccountList{
-//   border-radius: 1rem;
-//   padding: 3rem;
-//   width: 12rem;
-//   height: 4rem;
-//   margin: auto;
-//   box-shadow: 5px 5px 5px 5px rgb(128,128,128,0.6);
-//   margin-top: 2rem;
-//   background-size: cover;
-//   background-position: center;
-//   background-repeat: no-repeat;
-//   position: relative;
-//   transition: transform 1s;
-//   transform-style: preserve-3d;
-//   perspective: 2000px;
-//   p{
-//     position: absolute;
-//     top: 0.1rem;
-//     left: 0.5rem;
-//     color: black;
-//     font-size: 1rem;
-//     font-weight: 500;
-//   }
-// }
-// .celubAccountList:hover{
-//   transform: rotateY(720deg);
-// }
-
+// 셀럽로그 계좌 조회 시작
+.celubCardWrapper {
+  transition: transform 0.3s, background-color 0.3s;
+}
+.slick-center .celubCardWrapper {
+  transform: scale(1.0);
+}
+.slick-slide:not(.slick-center) .celubCardWrapper{
+  clip-path: polygon(0 40%, 100% 40%, 100% 100%, 0 100%);
+  opacity: 0.7;
+  .celubCardFront{
+    background-color: #FEF2BE; // 다음 슬라이드의 색상
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
 
 .celubCard {
-  width: 18.5rem;
-  height: 10rem;
+  width: 11rem !important;
+  height: 18.5rem;
   border-radius: 1rem;
   margin: auto;
-  margin-top: 2rem;
+  margin-top: 3rem;
   perspective: 2000px;
 }
 
@@ -531,37 +526,77 @@
   font-size: 1.5em;
   font-weight: bold;
   border-radius: 1rem;
-  box-shadow: 5px 5px 5px 5px rgb(128,128,128,0.3);
+  box-shadow: 5px 5px 5px 5px rgba(128, 128, 128, 0.18);
   background-size: cover;
   background-position: center;
+}
+
+.celubCardFront {
+  background-color: #019178;
 }
 
 .celubCardBack {
   transform: rotateY(180deg);
 }
 
-.celub-accountName{
-    top: 1rem;
-    left: 1rem;
-    color: black;
-    font-size: 1rem;
-    font-weight: 600;
-    background-color: rgba(240, 255, 255, 0.5);
- 
-}
-
-.celub-balance{
+.celub-accountList-box {
+  bottom: 2rem;
   right: 1rem;
-  bottom: 1rem;
-  font-size: 1rem;
-  font-weight: 600;
+  position: fixed;
+  text-align: right;
 }
 
-.celub-accountNum, .celub-balance, .celub-accountName{
-  position: absolute;
-  background-color: rgba(240, 255, 255, 0.5);
-  border-radius: 30%;
+.celub-balance, .celub-accountNum, .celub-balance, .celub-add-info {
+  color: whitesmoke;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-top: 5px;
+  -webkit-font-smoothing: antialiased;
 }
+
+.celub-add-info {
+  color: whitesmoke;
+  font-size: 0.7rem;
+  font-weight: 400;   
+}
+
+.celub-logo {
+  width: 2rem;
+  height: 2rem;
+  display: inline !important;
+}
+
+.slick-slider{
+  overflow: hidden !important;
+}
+
+.celub-photo-banner{
+  background-color: #E4EEFA;
+  width:70%;
+  border-radius: 0.5rem;
+  padding: 3% 10%;
+  margin: 10% auto auto auto;
+  display: flex;
+  img{
+    width: 40%;
+    height: 20%;
+  }
+  div{
+    margin-left: 10%;
+    p{
+      margin-top: 10px;
+      margin-bottom: 0;
+      color: #8A8A8A;
+      font-weight: 500;
+    }
+    span{
+      font-size: 12px;
+      font-weight: 800;
+    }
+  }
+}
+// 셀럽로그 계좌 조회 끝
+
 
 .celub-search-box {
   text-align: center;
@@ -579,6 +614,7 @@
     border-bottom: 1px solid #A9A9A9;
     font-size: 1em;
     width: 50%;
+    outline: none;
   }
 
   .celub-search-img {
@@ -609,36 +645,49 @@
 }
 
 // modal
-.modal {
+.celub-setting-bgModal {
   display: none; 
   position: fixed; 
   z-index: 1; 
   left: 0;
-  top: 50px;
+  top: 20%;
   width: 100%; 
   height: 100%; 
   overflow: auto; 
-  background-color: rgb(0,0,0); 
-  background-color: rgba(0,0,0,0.4); 
 }
-
-/* Modal Content */
-.modal-content {
+.celub-setting-modalTitle{
+  display: flex;
+  justify-content: space-between;
+  div{
+    padding-left: 10%;
+    padding-top: 5%;
+    font-weight: 500;
+  }
+}
+.celub-setting-modal-content {
   background-color: #fefefe;
   margin: 15% auto; 
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
+  border-radius: 0.5rem;
 }
 
-/* The Close Button */
-.close {
+.celub-setting-modal-close {
   color: #aaa;
   float: right;
-  font-size: 28px;
+  font-size: 1.75rem;
   font-weight: bold;
 }
-
+.celub-setting-modal-input{
+  margin: 3rem;
+}
+.celub-setting-modal-input::file-selector-button{
+  background: #fff;
+  border: 0.0625rem solid rgb(77,77,77);
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+}
 .close:hover,
 .close:focus {
   color: black;
@@ -687,19 +736,19 @@
   width: 70%;
 	padding: 10px 0;
 	border: none;
-	border-bottom: 1px solid #d3d3d3; /* 회색 밑줄 */
+	border-bottom: 1px solid #d3d3d3;
 	outline: none;
 	font-size: 16px;
 	text-align: center;
 	margin-top: 20% !important;
 
 	&::placeholder {
-		color: #d3d3d3; /* 회색 플레이스홀더 */
+		color: #d3d3d3;
 		text-align: center;
 	}
 
 	&:focus {
-		border-bottom: 1px solid #000; /* 클릭 시 밑줄 색상 변경 */
+		border-bottom: 1px solid #000;
 	}
 }
 
@@ -718,4 +767,95 @@
       line-height: 1.1rem;
     }
   }
+}
+
+//setting page css
+.celub-acccount-setting{
+  padding: 5%;
+}
+
+.celub-setting-box1{
+  .celub-account-name{
+    display:flex;
+    h2{
+      margin-bottom: 0.5rem;
+    }
+    img{
+      width: 6%;
+      height: 7%; 
+      margin: 1.5rem 0.5rem 0 0.5rem;    
+    }
+  }
+  .celub-accountId-box{
+    text-align: left;
+    color: #626579;
+    font-weight: 500;
+  }
+}
+.celub-setting-box2{
+  margin-top: 3rem;
+  font-weight: 500;
+  .celub-accountName-box, .celub-interestRate-box, .celub-createDate-box{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    .celub-setting-title{
+      color: #626579;
+    }
+  }
+}
+.celub-setting-box3{
+  margin-top: 3rem;
+  .celub-setting-label{
+    height: 3rem;
+    background-color: #F8F9FD;
+    text-align: left;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 0.8rem;
+    span{
+      color: #626579;
+      font-weight: 500;
+    }
+  }
+  .celub-setting1{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(232, 232, 232);
+    padding: 1rem 0;
+    .celub-setting-right{
+      height: 1rem;
+    }
+  }
+}
+
+.celub-setting-inputBox{
+  position: relative;
+  display: inline-block;
+  .celub-changeName{
+    height: 3rem;
+    border: 0;
+    border-bottom: 2px solid #E8E9F3;
+    outline: none;
+    padding-right: 1.875rem;
+    width: 12.5rem;
+    font-size: 1.025rem;
+  }
+}
+.celub-setting-inputBox .celub-clear-input{
+  position: absolute;
+  top: 50%;
+  right: 0.625rem;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #999;
+  font-size: 1.125rem;
+  line-height: 1;
+}
+.celub-deposic-balance{
+  color: #555856;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
 }
