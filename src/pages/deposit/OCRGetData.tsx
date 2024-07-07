@@ -43,8 +43,8 @@ function OCRGetData() {
       const normalizedUserNation = formData.nation.toLowerCase();
       const normalizedOCRDataNation = ocrData.data.nation.toLowerCase();
       const nationMatched =
-        normalizedUserNation === "cn" &&
-        normalizedOCRDataNation === "china p.r.";
+        normalizedUserNation === "cn" ||
+        normalizedOCRDataNation.includes("china");
 
       setIsNameMatched(nameMatched);
       setIsNationMatched(nationMatched);
@@ -75,7 +75,10 @@ function OCRGetData() {
               />
             )}
           </div>
-          <p className="deposit-input-container">
+          <p
+            className="deposit-input-container"
+            style={{ marginBottom: "0.7rem" }}
+          >
             신분증 정보를 확인해주세요. <br />
             실제 정보와 다른 경우 재촬영해주세요.
           </p>

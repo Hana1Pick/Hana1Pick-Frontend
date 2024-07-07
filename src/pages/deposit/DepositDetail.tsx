@@ -17,8 +17,7 @@ import {
 
 const DepositDetail = () => {
   const navigate = useNavigate();
-  //const { accountId } = useParams();
-  const accountId = "02-00-8971124";
+  const { accountId } = useParams();
   const [deposit, setDeposit] = useState<DepositInfo | null>(null);
   const [accountHistory, setAccountHistory] = useState<DepsoitAccHis[] | null>(
     null
