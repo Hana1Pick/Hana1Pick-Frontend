@@ -11,15 +11,15 @@ body {
 /* CommonBtn CSS */
 
 #basicBtn1 {
-  width: 85%;
-  height: 2.7rem;
-  background-color: #019178;
-  border: 0;
-  border-radius: 0.5rem;
-  color: rgb(255, 255, 255);
-  cursor: pointer;
-  padding-top: 3%;
-  padding-bottom: 3%;
+	width: 85%;
+	height: 2.7rem;
+	background-color: #019178;
+	border: 0;
+	border-radius: 0.5rem;
+	color: rgb(255, 255, 255);
+	cursor: pointer;
+	padding-top: 3%;
+	padding-bottom: 3%;
 }
 
 #basicBtn2 {
@@ -42,16 +42,16 @@ body {
 }
 
 .basicInputFile1 {
-  width: 85%;
-  background-color: #019178;
-//background-color: #f19ed3;
-  border: 0;
-  border-radius: 0.5rem;
-  color: rgb(255, 255, 255);
-  cursor: pointer;
-  margin: auto;
-  padding-top: 3%;
-  padding-bottom: 3%;
+	width: 85%;
+	background-color: #019178;
+	//background-color: #f19ed3;
+	border: 0;
+	border-radius: 0.5rem;
+	color: rgb(255, 255, 255);
+	cursor: pointer;
+	margin: auto;
+	padding-top: 3%;
+	padding-bottom: 3%;
 }
 
 .basicInputFile2 {
@@ -79,12 +79,13 @@ body {
 }
 
 /* pattern CSS */
-.pattern-total-box{
+.pattern-total-box {
 	overflow: hidden !important;
 	height: 100%;
 	margin: 0;
 }
-.background-container, .pattern-container{
+.background-container,
+.pattern-container {
 	overflow: hidden;
 	touch-action: none;
 }
@@ -107,21 +108,21 @@ body {
 	position: fixed;
 }
 .overlay-text {
-  overflow: hidden;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  font-size: 16px;
-  z-index: 10;
-  top: 25%;
-  color: whitesmoke;
-  div{
-    white-space: nowrap;
-    color: whitesmoke;
-    margin-top: 10px;
-  }
+	overflow: hidden;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	font-size: 16px;
+	z-index: 10;
+	top: 25%;
+	color: whitesmoke;
+	div {
+		white-space: nowrap;
+		color: whitesmoke;
+		margin-top: 10px;
+	}
 }
 
 .pattern-dot {
@@ -136,13 +137,11 @@ body {
 }
 .pattern-bg {
 	position: fixed;
-	left: -0.1rem;
 	width: 100%;
 	height: auto;
-	top: 10%;
 }
 .pattern-dot.selected {
-  background-color: #019178;
+	background-color: #019178;
 }
 .pattern-lines {
 	position: absolute;
@@ -155,31 +154,31 @@ body {
 
 // CommonModal
 .commonModal-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 999;
 }
 
 .commonModal {
-  background: white;
-  padding: 20px 20px 10px 20px;
-  border-radius: 8px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 50%;
-  z-index: 999;
-  p{
-    margin: 0;
-    padding: 10px 0 20px 0;
-    border-bottom: 1px solid #ccc;
-  }
+	background: white;
+	padding: 20px 20px 10px 20px;
+	border-radius: 8px;
+	text-align: center;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	width: 50%;
+	z-index: 999;
+	p {
+		margin: 0;
+		padding: 10px 0 20px 0;
+		border-bottom: 1px solid #ccc;
+	}
 }
 
 .commonModal-buttons {
@@ -313,21 +312,45 @@ body {
 
 // CSS Reset
 // *{margin:0;padding:0;font:inherit;color:inherit;}
-// *, 
+// *,
 // :root {-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%;text-size-adjust:100%;cursor:default;line-height:1.5;}
 
 // 스크롤 안 생기게
 // html, body {height:100%;}
 // img, picture, video, canvas, svg {display: block;max-width:100%;}
-button {background:none;border:0;cursor:pointer;}
-a {text-decoration:none}
-table {border-collapse:collapse;border-spacing:0}
+button {
+	background: none;
+	border: 0;
+	cursor: pointer;
+}
+a {
+	text-decoration: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
 /* input 및 button 항목들이 글꼴을 상속하도록 합니다. */
 input,
 button,
 textarea,
 select {
-  font: inherit;
-  color:#333
+	font: inherit;
+	color: #333;
 }
-body, button, input, select, td, textarea, th {font-family: Hana1pick, Apple SD Gothic Neo, Malgun Gothic, 맑은 고딕, sans-serif;font-weight:400;color:#333}
+body,
+button,
+input,
+select,
+td,
+textarea,
+th {
+	font-family:
+		Hana1pick,
+		Apple SD Gothic Neo,
+		Malgun Gothic,
+		맑은 고딕,
+		sans-serif;
+	font-weight: 400;
+	color: #333;
+}
