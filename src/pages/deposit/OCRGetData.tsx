@@ -3,6 +3,7 @@ import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import "./DepositStyle.scss";
 import { OCRData } from "../../type/commonType";
 import MoaClubHeader from "../../layouts/MoaclubHeader1";
+import DepositModal from "../../components/modal/DepositModal";
 
 function OCRGetData() {
   const navigate = useNavigate();
@@ -15,7 +16,6 @@ function OCRGetData() {
   const [successShow, setSuccessShow] = useState(false);
   const [failShow, setFailShow] = useState(false);
 
-  
   const ocrDataString = localStorage.getItem("ocrData");
   const ocrData: OCRData = ocrDataString ? JSON.parse(ocrDataString) : null;
   const formData = location.state.userData;
@@ -43,7 +43,8 @@ function OCRGetData() {
       const normalizedUserNation = formData.nation.toLowerCase();
       const normalizedOCRDataNation = ocrData.data.nation.toLowerCase();
       const nationMatched =
-        normalizedUserNation === "cn" && normalizedOCRDataNation === "china";
+        normalizedUserNation === "cn" &&
+        normalizedOCRDataNation === "china p.r.";
 
       setIsNameMatched(nameMatched);
       setIsNationMatched(nationMatched);
@@ -145,30 +146,18 @@ function OCRGetData() {
         </div>
       </div>
       {successShow && (
-        <div className="deposit-modal">
-          <div className="deposit-modal-content">
-            <h3>본인인증 완료</h3>
-            <p>본인인증이 성공적으로 완료되었습니다.</p>
-            <div className="deposit-input-container">
-              <button id="deposit-basicBtn" onClick={handleSuccessClose}>
-                닫기
-              </button>
-            </div>
-          </div>
-        </div>
+        <DepositModal
+          msg="본인인증이 성공적으로 완료되었습니다."
+          onConfirm={handleSuccessClose}
+          show={true}
+        />
       )}
       {failShow && (
-        <div className="deposit-modal">
-          <div className="deposit-modal-content">
-            <h3>본인인증 실패</h3>
-            <p>본인인증에 실패하였습니다.</p>
-            <div className="deposit-input-container">
-              <button id="deposit-basicBtn" onClick={handleFailClose}>
-                닫기
-              </button>
-            </div>
-          </div>
-        </div>
+        <DepositModal
+          msg="본인인증에 실패하였습니다."
+          onConfirm={handleFailClose}
+          show={true}
+        />
       )}
     </div>
   );
