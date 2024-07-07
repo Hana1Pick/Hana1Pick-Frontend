@@ -6,8 +6,16 @@ import '../../common/styles/scss/CommonStyle.scss';
 import { useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { MoaclubContext } from '../../contexts/MoaclubContextProvider';
+import { useTranslation } from 'react-i18next';
 
 function MoaclubInvite() {
+	const { t, i18n } = useTranslation();
+	const [language, setLanguage] = useState(localStorage.getItem('language') || i18n.language);
+	
+	useEffect(() => {
+	  if(language=="KOR") i18n.changeLanguage('ko');
+	  else i18n.changeLanguage('ch');
+	}, [language, i18n]);
 	const navigate = useNavigate();
 
 	const userName = localStorage.getItem('name') as string;
@@ -28,31 +36,30 @@ function MoaclubInvite() {
 
 	return (
 		<>
-			<Header value='모아클럽' disabled={false} />
-			<div className='content'>
-				<h4 className='inviteTxt'>
-					함께할 멤버들에게
-					<br />
-					초대장을 보내보세요.
-				</h4>
+		  <Header value={t('header_title')} disabled={false} />
+		  <div className='content'>
+			<h4 className='inviteTxt'>
+			  {t('invite_text_line1')}
+			  <br />
+			  {t('invite_text_line2')}
+			</h4>
+		  </div>
+	
+		  <img
+			className='inviteIcon'
+			alt='invite-icon'
+			src={inviteIcon}
+			onClick={shareToKakao}
+		  />
+		  <div className='buttonContainerInvite'>
+			<div className='bubble'>
+			  {t('invite_button_description')}
 			</div>
-
-			<img
-				className='inviteIcon'
-				alt='invite-icon'
-				src={inviteIcon}
-				onClick={shareToKakao}
-			/>
-			<div className='buttonContainerInvite'>
-				<div className='bubble'>
-					모임원을 초대한 뒤<br /> 버튼을 눌러주세요😊
-				</div>
-				<CommonBtn type='black' value='다음' onClick={next} disabled={false} />
-			</div>
+			<CommonBtn type='black' value={t('common_button_next')} onClick={next} disabled={false} />
+		  </div>
 		</>
-	);
-
-	function shareToKakao() {
+	  );
+	  function shareToKakao() {
 		const description = `${userName}님이 모아클럽에 초대했어요.`;
 		const url =
 			'https://hana1-pick-frontend.vercel.app//moaclub/join/' + moaclub;
@@ -85,5 +92,7 @@ function MoaclubInvite() {
 		});
 	}
 }
+
+
 
 export default MoaclubInvite;

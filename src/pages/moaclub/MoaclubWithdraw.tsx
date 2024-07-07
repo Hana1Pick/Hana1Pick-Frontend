@@ -10,6 +10,7 @@ import axios from 'axios';
 import CommonBtn from '../../components/button/CommonBtn';
 import { Account, MoaclubInfo } from '../../type/commonType';
 import CommonModal3 from '../../components/modal/CommonModal3';
+import { useTranslation } from 'react-i18next';
 
 function MoaclubWithdraw() {
   const navigate = useNavigate();
@@ -23,7 +24,13 @@ function MoaclubWithdraw() {
   const type = 'DEPOSIT';
   const [look, setLook] = useState(false);
   const [look2, setLook2] = useState(false);
-
+	const { t, i18n } = useTranslation();
+	const [language, setLanguage] = useState(localStorage.getItem('language') || i18n.language);
+  
+	useEffect(() => {
+    if(language=="KOR") i18n.changeLanguage('ko');
+	  else i18n.changeLanguage('ch');
+	}, [language, i18n]);
   const getAccountListByType = async (userIdx: string, type: string) => {
     try {
       const response = await axios.get(
@@ -161,15 +168,15 @@ function MoaclubWithdraw() {
 
   return (
     <>
-      <div className='celub-withdraw-overlay' id='celub-withdraw-overlay'></div>
-      <Header value='모아클럽 출금' disabled={isDisabled} />
+     <div className='celub-withdraw-overlay' id='celub-withdraw-overlay'></div>
+      <Header value={t('moaClubWithdraw')} disabled={isDisabled} />
       <div className='content'>
         <div className='moaDepositContainer'>
-          <div className='moaDepositTxt'>출금계좌</div>
+          <div className='moaDepositTxt'>{t('withdrawAccount')}</div>
           <div className='moaDepositInfoBox'>
-            <img src={MoaClubCircleLogo} className='moaAccCircle' />
+            <img src={MoaClubCircleLogo} className='moaAccCircle' alt='Moa Club' />
             <div className='moaDepositDetailBox'>
-              <div>모아클럽</div>
+              <div>{t('moaClub')}</div>
               <div>{moaclub?.accountId}</div>
             </div>
             <div className='moaWithdrawBalance'>
@@ -178,7 +185,7 @@ function MoaclubWithdraw() {
             </div>
           </div>
           <div className='moaDepositSelectContainer'>
-            <div className='moaDepositTxt'>입금계좌</div>
+            <div className='moaDepositTxt'>{t('depositAccount')}</div>
             <select
               name='languages'
               id='lang'
@@ -186,16 +193,16 @@ function MoaclubWithdraw() {
               onChange={handleSelectChange}
             >
               <option value='' disabled selected>
-                계좌를 선택해 주세요.
+                {t('selectAccount')}
               </option>
               {account && (
                 <option value={account.accountId}>
-                  {account.name}의 입출금 계좌 ({getAccCode(account.accountId)})
+                  {account.name}의 {t('transactionAccount')} ({getAccCode(account.accountId)})
                 </option>
               )}
             </select>
             <div>
-              <div className='moaWithdrawTxt'>출금 금액 설정</div>
+              <div className='moaWithdrawTxt'>{t('withdrawAmount')}</div>
               <input
                 className='moaDepositAmountInput'
                 type='text'
@@ -203,9 +210,9 @@ function MoaclubWithdraw() {
                 onChange={handleAmountChange}
               />
               {currencyDetails?.currencySymbol}
-              {moaclub?.currency != 'KRW' && (
+              {moaclub?.currency !== 'KRW' && (
                 <div className='moaWithdrawWarn'>
-                  출금되는 시점의 환율로 계산되어 출금됩니다.
+                  {t('exchangeRateWarning')}
                 </div>
               )}
             </div>
@@ -213,17 +220,15 @@ function MoaclubWithdraw() {
         </div>
 
         <div className='moaWithdrawInfoTxt'>
-          * 이용안내 <br />
-          모아클럽 멤버 전원의 동의가 있는 경우
-          <br />
-          선택한 관리자의 입출금 계좌로 출금이 이루어집니다.
+          * {t('usageGuide')} <br />
+          {t('withdrawalNotice')}
         </div>
       </div>
 
       <div className='buttonContainer'>
         <CommonBtn
           type='pink'
-          value='다음'
+          value={t('next')}
           onClick={nextStage}
           disabled={!selectedAccount || !amount}
         />
@@ -236,34 +241,35 @@ function MoaclubWithdraw() {
               className='deleteicon'
               src={deleteicon}
               onClick={beforeStage}
+              alt='Delete Icon'
             />
           </div>
           <div>
             <img
               src={CircleLogo}
               className='moaAccCircle'
+              alt='Circle Logo'
               style={{ marginBottom: '1rem' }}
             />
             <div>
-              "<span className='moaWithdrawStrong'>{moaclub?.name}</span>"
-              모아클럽에서
+              "{moaclub?.name}" {t('fromMoaClub')}
             </div>
             <div>
               <span className='moaWithdrawStrong'>
                 {amount}
                 {currencyDetails?.currencySymbol}
               </span>
-              &nbsp;출금 요청하시겠습니까?
+              &nbsp;{t('requestWithdrawal')}
             </div>
             <div className='moaWithdrawInAccPopUp'>
-              입금계좌: 하나원픽 {selectedAccount}
+              {t('depositAccount')} 하나원픽 {selectedAccount}
             </div>
           </div>
           <div className='moaclub-box5'>
             <CommonBtn
               type='pink'
-              value='요청하기'
-              onClick={next}
+              value={t('request')}
+              onClick={nextStage}
               disabled={false}
             />
           </div>
@@ -271,7 +277,7 @@ function MoaclubWithdraw() {
       </div>
 
       <CommonModal3
-        msg={`출금 요청이 완료되었습니다.`}
+        msg={t('withdrawalCompleted')}
         show={look}
         onConfirm={() => {
           navigate(`/moaclub/vote/trsf/${accountId}`);
@@ -279,7 +285,7 @@ function MoaclubWithdraw() {
       />
 
       <CommonModal3
-        msg={`이미 요청이 존재합니다.`}
+        msg={t('requestExists')}
         show={look2}
         onConfirm={() => {
           navigate(`/moaclub/vote/trsf/${accountId}`);
@@ -288,5 +294,4 @@ function MoaclubWithdraw() {
     </>
   );
 }
-
 export default MoaclubWithdraw;

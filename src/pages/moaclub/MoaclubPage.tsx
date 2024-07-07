@@ -9,6 +9,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { MoaclubAccHis, MoaclubInfo } from '../../type/commonType';
+import { useTranslation } from 'react-i18next';
 
 const MoaclubPage = () => {
   const navigate = useNavigate();
@@ -176,16 +177,22 @@ const MoaclubPage = () => {
   const goChat = () => {
     navigate(`/moaclub/chat/${moaclub?.chatRoomId}`, { state: { moaclub } });
   };
-
+	const { t, i18n } = useTranslation();
+	const [language, setLanguage] = useState(localStorage.getItem('language') || i18n.language);
+	
+	useEffect(() => {
+	  if(language=="KOR") i18n.changeLanguage('ko');
+	  else i18n.changeLanguage('ch');
+	}, [language, i18n]);
   return (
     <>
       <div id='moaclubTopAlarmBox'>
         <img src={alarmLogo} alt='alarmTalk' />
         <div id='moaclubTopAlarmContent'></div>
-        <div className='moaclubTopAlarmTime'>지금</div>
+        <div className='moaclubTopAlarmTime'>{t('transactionHistory.now')}</div>
       </div>
 
-      <Header value='거래내역조회' disabled={true} onClick={goSetting} />
+      <Header value={t('transactionHistory.header')} disabled={true} onClick={goSetting} />
       <div className='moaHanaContainer'>
         <div className='moaHanaInfoContainer'>
           <div className='moaHanaTitle'>
@@ -213,20 +220,23 @@ const MoaclubPage = () => {
           </div>
           <div className='moaHanaAccInfoBtnContainer'>
             <div className='moaclubHanaMainDeposit' onClick={goMoaDeposit}>
-              입금하기
+              {t('transactionHistory.deposit')}
             </div>
             {isManager && (
               <div className='moaclubHanaMainWithdraw' onClick={goMoaWithdraw}>
-                출금하기
+                {t('transactionHistory.withdraw')}
               </div>
             )}
           </div>
         </div>
         <div className='moaHanaFeeRuleContainer' onClick={goFeeStatus}>
           <span className='moaclubHanaFeeRule'>
-            매월 {moaclub?.atDate}일 {formatCurrency(moaclub?.clubFee!)}씩
+            {t('transactionHistory.monthlyFee', {
+              day: moaclub?.atDate,
+              amount: formatCurrency(moaclub?.clubFee!)
+            })}
           </span>{' '}
-          | 입금현황 &#62;
+          | {t('transactionHistory.depositStatus')} &#62;
         </div>
       </div>
 
@@ -260,7 +270,7 @@ const MoaclubPage = () => {
             ) : (
               <tr>
                 <td colSpan={3} style={{ borderStyle: 'none' }}>
-                  거래 내역이 없습니다.
+                  {t('transactionHistory.noHistory')}
                 </td>
               </tr>
             )}
@@ -275,6 +285,6 @@ const MoaclubPage = () => {
       />
     </>
   );
-};
+}
 
 export default MoaclubPage;

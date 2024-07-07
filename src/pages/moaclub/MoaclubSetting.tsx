@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CommonBtn from '../../components/button/CommonBtn';
 import CommonModal3 from '../../components/modal/CommonModal3';
+import { useTranslation } from 'react-i18next';
 
 function MoaclubSetting() {
   const navigate = useNavigate();
@@ -17,7 +18,13 @@ function MoaclubSetting() {
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const [look, setLook] = useState(false);
   const [look2, setLook2] = useState(false);
-
+	const { t, i18n } = useTranslation();
+	const [language, setLanguage] = useState(localStorage.getItem('language') || i18n.language);
+  
+	useEffect(() => {
+    if(language=="KOR") i18n.changeLanguage('ko');
+	  else i18n.changeLanguage('ch');
+	}, [language, i18n]);
   const getManagerCheck = async (userIdx: string, accountId: string) => {
     try {
       const response = await axios.post(
@@ -109,25 +116,25 @@ function MoaclubSetting() {
   return (
     <>
       <div className='celub-withdraw-overlay' id='celub-withdraw-overlay'></div>
-      <Header value='모아클럽 관리' disabled={isDisabled} />
+      <Header value={t('moaclub.management')} disabled={isDisabled} />
       <div className='content'>
         <div className='moaclubSettingContainer'>
           <div onClick={goMoaclubVote}>
-            모아클럽 투표
+            {t('moaclub.vote')}
             <img className='rightIcon' alt='right-icon' src={righticon} />
           </div>
           {isManager && (
             <div onClick={goMoaclubModify}>
-              모아클럽 수정
+              {t('moaclub.modify')}
               <img className='rightIcon' alt='right-icon' src={righticon} />
             </div>
           )}
           <div onClick={goMoaclubAutoTrsf}>
-            자동이체 설정
+            {t('moaclub.autoTransfer')}
             <img className='rightIcon' alt='right-icon' src={righticon} />
           </div>
           <div onClick={nextStage}>
-            모아클럽 사용 종료
+            {t('moaclub.terminate')}
             <img className='rightIcon' alt='right-icon' src={righticon} />
           </div>
         </div>
@@ -139,20 +146,21 @@ function MoaclubSetting() {
             <img
               className='deleteicon'
               src={deleteicon}
+              alt='Delete Icon'
               onClick={beforeStage}
             />
           </div>
           <div>
-            <div>모아클럽을 해지하시겠습니까?</div>
+            <div>{t('moaclub.terminateConfirm')}</div>
             <div className='moaAutoTrsfDetailPopUp'>
               <table className='moaAutoTrsfDetailPopUpTable'>
                 <tbody>
                   <tr>
-                    <th>상품명</th>
+                    <th>{t('moaclub.productName')}</th>
                     <td>하나원픽 모아클럽</td>
                   </tr>
                   <tr>
-                    <th>계좌번호</th>
+                    <th>{t('moaclub.accountNumber')}</th>
                     <td>{accountId}</td>
                   </tr>
                 </tbody>
@@ -162,7 +170,7 @@ function MoaclubSetting() {
           <div className='moaclub-box5'>
             <CommonBtn
               type='pink'
-              value='해지하기'
+              value={t('moaclub.terminateAction')}
               onClick={next}
               disabled={false}
             />
@@ -171,7 +179,7 @@ function MoaclubSetting() {
       </div>
 
       <CommonModal3
-        msg={`모아클럽이 해지되었습니다.`}
+        msg={t('moaclub.terminated')}
         show={look}
         onConfirm={() => {
           navigate('/');
@@ -179,7 +187,7 @@ function MoaclubSetting() {
       />
 
       <CommonModal3
-        msg={`모아클럽에 아직 멤버가 존재합니다.`}
+        msg={t('moaclub.membersExist')}
         show={look2}
         onConfirm={() => {
           setLook2(false);
