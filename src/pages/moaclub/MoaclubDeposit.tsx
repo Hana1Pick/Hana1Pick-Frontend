@@ -304,7 +304,7 @@ function MoaclubDeposit() {
 								<div className='moaDepositAmountContainer'>
 									<div className='moaDepositAmountBoxFx'>
 										<div className='moaDepositFixedBox'>
-											<div className='moaDepositCountry'>🇺🇸 미국</div>
+											<div className='moaDepositCountry'>🇰🇷 한국</div>
 											<div className='moaDepositSymbol'>KRW</div>
 										</div>
 										<div className='moaDepositInputBox2'>
@@ -314,7 +314,7 @@ function MoaclubDeposit() {
 												value={amountKRW}
 												readOnly
 											/>
-											<div className='moaDepositWon'>달러</div>
+											<div className='moaDepositWon'>원</div>
 										</div>
 									</div>
 								</div>
