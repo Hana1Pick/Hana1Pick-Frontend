@@ -80,6 +80,11 @@ body {
 }
 
 /* pattern CSS */
+.pattern-total-box{
+	overflow: hidden !important;
+	height: 100%;
+	margin: 0;
+}
 .background-container, .pattern-container{
 	overflow: hidden;
 }
