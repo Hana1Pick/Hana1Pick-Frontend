@@ -45,21 +45,26 @@
   .user-name {
     flex-grow: 1;
     font-size: 1.17em;
-    margin: 1rem 0 1rem -9rem;
-    font-weight: 600;
+    margin: 1rem 0 1rem -1rem;
+    font-weight: 500;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 60%; /* 최대 너비를 지정하여 긴 이름도 잘리지 않도록 설정 */
   }
 
   .menu-icon {
     cursor: pointer;
 
     img {
-      width: 30px;
+      width: 1.875rem;
     }
   }
 
   .account-container {
     display: flex;
-    // justify-content: center; /* Center items horizontally */
+    justify-content: center; // 센터 정렬
     overflow: hidden;
     width: 100%;
     margin-left: 1rem;
@@ -81,11 +86,11 @@
     background-color: #fff;
     border-radius: 20px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    margin-right: 2.3rem;
-    min-width: 340px;
-    justify-content: center; /* Center items horizontally */
-    align-items: center; /* Center items vertically */
+    min-width: 20.25rem; // 1px->16rem
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    margin: 0 2rem 0 1.5rem;
 
     img {
       width: 2.25rem;
