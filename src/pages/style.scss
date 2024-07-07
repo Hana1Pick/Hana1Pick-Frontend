@@ -86,11 +86,12 @@
     background-color: #fff;
     border-radius: 20px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    min-width: 20.25rem; // 1px->16rem
+    min-width: 21.25rem; // 1px->16rem
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin: 0 2rem 0 1.5rem;
+    margin: 0 1.5rem 0 1.5rem;
+    // margin-right: 2.3rem;
 
     img {
       width: 2.25rem;
