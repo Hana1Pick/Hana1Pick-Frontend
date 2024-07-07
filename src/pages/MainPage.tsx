@@ -95,6 +95,17 @@ const MainPage = () => {
     trackMouse: true,
   });
 
+  	// console.log(
+	// 	'localStorage에 저장된 userIdx:',
+	// 	localStorage.getItem('userIdx')
+	// );
+	// console.log('localStorage에 저장된 name:', localStorage.getItem('name'));
+	// console.log('localStorage에 저장된 email:', localStorage.getItem('email'));
+	// console.log(
+	// 	'localStorage에 저장된 profile:',
+	// 	localStorage.getItem('profile')
+	// );
+
   // 계좌 클릭 이벤트 핸들러
   const handleAccountClick = (account: Account) => {
     if (account.accountType === 'moaclub') {
@@ -165,9 +176,9 @@ const MainPage = () => {
                           {account.accountType === 'deposit' ? '의 통장' : ''}
                         </p>
                         <p className='account-number'>{account.accountId}</p>
-                        <h3 className='account-balance'>
+                        <div className='account-balance' style={{    "fontWeight": 400, marginTop: "0.5rem"}}>
                           {account.balance.toLocaleString()}원
-                        </h3>
+                        </div>
                         <button
                           className='send-button'
                           onClick={(e) => {

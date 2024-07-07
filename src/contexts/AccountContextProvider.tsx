@@ -11,6 +11,9 @@ const AccountContextProvider = ({ children }: { children: any }) => {
 localStorage.getItem("userIdx") || ""
   );
   const [amount, setAmount] = useState(0);
+  
+  
+
   const [outAccId, setOutAccId] = useState('02-00-0010124');
   const [outAccBalance, setOutBalance] = useState(100000);
   const [inAccType, setInAccType] = useState('');
