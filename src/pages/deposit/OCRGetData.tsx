@@ -1,5 +1,5 @@
-import React, { useState, useEffect, FormEvent } from "react";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./DepositStyle.scss";
 import { OCRData } from "../../type/commonType";
 import MoaClubHeader from "../../layouts/MoaclubHeader1";
@@ -23,6 +23,32 @@ function OCRGetData() {
   const [capturedImage, setCapturedImage] = useState<string | null>(
     initialCapturedImage
   );
+
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+
+  useEffect(() => {
+    if (initialCapturedImage) {
+      const img = new Image();
+      img.src = initialCapturedImage;
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+
+        if (ctx) {
+          const width = img.width;
+          const height = img.height;
+
+          canvas.width = width / 2;
+          canvas.height = height;
+
+          ctx.drawImage(img, 0, 0, width / 2, height, 0, 0, width / 2, height);
+
+          const dataUrl = canvas.toDataURL();
+          setCapturedImage(dataUrl);
+        }
+      };
+    }
+  }, [initialCapturedImage]);
 
   const handleSuccessClose = () => {
     setSuccessShow(false);
@@ -75,79 +101,82 @@ function OCRGetData() {
               />
             )}
           </div>
-          <p
-            className="deposit-input-container"
-            style={{ marginBottom: "1rem" }}
-          >
-            신분증 정보를 확인해주세요. <br />
-            실제 정보와 다른 경우 재촬영해주세요.
-          </p>
-          <div className="deposit-input-container">
-            <label htmlFor="number" className="deposit-input-label">
-              외국인 등록번호
-            </label>
-            <input
-              type="text"
-              className="deposit-input-field"
-              value={ocrData.data.number}
-              id="number"
-            />
-          </div>
-          <div className="deposit-input-container">
-            <label htmlFor="name" className="deposit-input-label">
-              이름
-            </label>
-            <input
-              type="text"
-              className="deposit-input-field"
-              value={ocrData.data.name}
-              id="name"
-            />
-          </div>
-          <div className="deposit-input-container">
-            <label htmlFor="nation" className="deposit-input-label">
-              국가
-            </label>
-            <input
-              type="text"
-              className="deposit-input-field"
-              value={ocrData.data.nation}
-              readOnly
-              id="nation"
-            />
-          </div>
-          <div className="deposit-input-container">
-            <label htmlFor="certification" className="deposit-input-label">
-              체류 자격
-            </label>
-            <input
-              type="text"
-              className="deposit-input-field"
-              id="certification"
-              value={ocrData.data.certification}
-            />
-          </div>
-          <div className="deposit-input-container">
-            <label htmlFor="date" className="deposit-input-label">
-              발급일자
-            </label>
-            <input
-              type="text"
-              className="deposit-input-field"
-              value={ocrData.data.date}
-              id="date"
-            />
-          </div>
-          <div className="deposit-button-container">
-            <button className="ocr_btn1" onClick={handleConfirm}>
-              확인
-            </button>
-            <button className="ocr_btn2" onClick={handleRecapture}>
-              재촬영
-            </button>
+          <div className="captured-text">
+            <p
+              className="deposit-input-container"
+              style={{ marginBottom: "2rem" }}
+            >
+              신분증 정보를 확인해주세요. <br />
+              실제 정보와 다른 경우 재촬영해주세요.
+            </p>
+            <div className="deposit-input-container">
+              <label htmlFor="number" className="deposit-input-label">
+                외국인 등록번호
+              </label>
+              <input
+                type="text"
+                className="deposit-input-field"
+                value={ocrData.data.number}
+                id="number"
+              />
+            </div>
+            <div className="deposit-input-container">
+              <label htmlFor="name" className="deposit-input-label">
+                이름
+              </label>
+              <input
+                type="text"
+                className="deposit-input-field"
+                value={ocrData.data.name}
+                id="name"
+              />
+            </div>
+            <div className="deposit-input-container">
+              <label htmlFor="nation" className="deposit-input-label">
+                국가
+              </label>
+              <input
+                type="text"
+                className="deposit-input-field"
+                value={ocrData.data.nation}
+                readOnly
+                id="nation"
+              />
+            </div>
+            <div className="deposit-input-container">
+              <label htmlFor="certification" className="deposit-input-label">
+                체류 자격
+              </label>
+              <input
+                type="text"
+                className="deposit-input-field"
+                id="certification"
+                value={ocrData.data.certification}
+              />
+            </div>
+            <div className="deposit-input-container">
+              <label htmlFor="date" className="deposit-input-label">
+                발급일자
+              </label>
+              <input
+                type="text"
+                className="deposit-input-field"
+                value={ocrData.data.date}
+                id="date"
+              />
+            </div>
+            <div className="deposit-button-container">
+              <button className="ocr_btn1" onClick={handleConfirm}>
+                확인
+              </button>
+              <button className="ocr_btn2" onClick={handleRecapture}>
+                재촬영
+              </button>
+            </div>
           </div>
         </div>
       </div>
+
       {successShow && (
         <DepositModal
           msg="본인인증이 성공적으로 완료되었습니다."
