@@ -77,7 +77,19 @@ body {
 	font-size: 1.17em;
     font-weight: 500;
 }
-
+.commonHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	padding: 1rem 1.5rem 1rem 1.5rem;
+	background-color: white;
+	z-index: 1000;
+	box-sizing: border-box;
+	border-bottom: 0.1em solid #efefef;
+}
 /* pattern CSS */
 .pattern-total-box {
 	overflow: hidden !important;

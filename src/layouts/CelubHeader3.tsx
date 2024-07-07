@@ -7,7 +7,7 @@ function CelubHeader3({onClick}: {onClick: () => void }){
       navigate(-1); // 뒤로 가기
     };
     return(
-        <>
+        <div className='commonHeader'>
             <div className="celubHeader3">
                 <div>
                     <img id="arrow_loc" src={arrow} onClick={handleBackClick}/>
@@ -16,7 +16,7 @@ function CelubHeader3({onClick}: {onClick: () => void }){
                 <div className="setting" style={{fontWeight: "500", fontSize: "1.1rem"}} onClick={onClick}>설정</div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 export default CelubHeader3;

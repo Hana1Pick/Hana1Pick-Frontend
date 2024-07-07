@@ -10,13 +10,13 @@ function CelubHeader({ value }: CelubHeaderProps){
       navigate(-1); // 뒤로 가기
     };
     return(
-        <>
+        <div className='commonHeader'>
             <div id="celubHeader1">
                 <img className="back" src={arrow} onClick={handleBackClick}/>
                
                 <div className="title" style={{fontWeight: "500", fontSize: "1.1rem"}}>{value}</div>
             </div>
-        </>
+        </div>
     );
 }
 export default CelubHeader;
