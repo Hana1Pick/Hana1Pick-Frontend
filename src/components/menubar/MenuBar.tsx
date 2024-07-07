@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.scss';
-import { To, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import beHomeIcon from '../../assets/images/menubar/b_home.png';
 import beQrIcon from '../../assets/images/menubar/b_qr.png';
@@ -10,39 +10,26 @@ import beServiceIcon from '../../assets/images/menubar/b_service.png';
 const MenuBar = () => {
   const navigate = useNavigate();
 
-  const handleNavigate = (path: To) => {
-    navigate(path);
-  };
-
   return (
     <div className='menu-bar'>
-      <div className='menu-item home' onClick={() => handleNavigate('/main')}>
+      <div className='menu-item home' onClick={() => navigate('/main')}>
         <img src={beHomeIcon} alt='home-icon' style={{ width: '2.5rem' }} />
       </div>
-      <div
-        className='menu-item qr'
-        onClick={() => handleNavigate('/cash-out/qr')}
-      >
+      <div className='menu-item qr' onClick={() => navigate('/cash-out/qr')}>
         <img
           src={beQrIcon}
           alt='qr-icon'
           style={{ width: '3rem', marginTop: '0.2rem' }}
         />
       </div>
-      <div
-        className='menu-item service'
-        onClick={() => handleNavigate('/service/')}
-      >
+      <div className='menu-item service' onClick={() => navigate('/service/')}>
         <img
           src={beServiceIcon}
           alt='service-icon'
           style={{ width: '2.5rem', marginTop: '0.2rem' }}
         />
       </div>
-      <div
-        className='menu-item user'
-        onClick={() => handleNavigate('/user/mypage')}
-      >
+      <div className='menu-item user' onClick={() => navigate('/user/mypage')}>
         <img
           src={beUserIcon}
           alt='user-icon'
