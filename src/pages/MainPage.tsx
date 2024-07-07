@@ -104,9 +104,6 @@ const MainPage = () => {
       case 'deposit':
         navigate(`/account/detail/${account.accountId}`);
         break;
-      case 'celub':
-        navigate('/celub/detail/', { state: account.accountId });
-        break;
       default:
         console.error('Unknown account type');
     }
@@ -116,9 +113,14 @@ const MainPage = () => {
   const handleSendClick = (account: Account) => {
     if (account.accountType === 'moaclub') {
       navigate(`/moaclub/deposit/${account.accountId}`);
-    } else {
-      // todo: 다른 계좌 타입에 대한 계좌이체 처리(셀럽, 입출금 추가 필요)
-      navigate(`/cash-out/${account.accountId}`);
+    } else if (account.accountType === 'deposit') {
+      navigate(`/cash-out/account`, {
+        state: {
+          accountId: account.accountId,
+          name: account.name,
+          balance: account.balance,
+        },
+      });
     }
   };
 
@@ -156,8 +158,8 @@ const MainPage = () => {
               <LoadingSpinner />
             ) : (
               <>
-                {accounts.length > 0 ? (
-                  accounts.map((account) => (
+                {accounts.filter(account => account.accountType !== 'celub').length > 0 ? (
+                  accounts.filter(account => account.accountType !== 'celub').map((account) => (
                     <div
                       className='accountBox'
                       key={account.accountId}
@@ -208,11 +210,11 @@ const MainPage = () => {
             )}
           </div>
           <div className='scrollbar'>
-            {accounts.length > 0 && (
+            {accounts.filter(account => account.accountType !== 'celub').length > 0 && (
               <div
                 className='scrollbar-indicator'
                 style={{
-                  width: `${100 / accounts.length}%`,
+                  width: `${100 / accounts.filter(account => account.accountType !== 'celub').length}%`,
                   transform: `translateX(${currentIndex * 100}%)`,
                 }}
               ></div>
@@ -243,7 +245,7 @@ const MainPage = () => {
             </div>
           </div>
 
-          {/* // TODO: 실시간 환율 정보  */}
+          {/* 실시간 환율 정보  */}
           <div className='exchange-container'>
             <Exchange />
           </div>

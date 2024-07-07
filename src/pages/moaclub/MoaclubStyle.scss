@@ -378,19 +378,21 @@ header {
 .clubFeeText {
 	border-style: none;
 	border-radius: 2rem;
-	width: 70%;
+	width: 50%;
 	height: 60%;
-	text-align: center;
+	text-align: right;
 }
 
 .clubFeeBox {
 	margin-top: 3rem;
 	margin-bottom: 3.5rem;
 	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .moaMonthTxt {
-	font-size: 0.9rem;
+	font-size: 1rem;
 	font-weight: 500;
 }
 
@@ -398,7 +400,7 @@ header {
 	margin-left: 0.5rem !important;
 	font-weight: 500 !important;
 	color: #424242 !important;
-	font-size: 0.9rem !important;
+	font-size: 1rem !important;
 }
 
 .inviteTxt {
