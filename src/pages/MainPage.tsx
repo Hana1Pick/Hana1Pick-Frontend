@@ -1,24 +1,24 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { To, useNavigate } from 'react-router-dom';
-import hanaLogo from '../assets/images/common/hanaBankLogo.png';
-import menuIcon from '../assets/images/alarm/black_alarm_icon.png';
-import celubIcon from '../assets/images/main/main_celub_icon.png';
-import moaIcon from '../assets/images/main/main_moa_logo.png';
-import MenuBar from '../components/menubar/MenuBar';
-import './style.scss';
-import { useSwipeable } from 'react-swipeable';
-import NavBar from '../components/alarm/NavBar';
-import Exchange from '../components/exchange';
-import LoadingSpinner from '../components/loading/boxLoading'; // 로딩 스피너 컴포넌트 임포트
-import { NotificationType } from '../type/commonType';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { To, useNavigate } from "react-router-dom";
+import hanaLogo from "../assets/images/common/hanaBankLogo.png";
+import menuIcon from "../assets/images/alarm/black_alarm_icon.png";
+import celubIcon from "../assets/images/main/main_celub_icon.png";
+import moaIcon from "../assets/images/main/main_moa_logo.png";
+import MenuBar from "../components/menubar/MenuBar";
+import "./style.scss";
+import { useSwipeable } from "react-swipeable";
+import NavBar from "../components/alarm/NavBar";
+import Exchange from "../components/exchange";
+import LoadingSpinner from "../components/loading/boxLoading"; // 로딩 스피너 컴포넌트 임포트
+import { NotificationType } from "../type/commonType";
 
 interface Account {
-	id: string;
-	name: string;
-	accountId: string;
-	accountType: string;
-	balance: number;
+  id: string;
+  name: string;
+  accountId: string;
+  accountType: string;
+  balance: number;
 }
 
 const MainPage = () => {
@@ -210,7 +210,7 @@ const MainPage = () => {
 
         <div className="promotions">
           <div className="promotion">
-            <img src={celubIcon} alt="celubIcon" style={{width:"3rem"}} />
+            <img src={celubIcon} alt="celubIcon" style={{ width: "3rem" }} />
 
             <div className="promotionDetail">
               <p className="promotionSubTitle">최애와 함께 저축 습관 들이기!</p>
@@ -218,10 +218,9 @@ const MainPage = () => {
                 셀럽로그 시작하기
               </button>
             </div>
-
           </div>
           <div className="promotion">
-            <img src={moaIcon} alt="moaIcon" style={{width:"3rem"}}/>
+            <img src={moaIcon} alt="moaIcon" style={{ width: "3rem" }} />
             <div className="promotionDetail">
               <p className="promotionSubTitle">
                 최애가 같다면 함께 쓰는 모임통장!
