@@ -1,15 +1,23 @@
 import axios from 'axios';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PattrenBg from '../../assets/images/common/PatternBg.png';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Header from '../../layouts/MoaclubHeader2';
 import '../../common/styles/scss/CommonStyle.scss';
+import { useTranslation } from 'react-i18next';
 
 interface PatternProps {
   nextUrl: string;
 }
 
 function MoaclubAutoTrsfPw() {
+  const { t, i18n } = useTranslation();
+	const [language, setLanguage] = useState(localStorage.getItem('language') || i18n.language);
+	
+	useEffect(() => {
+	  if(language=="KOR") i18n.changeLanguage('ko');
+	  else i18n.changeLanguage('ch');
+	}, [language, i18n]);
   const userIdx = localStorage.getItem('userIdx') as string;
   const location = useLocation();
   const req = location.state;
@@ -193,11 +201,11 @@ function MoaclubAutoTrsfPw() {
   return (
     <>
       <div className='background-container'>
-        <Header value='비밀번호 입력' disabled={false} />
+        <Header value={t('passwordInput.header')} disabled={false} />
         <img src={PattrenBg} alt='Pattern Background' className='pattern-bg' />
         <div className='overlay-text'>
-          비밀번호를 입력하세요.
-          <div>회원 인증 패턴을 그려주세요.</div>
+          {t('passwordInput.passwordPlaceholder')}
+          <div>{t('passwordInput.drawPattern')}</div>
           {errorMsg && <div className='errorMsg'>{errorMsg}</div>}
         </div>
       </div>

@@ -9,6 +9,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { MoaclubAccHis, MoaclubInfo } from '../../type/commonType';
+import { useTranslation } from 'react-i18next';
 import PageLoadingSpinner from '../../components/pageLoding/pageLoading';
 
 const MoaclubPage = () => {
@@ -174,112 +175,116 @@ const MoaclubPage = () => {
 		navigate(`/moaclub/withdraw/${accountId}`);
 	};
 
-	const goChat = () => {
-		navigate(`/moaclub/chat/${moaclub?.chatRoomId}`, { state: { moaclub } });
-	};
+  const goChat = () => {
+    navigate(`/moaclub/chat/${moaclub?.chatRoomId}`, { state: { moaclub } });
+  };
+	const { t, i18n } = useTranslation();
+	const [language, setLanguage] = useState(localStorage.getItem('language') || i18n.language);
+	
+	useEffect(() => {
+	  if(language=="KOR") i18n.changeLanguage('ko');
+	  else i18n.changeLanguage('ch');
+	}, [language, i18n]);
+  return (
+    <>
+      <div id='moaclubTopAlarmBox'>
+        <img src={alarmLogo} alt='alarmTalk' />
+        <div id='moaclubTopAlarmContent'></div>
+        <div className='moaclubTopAlarmTime'>{t('transactionHistory.now')}</div>
+      </div>
 
-	if (!moaclub || !accountHistory) {
-		return <PageLoadingSpinner />;
-	}
+      <Header value={t('transactionHistory.header')} disabled={true} onClick={goSetting} />
+      <div className='moaHanaContainer'>
+        <div className='moaHanaInfoContainer'>
+          <div className='moaHanaTitle'>
+            <img src={hanaLogo} alt='hanaLogo' />
+            <div>{moaclub?.name}</div>
+          </div>
+          <div className='moaHanaAccId'>{moaclub?.accountId}</div>
+          <div
+            className='memberListContainerHana'
+            onClick={() => {
+              navigate(`/moaclub/member/${accountId}`);
+            }}
+          >
+            {moaclub?.memberList.map((member, index) => (
+              <img
+                key={index}
+                src={member.profile}
+                alt={member.userName}
+                className='memberProfile'
+              />
+            ))}
+          </div>
+          <div className='moaHanaAccBalance'>
+            {formatCurrency(moaclub?.balance!)}
+          </div>
+          <div className='moaHanaAccInfoBtnContainer'>
+            <div className='moaclubHanaMainDeposit' onClick={goMoaDeposit}>
+              {t('transactionHistory.deposit')}
+            </div>
+            {isManager && (
+              <div className='moaclubHanaMainWithdraw' onClick={goMoaWithdraw}>
+                {t('transactionHistory.withdraw')}
+              </div>
+            )}
+          </div>
+        </div>
+        <div className='moaHanaFeeRuleContainer' onClick={goFeeStatus}>
+          <span className='moaclubHanaFeeRule'>
+            {t('transactionHistory.monthlyFee', {
+              day: moaclub?.atDate,
+              amount: formatCurrency(moaclub?.clubFee!)
+            })}
+          </span>{' '}
+          | {t('transactionHistory.depositStatus')} &#62;
+        </div>
+      </div>
 
-	return (
-		<>
-			<div id='moaclubTopAlarmBox'>
-				<img src={alarmLogo} alt='alarmTalk' />
-				<div id='moaclubTopAlarmContent'></div>
-				<div className='moaclubTopAlarmTime'>지금</div>
-			</div>
-
-			<Header value='거래내역조회' disabled={true} onClick={goSetting} />
-			<div className='moaHanaContainer'>
-				<div className='moaHanaInfoContainer'>
-					<div className='moaHanaTitle'>
-						<img src={hanaLogo} alt='hanaLogo' />
-						<div>{moaclub?.name}</div>
-					</div>
-					<div className='moaHanaAccId'>{moaclub?.accountId}</div>
-					<div
-						className='memberListContainerHana'
-						onClick={() => {
-							navigate(`/moaclub/member/${accountId}`);
-						}}
-					>
-						{moaclub?.memberList.map((member, index) => (
-							<img
-								key={index}
-								src={member.profile}
-								alt={member.userName}
-								className='memberProfile'
-							/>
-						))}
-					</div>
-					<div className='moaHanaAccBalance'>
-						{formatCurrency(moaclub?.balance!)}
-					</div>
-					<div className='moaHanaAccInfoBtnContainer'>
-						<div className='moaclubHanaMainDeposit' onClick={goMoaDeposit}>
-							입금하기
-						</div>
-						{isManager && (
-							<div className='moaclubHanaMainWithdraw' onClick={goMoaWithdraw}>
-								출금하기
-							</div>
-						)}
-					</div>
-				</div>
-				<div className='moaHanaFeeRuleContainer' onClick={goFeeStatus}>
-					<span className='moaclubHanaFeeRule'>
-						매월 {moaclub?.atDate}일 {formatCurrency(moaclub?.clubFee!)}씩
-					</span>{' '}
-					| 입금현황 &#62;
-				</div>
-			</div>
-
-			<div className='moaclubHana'>
-				<table className='moaclubAccHisTable'>
-					<tbody>
-						{accountHistory && accountHistory.length > 0 ? (
-							accountHistory.map((history, index) => (
-								<tr key={index}>
-									<td className='moaclubDate'>
-										{formatDate(history.transDate)}
-									</td>
-									<td className='moaclubTarget'>{history.target}</td>
-									<td className='transaction'>
-										<span
-											id='moaclubTransAmountTxt'
-											className={
-												history.transAmount > 0 ? 'moaclubBlueTxt' : ''
-											}
-										>
-											{history.transAmount >= 0
-												? `+${formatCurrency(history.transAmount)}`
-												: formatCurrency(history.transAmount)}
-										</span>
-										<span className='moaclubAccHisLast'>
-											{formatCurrency(history.balance)}
-										</span>
-									</td>
-								</tr>
-							))
-						) : (
-							<tr>
-								<td colSpan={3} style={{ borderStyle: 'none' }}>
-									거래 내역이 없습니다.
-								</td>
-							</tr>
-						)}
-					</tbody>
-				</table>
-			</div>
-			<img
-				className='moaHanaMainChatIcon'
-				src={chatIcon}
-				alt='chhaticon'
-				onClick={goChat}
-			/>
-		</>
-	);
-};
-
+      <div className='moaclubHana'>
+        <table className='moaclubAccHisTable'>
+          <tbody>
+            {accountHistory && accountHistory.length > 0 ? (
+              accountHistory.map((history, index) => (
+                <tr key={index}>
+                  <td className='moaclubDate'>
+                    {formatDate(history.transDate)}
+                  </td>
+                  <td className='moaclubTarget'>{history.target}</td>
+                  <td className='transaction'>
+                    <span
+                      id='moaclubTransAmountTxt'
+                      className={
+                        history.transAmount > 0 ? 'moaclubBlueTxt' : ''
+                      }
+                    >
+                      {history.transAmount >= 0
+                        ? `+${formatCurrency(history.transAmount)}`
+                        : formatCurrency(history.transAmount)}
+                    </span>
+                    <span className='moaclubAccHisLast'>
+                      {formatCurrency(history.balance)}
+                    </span>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={3} style={{ borderStyle: 'none' }}>
+                  {t('transactionHistory.noHistory')}
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+      <img
+        className='moaHanaMainChatIcon'
+        src={chatIcon}
+        alt='chhaticon'
+        onClick={goChat}
+      />
+    </>
+  );
+}
 export default MoaclubPage;

@@ -16,8 +16,16 @@ import {
 import CommonBtn from '../../components/button/CommonBtn';
 import CommonModal2 from '../../components/modal/CommonModal2';
 import CommonModal3 from '../../components/modal/CommonModal3';
+import { useTranslation } from 'react-i18next';
 
 function MoaclubVoteTrsf() {
+  const { t, i18n } = useTranslation();
+	const [language, setLanguage] = useState(localStorage.getItem('language') || i18n.language);
+  
+	useEffect(() => {
+    if(language=="KOR") i18n.changeLanguage('ko');
+	  else i18n.changeLanguage('ch');
+	}, [language, i18n]);
   const navigate = useNavigate();
   const { accountId } = useParams();
   const userIdx = localStorage.getItem('userIdx') as string;
@@ -297,83 +305,87 @@ function MoaclubVoteTrsf() {
 
   return (
     <>
-      <Header value='모아클럽 출금 동의' disabled={disabled} />
+ <Header value={t('moaclub_withdraw_agree_title')} disabled={disabled} />
       <div className='content'>
-        <div>모아클럽 출금에 동의하십니까?</div>
+        <div>{t('moaclub_withdraw_agree_content')}</div>
         <div className='moaTrsfBox'>
-          <div>출금 금액</div>
+          <div>{t('withdrawal_amount_text')}</div>
           <span className='moaVoteAmountTxt'>
-            {formatCurrency(voteResult?.amount!)}&nbsp;
+            {voteResult?.amount && formatCurrency(voteResult.amount)}&nbsp;
           </span>
         </div>
       </div>
       <div className='moaclubVoteStatusContent2'>
-        <span className='voteTimeTxt'>투표 현황</span>
+        <span className='voteTimeTxt'>{t('vote_status_text')}</span>
         <table className='moaclubFeeTable'>
-          {memberList &&
-            memberList
-              .filter((member) => member.userIdx != userIdx)
-              .filter((member) => member.role != 'MANAGER')
-              .map((member: memberList, index: number) => (
-                <tr key={index}>
-                  <td className='voteTableFirstTd'>
-                    <img
-                      src={member.profile}
-                      alt={`${member.userName} 프로필`}
-                      className='voteProfile'
-                    />
-                  </td>
-                  <td className='voteMemberTxt'>{member.userName}</td>
-                  <td className='voteTableLastTd'>
-                    {getVoteStatus(member.userName) === '-' ? (
-                      <span className='voteStatusIcon'>-</span>
-                    ) : (
+          <tbody>
+            {memberList &&
+              memberList
+                .filter((member) => member.userIdx !== userIdx)
+                .filter((member) => member.role !== 'MANAGER')
+                .map((member, index) => (
+                  <tr key={index}>
+                    <td className='voteTableFirstTd'>
                       <img
-                        src={getVoteStatus(member.userName)}
-                        alt='투표 상태 아이콘'
-                        className='voteStatusIcon'
+                        src={member.profile}
+                        alt={`${member.userName} 프로필`}
+                        className='voteProfile'
                       />
-                    )}
-                  </td>
-                </tr>
-              ))}
+                    </td>
+                    <td className='voteMemberTxt'>{member.userName}</td>
+                    <td className='voteTableLastTd'>
+                      {getVoteStatus(member.userName) === '-' ? (
+                        <span className='voteStatusIcon'>-</span>
+                      ) : (
+                        <img
+                          src={getVoteStatus(member.userName)}
+                          alt='투표 상태 아이콘'
+                          className='voteStatusIcon'
+                        />
+                      )}
+                    </td>
+                  </tr>
+                ))}
+          </tbody>
         </table>
       </div>
       <div className='moaclubVoteContent'>
         {isManager ? (
-          <div className='timeLeft'>관리자는 투표 권한이 없습니다.</div>
+          <div className='timeLeft'>{t('manager_no_vote_permission')}</div>
         ) : hasVoted ? (
-          <div className='timeLeft'>이미 투표했습니다.</div>
+          <div className='timeLeft'>{t('already_voted_text')}</div>
         ) : (
           <>
             <span className='voteTimeTxt'>
-              투표까지 남은 기간 <span className='timeLeft'>{timeLeft}</span>
+              {t('voting_period_left_text')} <span className='timeLeft'>{timeLeft}</span>
             </span>
             <table className='voteTable'>
-              <tr>
-                <td className='voteTableFirstTd'>
-                  <img
-                    src={myProfile?.profile}
-                    alt='myProfile'
-                    className='voteProfile'
-                  />
-                </td>
-                <td className='moaclubTarget'>{myProfile?.userName}</td>
-                <td className='voteTableLastTd2'>
-                  <img
-                    src={selectVote === true ? checkSelect : checkUnselect}
-                    alt='찬성 아이콘'
-                    className='voteStatusIcon'
-                    onClick={() => handleVote(true)}
-                  />
-                  <img
-                    src={selectVote === false ? xSelect : xUnselect}
-                    alt='반대 아이콘'
-                    className='voteStatusIcon'
-                    onClick={() => handleVote(false)}
-                  />
-                </td>
-              </tr>
+              <tbody>
+                <tr>
+                  <td className='voteTableFirstTd'>
+                    <img
+                      src={myProfile?.profile}
+                      alt='myProfile'
+                      className='voteProfile'
+                    />
+                  </td>
+                  <td className='moaclubTarget'>{myProfile?.userName}</td>
+                  <td className='voteTableLastTd2'>
+                    <img
+                      src={selectVote === true ? checkSelect : checkUnselect}
+                      alt='찬성 아이콘'
+                      className='voteStatusIcon'
+                      onClick={() => handleVote(true)}
+                    />
+                    <img
+                      src={selectVote === false ? xSelect : xUnselect}
+                      alt='반대 아이콘'
+                      className='voteStatusIcon'
+                      onClick={() => handleVote(false)}
+                    />
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </>
         )}
@@ -381,14 +393,14 @@ function MoaclubVoteTrsf() {
       <div className='buttonContainer'>
         <CommonBtn
           type='pink'
-          value='완료'
+          value={t('complete_button_text')}
           onClick={next}
           disabled={isButtonDisabled()}
         />
       </div>
 
       <CommonModal2
-        msg={`재투표가 불가합니다.\n 투표를 진행하시겠습니까?`}
+        msg={t('revote_not_possible_text')}
         show={look}
         onCancle={() => {
           setLook(false);
@@ -397,7 +409,7 @@ function MoaclubVoteTrsf() {
       />
 
       <CommonModal3
-        msg={`투표가 완료되었습니다.`}
+        msg={t('vote_completed_text')}
         show={look2}
         onConfirm={goVote}
       />

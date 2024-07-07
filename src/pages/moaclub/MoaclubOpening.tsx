@@ -6,9 +6,17 @@ import CommonBtn from '../../components/button/CommonBtn';
 import './MoaclubStyle.scss';
 import '../../common/styles/scss/CommonStyle.scss';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 function MoaclubOpening() {
+	const { t, i18n } = useTranslation();
+	const [language, setLanguage] = useState(localStorage.getItem('language') || i18n.language);
+  
+	useEffect(() => {
+		if(language=="KOR") i18n.changeLanguage('ko');
+		else i18n.changeLanguage('ch');
+	}, [language, i18n]);
 	const navigate = useNavigate();
 	const [allAgreed, setAllAgreed] = useState(false);
 
@@ -23,61 +31,62 @@ function MoaclubOpening() {
 	};
 
 	return (
-		<>
-			<Header value='모아클럽' disabled={false} />
-			<div className='content'>
-				<img className='banner' alt='banner' src={banner} />
+	  <>
+		<Header value={t('moaClub')} disabled={false} />
+		<div className='content'>
+		  <img className='banner' alt='banner' src={banner} />
+		</div>
+  
+		<div>
+		  <div className='allAgreeBox'>
+			<div
+			  className={`allAgree ${allAgreed ? 'agreed' : ''}`}
+			  onClick={handleAgreeClick}
+			>
+			  <div className='leftContent'>
+				<img className='checkicon' src={checkicon} />
+				<span>{t('agreeAll')}</span>
+			  </div>
+			  <img className='righticon' src={righticon} />
 			</div>
-
-			<div>
-				<div className='allAgreeBox'>
-					<div
-						className={`allAgree ${allAgreed ? 'agreed' : ''}`}
-						onClick={handleAgreeClick}
-					>
-						<div className='leftContent'>
-							<img className='checkicon' src={checkicon} />
-							<span>전체 동의</span>
-						</div>
-						<img className='righticon' src={righticon} />
-					</div>
-				</div>
-
-				<div className='agreeItems'>
-					<div className='agreeItem'>
-						<div className='leftContent'>
-							<img className='checkicon' src={checkicon} />
-							<span>모아클럽 서비스 설명서</span>
-						</div>
-						<img className='righticon' src={righticon} />
-					</div>
-					<div className='agreeItem'>
-						<div className='leftContent'>
-							<img className='checkicon' src={checkicon} />
-							<span>모아클럽 서비스 이용약관</span>
-						</div>
-						<img className='righticon' src={righticon} />
-					</div>
-					<div className='agreeItem'>
-						<div className='leftContent'>
-							<img className='checkicon' src={checkicon} />
-							<span>금융거래정보 제공 동의</span>
-						</div>
-						<img className='righticon' src={righticon} />
-					</div>
-				</div>
+		  </div>
+  
+		  <div className='agreeItems'>
+			<div className='agreeItem'>
+			  <div className='leftContent'>
+				<img className='checkicon' src={checkicon} />
+				<span>{t('serviceManual')}</span>
+			  </div>
+			  <img className='righticon' src={righticon} />
 			</div>
-
-			<div className='buttonContainer'>
-				<CommonBtn
-					type='black'
-					value='다음'
-					onClick={next}
-					disabled={!allAgreed}
-				/>
+			<div className='agreeItem'>
+			  <div className='leftContent'>
+				<img className='checkicon' src={checkicon} />
+				<span>{t('serviceTerms')}</span>
+			  </div>
+			  <img className='righticon' src={righticon} />
 			</div>
-		</>
+			<div className='agreeItem'>
+			  <div className='leftContent'>
+				<img className='checkicon' src={checkicon} />
+				<span>{t('financialConsent')}</span>
+			  </div>
+			  <img className='righticon' src={righticon} />
+			</div>
+		  </div>
+		</div>
+  
+		<div className='buttonContainer'>
+		  <CommonBtn
+			type='black'
+			value={t('next')}
+			onClick={next}
+			disabled={!allAgreed}
+		  />
+		</div>
+	  </>
 	);
-}
+  }
+  
 
 export default MoaclubOpening;

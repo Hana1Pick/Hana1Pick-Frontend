@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { MemeberFeeStatus, MoaclubInfo } from '../../type/commonType';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 type StatusNumType = {
 	unpaid: number;
@@ -12,6 +13,13 @@ type StatusNumType = {
 };
 
 function MoaclubFeeStatus() {
+	const { t, i18n } = useTranslation();
+	const [language, setLanguage] = useState(localStorage.getItem('language') || i18n.language);
+	
+	useEffect(() => {
+	  if(language=="KOR") i18n.changeLanguage('ko');
+	  else i18n.changeLanguage('ch');
+	}, [language, i18n]);
 	const { accountId } = useParams();
 
 	const userIdx = localStorage.getItem('userIdx') as string;
@@ -171,135 +179,83 @@ function MoaclubFeeStatus() {
 
 	return (
 		<>
-			<Header value='회비 입금현황' disabled={false} />
-			<div className='content'>
-				<select
-					className='moaclubFeeSelect'
-					onChange={handleSelectChange}
-					value={selectedMonth!}
-				>
-					{yearMonths.map((yearMonth, index) => (
-						<option key={index} value={yearMonth}>
-							{yearMonth}
-						</option>
+		  <Header value={t('fee_status_header')} disabled={false} />
+	
+		  <div className='content'>
+			<select
+			  className='moaclubFeeSelect'
+			  onChange={handleSelectChange}
+			  value={selectedMonth}
+			>
+			  {yearMonths.map((yearMonth, index) => (
+				<option key={index} value={yearMonth}>
+				  {yearMonth}
+				</option>
+			  ))}
+			</select>
+	
+			<div className='clubFeeBalance'>
+			  {formatCurrency(moaclub?.balance!)}
+			</div>
+	
+			<div className='clubFeeRule'>
+			  {t('monthly_due_rule', { atDate: moaclub?.atDate, clubFee: formatCurrency(moaclub?.clubFee!) })}
+			</div>
+	
+			<div className='moaClubMainBtnContainer'>
+			  <div
+				className={`moaclubFeeStatusBtn ${selectedBtn === '전체' ? 'selected' : ''}`}
+				onClick={() => handleButtonClick('전체')}
+			  >
+				{t('all_button')}
+			  </div>
+			  <div
+				className={`moaclubFeeStatusBtn ${selectedBtn === '미입금' ? 'selected' : ''}`}
+				onClick={() => handleButtonClick('미입금')}
+			  >
+				{t('unpaid_button')} {statusNum.unpaid}
+			  </div>
+			  <div
+				className={`moaclubFeeStatusBtn ${selectedBtn === '입금완료' ? 'selected' : ''}`}
+				onClick={() => handleButtonClick('입금완료')}
+			  >
+				{t('paid_button')} {statusNum.paid}
+			  </div>
+			</div>
+		  </div>
+	
+		  {selectedBtn !== '전체' && (
+			<div className='moaclubFeeContent'>
+			  <table className='moaclubFeeTable'>
+				<tbody>
+				  {feeStatus
+					.filter(member => selectedBtn === '미입금' ? member.status === 'UNPAID' : member.status === 'PAID')
+					.map((member, index) => (
+					  <tr key={index}>
+						<td>
+						  <img
+							className='moaclubFeeProfile'
+							src={member.profile}
+							alt='프로필 사진'
+						  />
+						</td>
+						<td className='moaclubFeeMemberName'>{member.name}</td>
+						<td className='moaclubFeeAmount'>
+						  {member.amount === 0 ? '-' : `${formatCurrency(member.amount)}`}
+						</td>
+					  </tr>
 					))}
-				</select>
-				<div className='clubFeeBalance'>
-					{formatCurrency(moaclub?.balance!)}
-				</div>
-				<div className='clubFeeRule'>
-					매월 {moaclub?.atDate}일, {formatCurrency(moaclub?.clubFee!)}씩
-				</div>
-
-				<div className='moaClubMainBtnContainer'>
-					<div
-						className={`moaclubFeeStatusBtn ${selectedBtn === '전체' ? 'selected' : ''}`}
-						onClick={() => handleButtonClick('전체')}
-					>
-						전체
-					</div>
-					<div
-						className={`moaclubFeeStatusBtn ${selectedBtn === '미입금' ? 'selected' : ''}`}
-						onClick={() => handleButtonClick('미입금')}
-					>
-						미입금 {statusNum.unpaid}
-					</div>
-					<div
-						className={`moaclubFeeStatusBtn ${selectedBtn === '입금완료' ? 'selected' : ''}`}
-						onClick={() => handleButtonClick('입금완료')}
-					>
-						입금완료 {statusNum.paid}
-					</div>
-				</div>
+				</tbody>
+			  </table>
 			</div>
-
-			{selectedBtn === '전체' && (
-				<div className='moaclubFeeContent'>
-					<table className='moaclubFeeTable'>
-						{feeStatus.map((member: MemeberFeeStatus, index: number) => (
-							<tr key={index}>
-								<td>
-									<img
-										className='moaclubFeeProfile'
-										src={member.profile}
-										alt='프로필 사진'
-									/>
-								</td>
-								<td className='moaclubFeeMemberName'>{member.name}</td>
-								<td className='moaclubFeeAmount'>
-									{member.amount === 0
-										? '-'
-										: `${formatCurrency(member.amount)}`}
-								</td>
-							</tr>
-						))}
-					</table>
-				</div>
-			)}
-			{selectedBtn === '미입금' && (
-				<div className='moaclubFeeContent'>
-					<table className='moaclubFeeTable'>
-						<tbody>
-							{feeStatus
-								.filter(
-									(member: MemeberFeeStatus) => member.status === 'UNPAID'
-								)
-								.map((member: MemeberFeeStatus, index: number) => (
-									<tr key={index}>
-										<td>
-											<img
-												className='moaclubFeeProfile'
-												src={member.profile}
-												alt='프로필 사진'
-											/>
-										</td>
-										<td className='moaclubFeeMemberName'>{member.name}</td>
-										<td className='moaclubFeeAmount'>
-											{member.amount === 0
-												? '-'
-												: `${formatCurrency(member.amount)}`}
-										</td>
-									</tr>
-								))}
-						</tbody>
-					</table>
-				</div>
-			)}
-			{selectedBtn === '입금완료' && (
-				<div className='moaclubFeeContent'>
-					<table className='moaclubFeeTable'>
-						<tbody>
-							{feeStatus
-								.filter((member: MemeberFeeStatus) => member.status === 'PAID')
-								.map((member: MemeberFeeStatus, index: number) => (
-									<tr key={index}>
-										<td>
-											<img
-												className='moaclubFeeProfile'
-												src={member.profile}
-												alt='프로필 사진'
-											/>
-										</td>
-										<td className='moaclubFeeMemberName'>{member.name}</td>
-										<td className='moaclubFeeAmount'>
-											{member.amount === 0
-												? '-'
-												: `${formatCurrency(member.amount)}`}
-										</td>
-									</tr>
-								))}
-						</tbody>
-					</table>
-				</div>
-			)}
-
-			<div className='buttonContainer'>
-				<span className='moaclubFeeDesc'>
-					* 멤버 이름을 포함한 입금 내역은 해당 멤버가 낸 회비로 집계됩니다.
-				</span>
-			</div>
+		  )}
+	
+		  <div className='buttonContainer'>
+			<span className='moaclubFeeDesc'>
+			  {t('fee_status_description')}
+			</span>
+		  </div>
 		</>
-	);
-}
-
+	  );
+	}
 export default MoaclubFeeStatus;

@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { memberList } from '../../type/commonType';
+import { useTranslation } from 'react-i18next';
 
 function MoaclubMember() {
 	const navigate = useNavigate();
@@ -15,7 +16,13 @@ function MoaclubMember() {
 	const [isDisabled, setIsDisabled] = useState<boolean>(false);
 	const [look, setLook] = useState(false);
 	const [isManager, setIsManager] = useState<boolean>(false);
-
+	const { t, i18n } = useTranslation();
+	const [language, setLanguage] = useState(localStorage.getItem('language') || i18n.language);
+	
+	useEffect(() => {
+	  if(language=="KOR") i18n.changeLanguage('ko');
+	  else i18n.changeLanguage('ch');
+	}, [language, i18n]);
 	const getMemberList = async (accountId: string) => {
 		try {
 			const response = await axios.get(
@@ -86,67 +93,70 @@ function MoaclubMember() {
 			});
 	};
 
+	
 	return (
 		<>
-			<div className='celub-withdraw-overlay' id='celub-withdraw-overlay'></div>
-			<Header value='모임원 관리' disabled={isDisabled} />
-			<div className='moaclubMemberContainer'>
-				<div className='moaHanaMemberInfoBox'>
-					<div>{memberList?.length} 명 참여 중</div>
-					<div className='moaHanaMemberInviteBtn' onClick={shareToKakao}>
-						초대하기
-					</div>
-				</div>
-				<div className='moaHanaMemberListContainer'>
-					<div className='moaHanaMemberRole'>
-						<div className='moaHanaMemberRoleTitle'>관리자</div>
-						{memberList?.map(
-							(member) =>
-								member.role === 'MANAGER' && (
-									<div key={member.userIdx} className='moaHanaMemberItem'>
-										<img
-											src={member.profile}
-											alt={member.userName}
-											className='voteProfile'
-										/>
-										<div className='moaHanaMemberName'>{member.userName}</div>
-										{isManager && (
-											<div
-												className='moaHanaChangeManager'
-												onClick={() => {
-													navigate(`/moaclub/manager-change/${accountId}`);
-												}}
-											>
-												관리자 변경
-											</div>
-										)}
-									</div>
-								)
-						)}
-					</div>
-					<div className='moaHanaMemberRole'>
-						{memberList?.length != 1 && (
-							<div className='moaHanaMemberRoleTitle'>모임원</div>
-						)}
-
-						{memberList?.map(
-							(member) =>
-								member.role === 'MEMBER' && (
-									<div key={member.userIdx} className='moaHanaMemberItem'>
-										<img
-											src={member.profile}
-											alt={member.userName}
-											className='voteProfile'
-										/>
-										<div className='moaHanaMemberName'>{member.userName}</div>
-									</div>
-								)
-						)}
-					</div>
-				</div>
+		  <div className='celub-withdraw-overlay' id='celub-withdraw-overlay'></div>
+		  <Header value={t('memberManagement')} disabled={isDisabled} />
+		  <div className='moaclubMemberContainer'>
+			<div className='moaHanaMemberInfoBox'>
+			  <div>
+				{memberList?.length} {t('participants')}
+			  </div>
+			  <div className='moaHanaMemberInviteBtn' onClick={shareToKakao}>
+				{t('invite')}
+			  </div>
 			</div>
+			<div className='moaHanaMemberListContainer'>
+			  <div className='moaHanaMemberRole'>
+				<div className='moaHanaMemberRoleTitle'>{t('manager')}</div>
+				{memberList?.map(
+				  (member) =>
+					member.role === 'MANAGER' && (
+					  <div key={member.userIdx} className='moaHanaMemberItem'>
+						<img
+						  src={member.profile}
+						  alt={member.userName}
+						  className='voteProfile'
+						/>
+						<div className='moaHanaMemberName'>{member.userName}</div>
+						{isManager && (
+						  <div
+							className='moaHanaChangeManager'
+							onClick={() => {
+							  navigate(`/moaclub/manager-change/${accountId}`);
+							}}
+						  >
+							{t('changeManager')}
+						  </div>
+						)}
+					  </div>
+					)
+				)}
+			  </div>
+			  <div className='moaHanaMemberRole'>
+				{memberList?.length !== 1 && (
+				  <div className='moaHanaMemberRoleTitle'>{t('members')}</div>
+				)}
+	
+				{memberList?.map(
+				  (member) =>
+					member.role === 'MEMBER' && (
+					  <div key={member.userIdx} className='moaHanaMemberItem'>
+						<img
+						  src={member.profile}
+						  alt={member.userName}
+						  className='voteProfile'
+						/>
+						<div className='moaHanaMemberName'>{member.userName}</div>
+					  </div>
+					)
+				)}
+			  </div>
+			</div>
+		  </div>
 		</>
-	);
+	  );
 
 	function shareToKakao() {
 		const description = `${userName}님이 모아클럽에 초대했어요.`;

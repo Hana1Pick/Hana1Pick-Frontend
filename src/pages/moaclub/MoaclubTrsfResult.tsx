@@ -3,8 +3,17 @@ import '../../common/styles/scss/CommonStyle.scss';
 import check from '../../assets/images/common/check-green.png';
 import { useLocation, useNavigate } from 'react-router-dom';
 import CommonBtn from '../../components/button/CommonBtn';
+import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from 'react';
 
 function MoaclubTrsfResult() {
+	const { t, i18n } = useTranslation();
+	const [language, setLanguage] = useState(localStorage.getItem('language') || i18n.language);
+  
+	useEffect(() => {
+    if(language=="KOR") i18n.changeLanguage('ko');
+	  else i18n.changeLanguage('ch');
+	}, [language, i18n]);
 	const navigate = useNavigate();
 	const location = useLocation();
 	const trsfInfo = location.state;
@@ -50,23 +59,27 @@ function MoaclubTrsfResult() {
 
 	return (
 		<>
-			<div className='moaTrsfResultContainer'>
-				<img src={check} className='moaTrsfResultIcon' />
-				<div className='moaTrsfResultTxt1'>"{trsfInfo.name}" 모아클럽에</div>
-				<div className='moaTrsfResultTxt2'>
-					<span className='moaTrsfResultMint'>
-						{formatCurrency(trsfInfo.trsfAmount)}
-					</span>{' '}
-					입금했어요.
-				</div>
-				<div className='moaTrsfResultDesc'>하나원픽 {trsfInfo.outAccId}</div>
+		  <div className='moaTrsfResultContainer'>
+			<img src={check} className='moaTrsfResultIcon' alt='Check Icon' />
+			<div className='moaTrsfResultTxt1'>
+			  "{trsfInfo.name}" {t('moaclub.depositedTo')}
 			</div>
-
-			<div className='buttonContainer'>
-				<CommonBtn type='pink' value='확인' onClick={next} disabled={false} />
+			<div className='moaTrsfResultTxt2'>
+			  <span className='moaTrsfResultMint'>
+				{formatCurrency(trsfInfo.trsfAmount)}
+			  </span>{' '}
+			  {t('moaclub.depositedMessage')}
 			</div>
+			<div className='moaTrsfResultDesc'>
+			  {t('moaclub.bankName')} {trsfInfo.outAccId}
+			</div>
+		  </div>
+	
+		  <div className='buttonContainer'>
+			<CommonBtn type='pink' value={t('common.confirm')} onClick={next} disabled={false} />
+		  </div>
 		</>
-	);
-}
+	  );
+	}
 
 export default MoaclubTrsfResult;
