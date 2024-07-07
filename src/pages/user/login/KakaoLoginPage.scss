@@ -84,9 +84,11 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #fff;
+
     img {
-      height: 100%; /* Ensures the image fills the container */
-      width: auto;
+      /* height: 100%; */
+    width: 5rem;
     }
   }
   
