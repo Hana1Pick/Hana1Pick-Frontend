@@ -12,16 +12,8 @@ import CommonBtn from '../../components/button/CommonBtn';
 import { Account, MoaclubInfo, MoaTrsf } from '../../type/commonType';
 import { MoaclubTrsfContext } from '../../contexts/MoaclubTrsfContextProvider';
 import PageLoadingSpinner from '../../components/pageLoding/pageLoading';
-import { useTranslation } from 'react-i18next';
 
 function MoaclubDeposit() {
-	const { t, i18n } = useTranslation();
-	const [language, setLanguage] = useState(localStorage.getItem('language') || i18n.language);
-	
-	useEffect(() => {
-	  if(language=="KOR") i18n.changeLanguage('ko');
-	  else i18n.changeLanguage('ch');
-	}, [language, i18n]);
 	const navigate = useNavigate();
 	const { accountId } = useParams();
 	const userIdx = localStorage.getItem('userIdx') as string;
@@ -235,160 +227,191 @@ function MoaclubDeposit() {
 		}
 	};
 
-
 	return (
 		<>
-		  <div className='celub-withdraw-overlay' id='celub-withdraw-overlay'></div>
-		  <Header value={t('moaclub_deposit_title')} disabled={isDisabled} />
-	
-		  <div className='content'>
-			<div className='moaDepositContainer'>
-			  <div className='moaDepositTxt'>{t('deposit_account')}</div>
-			  <div className='moaDepositInfoBox'>
-				<img src={MoaClubCircleLogo} className='moaAccCircle' alt='Moa Club Circle Logo' />
-				<div className='moaDepositDetailBox'>
-				  <div>모아클럽</div>
-				  <div>{moaclub?.accountId}</div>
+			<div className='celub-withdraw-overlay' id='celub-withdraw-overlay'></div>
+			<Header value='모아클럽 입금' disabled={isDisabled} />
+			<div className='content'>
+				<div className='moaDepositContainer'>
+					<div className='moaDepositTxt'>입금계좌</div>
+					<div className='moaDepositInfoBox'>
+						<img src={MoaClubCircleLogo} className='moaAccCircle' />
+						<div className='moaDepositDetailBox'>
+							<div>모아클럽</div>
+							<div>{moaclub?.accountId}</div>
+						</div>
+					</div>
+					<div className='moaDepositSelectContainer'>
+						<div className='moaDepositTxt'>출금계좌</div>
+						<select
+							name='languages'
+							id='lang'
+							className='moaClubDepositSelect'
+							onChange={handleSelectChange}
+						>
+							<option value='' disabled selected>
+								계좌를 선택해 주세요.
+							</option>
+							{account && (
+								<option value={account.accountId}>
+									{account.name}의 입출금 계좌 ({getAccCode(account.accountId)})
+								</option>
+							)}
+						</select>
+						{moaclub?.currency === 'KRW' ? (
+							<div
+								className='moaDepositAmountBox'
+								onClick={handleAmountBoxClick}
+							>
+								<input
+									className='moaDepositAmountInput'
+									type='text'
+									value={amount}
+									onChange={handleAmountChange}
+									ref={amountInputRef}
+								/>
+								{currencyDetails?.currencySymbol}
+							</div>
+						) : (
+							<div>
+								<div className='moaExchangeTxt'>환전하기</div>
+								<div className='moaDepositAmountContainer'>
+									<div
+										className='moaDepositAmountBoxFx'
+										onClick={handleAmountBoxClick}
+									>
+										<div className='moaDepositFixedBox'>
+											<div className='moaDepositCountry'>
+												{currencyDetails?.country}
+											</div>
+											<div className='moaDepositSymbol'>
+												{currencyDetails?.symbol}
+											</div>
+										</div>
+										<div className='moaDepositInputBox'>
+											<input
+												className='moaDepositAmountInput2'
+												type='text'
+												value={amount}
+												onChange={handleAmountChange}
+												ref={amountInputRef}
+											/>
+											<div>{currencyDetails?.currencySymbol}</div>
+										</div>
+									</div>
+								</div>
+								<div className='moaDepositChange'>=</div>
+								<div className='moaDepositAmountContainer'>
+									<div className='moaDepositAmountBoxFx'>
+										<div className='moaDepositFixedBox'>
+											<div className='moaDepositCountry'>🇰🇷 한국</div>
+											<div className='moaDepositSymbol'>KRW</div>
+										</div>
+										<div className='moaDepositInputBox2'>
+											<input
+												className='moaDepositAmountInput2'
+												type='text'
+												value={amountKRW}
+												readOnly
+											/>
+											<div className='moaDepositWon'>원</div>
+										</div>
+									</div>
+								</div>
+								<div className='exchangebuttonContainer'>
+									<img
+										className='moaExchangeIcon'
+										src={exchangeIcon}
+										alt='exchangeIcon'
+										onClick={handleExchange}
+									/>
+								</div>
+							</div>
+						)}
+					</div>
 				</div>
-			  </div>
-			  <div className='moaDepositSelectContainer'>
-				<div className='moaDepositTxt'>{t('withdraw_account')}</div>
-				<select
-				  name='languages'
-				  id='lang'
-				  className='moaClubDepositSelect'
-				  onChange={handleSelectChange}
-				>
-				  <option value='' disabled selected>
-					{t('select_account')}
-				  </option>
-				  {account && (
-					<option value={account.accountId}>
-					  {account.name}의 입출금 계좌 ({getAccCode(account.accountId)})
-					</option>
-				  )}
-				</select>
-				{moaclub?.currency === 'KRW' ? (
-				  <div className='moaDepositAmountBox' onClick={handleAmountBoxClick}>
-					<input
-					  className='moaDepositAmountInput'
-					  type='text'
-					  value={amount}
-					  onChange={handleAmountChange}
-					  ref={amountInputRef}
-					/>
-					{currencyDetails?.currencySymbol}
-				  </div>
-				) : (
-				  <div>
-					<div className='moaExchangeTxt'>{t('exchange_currency')}</div>
-					<div className='moaDepositAmountContainer'>
-					  <div className='moaDepositAmountBoxFx' onClick={handleAmountBoxClick}>
-						<div className='moaDepositFixedBox'>
-						  <div className='moaDepositCountry'>{currencyDetails?.country}</div>
-						  <div className='moaDepositSymbol'>{currencyDetails?.symbol}</div>
-						</div>
-						<div className='moaDepositInputBox'>
-						  <input
-							className='moaDepositAmountInput2'
-							type='text'
-							value={amount}
-							onChange={handleAmountChange}
-							ref={amountInputRef}
-						  />
-						  <div>{currencyDetails?.currencySymbol}</div>
-						</div>
-					  </div>
-					</div>
-					<div className='moaDepositChange'>=</div>
-					<div className='moaDepositAmountContainer'>
-					  <div className='moaDepositAmountBoxFx'>
-						<div className='moaDepositFixedBox'>
-						  <div className='moaDepositCountry'>🇰🇷 한국</div>
-						  <div className='moaDepositSymbol'>KRW</div>
-						</div>
-						<div className='moaDepositInputBox2'>
-						  <input
-							className='moaDepositAmountInput2'
-							type='text'
-							value={amountKRW}
-							readOnly
-						  />
-						  <div className='moaDepositWon'>원</div>
-						</div>
-					  </div>
-					</div>
-					<div className='exchangebuttonContainer'>
-					  <img
-						className='moaExchangeIcon'
-						src={exchangeIcon}
-						alt='exchangeIcon'
-						onClick={handleExchange}
-					  />
-					</div>
-				  </div>
-				)}
-			  </div>
 			</div>
-		  </div>
-	
-		  <div className='buttonContainer'>
-			<CommonBtn
-			  type='pink'
-			  value={t('next_button')}
-			  onClick={nextStage}
-			  disabled={!exchangeInfo}
-			/>
-		  </div>
-	
-		  <div>
-			<div className='withdraw-box4' id='withdraw-box4'>
-			  <div className='moaclub-box6'>
-				<img className='deleteicon' src={deleteicon} onClick={beforeStage} alt='Delete Icon' />
-			  </div>
-			  <div>
-				<img src={CircleLogo} className='moaAccCircle' style={{ marginBottom: '1rem' }} alt='Circle Logo' />
-				<div>
-				  <span className='moaWithdrawStrong'>{t('withdraw_confirmation', { clubName: moaclub?.name })}</span>
-				  {t('deposit_amount_confirm', { amount: amount, symbol: currencyDetails?.currencySymbol })}
-				</div>
-				<div className='moaWithdrawInAccPopUp'>
-				  {t('withdraw_account_info', { accountName: selectedAccount })}
-				</div>
-			  </div>
-			  <div className='moaclub-box5'>
+			<div className='buttonContainer'>
 				<CommonBtn
-				  type='pink'
-				  value={t('deposit_button')}
-				  onClick={next}
-				  disabled={false}
+					type='pink'
+					value='다음'
+					onClick={nextStage}
+					disabled={!selectedAccount}
 				/>
-			  </div>
 			</div>
-		  </div>
-	
-		  {isLoading && <PageLoadingSpinner />}{' '}
-		  {/* Display loading spinner when loading */}
-		  {!isLoading && showExchangeResult && exchangeInfo && (
-			<div className='moaDepositAmountContainerFee' ref={exchangeResultRef}>
-			  <div className='moaDepositFixedBoxFee'>
-				<div className='moaDepositRow'>
-				  <div className='moaDepositCountry'>{t('applied_exchange_rate')}</div>
-				  <div className='moaDepositValue1'>{exchangeInfo.appliedExchangeRate.toLocaleString()} 원</div>
+			<div>
+				<div className='withdraw-box4' id='withdraw-box4'>
+					<div className='moaclub-box6'>
+						<img
+							className='deleteicon'
+							src={deleteicon}
+							onClick={beforeStage}
+						/>
+					</div>
+					<div>
+						<img
+							src={CircleLogo}
+							className='moaAccCircle'
+							style={{ marginBottom: '1rem' }}
+						/>
+						<div>
+							"<span className='moaWithdrawStrong'>{moaclub?.name}</span>"
+							모아클럽에
+						</div>
+						<div>
+							<span className='moaWithdrawStrong'>
+								{amount}
+								{currencyDetails?.currencySymbol}
+							</span>
+							&nbsp;입금하시겠습니까?
+						</div>
+						<div className='moaWithdrawInAccPopUp'>
+							출금계좌: 하나원픽 {selectedAccount}
+						</div>
+					</div>
+					<div className='moaclub-box5'>
+						<CommonBtn
+							type='pink'
+							value='입금하기'
+							onClick={next}
+							disabled={false}
+						/>
+					</div>
 				</div>
-				<div className='moaDepositRow'>
-				  <div className='moaDepositCountry'>{t('exchange_fee')}</div>
-				  <div className='moaDepositValue'>{exchangeInfo.exchangeFee.toLocaleString()} 원</div>
-				</div>
-				<div className='moaDepositRow'>
-				  <div className='moaDepositCountry' style={{ color: '#000', fontWeight: '600' }}>{t('exchange_amount')}</div>
-				  <div className='moaDepositValue1 large'>{exchangeInfo.paymentAmount.toLocaleString()} 원</div>
-				</div>
-			  </div>
 			</div>
-		  )}
+			{isLoading && <PageLoadingSpinner />}{' '}
+			{/* 로딩 중일 때 로딩 스피너 표시 */}
+			{!isLoading && showExchangeResult && exchangeInfo && (
+				<div className='moaDepositAmountContainerFee' ref={exchangeResultRef}>
+					<div className='moaDepositFixedBoxFee'>
+						<div className='moaDepositRow'>
+							<div className='moaDepositCountry'>적용 환율</div>
+							<div className='moaDepositValue1'>
+								{exchangeInfo.appliedExchangeRate} 원
+							</div>
+						</div>
+						<div className='moaDepositRow'>
+							<div className='moaDepositCountry'>환율 수수료</div>
+							<div className='moaDepositValue'>
+								{exchangeInfo.exchangeFee} 원
+							</div>
+						</div>
+						<div className='moaDepositRow'>
+							<div
+								className='moaDepositCountry'
+								style={{ color: '#000', fontWeight: '600' }}
+							>
+								환전 금액
+							</div>
+							<div className='moaDepositValue1 large'>
+								{exchangeInfo.paymentAmount.toLocaleString()} 원
+							</div>
+						</div>
+					</div>
+				</div>
+			)}
 		</>
-	  );
-	}
+	);
+}
 
 export default MoaclubDeposit;
