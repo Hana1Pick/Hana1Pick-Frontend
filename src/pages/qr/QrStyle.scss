@@ -7,7 +7,7 @@
 #mainInfo {
   margin-top: 1.5em;
   text-align: left;
-  font-size: 1.2em;
+  font-size: 1.05em;
   font-weight: 550;
 }
 
@@ -101,10 +101,21 @@
   align-items: center;
 }
 
+#decode-qr-info #nextBtns #qrBtn {
+  width: 45% !important;
+  height: 2.7rem;
+  background-color: #1ea698;
+  border: 0;
+  border-radius: 0.5rem;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+
 #decode-account-info {
-  width: 85%;
-  font-size: 1.1em;
-  font-weight: 450;
+  font-size: 1em;
+  font-weight: 475;
 }
 
 #decode-account-info {
@@ -126,22 +137,22 @@
   justify-content: center;
   width: 85%;
   height: max-content;
-  margin: 1.5em auto 5em auto;
-  padding: 1em 0;
+  margin: 1.25em auto 5em auto;
+  padding: 0.5em 0;
   background: #ffffff;
   box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.25);
   border-radius: 1.5em;
 }
 
 #decode-history-icon {
-  width: 5em;
-  height: 5em;
+  width: 3em;
+  height: 3em;
 }
 
 #decode-history-report {
-  font-size: 1.3em;
+  font-size: 1.05em;
   font-weight: 500;
-  line-height: 1.7em;
+  line-height: 1.3em;
 }
 
 #nextBtns {

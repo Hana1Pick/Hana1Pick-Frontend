@@ -31,43 +31,47 @@ function CashOutPage() {
   return (
     <div>
       <Header value='이체' />
-      <div id='mainForCenter'>
-        <img
-          className='accountImage'
-          src={getAccountType(inAccType)}
-          alt='accountImage'
-        />
-        <div id='info1'>
-          <span>{inAccName}</span>님에게
-          <br />
-          <span>{amount}</span>원
-          <br />
-          이체하시겠습니까?
+      <div className='completeBox1'>
+        <div className='completeBox2'>
+          <img
+            className='accountImage'
+            src={getAccountType(inAccType)}
+            alt='accountImage'
+          />
+          <div className='textBox1'>
+            <p>{inAccName}님에게</p>
+            <p>{amount}원</p>
+            <p>이체하시겠습니까?</p>
+          </div>
         </div>
-        <div id='info2'>
-          <table>
+      </div>
+      <div className='completeBox3'>
+        <div className='tableBox'>
+          <table className='completeInfo'>
             <tr>
-              <td className='alignLeft'>받는 분에게 표기</td>
-              <td className='alignRight'>출금 계좌 소유자명</td>
+              <th>받는 분에게 표기</th>
+              <td colSpan={2}>
+                {localStorage.getItem('name')} <br />
+              </td>
             </tr>
             <tr>
-              <td className='alignLeft'>출금계좌</td>
-              <td className='alignRight'>{outAccId}</td>
+              <th>출금계좌</th>
+              <td colSpan={2}>{outAccId}</td>
             </tr>
             <tr>
-              <td className='alignLeft'>입금계좌</td>
-              <td className='alignRight'>{inAccId}</td>
+              <th>입금계좌</th>
+              <td colSpan={2}>{inAccId}</td>
             </tr>
           </table>
         </div>
-      </div>
-      <div id='nextBtn'>
-        <CommonBtn
-          type='black'
-          value='이체하기'
-          onClick={next}
-          disabled={false}
-        />
+        <div id='nextBtn'>
+          <CommonBtn
+            type='pink'
+            value='이체하기'
+            onClick={next}
+            disabled={false}
+          />
+        </div>
       </div>
     </div>
   );
