@@ -95,24 +95,20 @@ const MainPage = () => {
     trackMouse: true,
   });
 
-  	// console.log(
-	// 	'localStorage에 저장된 userIdx:',
-	// 	localStorage.getItem('userIdx')
-	// );
-	// console.log('localStorage에 저장된 name:', localStorage.getItem('name'));
-	// console.log('localStorage에 저장된 email:', localStorage.getItem('email'));
-	// console.log(
-	// 	'localStorage에 저장된 profile:',
-	// 	localStorage.getItem('profile')
-	// );
-
   // 계좌 클릭 이벤트 핸들러
   const handleAccountClick = (account: Account) => {
-    if (account.accountType === 'moaclub') {
-      navigate(`/moaclub/main/${account.accountId}`);
-    } else {
-      // todo: 다른 계좌 타입에 대한 처리(셀럽, 입출금 추가 필요)
-      navigate(`/account/${account.accountId}`);
+    switch (account.accountType) {
+      case 'moaclub':
+        navigate(`/moaclub/main/${account.accountId}`);
+        break;
+      case 'deposit':
+        navigate(`/account/detail/${account.accountId}`);
+        break;
+      case 'celub':
+        navigate('/celub/detail/', { state: account.accountId });
+        break;
+      default:
+        console.error('Unknown account type');
     }
   };
 
@@ -176,7 +172,7 @@ const MainPage = () => {
                           {account.accountType === 'deposit' ? '의 통장' : ''}
                         </p>
                         <p className='account-number'>{account.accountId}</p>
-                        <div className='account-balance' style={{    "fontWeight": 400, marginTop: "0.5rem"}}>
+                        <div className='account-balance' style={{ fontWeight: 500, marginTop: '0.5rem', fontSize: '1.3rem' }}>
                           {account.balance.toLocaleString()}원
                         </div>
                         <button
@@ -186,7 +182,7 @@ const MainPage = () => {
                             handleSendClick(account);
                           }}
                         >
-                          보내기
+                          {account.accountType === 'moaclub' ? '입금하기' : '이체하기'}
                         </button>
                       </div>
                     </div>
@@ -230,7 +226,7 @@ const MainPage = () => {
 
             <div className='promotionDetail'>
               <p className='promotionSubTitle'>최애와 함께 저축 습관 들이기!</p>
-              <button onClick={() => handleNavigate('/celub/')}>
+              <button onClick={() => handleNavigate('/celub')}>
                 셀럽로그 시작하기
               </button>
             </div>
