@@ -504,7 +504,6 @@
 // 기존 스타일 코드들 위에 추가
 .captured-image {
   width: 20rem; // 원하는 크기로 설정
-  height: auto; // 비율을 유지하면서 높이를 자동으로 조절
   display: block; // 이미지가 블록 요소로 표시되도록 설정
   margin: 0 auto; // 이미지가 가운데 정렬되도록 설정 (선택 사항)
 }
