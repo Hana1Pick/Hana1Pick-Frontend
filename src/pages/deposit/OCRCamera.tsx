@@ -43,16 +43,33 @@ function OCRCamera() {
   }, []);
 
   const captureAndUpload = async () => {
+    
     if (canvasRef.current && videoRef.current) {
       const canvas = canvasRef.current;
       const video = videoRef.current;
       const context = canvas.getContext("2d");
 
+      // 캔버스의 크기를 비디오 요소의 크기와 동일하게 설정
       canvas.width = video.videoWidth;
       canvas.height = video.videoHeight;
 
       if (context) {
-        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        // 비디오 프레임을 캔버스에 비율에 맞게 그리기
+        const aspectRatio = 8.6 / 5.4;
+        const canvasWidth = canvas.width;
+        const canvasHeight = canvasWidth / aspectRatio;
+
+        context.drawImage(
+          video,
+          0,
+          (canvas.height - canvasHeight) / 2,
+          canvasWidth,
+          canvasHeight,
+          0,
+          0,
+          canvasWidth,
+          canvasHeight
+        );
 
         const dataURL = canvas.toDataURL("image/jpg");
 

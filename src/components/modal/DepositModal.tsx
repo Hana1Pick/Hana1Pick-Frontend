@@ -1,6 +1,6 @@
 import { CommonModalType2 } from '../../type/commonType';
 
-function CommonModal3({ msg, show, onConfirm }: CommonModalType2) {
+function DepositModal({ msg, show, onConfirm }: CommonModalType2) {
 	if (!show) return null;
 
 	return (
@@ -17,4 +17,4 @@ function CommonModal3({ msg, show, onConfirm }: CommonModalType2) {
 	);
 }
 
-export default CommonModal3;
+export default DepositModal;

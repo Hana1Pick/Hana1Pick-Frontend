@@ -97,11 +97,15 @@ const MainPage = () => {
 
 	// 계좌 클릭 이벤트 핸들러
 	const handleAccountClick = (account: Account) => {
-		if (account.accountType === 'moaclub') {
-			navigate(`/moaclub/main/${account.accountId}`);
-		} else {
-			// todo: 다른 계좌 타입에 대한 처리(셀럽, 입출금 추가 필요)
-			navigate(`/account/${account.accountId}`);
+		switch (account.accountType) {
+			case 'moaclub':
+				navigate(`/moaclub/main/${account.accountId}`);
+				break;
+			case 'deposit':
+				navigate(`/deposit/detail/${account.accountId}`);
+				break;
+			default:
+				console.error('Unknown account type');
 		}
 	};
 
@@ -117,9 +121,6 @@ const MainPage = () => {
 					balance: account.balance,
 				},
 			});
-		} else {
-			// todo: 다른 계좌 타입에 대한 계좌이체 처리(셀럽, 입출금 추가 필요)
-			navigate(`/cash-out/${account.accountId}`);
 		}
 	};
 
@@ -157,40 +158,49 @@ const MainPage = () => {
 							<LoadingSpinner />
 						) : (
 							<>
-								{accounts.length > 0 ? (
-									accounts.map((account) => (
-										<div
-											className='accountBox'
-											key={account.accountId}
-											onClick={() => handleAccountClick(account)}
-										>
-											<div className='imgContainer'>
-												<img src={hanaLogo} alt='logo' />
-											</div>
-											<div className='accountDetail'>
-												<p className='account-type'>
-													{account.name}
-													{account.accountType === 'deposit' ? '의 통장' : ''}
-												</p>
-												<p className='account-number'>{account.accountId}</p>
-												<div
-													className='account-balance'
-													style={{ fontWeight: 400, marginTop: '0.5rem' }}
-												>
-													{account.balance.toLocaleString()}원
+								{accounts.filter((account) => account.accountType !== 'celub')
+									.length > 0 ? (
+									accounts
+										.filter((account) => account.accountType !== 'celub')
+										.map((account) => (
+											<div
+												className='accountBox'
+												key={account.accountId}
+												onClick={() => handleAccountClick(account)}
+											>
+												<div className='imgContainer'>
+													<img src={hanaLogo} alt='logo' />
 												</div>
-												<button
-													className='send-button'
-													onClick={(e) => {
-														e.stopPropagation(); // 계좌 클릭 이벤트 버블링 방지
-														handleSendClick(account);
-													}}
-												>
-													보내기
-												</button>
+												<div className='accountDetail'>
+													<p className='account-type'>
+														{account.name}
+														{account.accountType === 'deposit' ? '의 통장' : ''}
+													</p>
+													<p className='account-number'>{account.accountId}</p>
+													<div
+														className='account-balance'
+														style={{
+															fontWeight: 500,
+															marginTop: '0.5rem',
+															fontSize: '1.3rem',
+														}}
+													>
+														{account.balance.toLocaleString()}원
+													</div>
+													<button
+														className='send-button'
+														onClick={(e) => {
+															e.stopPropagation(); // 계좌 클릭 이벤트 버블링 방지
+															handleSendClick(account);
+														}}
+													>
+														{account.accountType === 'moaclub'
+															? '입금하기'
+															: '이체하기'}
+													</button>
+												</div>
 											</div>
-										</div>
-									))
+										))
 								) : (
 									<div className='accountBox'>
 										<div>
@@ -212,11 +222,12 @@ const MainPage = () => {
 						)}
 					</div>
 					<div className='scrollbar'>
-						{accounts.length > 0 && (
+						{accounts.filter((account) => account.accountType !== 'celub')
+							.length > 0 && (
 							<div
 								className='scrollbar-indicator'
 								style={{
-									width: `${100 / accounts.length}%`,
+									width: `${100 / accounts.filter((account) => account.accountType !== 'celub').length}%`,
 									transform: `translateX(${currentIndex * 100}%)`,
 								}}
 							></div>
@@ -230,7 +241,7 @@ const MainPage = () => {
 
 						<div className='promotionDetail'>
 							<p className='promotionSubTitle'>최애와 함께 저축 습관 들이기!</p>
-							<button onClick={() => handleNavigate('/celub/')}>
+							<button onClick={() => handleNavigate('/celub')}>
 								셀럽로그 시작하기
 							</button>
 						</div>
@@ -247,7 +258,7 @@ const MainPage = () => {
 						</div>
 					</div>
 
-					{/* // TODO: 실시간 환율 정보  */}
+					{/* 실시간 환율 정보  */}
 					<div className='exchange-container'>
 						<Exchange />
 					</div>

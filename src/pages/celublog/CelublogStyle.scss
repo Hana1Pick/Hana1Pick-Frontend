@@ -31,6 +31,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
   }
   
   #celubLogo {
@@ -60,15 +61,18 @@
   #celubBox2-2{
     text-align: center;
     padding-top: 10%;
+    width: 100%;
+    position: fixed;
+    bottom: 1rem;
     p{
-      margin: 0 0 50px 10%;
+      margin: 0 0 3.125rem 10%;
       text-align: left;
       font-weight: 500;
       font-size: large;
     }
-    button{
-      margin-top: 15px;
-    }
+    // button{
+    //   margin-top: 0.9375rem;
+    // }
   }
   
   #arrow_loc, #share{
@@ -79,6 +83,7 @@
   #setting{
     width: 2rem;
     margin-left: 1rem;
+    font-weight: 500;
   }
 
   
@@ -273,14 +278,17 @@
     z-index: 1 !important;
     display: flex;
     flex-direction: column;
-    top: 60%;
+    top: 65%;
     align-items: center;
     .celub-detail-title{
       background-color: rgba(242, 242, 242, 0.4);
       border-radius: 0.5rem;
       padding: 0.5rem;
-      h1, h4{
+      h4, h2{
         margin: 0;
+      }
+      h2{
+        font-weight: 400;
       }
     }
     p{
@@ -388,6 +396,9 @@
   padding: 1rem;
   tr{
     border-bottom: 1px solid #D5D5D5;
+    td{
+      padding: 2%;
+    }
   }
 }
 .celub-hashtag{
@@ -577,7 +588,7 @@
   width:70%;
   border-radius: 0.5rem;
   padding: 3% 10%;
-  margin: 10% auto auto auto;
+  margin: 15% auto auto auto;
   display: flex;
   img{
     width: 40%;
@@ -588,12 +599,12 @@
     p{
       margin-top: 10px;
       margin-bottom: 0;
-      color: #8A8A8A;
+      color: #008E72;
       font-weight: 500;
     }
     span{
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 400;
     }
   }
 }
@@ -717,15 +728,23 @@
       height: 5rem;
       border-radius: 50%;
       object-fit: cover;
+      transition: box-shadow 0.3s ease-in-out;
     }
 
     p {
       margin-top: 10px;
       font-size: 1.2em;
       color: #000;
+      transition: color 0.3s ease-in-out;
+
     }
   }
-}
+    
+    .selected {
+      box-shadow: 0 0 20px #008E72;
+    }
+  }
+
 
 .celub-rule-box1 {
   // text-align: center;
@@ -781,6 +800,7 @@
     display:flex;
     h2{
       margin-bottom: 0.5rem;
+      font-weight: 400;
     }
     img{
       width: 6%;
