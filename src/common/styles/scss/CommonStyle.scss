@@ -78,6 +78,9 @@ body {
 }
 
 /* pattern CSS */
+.background-container, .pattern-container{
+	overflow: hidden;
+}
 .pattern-container {
 	// position: relative;
 	position: fixed;
