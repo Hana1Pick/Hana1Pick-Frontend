@@ -14,7 +14,7 @@ function DepositHeader1({ value }: DepositHeaderProps){
         <>
             <div id="depositHeader1">
             <img className="back" src={back} onClick={handleBackClick} alt="뒤로가기" />
-            <h4 className="title">{value}</h4>
+            <div className="title" style={{fontWeight: "500", fontSize: "1.1rem"}}>{value}</div>
             </div>
         </>
     );

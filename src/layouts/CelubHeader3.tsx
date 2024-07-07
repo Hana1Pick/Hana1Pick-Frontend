@@ -13,7 +13,7 @@ function CelubHeader3({onClick}: {onClick: () => void }){
                     <img id="arrow_loc" src={arrow} onClick={handleBackClick}/>
                 </div>
                 <div>
-                    <h4 id="setting" onClick={onClick}>설정</h4>
+                <div className="setting" style={{fontWeight: "500", fontSize: "1.1rem"}} onClick={onClick}>설정</div>
                 </div>
             </div>
         </>

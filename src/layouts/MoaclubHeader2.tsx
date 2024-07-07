@@ -13,7 +13,8 @@ function MoaClubHeader2({ value, disabled }: MoaClubHeaderData) {
     <>
       <div className='moaclubHeader2' style={headerStyle}>
         <img className="back" src={back} onClick={handleBackClick}/>
-        <h4>{value}</h4>
+       
+        <div className="title" style={{fontWeight: "500", fontSize: "1.1rem"}}>{value}</div>
       </div>
     </>
   );

@@ -13,7 +13,8 @@ function CelubHeader({ value }: CelubHeaderProps){
         <>
             <div id="celubHeader1">
                 <img className="back" src={arrow} onClick={handleBackClick}/>
-                <h4>{value}</h4>
+               
+                <div className="title" style={{fontWeight: "500", fontSize: "1.1rem"}}>{value}</div>
             </div>
         </>
     );
