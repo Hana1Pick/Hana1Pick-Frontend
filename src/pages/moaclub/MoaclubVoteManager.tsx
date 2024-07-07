@@ -13,6 +13,7 @@ import CommonBtn from '../../components/button/CommonBtn';
 import MoaclubModal from '../../components/modal/MoaClubModal';
 import CommonModal2 from '../../components/modal/CommonModal2';
 import CommonModal3 from '../../components/modal/CommonModal3';
+import { useTranslation } from 'react-i18next';
 
 function MoaclubVoteManager() {
   const navigate = useNavigate();
@@ -273,17 +274,23 @@ function MoaclubVoteManager() {
   const handleVote = (vote: boolean) => {
     setSelectVote(vote);
   };
-
-  return (
+  const { t, i18n } = useTranslation();
+	const [language, setLanguage] = useState(localStorage.getItem('language') || i18n.language);
+  
+	useEffect(() => {
+    if(language=="KOR") i18n.changeLanguage('ko');
+	  else i18n.changeLanguage('ch');
+	}, [language, i18n]);
+   return (
     <>
-      <Header value='모아클럽 관리자 변경' disabled={disabled} />
+      <Header value={t('moaclub_change_manager_header')} disabled={disabled} />
       <div className='content'>
-        <div>관리자 변경에 동의하십니까?</div>
+        <div>{t('agree_manager_change_text')}</div>
         <div className='candidateContainer'>
           <div className='managerWrapper'>
             <img
               src={manager?.profile}
-              alt='관리자 프로필 사진'
+              alt={t('manager_profile_alt_text')}
               className='voteProfile'
             />
             <span className='moaVoteProfileDesc'>{manager?.userName}</span>
@@ -293,7 +300,7 @@ function MoaclubVoteManager() {
             <span>👑</span>
             <img
               src={getProfile(voteResult?.candidateName!)}
-              alt='관리자 후보 프로필 사진'
+              alt={t('candidate_profile_alt_text')}
               className='voteProfile'
             />
             <span className='moaVoteProfileDesc'>
@@ -304,13 +311,13 @@ function MoaclubVoteManager() {
       </div>
 
       <div className='moaclubVoteStatusContent'>
-        <span className='voteTimeTxt'>투표 현황</span>
+        <span className='voteTimeTxt'>{t('vote_status_text')}</span>
         <table className='moaclubFeeTable'>
           {memberList &&
             memberList
               .filter((member) => member.userIdx != userIdx)
               .filter((member) => member.role != 'MANAGER')
-              .map((member: memberList, index: number) => (
+              .map((member, index) => (
                 <tr key={index}>
                   <td className='voteTableFirstTd'>
                     <img
@@ -338,13 +345,13 @@ function MoaclubVoteManager() {
 
       <div className='moaclubVoteContent'>
         {isManager ? (
-          <div className='timeLeft'>관리자는 투표 권한이 없습니다.</div>
+          <div className='timeLeft'>{t('no_manager_rights_msg')}</div>
         ) : hasVoted ? (
-          <div className='timeLeft'>이미 투표했습니다.</div>
+          <div className='timeLeft'>{t('already_voted_msg')}</div>
         ) : (
           <>
             <span className='voteTimeTxt'>
-              투표까지 남은 기간 <span className='timeLeft'>{timeLeft}</span>
+              {t('vote_time_left_text')} <span className='timeLeft'>{timeLeft}</span>
             </span>
             <table className='voteTable'>
               <tr>
@@ -379,14 +386,14 @@ function MoaclubVoteManager() {
       <div className='buttonContainer'>
         <CommonBtn
           type='pink'
-          value='완료'
+          value={t('completion_button_text')}
           onClick={next}
           disabled={isButtonDisabled()}
         />
       </div>
 
       <CommonModal2
-        msg={`재투표가 불가합니다.\n 투표를 진행하시겠습니까?`}
+        msg={t('cannot_revote_msg')}
         show={look}
         onCancle={() => {
           setLook(false);
@@ -395,12 +402,13 @@ function MoaclubVoteManager() {
       />
 
       <CommonModal3
-        msg={`투표가 완료되었습니다.`}
+        msg={t('vote_completed_msg')}
         show={look2}
         onConfirm={goVote}
       />
     </>
   );
 }
+
 
 export default MoaclubVoteManager;

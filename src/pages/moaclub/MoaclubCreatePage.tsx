@@ -1,12 +1,20 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import CommonBtn from '../../components/button/CommonBtn';
 import Header from '../../layouts/MoaclubHeader1';
 import deleteicon from '../../assets/images/common/deleteicon.png';
 import Picker from './Picker';
 import { useNavigate } from 'react-router-dom';
 import { MoaclubContext } from '../../contexts/MoaclubContextProvider';
+import { useTranslation } from 'react-i18next';
 
 function MoaclubCreatePage() {
+	const { t, i18n } = useTranslation();
+	const [language, setLanguage] = useState(localStorage.getItem('language') || i18n.language);
+	
+	useEffect(() => {
+	  if(language=="KOR") i18n.changeLanguage('ko');
+	  else i18n.changeLanguage('ch');
+	}, [language, i18n]);
 	const navigate = useNavigate();
 	const [accountName, setAccountName] = useState<string>('');
 	const [currency, setCurrency] = useState<string>('');
@@ -131,8 +139,7 @@ function MoaclubCreatePage() {
 
 			<div className='content'>
 				<h4 className='moaclubTitleSetting'>
-					멤버들과 함께 볼<br />
-					계좌 이름을 지어주세요.
+				{t('club_name_input_title')}
 				</h4>
 			</div>
 			<input
@@ -140,12 +147,12 @@ function MoaclubCreatePage() {
 				value={accountName}
 				onChange={handleInputChange}
 				className='accountNameInput'
-				placeholder='모아클럽 이름을 입력하세요'
+				placeholder={t('club_name_input_placeholder')}
 			/>
 			<div className='buttonContainer'>
 				<CommonBtn
 					type='pink'
-					value='다음'
+					value={t('next_button_text')}
 					onClick={nextStage}
 					disabled={accountName === ''}
 				/>
@@ -160,10 +167,10 @@ function MoaclubCreatePage() {
 							onClick={beforeStage}
 						/>
 						<h4 className='leftAlignedText'>
-							모아클럽 이용 통화는 무엇인가요?
+							{t('account_name_input_title')}
 						</h4>
 						<span className='leftAlignedText'>
-							설정한 통화로 실시간 환전되어 돈을 모을 수 있어요.
+							{t('account_name_input_description')}
 						</span>
 						<select
 							className='currencySelect'
@@ -171,7 +178,7 @@ function MoaclubCreatePage() {
 							onChange={handleCurrencyChange}
 						>
 							<option value='' disabled selected>
-								통화를 선택해 주세요.
+								{t('currency_select_placeholder')}
 							</option>
 							<option value='KRW'>🇰🇷 KRW</option>
 							<option value='CNY'>🇨🇳 CNY</option>
@@ -182,7 +189,7 @@ function MoaclubCreatePage() {
 					<div className='withdraw-box5'>
 						<CommonBtn
 							type='pink'
-							value='다음'
+							value={t('next_button_text')}
 							onClick={nextNextStage}
 							disabled={currency === ''}
 						/>
@@ -198,7 +205,7 @@ function MoaclubCreatePage() {
 							src={deleteicon}
 							onClick={beforeStage}
 						/>
-						<h4 className='leftAlignedText'>회비 내는 날은 언제인가요?</h4>
+						<h4 className='leftAlignedText'>{t('select_day_title')}</h4>
 						<div className='datePicker'>
 							<h2 className='leftAlignedText centeredText'>매월</h2>
 							<div className='picker'>
@@ -209,7 +216,7 @@ function MoaclubCreatePage() {
 					<div className='moaclub-box5'>
 						<CommonBtn
 							type='pink'
-							value='다음'
+							value={t('next_button_text')}
 							onClick={nextNextNextStage}
 							disabled={selectedDay === 0}
 						/>
@@ -225,7 +232,7 @@ function MoaclubCreatePage() {
 							src={deleteicon}
 							onClick={beforeStage}
 						/>
-						<h4 className='leftAlignedText'>회비 금액은 얼마인가요?</h4>
+						<h4 className='leftAlignedText'>{t('enter_amount_title')}</h4>
 						<div className='clubFeeBox'>
 							<div className='leftAlignedText moaMonthTxt'>매월</div>
 							<input
@@ -233,7 +240,7 @@ function MoaclubCreatePage() {
 								type=''
 								value={amount}
 								onChange={handleAmountChange}
-								placeholder='금액을 입력하세요.'
+								placeholder={t('enter_amount_placeholder')}
 							/>
 							<span className='currencySymbol'>
 								{getCurrencySymbol(currency)}
@@ -243,7 +250,7 @@ function MoaclubCreatePage() {
 					<div className='moaclub-box5'>
 						<CommonBtn
 							type='pink'
-							value='완료'
+							value={t('finish_button_text')}
 							onClick={next}
 							disabled={amount === ''}
 						/>

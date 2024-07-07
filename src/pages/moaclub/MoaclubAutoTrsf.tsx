@@ -1,13 +1,21 @@
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 import Header from '../../layouts/MoaclubHeader4';
 import './MoaclubStyle.scss';
 import '../../common/styles/scss/CommonStyle.scss';
 import autotrsfIcon from '../../assets/images/moaclub/moa-autotrsf.png';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { MoaAutoTrsf } from '../../type/commonType';
 
 function MoaclubAutoTrsf() {
+	const { t, i18n } = useTranslation();
+	const [language, setLanguage] = useState(localStorage.getItem('language') || i18n.language);
+  
+	useEffect(() => {
+    if(language=="KOR") i18n.changeLanguage('ko');
+	  else i18n.changeLanguage('ch');
+	}, [language, i18n]);
   const navigate = useNavigate();
   const { accountId } = useParams();
   const userIdx = localStorage.getItem('userIdx') as string;
@@ -78,44 +86,45 @@ function MoaclubAutoTrsf() {
 
   return (
     <>
-      <Header value='자동이체' disabled={false} />
+      <Header value={t('moaclubAutoTrsfHeader')} disabled={false} />
       <div className='content'>
         <div className='moaAutoTrsf'>
-          <img src={autotrsfIcon} className='autoTrsfBanner' />
+          <img src={autotrsfIcon} className='autoTrsfBanner' alt='Auto Transfer Banner' />
           <div className='moaAutoTrsfInfo'>
-            <span className='moaAutoTrsfName'>{userName} </span>님
+            <span className='moaAutoTrsfName'>{userName} </span>
+            {t('userGreeting', { userName })}
           </div>
           <div className='moaAutoTrsfInfo'>
             <span className='moaAutoTrsfHighlight'>
               {moaclubName}&#40;
               {accountId}&#41;
             </span>
-            에
+            {t('autoTransferTo')}
           </div>
           <div className='moaAutoTrsfInfo'>
             <span className='moaAutoTrsfHighlight'>{count}</span>
-            건이 등록되어 있어요.
+            {t('autoTrsfCount', { count })}
           </div>
 
           {autoTrsf ? (
             <div className='moaAutoTrsfBox' onClick={goAutoTrsfDetail}>
               <div className='moaAutoTrsfBoxHeader'>
-                <span>모아클럽 이체 &#62;</span>
-                <div className='moaAutoTrsfBoxBadge'>오픈뱅킹</div>
+                <span>{t('detail')} &#62;</span>
+                <div className='moaAutoTrsfBoxBadge'>{t('openBanking')}</div>
               </div>
               <hr />
               <table>
                 <tbody>
                   <tr>
-                    <th>은행명</th>
-                    <td>하나원픽</td>
+                    <th>{t('bankName')}</th>
+                    <td>{t('hanaOnepick')}</td>
                   </tr>
                   <tr>
-                    <th>출금계좌정보</th>
+                    <th>{t('outAccId')}</th>
                     <td>{autoTrsf.outAccId}</td>
                   </tr>
                   <tr>
-                    <th>납부자번호</th>
+                    <th>{t('payerNumber')}</th>
                     <td>{userIdx.split('-').pop()}</td>
                   </tr>
                 </tbody>
@@ -123,7 +132,7 @@ function MoaclubAutoTrsf() {
             </div>
           ) : (
             <div className='moaAutoTrsfCreate' onClick={goAutoTrsfRegister}>
-              등록하기
+              {t('register')}
             </div>
           )}
         </div>

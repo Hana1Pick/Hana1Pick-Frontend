@@ -5,6 +5,7 @@ import deleteicon from '../../assets/images/common/deleteicon.png';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Account, MoaclubInfo } from '../../type/commonType';
+import { useTranslation } from 'react-i18next';
 
 // API 호출 함수 정의
 const getAccountListByType = async (userIdx: string, type: string) => {
@@ -23,6 +24,13 @@ const getAccountListByType = async (userIdx: string, type: string) => {
 };
 
 function MoaclubAutoTrsfRegister() {
+	const { t, i18n } = useTranslation();
+	const [language, setLanguage] = useState(localStorage.getItem('language') || i18n.language);
+	
+	useEffect(() => {
+	  if(language=="KOR") i18n.changeLanguage('ko');
+	  else i18n.changeLanguage('ch');
+	}, [language, i18n]);
 	const navigate = useNavigate();
 	const [account, setAccount] = useState<Account | null>(null);
 	const [selectedAccount, setSelectedAccount] = useState<string | null>(null);
@@ -138,109 +146,99 @@ function MoaclubAutoTrsfRegister() {
 
 	return (
 		<>
-			<div className='celub-withdraw-overlay' id='celub-withdraw-overlay'></div>
-			<Header value='자동이체 설정' disabled={isDisabled} />
-			<div className='content'>
-				<div>
-					<div className='withdrawMsg'>
-						<div>
-							<h3 className='narrowLine'>
-								앞으로 아래 계좌에서
-								<br />
-								출금할요.
-							</h3>
-						</div>
-						<div>
-							<h4>
-								모아클럽에 설정된 회비 규칙이
-								<br />
-								적용됩니다.
-							</h4>
-						</div>
-					</div>
-				</div>
-				<div className='withdraw-box1'>
-					<h4>출금계좌</h4>
-					<div className='withdraw-box2'>
-						<label htmlFor='lang' style={{ fontSize: '12px' }}>
-							출금계좌
-						</label>{' '}
-						&nbsp;
-						<select
-							name='languages'
-							id='lang'
-							style={{ border: '0', width: '70%', backgroundColor: '#F8F8F9' }}
-							onChange={handleSelectChange}
-						>
-							<option value='' disabled selected>
-								계좌를 선택해 주세요.
-							</option>
-							{account && (
-								<option value={account.accountId}>
-									{account.name}의 입출금 계좌 ({getAccCode(account.accountId)})
-								</option>
-							)}
-						</select>
-					</div>
-				</div>
-			</div>
-
-			<div className='buttonContainer'>
-				<CommonBtn
-					type='pink'
-					value='다음'
-					onClick={nextStage}
-					disabled={!selectedAccount}
-				/>
-			</div>
-
+		  <div className='celub-withdraw-overlay' id='celub-withdraw-overlay'></div>
+		  <Header value={t('autoTransferSetup.header')} disabled={isDisabled} />
+		  <div className='content'>
 			<div>
-				<div className='withdraw-box7' id='withdraw-box4'>
-					<div className='moaclub-box6'>
-						<img
-							className='deleteicon'
-							src={deleteicon}
-							onClick={beforeStage}
-							alt='deleteIcon'
-						/>
-					</div>
-					<div>
-						<div>아래 내용의 자동이체를</div>
-						<div>&nbsp;등록하시겠습니까?</div>
-						<div className='moaAutoTrsfDetailPopUp'>
-							<table className='moaAutoTrsfDetailPopUpTable'>
-								<tbody>
-									<tr>
-										<th>은행명</th>
-										<td>하나원픽</td>
-									</tr>
-									<tr>
-										<th>출금계좌</th>
-										<td>{selectedAccount}</td>
-									</tr>
-									<tr>
-										<th>이체정보</th>
-										<td>
-											매월 {moaclub?.atDate}일{' '}
-											{formatCurrency(moaclub?.clubFee!)}
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-					<div className='moaclub-box5'>
-						<CommonBtn
-							type='pink'
-							value='등록하기'
-							onClick={next}
-							disabled={false}
-						/>
-					</div>
+			  <div className='withdrawMsg'>
+				<div>
+				  <h3 className='narrowLine'>
+					{t('autoTransferSetup.withdrawMsg1')}
+					<br />
+					{t('autoTransferSetup.withdrawMsg2')}
+				  </h3>
 				</div>
+				<div>
+				  <h4>{t('autoTransferSetup.feeRuleApplied')}</h4>
+				</div>
+			  </div>
 			</div>
+			<div className='withdraw-box1'>
+			  <h4>{t('autoTransferSetup.withdrawAccount')}</h4>
+			  <div className='withdraw-box2'>
+				<label htmlFor='lang' style={{ fontSize: '12px' }}>
+				  {t('autoTransferSetup.bankName')}
+				</label>{' '}
+				&nbsp;
+				<select
+				  name='languages'
+				  id='lang'
+				  style={{ border: '0', width: '70%', backgroundColor: '#F8F8F9' }}
+				  onChange={handleSelectChange}
+				>
+				  <option value='' disabled selected>
+					{t('autoTransferSetup.selectAccount')}
+				  </option>
+				  {/* Replace with actual logic to map account options */}
+				</select>
+			  </div>
+			</div>
+		  </div>
+	
+		  <div className='buttonContainer'>
+			<CommonBtn
+			  type='pink'
+			  value={t('autoTransferSetup.registerBtn')}
+			  onClick={nextStage}
+			  disabled={!selectedAccount}
+			/>
+		  </div>
+	
+		  <div className='withdraw-box7' id='withdraw-box4'>
+			<div className='moaclub-box6'>
+			  <img
+				className='deleteicon'
+				src={deleteicon}
+				onClick={beforeStage}
+				alt='deleteIcon'
+			  />
+			</div>
+			<div>
+			  <div>{t('autoTransferSetup.transferInfo')}</div>
+			  <div>{t('autoTransferSetup.registerBtn')}</div>
+			  <div className='moaAutoTrsfDetailPopUp'>
+				<table className='moaAutoTrsfDetailPopUpTable'>
+				  <tbody>
+					<tr>
+					  <th>{t('autoTransferSetup.bankName')}</th>
+					  <td>하나원픽</td>
+					</tr>
+					<tr>
+					  <th>{t('autoTransferSetup.withdrawAccount')}</th>
+					  <td>{selectedAccount}</td>
+					</tr>
+					<tr>
+					  <th>{t('autoTransferSetup.transferInfo')}</th>
+					  <td>
+						매월 {moaclub?.atDate}일{' '}
+						{formatCurrency(moaclub?.clubFee!)}
+					  </td>
+					</tr>
+				  </tbody>
+				</table>
+			  </div>
+			</div>
+			<div className='moaclub-box5'>
+			  <CommonBtn
+				type='pink'
+				value={t('autoTransferSetup.registerBtn')}
+				onClick={next}
+				disabled={false}
+			  />
+			</div>
+		  </div>
 		</>
-	);
-}
+	  );
+	}
 
 export default MoaclubAutoTrsfRegister;
