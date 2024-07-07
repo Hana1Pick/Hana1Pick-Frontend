@@ -16,6 +16,7 @@ import "./KakaoLoginPage.scss";
 import "../../../assets/scss/_magictime.scss";
 import "../../../assets/scss/magic.scss";
 
+
 const KakaoLoginPage = () => {
   const CLIENT_ID = process.env.REACT_APP_REST_API_KEY;
   const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URL;

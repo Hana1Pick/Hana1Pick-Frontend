@@ -163,7 +163,13 @@ export type CommonModalType2 = {
 	onConfirm: () => void;
 };
 
-//patternLineType
+// 환율 데이터 타입 정의
+export interface ExchangeRates {
+  USD: number;
+  JPY: number;
+  CNY: number;
+}
+  //patternLineType
 export type Line = {
   startX: number;
   startY: number;

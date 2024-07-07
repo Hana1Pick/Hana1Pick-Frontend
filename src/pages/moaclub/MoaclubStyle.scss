@@ -808,6 +808,101 @@ header {
 	overflow: hidden;
 }
 
+// 수수료
+.moaDepositAmountContainerFee {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 16rem;
+    margin-top: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #f5f5f5;
+    padding: 1rem;
+    margin: 1.6rem 0 7rem 2.5rem;
+
+    .moaDepositAmountBoxFee {
+        width: 100%;
+    }
+
+	// 환전 수수료 박스
+    .moaDepositFixedBoxFee {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+		width: 100%;
+    }
+
+    .moaDepositRow {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+		// margin-bottom: 0.5rem; /* 각 행 사이의 간격 */
+		// padding-right: 1rem; /* 오른쪽 여백 추가 */
+		height: 2rem;
+
+		.moaDepositCountry{
+			color: #515151;
+			flex: 1; /* 공간을 차지하도록 설정 */
+			text-align: left; /* 왼쪽 정렬 */
+			// margin-right: 8rem;
+		}
+		.moaDepositValue {
+			display: flex;
+			align-items: center;
+			// flex-grow: 1;
+			color: #515151;
+			// margin: 0 -0.5rem;
+			// height: 1.2rem;
+
+			div {
+				margin-left: 0.2rem;
+				/* "원" 텍스트와 값 사이의 간격 설정 */
+				flex-shrink: 0;
+				/* "원" 텍스트가 고정되도록 설정 */
+			}
+		}
+
+		.moaDepositValue1 {
+			display: flex;
+			align-items: center;
+			margin-left: 5rem;
+			/* padding: 1rem; */
+			// margin: 0 -0.5rem;
+			height: 1.2rem;
+			color: #515151;
+
+			div {
+				margin-left: 0.2rem;
+				/* "원" 텍스트와 값 사이의 간격 설정 */
+				flex-shrink: 0;
+				/* "원" 텍스트가 고정되도록 설정 */
+			}
+		}
+		.large {
+			font-size: 1.15rem;
+			font-weight: 600;
+			color: #000;
+		}
+    }
+}
+
+.exchangebuttonContainer{
+	margin-top: 2rem;
+	// width: 18rem;
+    // height: 2.7rem;
+    // background-color: #f19ed3;
+    // border: 0;
+    // border-radius: 0.5rem;
+    // color: rgb(255, 255, 255);
+    // cursor: pointer;
+    // padding-top: 3%;
+    // padding-bottom: 3%;
+    // bottom: 2rem;
+	// margin: 2rem 0 0 0;
+}
+
 .moaDepositAmountBox {
 	display: flex;
 	width: 100%;
@@ -821,6 +916,7 @@ header {
 	background-color: #f5f5f5;
 	padding: 1rem;
 	height: 1.2rem;
+	white-space: nowrap; /* 텍스트가 한 줄로 표시되도록 설정 */
 }
 
 .moaDepositCountry {
@@ -840,28 +936,30 @@ header {
 .moaDepositInputBox2 {
 	display: flex;
 	align-items: center;
-	margin-left: 5.6rem;
-	flex-grow: 1;
-	padding: 1rem;
-	height: 1.2rem;
-}
-
-.moaDepositAmountInput2 {
-	width: 50px;
+  }
+  
+  .moaDepositAmountInput2 {
+	width: 100%;
 	text-align: right;
 	border: none;
 	font-size: 1rem;
 	outline: none;
-}
-
-.moaDepositAmountInput2 + div {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis; /* 길어질 경우 말줄임표 표시 */
+  }
+  
+  .moaDepositAmountInput2 + div {
+	flex-shrink: 0; /* div가 고정되도록 설정 */
 	margin-left: 0.5rem;
 	font-size: 0.9rem;
 	color: #666;
-}
+  }
 
 .moaDepositCountry {
 	font-size: 0.8rem;
+	white-space: nowrap; /* 텍스트가 한 줄로 표시되도록 설정 */
+
 }
 
 .moaDepositSymbol {
@@ -1047,6 +1145,7 @@ header {
 .moaWithdrawInAccPopUp {
 	color: #c4c4c4;
 	font-size: small;
+	margin-top: 1rem;
 }
 
 .moaWithdrawStrong {
