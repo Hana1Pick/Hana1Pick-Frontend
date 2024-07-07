@@ -39,7 +39,7 @@ const MenuBar = () => {
 					style={{ width: '2.5rem', marginTop: '0.2rem' }}
 				/>
 			</div>
-			<div className='menu-item user'        onClick={() => handleNavigate("/user/mypage/")}
+			<div className='menu-item user'        onClick={() => handleNavigate("/user/mypage")}
       >
 				<img
 					src={beUserIcon}
