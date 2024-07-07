@@ -55,8 +55,6 @@ const MainPage = () => {
     };
     fetchNotifications();
 
-    const userIdx = localStorage.getItem('userIdx');
-
     if (!userIdx) {
       console.error('User is not logged in or access token is missing');
       return;
@@ -178,9 +176,9 @@ const MainPage = () => {
                           {account.accountType === 'deposit' ? '의 통장' : ''}
                         </p>
                         <p className='account-number'>{account.accountId}</p>
-                        <h3 className='account-balance'>
+                        <div className='account-balance' style={{    "fontWeight": 400, marginTop: "0.5rem"}}>
                           {account.balance.toLocaleString()}원
-                        </h3>
+                        </div>
                         <button
                           className='send-button'
                           onClick={(e) => {
