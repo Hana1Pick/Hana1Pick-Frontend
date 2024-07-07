@@ -48,11 +48,29 @@ function OCRCamera() {
       const video = videoRef.current;
       const context = canvas.getContext("2d");
 
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
+      // 화면 크기에 맞게 비디오와 캔버스 크기 설정
+      const width = video.videoWidth;
+      const height = video.videoHeight;
+
+      // 캔버스 비율을 민증 사진 비율로 설정
+      const canvasWidth = 860;
+      const canvasHeight = 540;
+      canvas.width = canvasWidth;
+      canvas.height = canvasHeight;
 
       if (context) {
-        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        // 캔버스에 비디오 프레임을 비율에 맞게 그리기
+        context.drawImage(
+          video,
+          (width - canvasWidth) / 2,
+          (height - canvasHeight) / 2,
+          canvasWidth,
+          canvasHeight,
+          0,
+          0,
+          canvasWidth,
+          canvasHeight
+        );
 
         const dataURL = canvas.toDataURL("image/jpg");
 
