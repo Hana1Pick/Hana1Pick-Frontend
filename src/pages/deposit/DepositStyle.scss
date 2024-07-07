@@ -2,7 +2,7 @@
   text-align: left;
   margin-bottom: 2.5rem;
   padding-left: 0.6rem;
-  font-weight: bold;
+  font-weight: 400;
 }
 
 #deposit-basicBtn {
@@ -83,7 +83,7 @@
 
 .text-color-change {
   color: #1ea698; /* 원하는 글자 색상 설정 */
-  font-weight: bold;
+  font-weight: 400;
 }
 
 .custom-input-container {
@@ -557,7 +557,7 @@
 
     .highlight {
       color: #1ea698; // 강조할 색상 설정
-      font-weight: bold; // 굵은 글씨 설정 (선택사항)
+      font-weight: 400;
     }
   }
 }

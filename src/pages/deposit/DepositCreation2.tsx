@@ -187,6 +187,7 @@ function DepositCreation2() {
               <option value="USA">미국</option>
               <option value="JP">일본</option>
               <option value="CN">중국</option>
+              <option value="IN">인도네시아</option>
             </select>
           </div>
         </div>
@@ -195,7 +196,7 @@ function DepositCreation2() {
           <div>
             <DomesticAuth rtcRoomNum={rtcRoomNum} formData={formData} />
           </div>
-        ) : nation === "JP" || nation === "CN" || nation == "USA"? (
+        ) : nation === "JP" || nation === "CN" || nation == "USA" ||  nation === "IN" ? (
           <button id="deposit-basicBtn" onClick={handleClick2}>
             외국인등록증 인증
           </button>
