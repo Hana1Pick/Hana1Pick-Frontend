@@ -4,6 +4,7 @@ import logo from '../../assets/images/celub/heart.png';
 import CommonBtn from "../../components/button/CommonBtn";
 import "./CelublogStyle.scss";
 import { useState } from "react";
+import Header from "../../layouts/CelubHeader1";
 
 function CelubName() {
    const location = useLocation();
@@ -62,7 +63,7 @@ function CelubName() {
             <div>
                 <div className="withdraw-box4" id="withdraw-box4">
                     <div className="withdraw-box6">
-                        <p>오늘부터 {accountName}을 시작할게요!</p>
+                        <p>오늘부터 을 시작할게요!</p>
                         <span>규칙을 설정할 때 까지는 저축되지 않아요.<br/>
                         사랑하는 만큼 모아주세요.</span>
                         <div className="withdraw-box5">

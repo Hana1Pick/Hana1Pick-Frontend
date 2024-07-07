@@ -95,17 +95,6 @@ const MainPage = () => {
     trackMouse: true,
   });
 
-  	// console.log(
-	// 	'localStorage에 저장된 userIdx:',
-	// 	localStorage.getItem('userIdx')
-	// );
-	// console.log('localStorage에 저장된 name:', localStorage.getItem('name'));
-	// console.log('localStorage에 저장된 email:', localStorage.getItem('email'));
-	// console.log(
-	// 	'localStorage에 저장된 profile:',
-	// 	localStorage.getItem('profile')
-	// );
-
   // 계좌 클릭 이벤트 핸들러
   const handleAccountClick = (account: Account) => {
     if (account.accountType === 'moaclub') {
@@ -120,6 +109,14 @@ const MainPage = () => {
   const handleSendClick = (account: Account) => {
     if (account.accountType === 'moaclub') {
       navigate(`/moaclub/deposit/${account.accountId}`);
+    } else if (account.accountType === 'deposit') {
+      navigate(`/cash-out/account`, {
+        state: {
+          accountId: account.accountId,
+          name: account.name,
+          balance: account.balance,
+        },
+      });
     } else {
       // todo: 다른 계좌 타입에 대한 계좌이체 처리(셀럽, 입출금 추가 필요)
       navigate(`/cash-out/${account.accountId}`);
@@ -176,7 +173,10 @@ const MainPage = () => {
                           {account.accountType === 'deposit' ? '의 통장' : ''}
                         </p>
                         <p className='account-number'>{account.accountId}</p>
-                        <div className='account-balance' style={{    "fontWeight": 400, marginTop: "0.5rem"}}>
+                        <div
+                          className='account-balance'
+                          style={{ fontWeight: 400, marginTop: '0.5rem' }}
+                        >
                           {account.balance.toLocaleString()}원
                         </div>
                         <button
