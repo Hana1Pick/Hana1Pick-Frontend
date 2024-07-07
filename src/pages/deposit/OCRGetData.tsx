@@ -43,7 +43,7 @@ function OCRGetData() {
       const normalizedUserNation = formData.nation.toLowerCase();
       const normalizedOCRDataNation = ocrData.data.nation.toLowerCase();
       const nationMatched =
-        normalizedUserNation === "cn" && normalizedOCRDataNation === "china";
+        normalizedUserNation === "cn" && normalizedOCRDataNation === "china p.b.";
 
       setIsNameMatched(nameMatched);
       setIsNationMatched(nationMatched);

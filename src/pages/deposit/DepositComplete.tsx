@@ -26,7 +26,7 @@ function DepositComplete() {
           <table className="completeInfo">
             <tr>
               <th>출금계좌</th>
-              <td colSpan={2}>{name} 의 입출금 계좌</td>
+              <td colSpan={2}>{name}의 입출금 계좌</td>
             </tr>
             <tr>
               <th>이체한도</th>
