@@ -20,19 +20,33 @@ export type CelubHistoryType = {
 };
 
 export type CelubAccount = {
-	account_id: string;
-	name: string;
-	balance: number;
-	imgSrc: string;
-	ruleMoney: number;
-	totalBalance: number;
+  account_id: string;
+  name: string;
+  balance: number;
+  imgSrc: string;
+  ruleMoney: number;
+  totalBalance: number;
+  createDate: string;
 };
+export type CelubAccountInfo = {
+  accountId: string,
+  balance: number,
+  name: string,
+  imgSrc: string,
+  outAccId: string,
+  celebrityIdx: number,
+  duration: number
+  createDate: string
+}
 
 export type MoaClubHeaderData = {
 	value: string;
 	disabled: boolean;
 	onClick?: () => void;
 };
+
+
+// Deposit
 
 export type DomesticAuthProps = {
 	rtcRoomNum: string;
@@ -57,6 +71,7 @@ export type OCRData = {
 		certification: string;
 	};
 };
+
 export type CelubListType = {
 	idx: number;
 	name: string;
@@ -162,6 +177,11 @@ export type CommonModalType2 = {
 	show: boolean;
 	onConfirm: () => void;
 };
+export type CommonModalType1 = {
+  msg: string;
+  show: boolean;
+  onConfirm: () => void;
+};
 
 // 환율 데이터 타입 정의
 export interface ExchangeRates {
@@ -176,3 +196,22 @@ export type Line = {
   endX: number;
   endY: number;
 }
+
+
+// deposit detail type
+export type DepositInfo = {
+	name: string;
+	accountId: string;
+	balance: number;
+	createDate: string;
+};
+
+
+
+export type DepsoitAccHis = {
+	transDate: string;
+	transType: string;
+	target: string;
+	transAmount: number;
+	balance: number;
+};

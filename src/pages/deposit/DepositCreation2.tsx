@@ -6,6 +6,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Calendar from "../../assets/images/deposit/Calendar.png";
 import { useNavigate } from "react-router-dom";
+import MoaClubHeader from "../../layouts/MoaclubHeader1";
 
 function DepositCreation2() {
   const [name, setName] = useState<string>("");
@@ -13,15 +14,19 @@ function DepositCreation2() {
   const [birth, setBirth] = useState<string | null>(null);
   const [phone, setPhone] = useState<string>("");
   const [nation, setNation] = useState<string>("");
+  const [buttonText, setButtonText] = useState<string>("간편인증");
   const email = localStorage.getItem("email");
   const [password, setPassword] = useState<string>("");
   const [rtcRoomNum, setRtcRoomNum] = useState<string>("");
   const datePickerRef = useRef<DatePicker>(null);
+  const [showDomesticAuth, setShowDomesticAuth] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setNation(event.target.value);
+    const selectedNation = event.target.value;
+    setNation(selectedNation);
+    setButtonText(selectedNation === "KOR" ? "간편인증" : "외국인등록증 인증");
   };
 
   const handleComplete = (data: any) => {
@@ -77,9 +82,13 @@ function DepositCreation2() {
     password,
   };
 
+  const isButtonDisabled = !(name && address && birth && phone && nation);
+
+  const isButtonVisible = nation === "KOR" && name && address && birth && phone;
+
   return (
     <div className="deposit-creation">
-      <Header value="개인정보 입력" />
+      <MoaClubHeader value="개인정보 입력" disabled={false} />
       <div className="deposit-container">
         <div className="input-box">
           <div className="deposit-content-box">먼저, 정보를 입력받을게요.</div>
@@ -90,7 +99,7 @@ function DepositCreation2() {
             </label>
             <input
               type="text"
-              className="deposit-input-field"
+              className={`deposit-input-field ${name ? "text-color-change" : ""}`}
               placeholder="이름을 적어주세요."
               id="name"
               onChange={(e) => setName(e.target.value)}
@@ -102,7 +111,7 @@ function DepositCreation2() {
             </label>
             <input
               type="text"
-              className="deposit-input-field"
+              className={`deposit-input-field ${address ? "text-color-change" : ""}`}
               placeholder="주소를 적어주세요."
               value={address}
               readOnly
@@ -118,7 +127,7 @@ function DepositCreation2() {
             <div className="date-picker-container">
               <input
                 type="text"
-                className="deposit-input-field date-picker-input-field"
+                className={`deposit-input-field date-picker-input-field ${birth ? "text-color-change" : ""}`}
                 placeholder="생년월일을 적어주세요."
                 id="birth"
                 readOnly
@@ -155,7 +164,7 @@ function DepositCreation2() {
             </label>
             <input
               type="text"
-              className="deposit-input-field"
+              className={`deposit-input-field ${phone ? "text-color-change" : ""}`}
               placeholder="전화번호 적어주세요."
               id="phone"
               onChange={(e) => setPhone(e.target.value)}
@@ -166,7 +175,7 @@ function DepositCreation2() {
               국적
             </label>
             <select
-              className="deposit-input-field"
+              className={`deposit-input-field ${nation ? "text-color-change" : ""}`}
               defaultValue=""
               onChange={handleChange}
               id="nation"
@@ -175,16 +184,18 @@ function DepositCreation2() {
                 국적을 선택해주세요.
               </option>
               <option value="KOR">한국</option>
+              <option value="USA">미국</option>
               <option value="JP">일본</option>
               <option value="CN">중국</option>
             </select>
           </div>
         </div>
+
         {nation === "KOR" ? (
           <div>
             <DomesticAuth rtcRoomNum={rtcRoomNum} formData={formData} />
           </div>
-        ) : nation === "JP" || nation === "CN" ? (
+        ) : nation === "JP" || nation === "CN" || nation == "USA"? (
           <button id="deposit-basicBtn" onClick={handleClick2}>
             외국인등록증 인증
           </button>

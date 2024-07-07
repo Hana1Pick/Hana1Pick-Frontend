@@ -1,20 +1,62 @@
 .deposit-content-box {
   text-align: left;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  padding-left: 0.6rem;
+  font-weight: bold;
 }
 
 #deposit-basicBtn {
-  width: 100%;
+  width: 100% !important;
   height: 2.7rem;
-  background-color: #000000;
+  background-color: #1ea698;
   border: 0;
   border-radius: 0.5rem;
-  color: azure;
+  color: rgb(255, 255, 255) !important;
   cursor: pointer;
   padding-top: 3%;
   padding-bottom: 3%;
-  align-self: center;
 }
+
+#deposit-basicBtn-fixed {
+  position: fixed;
+  bottom: 20px; /* 화면 하단과의 거리 조정 */
+  left: 50%; /* 화면 가운데 정렬을 위해 50% 위치로 설정 */
+  transform: translateX(-50%); /* 가운데 정렬을 위해 이동 */
+  width: 90%; /* 너비 조정 */
+  height: 2.7rem;
+  background-color: #1ea698;
+  border: 0;
+  border-radius: 0.5rem;
+  color: rgb(255, 255, 255) !important;
+  cursor: pointer;
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+
+#simpleauth {
+  position: fixed;
+  bottom: 20px; /* 화면 하단과의 거리 조정 */
+  left: 50%; /* 화면 가운데 정렬을 위해 50% 위치로 설정 */
+  transform: translateX(-50%); /* 가운데 정렬을 위해 이동 */
+  width: 90%; /* 너비 조정 */
+  height: 2.7rem;
+  background-color: #1ea698;
+  border: 0;
+  border-radius: 0.5rem;
+  color: rgb(255, 255, 255) !important;
+  cursor: pointer;
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+
+#deposit-basicBtn:disabled {
+  background-color: #cfcfcf;
+}
+
+#deposit-basicBtn:disabled {
+  background-color: #cfcfcf;
+}
+
 .deposit-input-container {
   margin-top: 1rem;
 }
@@ -23,17 +65,25 @@
   width: 100%;
   padding: 0.625rem;
   font-size: 1rem;
-  border: 0.05rem solid #f0efef;
-  background-color: #f0efef;
-  border-radius: 0.25rem;
+  border: none;
+  border-bottom: 0.05rem solid #f0efef;
   box-sizing: border-box;
   color: #777777;
+  background-color: transparent;
+  margin-bottom: 0.5rem;
+  transition: background-color 0.3s ease; /* 배경색 변경 트랜지션 */
 }
 
 .deposit-input-label {
-  margin-bottom: 0.3125rem;
+  padding-left: 0.6rem;
+  margin-bottom: 0.3rem;
   display: block;
   text-align: left;
+}
+
+.text-color-change {
+  color: #1ea698; /* 원하는 글자 색상 설정 */
+  font-weight: bold;
 }
 
 .custom-input-container {
@@ -69,7 +119,7 @@
 }
 
 .date-picker-input-field {
-  padding-right: '2rem';
+  padding-right: "2rem";
 }
 
 .date-picker-label {
@@ -88,8 +138,9 @@
 .deposit-creation {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* 전체 높이를 차지 */
+  min-height: 91vh; /* 전체 높이를 차지 */
   flex: 1;
+  margin-top: 3.5rem;
 }
 
 .button-container {
@@ -195,6 +246,11 @@
 .deposit-checkbox {
   margin-right: 0.625rem; /* 10px를 rem 단위로 변환 */
   margin-left: 0.625rem;
+
+  /* 체크박스가 체크되었을 때 배경색 설정 */
+  &:checked {
+    background-color: #1ea698; /* 체크된 상태의 배경색 */
+  }
 }
 
 .deposit-checkbox-label {
@@ -218,7 +274,7 @@
 }
 
 .deposit-black-box {
-  background-color: #1e1b1e;
+  background-color: #1ea698;
   border: 0;
   border-radius: 0.5rem;
   color: azure;
@@ -328,11 +384,11 @@
 }
 
 .camera-container {
-  margin-top: 6rem;
+  margin-top: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  margin-bottom: 3rem;
 
   //overflow: hidden;
 
@@ -378,7 +434,7 @@
   }
 
   .capture-button::before {
-    content: '';
+    content: "";
     width: 1.25rem; /* 작은 동그라미의 크기 */
     height: 1.25rem;
     background-color: white;
@@ -400,10 +456,196 @@
   }
 }
 
+.ocr_btn1 {
+  width: 45% !important;
+  height: 2.7rem;
+  background-color: #1ea698;
+  border: 0;
+  border-radius: 0.5rem;
+  color: rgb(255, 255, 255) !important;
+  cursor: pointer;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  margin-right: 7%;
+  margin-top: 7%;
+}
+
+.ocr_btn2 {
+  width: 45% !important;
+  height: 2.7rem;
+  background-color: #cfcfcf;
+  border: 0;
+  border-radius: 0.5rem;
+  color: rgb(255, 255, 255) !important;
+  cursor: pointer;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  margin-top: 7%;
+}
+
 // 기존 스타일 코드들 위에 추가
 .captured-image {
   width: 20rem; // 원하는 크기로 설정
   height: auto; // 비율을 유지하면서 높이를 자동으로 조절
   display: block; // 이미지가 블록 요소로 표시되도록 설정
   margin: 0 auto; // 이미지가 가운데 정렬되도록 설정 (선택 사항)
+}
+
+.id-card-guide {
+  margin-top: 1rem;
+  text-align: center;
+
+  .guide-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .guide-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .guide-section {
+    display: flex;
+    padding: 1rem;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    img {
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin: 0;
+      font-size: 1rem;
+    }
+  }
+
+  .guide-text {
+    margin-top: 1rem;
+    text-align: left;
+
+    p {
+      font-size: 0.7em;
+      margin: 0.5rem 0; // margin을 줄여서 설정
+    }
+
+    .highlight {
+      color: #1ea698; // 강조할 색상 설정
+      font-weight: bold; // 굵은 글씨 설정 (선택사항)
+    }
+  }
+}
+
+// 계좌상세
+.depoitInfoContainer {
+  width: 18rem;
+  border: 0.1rem solid #ebecee;
+  border-radius: 1.5rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  padding: 1.5rem;
+
+  .moaHanaTitle {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.4rem;
+
+    img {
+      width: 1.5rem;
+      margin-right: 0.5rem;
+    }
+
+    div {
+      margin-top: 0.1rem;
+      font-weight: 500;
+      font-size: 1.1rem;
+    }
+  }
+
+  .moaHanaAccId {
+    color: #a1a1a1;
+    font-size: 1.2rem;
+    text-align: left;
+  }
+
+  .memberListContainerHana {
+    display: flex;
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+  }
+
+  .moaHanaAccBalance {
+    margin: 0.3rem 0 0.4rem 0;
+    text-align: right;
+    font-weight: 600;
+    font-size: 1.8rem;
+  }
+
+  .moaHanaAccInfoBtnContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.2rem;
+
+    .moaclubHanaMainDeposit,
+    .moaclubHanaMainWithdraw {
+      padding: 0.5rem 1rem;
+      border-radius: 0.8rem;
+      font-weight: 500;
+      margin: 0 0.5rem;
+    }
+
+    .moaclubHanaMainDeposit {
+      background-color: #eff0f4;
+    }
+    .moaclubHanaMainWithdraw {
+      background-color: #1ea698;
+      color: #ffffff;
+    }
+  }
+}
+
+.deposit-table {
+  position: relative;
+  top: 320px;
+  height: calc(100vh - 344px);
+  overflow-y: auto;
+}
+
+.depositAccInfoBtnContainer {
+  display: flex;
+  align-items: right;
+  justify-content: right;
+  margin-top: 1.2rem;
+
+  .depositWithdraw {
+    padding: 0.5rem 1rem;
+    border-radius: 0.8rem;
+    font-weight: 500;
+    margin: 0 0.5rem;
+  }
+
+  .depositWithdraw {
+    background-color: #1ea698;
+    color: #ffffff;
+  }
+}
+
+.depositBlueTxt {
+  color: #0083d1;
+}
+
+.depositRedTxt {
+  color: red;
+}
+
+.depositButtonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 2rem;
+  width: 100%;
 }
