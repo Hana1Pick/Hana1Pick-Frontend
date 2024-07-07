@@ -55,8 +55,6 @@ const MainPage = () => {
     };
     fetchNotifications();
 
-    const userIdx = localStorage.getItem('userIdx');
-
     if (!userIdx) {
       console.error('User is not logged in or access token is missing');
       return;
