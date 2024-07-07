@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { MoaAutoTrsf } from '../../type/commonType';
 import CommonBtn from '../../components/button/CommonBtn';
+import CommonModal3 from '../../components/button/CommonModal3';
 
 function MoaclubAutoTrsfDetail() {
 	const navigate = useNavigate();
@@ -16,11 +17,12 @@ function MoaclubAutoTrsfDetail() {
 	const [moaclubName, setMoaClubName] = useState('');
 	const [autoTrsf, setAutoTrsf] = useState<MoaAutoTrsf | null>(null);
 	const [isDisabled, setIsDisabled] = useState<boolean>(false);
+	const [look, setLook] = useState(false);
 
 	const getMoaclubName = async (userIdx: string, accountId: string) => {
 		try {
 			const response = await axios.post(
-				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`,
+				`${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`,
 				{
 					userIdx,
 					accountId,
@@ -36,7 +38,7 @@ function MoaclubAutoTrsfDetail() {
 	const getAutoTrsf = async (userIdx: string, accountId: string) => {
 		try {
 			const response = await axios.post(
-				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/auto-transfer`,
+				`${process.env.REACT_APP_BESERVERURI}/api/moaclub/auto-transfer`,
 				{
 					userIdx,
 					accountId,
@@ -65,7 +67,7 @@ function MoaclubAutoTrsfDetail() {
 	}, [userIdx, accountId]);
 
 	const deleteAutoTrsf = () => {
-		const url = `http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/auto-transfer`;
+		const url = `${process.env.REACT_APP_BESERVERURI}/api/moaclub/auto-transfer`;
 
 		axios
 			.delete(url, {
@@ -77,7 +79,7 @@ function MoaclubAutoTrsfDetail() {
 			})
 			.then((res) => {
 				if (res.data.status === 200) {
-					navigate(`/moaclub/autotrsf/${accountId}`);
+					setLook(true);
 				}
 			})
 			.catch((error) => {
@@ -90,15 +92,26 @@ function MoaclubAutoTrsfDetail() {
 			case 'KRW':
 				return '원';
 			case 'CNY':
-				return '위안';
+				return '¥';
 			case 'JPY':
-				return '엔';
+				return '¥';
 			case 'USD':
-				return '달러';
+				return '$';
 		}
 	};
 
-	const currencyValue = getCurrencyValue(autoTrsf?.currency!);
+	const formatCurrency = (amount: number) => {
+		if (amount === undefined) {
+			return '';
+		}
+		const currencySymbol = getCurrencyValue(autoTrsf?.currency!);
+
+		if (autoTrsf?.currency === 'KRW') {
+			return `${amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}${currencySymbol}`;
+		} else {
+			return `${currencySymbol}${amount.toFixed(2)}`;
+		}
+	};
 
 	const nextStage = () => {
 		const div1 = document.getElementById('withdraw-box4');
@@ -173,10 +186,7 @@ function MoaclubAutoTrsfDetail() {
 							</tr>
 							<tr>
 								<th>이체금액</th>
-								<td>
-									{autoTrsf?.amount}
-									{currencyValue}
-								</td>
+								<td>{formatCurrency(autoTrsf?.amount!)}</td>
 							</tr>
 							<tr>
 								<th>이체일</th>
@@ -227,8 +237,8 @@ function MoaclubAutoTrsfDetail() {
 									<tr>
 										<th>이체정보</th>
 										<td>
-											매월 {autoTrsf?.atDate}일 {autoTrsf?.amount}
-											{currencyValue}
+											매월 {autoTrsf?.atDate}일{' '}
+											{formatCurrency(autoTrsf?.amount!)}
 										</td>
 									</tr>
 								</tbody>
@@ -245,6 +255,13 @@ function MoaclubAutoTrsfDetail() {
 					</div>
 				</div>
 			</div>
+			<CommonModal3
+				msg={`자동이체가 해지되었습니다.`}
+				show={look}
+				onConfirm={() => {
+					navigate(`/moaclub/autotrsf/${accountId}`);
+				}}
+			/>
 		</>
 	);
 }

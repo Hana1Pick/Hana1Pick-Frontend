@@ -19,9 +19,11 @@
 	position: fixed;
 	top: 0;
 	width: 100%;
+	height: 51px;
 	padding: 1rem 1.5rem 1rem 1.5rem;
 	z-index: 1000;
 	box-sizing: border-box;
+	background-color: white;
 }
 
 .moaclubHeader2 .back {
@@ -96,7 +98,7 @@ h5 {
 }
 
 .allAgree.agreed {
-	background-color: #f19ed3;
+	background-color: #1ea698;
 }
 
 .agreeItem {
@@ -392,15 +394,15 @@ header {
 }
 
 .inviteIcon {
-	width: 10%;
-	margin-top: 3rem;
+	width: 13%;
+	margin-top: 2.5rem;
 }
 
 .bubble {
 	position: absolute;
 	width: 9rem;
 	height: 2.5rem;
-	background: #f3dff1;
+	background: #d2edea;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
@@ -419,7 +421,7 @@ header {
 	position: absolute;
 	border-style: solid;
 	border-width: 1rem 0.5rem 0;
-	border-color: #f3dff1 transparent;
+	border-color: #d2edea transparent;
 	display: block;
 	width: 0;
 	z-index: 1;
@@ -533,7 +535,7 @@ header {
 
 .moaclub {
 	position: relative;
-	top: 292px;
+	top: 300px;
 }
 
 .transaction {
@@ -614,7 +616,7 @@ header {
 	padding: 0 0.2rem;
 
 	&.selected {
-		background-color: #f19ed3;
+		background-color: #1ea698;
 		color: #ffffff !important;
 	}
 }
@@ -730,7 +732,6 @@ header {
 .moaAccCircle {
 	width: 2.5rem;
 	height: 2.5rem;
-	margin-right: 1rem;
 }
 
 .moaDepositInfoBox {
@@ -748,6 +749,7 @@ header {
 	display: flex;
 	flex-direction: column;
 	text-align: left;
+	margin-left: 0.8rem;
 }
 
 .moaDepositTxt {
@@ -806,6 +808,101 @@ header {
 	overflow: hidden;
 }
 
+// 수수료
+.moaDepositAmountContainerFee {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 16rem;
+    margin-top: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #f5f5f5;
+    padding: 1rem;
+    margin: 1.6rem 0 7rem 2.5rem;
+
+    .moaDepositAmountBoxFee {
+        width: 100%;
+    }
+
+	// 환전 수수료 박스
+    .moaDepositFixedBoxFee {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+		width: 100%;
+    }
+
+    .moaDepositRow {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+		// margin-bottom: 0.5rem; /* 각 행 사이의 간격 */
+		// padding-right: 1rem; /* 오른쪽 여백 추가 */
+		height: 2rem;
+
+		.moaDepositCountry{
+			color: #515151;
+			flex: 1; /* 공간을 차지하도록 설정 */
+			text-align: left; /* 왼쪽 정렬 */
+			// margin-right: 8rem;
+		}
+		.moaDepositValue {
+			display: flex;
+			align-items: center;
+			// flex-grow: 1;
+			color: #515151;
+			// margin: 0 -0.5rem;
+			// height: 1.2rem;
+
+			div {
+				margin-left: 0.2rem;
+				/* "원" 텍스트와 값 사이의 간격 설정 */
+				flex-shrink: 0;
+				/* "원" 텍스트가 고정되도록 설정 */
+			}
+		}
+
+		.moaDepositValue1 {
+			display: flex;
+			align-items: center;
+			margin-left: 5rem;
+			/* padding: 1rem; */
+			// margin: 0 -0.5rem;
+			height: 1.2rem;
+			color: #515151;
+
+			div {
+				margin-left: 0.2rem;
+				/* "원" 텍스트와 값 사이의 간격 설정 */
+				flex-shrink: 0;
+				/* "원" 텍스트가 고정되도록 설정 */
+			}
+		}
+		.large {
+			font-size: 1.15rem;
+			font-weight: 600;
+			color: #000;
+		}
+    }
+}
+
+.exchangebuttonContainer{
+	margin-top: 2rem;
+	// width: 18rem;
+    // height: 2.7rem;
+    // background-color: #f19ed3;
+    // border: 0;
+    // border-radius: 0.5rem;
+    // color: rgb(255, 255, 255);
+    // cursor: pointer;
+    // padding-top: 3%;
+    // padding-bottom: 3%;
+    // bottom: 2rem;
+	// margin: 2rem 0 0 0;
+}
+
 .moaDepositAmountBox {
 	display: flex;
 	width: 100%;
@@ -819,6 +916,7 @@ header {
 	background-color: #f5f5f5;
 	padding: 1rem;
 	height: 1.2rem;
+	white-space: nowrap; /* 텍스트가 한 줄로 표시되도록 설정 */
 }
 
 .moaDepositCountry {
@@ -838,34 +936,36 @@ header {
 .moaDepositInputBox2 {
 	display: flex;
 	align-items: center;
-	margin-left: 5.6rem;
-	flex-grow: 1;
-	padding: 1rem;
-	height: 1.2rem;
-}
-
-.moaDepositAmountInput2 {
-	width: 50px;
+  }
+  
+  .moaDepositAmountInput2 {
+	width: 100%;
 	text-align: right;
 	border: none;
 	font-size: 1rem;
 	outline: none;
-}
-
-.moaDepositAmountInput2 + div {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis; /* 길어질 경우 말줄임표 표시 */
+  }
+  
+  .moaDepositAmountInput2 + div {
+	flex-shrink: 0; /* div가 고정되도록 설정 */
 	margin-left: 0.5rem;
 	font-size: 0.9rem;
 	color: #666;
-}
+  }
 
 .moaDepositCountry {
 	font-size: 0.8rem;
+	white-space: nowrap; /* 텍스트가 한 줄로 표시되도록 설정 */
+
 }
 
 .moaDepositSymbol {
 	font-size: 0.9rem;
 	font-weight: 400;
-	color: #f19ed3;
+	color: #1ea698;
 }
 
 .moaDepositChange {
@@ -889,7 +989,7 @@ header {
 }
 
 .moaTrsfResultMint {
-	color: #91ddcf;
+	color: #269954;
 	font-weight: bold;
 }
 
@@ -993,7 +1093,7 @@ header {
 }
 
 .mintTxt {
-	color: #91ddcf;
+	color: #1ea698;
 	font-weight: bold;
 }
 
@@ -1005,7 +1105,7 @@ header {
 }
 
 .moaVoteAmountTxt {
-	color: #91ddcf;
+	color: #1ea698;
 	font-weight: bold;
 	font-size: large;
 	margin-left: 0.5rem;
@@ -1045,6 +1145,7 @@ header {
 .moaWithdrawInAccPopUp {
 	color: #c4c4c4;
 	font-size: small;
+	margin-top: 1rem;
 }
 
 .moaWithdrawStrong {
@@ -1074,12 +1175,12 @@ header {
 	}
 
 	.moaAutoTrsfHighlight {
-		color: #f19ed3;
+		color: #1ea698;
 		font-weight: bold;
 	}
 
 	.moaAutoTrsfBox {
-		border: 0.15rem solid #f3dff1;
+		border: 0.15rem solid #c4dcda;
 		border-radius: 0.3rem;
 		width: 70%;
 		height: 5rem;
@@ -1137,7 +1238,7 @@ header {
 	}
 
 	.moaAutoTrsfCreate {
-		background-color: #f19ed3;
+		background-color: #1ea698;
 		color: white;
 		width: 5rem;
 		height: 2rem;
@@ -1243,5 +1344,61 @@ header {
 }
 
 .MoaAutoTrsfCompleteCheck {
-	width: 5rem;
+	width: 4.5rem;
+}
+
+// Top Alarm
+@keyframes slideDown {
+	from {
+		top: -50px;
+		opacity: 0;
+	}
+	to {
+		top: 0;
+		opacity: 1;
+	}
+}
+
+@keyframes slideUp {
+	from {
+		top: 0;
+	}
+	to {
+		top: -100px;
+	}
+}
+
+#moaclubTopAlarmBox {
+	position: fixed;
+	top: 0;
+	left: 50%;
+	width: 85%;
+	height: 3rem;
+	transform: translateX(-50%);
+	background-color: #909092;
+	color: #ffffff;
+	text-align: center;
+	font-size: 0.9rem;
+	padding: 0.6rem;
+	margin-top: 0.95rem;
+	border-radius: 1rem;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	z-index: 9999;
+	display: none;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#moaclubTopAlarmContent {
+	display: inline-block;
+	text-align: left;
+	margin-left: 0.5rem;
+	flex: 1;
+}
+
+.moaclubTopAlarmTime {
+	font-size: small;
+	color: #ffffff;
+	margin-bottom: 1.7rem;
+	margin-right: 0.3rem;
 }

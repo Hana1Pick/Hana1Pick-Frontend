@@ -1,20 +1,29 @@
 import Header from '../../layouts/MoaclubHeader1';
 import CommonBtn from '../../components/button/CommonBtn';
-import inviteIcon from '../../assets/images/moaclub/inviteicon.png';
+import inviteIcon from '../../assets/images/moaclub/invite.png';
 import './MoaclubStyle.scss';
 import '../../common/styles/scss/CommonStyle.scss';
 import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { MoaclubContext } from '../../contexts/MoaclubContextProvider';
 
 function MoaclubInvite() {
 	const navigate = useNavigate();
 
 	const userName = localStorage.getItem('name') as string;
-	const { moaclub }: any = useContext(MoaclubContext);
+	const [moaclub, setMoaclub] = useState<string>('');
+
+	useEffect(() => {
+		if (localStorage.getItem('moaclub') !== undefined) {
+			const moaAccId = localStorage.getItem('moaclub');
+			console.log(moaAccId);
+			setMoaclub(moaAccId!);
+		}
+	}, []);
 
 	const next = () => {
 		navigate('/moaclub/main/' + moaclub);
+		localStorage.removeItem('moaclub');
 	};
 
 	return (
@@ -45,7 +54,8 @@ function MoaclubInvite() {
 
 	function shareToKakao() {
 		const description = `${userName}님이 모아클럽에 초대했어요.`;
-		const url = 'http://localhost:3000/moaclub/join/' + moaclub;
+		const url =
+			'https://hana1-pick-frontend.vercel.app//moaclub/join/' + moaclub;
 		console.log(url);
 
 		if (!window.Kakao.isInitialized()) {
@@ -68,8 +78,7 @@ function MoaclubInvite() {
 					title: '모아클럽 바로가기',
 					link: {
 						mobileWebUrl: url,
-						webUrl:
-							'https://hana1-pick-frontend.vercel.app//moaclub/join/' + moaclub,
+						webUrl: url,
 					},
 				},
 			],

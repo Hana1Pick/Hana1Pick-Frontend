@@ -1,182 +1,312 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 /* CommonBtn CSS */
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 #basicBtn1 {
-  width: 85%;
-  height: 2.7rem;
-  background-color: #f19ed3;
-  border: 0;
-  border-radius: 0.5rem;
-  color: rgb(255, 255, 255);
-  cursor: pointer;
-  padding-top: 3%;
-  padding-bottom: 3%;
+	width: 85%;
+	height: 2.7rem;
+	background-color: #1ea698;
+	border: 0;
+	border-radius: 0.5rem;
+	color: rgb(255, 255, 255);
+	cursor: pointer;
+	padding-top: 3%;
+	padding-bottom: 3%;
 }
 
 #basicBtn2 {
-  width: 85% !important;
-  height: 2.7rem;
-  background-color: #000000;
-  border: 0;
-  border-radius: 0.5rem;
-  color: rgb(255, 255, 255) !important;
-  cursor: pointer;
-  padding-top: 3%;
-  padding-bottom: 3%;
+	width: 85% !important;
+	height: 2.7rem;
+	background-color: #000000;
+	border: 0;
+	border-radius: 0.5rem;
+	color: rgb(255, 255, 255) !important;
+	cursor: pointer;
+	padding-top: 3%;
+	padding-bottom: 3%;
 }
-
 #basicBtn1:disabled {
-  background-color: #cfcfcf;
+	background-color: #cfcfcf;
 }
 
 #basicBtn2:disabled {
-  background-color: #cfcfcf;
+	background-color: #cfcfcf;
+}
+
+.basicInputFile1 {
+	width: 85%;
+	background-color: #f19ed3;
+	border: 0;
+	border-radius: 0.5rem;
+	color: rgb(255, 255, 255);
+	cursor: pointer;
+	margin: auto;
+	padding-top: 3%;
+	padding-bottom: 3%;
+}
+
+.basicInputFile2 {
+	width: 85% !important;
+	background-color: #000000;
+	border: 0;
+	border-radius: 0.5rem;
+	color: rgb(255, 255, 255) !important;
+	cursor: pointer;
+	margin: auto;
+	padding-top: 3%;
+	padding-bottom: 3%;
 }
 
 /* Header */
 
 #header {
-  height: 2.5em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 0.1em solid #efefef;
-  font-size: 1em;
-  font-weight: bolder;
+	height: 2.5em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-bottom: 0.1em solid #efefef;
+	font-size: 1em;
+	font-weight: bolder;
 }
 
 /* pattern CSS */
-
 .pattern-container {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  justify-items: center;
-  gap: 0.5rem;
-  margin-top: 3rem;
-  margin: auto;
+	position: relative;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(3, 1fr);
+	justify-items: center;
+	gap: 0.5rem;
+	width: 18.75rem;
+	height: 18.75rem;
+	margin: auto;
+	margin-top: 2rem;
 }
-
 .background-container {
-  position: relative;
+	position: relative;
 }
-
 .overlay-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  font-size: 16px;
-  z-index: 10;
-  color: #000000;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	font-size: 16px;
+	z-index: 10;
+	color: #000000;
 }
-
 .overlay-text div {
-  white-space: nowrap;
-  color: #535353;
-  margin-top: 10px;
+	white-space: nowrap;
+	color: #535353;
+	margin-top: 10px;
 }
-
 .pattern-dot {
-  width: 0.7rem;
-  height: 0.7rem;
-  border-radius: 50%;
-  background-color: #000;
-  margin: 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	width: 0.5rem;
+	height: 0.5rem;
+	border-radius: 50%;
+	background-color: #000;
+	margin: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
-
 .pattern-bg {
-  width: 100%;
-  height: auto;
+	width: 100%;
+	height: auto;
 }
-
 .pattern-dot.selected {
-  background-color: #f19ed3;
+	background-color: #f19ed3;
 }
-
 .pattern-lines {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
 }
 
 // CommonModal
 .commonModal-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1;
 }
 
 .commonModal {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 50%;
-  p {
-    margin: 0;
-    padding: 10px 0 20px 0;
-    border-bottom: 1px solid #ccc;
-  }
+	background: white;
+	padding: 20px 20px 10px 20px;
+	border-radius: 8px;
+	text-align: center;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	width: 50%;
+	p {
+		margin: 0;
+		padding: 10px 0 20px 0;
+		border-bottom: 1px solid #ccc;
+	}
 }
 
 .commonModal-buttons {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-top: 5px;
+	button {
+		background: none;
+		border: none;
+		font-size: 16px;
+		padding: 10px 0;
+		flex: 1;
+	}
+	button:first-child {
+		border-right: 1px solid #ccc;
+	}
 }
 
 .commonModal-buttons {
-  button {
-    background: none;
-    border: none;
-    font-size: 16px;
-    padding: 10px 0;
-    flex: 1;
-  }
+	button:hover {
+		background-color: #f0f0f0;
+	}
 }
 
-.commonModal-buttons {
-  button:first-child {
-    border-right: 1px solid #ccc;
-  }
+// CommonModal2
+.commonModal2-backdrop {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1;
 }
 
-.commonModal-buttons {
-  button:hover {
-    background-color: #f0f0f0;
-  }
+.commonModal2 {
+	background: white;
+	padding: 20px;
+	border-radius: 8px;
+	text-align: center;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	width: 60%;
+	height: 6.5rem;
+	p {
+		margin: 0;
+		padding: 10px 0 20px 0;
+		white-space: pre-wrap;
+		color: #5e5e5e;
+	}
 }
+
+.commonModal2-buttons {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-top: 5px;
+}
+
+.commonModal2-buttons {
+	button {
+		background: none;
+		border: none;
+		font-size: 16px;
+		padding: 10px 0;
+		flex: 1;
+	}
+}
+
+.commonModal2-buttons {
+	button {
+		background-color: #009591;
+		border: #009591;
+		border-radius: 0.8rem;
+		color: #ffffff;
+		margin: 0 0.2rem;
+	}
+}
+
+// CommonModal3
+.commonModal3-backdrop {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1;
+}
+
+.commonModal3 {
+	background: white;
+	padding: 20px;
+	border-radius: 8px;
+	text-align: center;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	width: 70%;
+	height: 5.5rem;
+	p {
+		margin: 0;
+		padding: 10px 0 20px 0;
+		white-space: pre-wrap;
+		color: #5e5e5e;
+	}
+}
+
+.commonModal3-buttons {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-top: 5px;
+}
+
+.commonModal3-buttons {
+	button {
+		background-color: #009591;
+		border: #009591;
+		color: #ffffff;
+		border-radius: 0.8rem;
+		font-size: 16px;
+		padding: 10px 0;
+		flex: 1;
+	}
+}
+
+// CSS Reset
+// *{margin:0;padding:0;font:inherit;color:inherit;}
+// *, 
+// :root {-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%;text-size-adjust:100%;cursor:default;line-height:1.5;}
+
+// 스크롤 안 생기게
+// html, body {height:100%;}
+// img, picture, video, canvas, svg {display: block;max-width:100%;}
+button {background:none;border:0;cursor:pointer;}
+a {text-decoration:none}
+table {border-collapse:collapse;border-spacing:0}
+/* input 및 button 항목들이 글꼴을 상속하도록 합니다. */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color:#333
+}
+body, button, input, select, td, textarea, th {font-family: Hana1pick, Apple SD Gothic Neo, Malgun Gothic, 맑은 고딕, sans-serif;font-weight:400;color:#333}

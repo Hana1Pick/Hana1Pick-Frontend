@@ -15,7 +15,7 @@ function SearchAccountPage() {
   const [accId, setAccId] = useState([]);
 
   const handleInputChange = (event: any) => {
-    const url = `http://${process.env.REACT_APP_BESERVERURI}/api/account/cash-out/history`;
+    const url = `${process.env.REACT_APP_BESERVERURI}/api/account/cash-out/history`;
 
     const data = {
       outAccId: outAccId,

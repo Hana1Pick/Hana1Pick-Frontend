@@ -14,6 +14,8 @@ import {
 	MoaClubVoteResult,
 } from '../../type/commonType';
 import CommonBtn from '../../components/button/CommonBtn';
+import CommonModal2 from '../../components/button/CommonModal2';
+import CommonModal3 from '../../components/button/CommonModal3';
 
 function MoaclubVoteTrsf() {
 	const navigate = useNavigate();
@@ -27,11 +29,17 @@ function MoaclubVoteTrsf() {
 	const [myProfile, setMyProfile] = useState<memberList | null>(null);
 	const [timeLeft, setTimeLeft] = useState<string>('');
 	const [currency, setCurrency] = useState('');
+	const [moaName, setMoaName] = useState('');
+	const [look, setLook] = useState(false);
+	const [look2, setLook2] = useState(false);
+	const [disabled, setDisabled] = useState(false);
+	const alarm = 'true';
+	const alarmValue = '출금 요청';
 
 	const getManagerCheck = async (userIdx: string, accountId: string) => {
 		try {
 			const response = await axios.post(
-				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/manager-check`,
+				`${process.env.REACT_APP_BESERVERURI}/api/moaclub/manager-check`,
 				{
 					userIdx,
 					accountId,
@@ -47,7 +55,7 @@ function MoaclubVoteTrsf() {
 	const getMoaClubRequest = async (accountId: string, userIdx: string) => {
 		try {
 			const response = await axios.post(
-				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/vote-result`,
+				`${process.env.REACT_APP_BESERVERURI}/api/moaclub/vote-result`,
 				{
 					accountId,
 					userIdx,
@@ -73,7 +81,7 @@ function MoaclubVoteTrsf() {
 	const getMemberList = async (accountId: string) => {
 		try {
 			const response = await axios.get(
-				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/member`,
+				`${process.env.REACT_APP_BESERVERURI}/api/moaclub/member`,
 				{
 					params: {
 						accountId,
@@ -87,16 +95,16 @@ function MoaclubVoteTrsf() {
 		}
 	};
 
-	const getCurrency = async (userIdx: string, accountId: string) => {
+	const getMoaClubInfo = async (userIdx: string, accountId: string) => {
 		try {
 			const response = await axios.post(
-				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`,
+				`${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`,
 				{
 					userIdx,
 					accountId,
 				}
 			);
-			return response.data.data.currency;
+			return response.data.data;
 		} catch (error) {
 			console.error(error);
 			return null;
@@ -109,11 +117,18 @@ function MoaclubVoteTrsf() {
 				const moaClubReqRes = await getMoaClubRequest(accountId, userIdx);
 				const memberListRes = await getMemberList(accountId);
 				const isManager = await getManagerCheck(userIdx, accountId);
-				const moaClubInfoRes = await getCurrency(userIdx, accountId);
-				setCurrency(moaClubInfoRes);
+				const moaClubInfoRes = await getMoaClubInfo(userIdx, accountId);
+				setCurrency(moaClubInfoRes.currency);
+				setMoaName(moaClubInfoRes.name);
 				setIsManager(isManager);
 				setVoteResult(moaClubReqRes);
+				if (memberListRes) {
+					memberListRes.sort((a: memberList, b: memberList) =>
+						a.userName.localeCompare(b.userName)
+					);
+				}
 				setMemberList(memberListRes);
+				console.log(memberListRes);
 
 				if (memberListRes) {
 					const myInfo = memberListRes.find(
@@ -149,8 +164,8 @@ function MoaclubVoteTrsf() {
 
 	const currencyValue = getCurrencySymbol(currency);
 
-	const next = () => {
-		const url = `http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/vote`;
+	const goVote = () => {
+		const url = `${process.env.REACT_APP_BESERVERURI}/api/moaclub/vote`;
 
 		const data = {
 			accountId: accountId,
@@ -168,13 +183,50 @@ function MoaclubVoteTrsf() {
 				},
 			})
 			.then((res) => {
-				if (res.data.status === 201) {
-					navigate(`/moaclub/main/${accountId}`);
+				if (res.data.status === 200) {
+					const checkVoteResult = async () => {
+						const moaClubReqRes = await getMoaClubRequest(accountId!, userIdx);
+						// 모두 동의했고 나도 동의했을 때 > 반영 알림
+						const allAgree = () => {
+							return memberList!
+								.filter((member) => member.role !== 'MANAGER')
+								.every(
+									(member) => moaClubReqRes.votes[member.userName] === true
+								);
+						};
+						if (selectVote && allAgree()) {
+							console.log('agree');
+							const alarmMessage = `${moaName}에서 ${voteResult?.amount}${currencyValue} 출금`;
+							localStorage.setItem('alarm', alarm);
+							localStorage.setItem('alarmMessage', alarmMessage);
+						}
+
+						// 동의하지 않았을 때 > 무조건 거절 > 거절 알림
+						if (!selectVote) {
+							const alarmMessage = `${moaName}의 출금 요청이 거절되었어요.`;
+							localStorage.setItem('alarm', alarm);
+							localStorage.setItem('alarmMessage', alarmMessage);
+						}
+						navigate(`/moaclub/main/${accountId}`);
+					};
+					checkVoteResult();
 				}
 			})
 			.catch((error) => {
 				console.log(error);
 			});
+	};
+
+	const next = () => {
+		console.log('modal');
+		setLook(true);
+		setDisabled(true);
+	};
+
+	const goConfirm = () => {
+		setLook(false);
+		setLook2(true);
+		setDisabled(true);
 	};
 
 	const getVoteStatus = (name: string) => {
@@ -230,18 +282,31 @@ function MoaclubVoteTrsf() {
 		setSelectVote(vote);
 	};
 
+	const formatCurrency = (amount: number) => {
+		if (amount === undefined) {
+			return '';
+		}
+		const currencySymbol = getCurrencySymbol(currency!);
+
+		if (currency === 'KRW') {
+			return `${amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}${currencySymbol}`;
+		} else {
+			return `${currencySymbol}${amount.toFixed(2)}`;
+		}
+	};
+
 	return (
 		<>
-			<Header value='모아클럽 출금 동의' disabled={false} />
+			<Header value='모아클럽 출금 동의' disabled={disabled} />
 			<div className='content'>
 				<div>모아클럽 출금에 동의하십니까?</div>
 				<div className='moaTrsfBox'>
 					<div>출금 금액</div>
-					<span className='moaVoteAmountTxt'>{voteResult?.amount}&nbsp;</span>
-					{currencyValue}
+					<span className='moaVoteAmountTxt'>
+						{formatCurrency(voteResult?.amount!)}&nbsp;
+					</span>
 				</div>
 			</div>
-
 			<div className='moaclubVoteStatusContent2'>
 				<span className='voteTimeTxt'>투표 현황</span>
 				<table className='moaclubFeeTable'>
@@ -274,7 +339,6 @@ function MoaclubVoteTrsf() {
 							))}
 				</table>
 			</div>
-
 			<div className='moaclubVoteContent'>
 				{isManager ? (
 					<div className='timeLeft'>관리자는 투표 권한이 없습니다.</div>
@@ -314,7 +378,6 @@ function MoaclubVoteTrsf() {
 					</>
 				)}
 			</div>
-
 			<div className='buttonContainer'>
 				<CommonBtn
 					type='pink'
@@ -323,6 +386,21 @@ function MoaclubVoteTrsf() {
 					disabled={isButtonDisabled()}
 				/>
 			</div>
+
+			<CommonModal2
+				msg={`재투표가 불가합니다.\n 투표를 진행하시겠습니까?`}
+				show={look}
+				onCancle={() => {
+					setLook(false);
+				}}
+				onConfirm={goConfirm}
+			/>
+
+			<CommonModal3
+				msg={`투표가 완료되었습니다.`}
+				show={look2}
+				onConfirm={goVote}
+			/>
 		</>
 	);
 }

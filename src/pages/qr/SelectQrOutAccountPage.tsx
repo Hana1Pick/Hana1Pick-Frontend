@@ -14,7 +14,7 @@ function SelectQrOutAccountPage() {
     const userIdx = localStorage.getItem('userIdx');
     */
   const [myAccId, setMyAccId] = useState([]);
-  const url = `http://${process.env.REACT_APP_BESERVERURI}/api/user/accounts/list`;
+  const url = `${process.env.REACT_APP_BESERVERURI}/api/user/accounts/list`;
   const data = {
     userIdx: userIdx,
   };

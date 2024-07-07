@@ -6,6 +6,7 @@ import '../../common/styles/scss/CommonStyle.scss';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import CommonModal3 from '../../components/button/CommonModal3';
 
 interface MoaclubInfo {
 	managerName: string;
@@ -15,7 +16,7 @@ interface MoaclubInfo {
 const getMoaclubInfo = async (accountId: string) => {
 	try {
 		const response = await axios.get(
-			`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/admission-info`,
+			`${process.env.REACT_APP_BESERVERURI}/api/moaclub/admission-info`,
 			{
 				params: { accountId },
 			}
@@ -35,6 +36,8 @@ function MoaclubJoin() {
 	const userIdx = localStorage.getItem('userIdx') as string;
 
 	const [moaclub, setMoaclub] = useState<MoaclubInfo | null>(null);
+	const [isDisabled, setIsDisabled] = useState<boolean>(false);
+	const [look, setLook] = useState(false);
 
 	useEffect(() => {
 		const fetchMoaclubInfo = async () => {
@@ -48,7 +51,7 @@ function MoaclubJoin() {
 	}, [accountId]);
 
 	const next = () => {
-		const url = `http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/admission`;
+		const url = `${process.env.REACT_APP_BESERVERURI}/api/moaclub/admission`;
 
 		const data = {
 			accountId: accountId,
@@ -63,7 +66,8 @@ function MoaclubJoin() {
 			})
 			.then((res) => {
 				if (res.data.status === 202) {
-					alert('이미 가입된 클럽입니다!');
+					setLook(true);
+					setIsDisabled(true);
 				} else {
 					navigate('/moaclub/main/' + accountId);
 				}
@@ -75,7 +79,7 @@ function MoaclubJoin() {
 
 	return (
 		<>
-			<Header value='모아클럽 초대' disabled={false} />
+			<Header value='모아클럽 초대' disabled={isDisabled} />
 			<div className='content'>
 				<img className='joinGif' src={joinGif} alt='모아클럽 가입 이미지' />
 
@@ -101,6 +105,14 @@ function MoaclubJoin() {
 					disabled={false}
 				/>
 			</div>
+
+			<CommonModal3
+				msg={`이미 가입된 클럽입니다.`}
+				show={look}
+				onConfirm={() => {
+					navigate(`/moaclub/main/${accountId}`);
+				}}
+			/>
 		</>
 	);
 }

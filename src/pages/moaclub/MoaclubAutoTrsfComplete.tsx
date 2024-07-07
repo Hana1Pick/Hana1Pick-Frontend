@@ -1,4 +1,4 @@
-import check from '../../assets/images/common/check.png';
+import check from '../../assets/images/common/check-green.png';
 import { useLocation, useNavigate } from 'react-router-dom';
 import CommonBtn from '../../components/button/CommonBtn';
 
@@ -21,15 +21,26 @@ function MoaclubAutoTrsfComplete() {
 			case 'KRW':
 				return '원';
 			case 'CNY':
-				return '위안';
+				return '¥';
 			case 'JPY':
-				return '엔';
+				return '¥';
 			case 'USD':
-				return '달러';
+				return '$';
 		}
 	};
 
-	const currencyValue = getCurrencyValue(moaclub?.currency!);
+	const formatCurrency = (amount: number) => {
+		if (amount === undefined) {
+			return '';
+		}
+		const currencySymbol = getCurrencyValue(moaclub?.currency!);
+
+		if (moaclub?.currency === 'KRW') {
+			return `${amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}${currencySymbol}`;
+		} else {
+			return `${currencySymbol}${amount.toFixed(2)}`;
+		}
+	};
 
 	return (
 		<>
@@ -60,8 +71,7 @@ function MoaclubAutoTrsfComplete() {
 						<tr>
 							<th>이체정보 </th>
 							<td colSpan={2}>
-								매월 {moaclub.atDate}일 {moaclub.clubFee}
-								{currencyValue}
+								매월 {moaclub.atDate}일 {formatCurrency(moaclub.clubFee)}
 							</td>
 						</tr>
 						<tr>
