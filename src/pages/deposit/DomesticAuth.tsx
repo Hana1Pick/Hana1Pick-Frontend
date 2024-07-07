@@ -4,7 +4,7 @@ import useScript from "./useScript";
 import "./DepositStyle.scss";
 import { DomesticAuthProps } from "../../type/commonType";
 import CommonBtn from "../../components/button/CommonBtn";
-import CommonModal3 from "../../components/button/CommonModal3";
+import CommonModal3 from "../../components/modal/CommonModal3";
 
 function DomesticAuth({ rtcRoomNum, formData }: DomesticAuthProps) {
   const navigate = useNavigate();

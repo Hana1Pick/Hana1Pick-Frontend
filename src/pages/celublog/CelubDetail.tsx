@@ -6,7 +6,7 @@ import CommonBtn from '../../components/button/CommonBtn';
 import "./CelublogStyle.scss";
 import axios from 'axios';
 import qs from 'qs';
-import CommonModal1 from '../../components/button/CommonModal1';
+import CommonModal1 from '../../components/modal/CommonModal3';
 
 const CelubDetail: React.FC = () => {
     const navigate = useNavigate();

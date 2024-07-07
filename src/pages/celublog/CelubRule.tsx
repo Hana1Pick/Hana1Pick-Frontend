@@ -5,7 +5,7 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./CelublogStyle.scss";
 import qs from 'qs';
-import CommonModal1 from "../../components/button/CommonModal1";
+import CommonModal1 from "../../components/modal/CommonModal3";
 
 function CelubRule() {
     const location = useLocation();
