@@ -43,29 +43,29 @@ const LoginHandler = (props: any) => {
 				localStorage.setItem('email', email);
 				localStorage.setItem('profile', profile); // 프로필 사진 URL 저장
 
-        // 회원가입 일때는 계좌 생성 페이지로 이동
-        if (name) {
-          navigate('/main');
-        } else {
-          navigate('/deposit');
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+				// 회원가입 일때는 계좌 생성 페이지로 이동
+				if (name) {
+					navigate('/main');
+				} else {
+					navigate('/deposit');
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
 
-  return (
-    //TODO: 페이지 로딩 화면으로 대체
-    <SplashScreen/>
-    // <div className='LoginHandler'>
-    //   <div className='notice'>
-    //     <p>로그인 중입니다.</p>
-    //     <p>잠시만 기다려주세요...</p>
-    //     <div className='spinner'></div>
-    //   </div>
-    // </div>
-  );
+	return (
+		//TODO: 페이지 로딩 화면으로 대체
+		<SplashScreen />
+		// <div className='LoginHandler'>
+		//   <div className='notice'>
+		//     <p>로그인 중입니다.</p>
+		//     <p>잠시만 기다려주세요...</p>
+		//     <div className='spinner'></div>
+		//   </div>
+		// </div>
+	);
 };
 
 export default LoginHandler;
