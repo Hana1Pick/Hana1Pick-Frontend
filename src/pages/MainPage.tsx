@@ -18,6 +18,7 @@ interface Account {
 	accountId: string;
 	accountType: string;
 	balance: number;
+	currency?: string;
 }
 
 const MainPage = () => {
@@ -60,26 +61,49 @@ const MainPage = () => {
 			return;
 		}
 
-		const url = `${process.env.REACT_APP_BESERVERURI}/api/user/accounts/list`;
+		const fetchAccounts = async () => {
+			try {
+				const url = `${process.env.REACT_APP_BESERVERURI}/api/user/accounts/list`;
+				const response = await axios.get(url, {
+					params: { userIdx: userIdx },
+				});
 
-		axios
-			.get(url, {
-				params: {
-					userIdx: userIdx,
-				},
-			})
-			.then((response) => {
 				if (response.data && response.data.data) {
-					setAccounts(response.data.data);
+					const accountsWithCurrency = await Promise.all(
+						response.data.data.map(async (account: Account) => {
+							if (account.accountType === 'moaclub') {
+								const moaClubInfo = await axios.post(
+									`${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`,
+									{
+										userIdx: userIdx,
+										accountId: account.accountId,
+									},
+									{ headers: { 'Content-Type': 'application/json' } }
+								);
+
+								if (moaClubInfo.data.status === 200) {
+									account.currency = moaClubInfo.data.data.currency;
+								}
+							} else {
+								account.currency = 'KRW';
+							}
+
+							return account;
+						})
+					);
+
+					setAccounts(accountsWithCurrency);
 				} else {
 					console.error('No data found in response', response);
 				}
-				setIsLoading(false); // 데이터 로드 완료
-			})
-			.catch((error) => {
+				setIsLoading(false);
+			} catch (error) {
 				console.error(error);
-				setIsLoading(false); // 데이터 로드 오류
-			});
+				setIsLoading(false);
+			}
+		};
+
+		fetchAccounts();
 	}, [userIdx]);
 
 	// 페이지 이동 함수
@@ -121,6 +145,29 @@ const MainPage = () => {
 					balance: account.balance,
 				},
 			});
+		}
+	};
+
+	const getCurrencySymbol = (currency: string) => {
+		switch (currency) {
+			case 'KRW':
+				return '원';
+			case 'CNY':
+				return '¥';
+			case 'JPY':
+				return '¥';
+			case 'USD':
+				return '$';
+		}
+	};
+
+	const formatCurrency = (amount: number, currency: string) => {
+		const currencySymbol = getCurrencySymbol(currency);
+
+		if (currency === 'KRW') {
+			return `${amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}${currencySymbol}`;
+		} else {
+			return `${currencySymbol}${amount.toFixed(2)}`;
 		}
 	};
 
@@ -185,7 +232,11 @@ const MainPage = () => {
 															fontSize: '1.3rem',
 														}}
 													>
-														{account.balance.toLocaleString()}원
+														{formatCurrency(
+															account.balance,
+															account.currency || 'KRW'
+														)}
+														{/* {account.balance.toLocaleString()}원 */}
 													</div>
 													<button
 														className='send-button'
