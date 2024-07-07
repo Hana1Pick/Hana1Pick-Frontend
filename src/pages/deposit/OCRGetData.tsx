@@ -16,7 +16,6 @@ function OCRGetData() {
   const [successShow, setSuccessShow] = useState(false);
   const [failShow, setFailShow] = useState(false);
 
-  
   const ocrDataString = localStorage.getItem("ocrData");
   const ocrData: OCRData = ocrDataString ? JSON.parse(ocrDataString) : null;
   const formData = location.state.userData;
@@ -44,7 +43,8 @@ function OCRGetData() {
       const normalizedUserNation = formData.nation.toLowerCase();
       const normalizedOCRDataNation = ocrData.data.nation.toLowerCase();
       const nationMatched =
-        normalizedUserNation === "cn" && normalizedOCRDataNation === "china p.b.";
+        normalizedUserNation === "cn" &&
+        normalizedOCRDataNation === "china p.r.";
 
       setIsNameMatched(nameMatched);
       setIsNationMatched(nationMatched);
@@ -146,10 +146,18 @@ function OCRGetData() {
         </div>
       </div>
       {successShow && (
-        <DepositModal msg="본인인증이 성공적으로 완료되었습니다." onConfirm={handleSuccessClose} show={true} />
+        <DepositModal
+          msg="본인인증이 성공적으로 완료되었습니다."
+          onConfirm={handleSuccessClose}
+          show={true}
+        />
       )}
-         {failShow && (
-        <DepositModal msg="본인인증에 실패하였습니다. 신분증을 재촬영해주세요." onConfirm={handleFailClose} show={true} />
+      {failShow && (
+        <DepositModal
+          msg="본인인증에 실패하였습니다."
+          onConfirm={handleFailClose}
+          show={true}
+        />
       )}
     </div>
   );
