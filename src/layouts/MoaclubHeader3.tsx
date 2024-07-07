@@ -14,7 +14,7 @@ function MoaClubHeader3({ value, disabled, onClick }: MoaClubHeaderData) {
     <>
       <div className='moaclubHeader2' style={headerStyle}>
         <img className='back' alt='back-icon' src={back} onClick={handleBackClick}/>
-        <h4>{value}</h4>
+        <div className="title" style={{fontWeight: "500", fontSize: "1.1rem"}}>{value}</div>
         <img className='setting' alt='setting-icon' src={setting} onClick={onClick} />
       </div>
     </>

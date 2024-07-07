@@ -9,6 +9,7 @@ import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 
 function MoaclubVoteSelect() {
+
   const { t, i18n } = useTranslation();
 	const [language, setLanguage] = useState(localStorage.getItem('language') || i18n.language);
   
@@ -22,63 +23,64 @@ function MoaclubVoteSelect() {
   const [look, setLook] = useState(false);
   const [disabled, setDisabled] = useState(false);
 
-  const goMoaclubVoteManager = () => {
-    const url = `${process.env.REACT_APP_BESERVERURI}/api/moaclub/vote-result`;
 
-    axios
-      .post(
-        url,
-        {
-          accountId,
-          userIdx,
-        },
-        {
-          params: {
-            type: 0,
-          },
-        }
-      )
-      .then((res) => {
-        if (res.data.status === 200) {
-          navigate(`/moaclub/vote/manager/${accountId}`);
-        } else {
-          setLook(true);
-          setDisabled(true);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+	const goMoaclubVoteManager = () => {
+		const url = `${process.env.REACT_APP_BESERVERURI}/api/moaclub/vote-result`;
 
-  const goMoaclubVoteTrsf = () => {
-    const url = `${process.env.REACT_APP_BESERVERURI}/api/moaclub/vote-result`;
+		axios
+			.post(
+				url,
+				{
+					accountId,
+					userIdx,
+				},
+				{
+					params: {
+						type: 0,
+					},
+				}
+			)
+			.then((res) => {
+				if (res.data.status === 200) {
+					navigate(`/moaclub/vote/manager/${accountId}`);
+				} else {
+					setLook(true);
+					setDisabled(true);
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
 
-    axios
-      .post(
-        url,
-        {
-          accountId,
-          userIdx,
-        },
-        {
-          params: {
-            type: 1,
-          },
-        }
-      )
-      .then((res) => {
-        if (res.data.status === 200) {
-          navigate(`/moaclub/vote/trsf/${accountId}`);
-        } else {
-          setLook(true);
-          setDisabled(true);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+	const goMoaclubVoteTrsf = () => {
+		const url = `${process.env.REACT_APP_BESERVERURI}/api/moaclub/vote-result`;
+
+		axios
+			.post(
+				url,
+				{
+					accountId,
+					userIdx,
+				},
+				{
+					params: {
+						type: 1,
+					},
+				}
+			)
+			.then((res) => {
+				if (res.data.status === 200) {
+					navigate(`/moaclub/vote/trsf/${accountId}`);
+				} else {
+					setLook(true);
+					setDisabled(true);
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
 
   return (
     <>

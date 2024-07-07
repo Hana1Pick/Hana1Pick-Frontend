@@ -69,15 +69,34 @@ body {
 /* Header */
 
 #header {
-	height: 2.5em;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	border-bottom: 0.1em solid #efefef;
-	font-size: 1em;
-	font-weight: bolder;
+	padding: 1rem 1.5rem 1rem 1.5rem;
+	font-size: 1rem;
+	font-weight: 500;
 }
-
+.back-header {
+	height: 20px; // 이미지 높이 설정 (필요에 따라 조정)
+	width: auto;
+	position: absolute;
+	left: 1rem;
+	margin-top: 1rem;
+}
+.commonHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	padding: 1rem 1.5rem 1rem 1.5rem;
+	background-color: white;
+	z-index: 1000;
+	box-sizing: border-box;
+	border-bottom: 0.1em solid #efefef;
+}
 /* pattern CSS */
 .pattern-total-box {
 	overflow: hidden !important;

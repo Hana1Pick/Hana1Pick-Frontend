@@ -7,11 +7,11 @@ function CelubHeader1(){
       navigate(-1); // 뒤로 가기
     };
     return(
-        <>
+        <div className='commonHeader'>
             <div id="celubHeader1">
                 <img id="arrow_loc" src={arrow} onClick={handleBackClick}/>
             </div>
-        </>
+        </div>
     );
 }
 export default CelubHeader1;

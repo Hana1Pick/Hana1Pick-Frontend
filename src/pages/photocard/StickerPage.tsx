@@ -6,10 +6,17 @@ import React, {
   ChangeEvent,
 } from 'react';
 import { PhotoCardContext } from '../../contexts/PhotoCardContextProvider';
+import PageLoadingSpinner from '../../components/pageLoding/pageLoading';
 import Header from '../../components/Header';
+import cameraIcon from '../../assets/images/photo-card/cameraIcon.png';
+import downloadIcon from '../../assets/images/photo-card/downloadIcon.png';
 
 const StickerPage: React.FC = () => {
   const [modal, setModal] = useState(true);
+  const [isYellow, setIsYellow] = useState(false);
+  const boxShadowStyle = isYellow
+    ? '0 4px 20px #F4EA90'
+    : '0 4px 20px rgba(0, 0, 0, 0.2)';
 
   // image data
   const { image }: any = useContext(PhotoCardContext);
@@ -225,6 +232,10 @@ const StickerPage: React.FC = () => {
     }
 
     cv.imshow(finalCanvasRef.current, cv.imread(originalCanvasRef.current));
+    setIsYellow(true);
+    setTimeout(() => {
+      setIsYellow(false);
+    }, 400);
   };
 
   const getSticker = (event: ChangeEvent<HTMLInputElement>) => {
@@ -233,38 +244,62 @@ const StickerPage: React.FC = () => {
     }
   };
 
+  const downloadCanvasImage = () => {
+    const canvas = originalCanvasRef.current;
+    if (canvas) {
+      const link = document.createElement('a');
+      link.href = canvas.toDataURL('image/png');
+      link.download = 'canvas-image.png';
+      link.click();
+    }
+  };
+
   return (
     <div id='photo-card'>
       <Header value='최애와 한컷' />
-      <div id='main'>
-        {image ? (
-          <div>
-            <div id='imageWrapper'>
-              <div>
-                <canvas id='original' ref={originalCanvasRef}></canvas>
+      <div id='mainForCenter'>
+        <div
+          id='stickerTotalWrapper'
+          style={{
+            boxShadow: boxShadowStyle,
+            padding: '20px',
+            marginTop: '20px',
+          }}
+        >
+          <img
+            src={downloadIcon}
+            alt='downloadIcon'
+            id='downloadIcon'
+            onClick={downloadCanvasImage}
+          />
+          {image ? (
+            <div>
+              <div id='imageWrapper'>
+                <div>
+                  <canvas id='original' ref={originalCanvasRef}></canvas>
+                </div>
+                <div style={{ display: 'none' }}>
+                  <canvas id='sticker' ref={stickerCanvasRef}></canvas>
+                  <canvas id='result' ref={finalCanvasRef}></canvas>
+                </div>
               </div>
-              <div style={{ display: 'none' }}>
-                <canvas id='sticker' ref={stickerCanvasRef}></canvas>
-                <canvas id='result' ref={finalCanvasRef}></canvas>
-              </div>
+              <div id='stickerWrapper'></div>
             </div>
-            <div id='stickerWrapper'></div>
-          </div>
-        ) : (
-          <p>No image selected</p>
-        )}
-        <label htmlFor='file'>
-          <div className='basicInputFile1'>사진 선택하기</div>
-        </label>
-        <input
-          type='file'
-          id='file'
-          onChange={getSticker}
-          style={{ display: 'none' }}
-        />
+          ) : (
+            <p>No image selected</p>
+          )}
+          <label htmlFor='file'>
+            <img src={cameraIcon} alt='cameraIcon' id='cameraIcon' />
+          </label>
+          <input
+            type='file'
+            id='file'
+            onChange={getSticker}
+            style={{ display: 'none' }}
+          />
+        </div>
       </div>
-
-      {modal && <div id='photo-card-bg'></div>}
+      {modal && <PageLoadingSpinner />}
     </div>
   );
 };

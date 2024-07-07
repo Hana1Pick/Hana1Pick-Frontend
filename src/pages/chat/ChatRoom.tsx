@@ -6,7 +6,7 @@ import Header from '../../components/Header';
 import sendIcon from '../../assets/images/chat/paper-plane-icon.png';
 import './ChatRoomStyle.scss';
 
-interface ChatMessageReqeust {
+interface ChatMessageRequest {
   roomId: number;
   nation: string;
   from: string;
@@ -26,16 +26,22 @@ interface Member {
   profile: string;
 }
 
+interface MoaClubState {
+  moaclub: {
+    memberList: Member[];
+  };
+}
+
 function ChatPage() {
   const [stompClient, setStompClient] = useState<Client | null>(null);
-  const { roomId } = useParams();
+  const { roomId } = useParams<{ roomId: string }>();
   const [writer] = useState(localStorage.getItem('userIdx') || '(알수없음)');
   const [nation] = useState(localStorage.getItem('nation') || 'Korea');
   const [messages, setMessages] = useState<ChatMessageResponse[]>([]);
   const [newMessage, setNewMessage] = useState<string>('');
 
   const location = useLocation();
-  const { moaclub } = location.state as { moaclub: { memberList: Member[] } };
+  const moaclub = location.state as MoaClubState | undefined;
 
   useEffect(() => {
     console.log(writer);
@@ -69,7 +75,7 @@ function ChatPage() {
         );
       },
     });
-    console.log("websocket 확인");
+    console.log('websocket 확인');
     client.activate();
     setStompClient(client);
 
@@ -79,9 +85,9 @@ function ChatPage() {
   }, [roomId, nation]);
 
   const sendMessage = () => {
-    if (stompClient && newMessage) {
-      const chatMessage: ChatMessageReqeust = {
-        roomId: parseInt(roomId || ''),
+    if (stompClient && newMessage && roomId) {
+      const chatMessage: ChatMessageRequest = {
+        roomId: parseInt(roomId),
         nation: nation,
         from: writer,
         text: newMessage,
@@ -100,24 +106,22 @@ function ChatPage() {
       <Header value='모임 통장 채팅' />
 
       <div className='messageWrapper'>
-        {messages.map((msg) => {
-          const user = moaclub.memberList.find(
+        {messages.map((msg, index) => {
+          const user = moaclub?.moaclub.memberList.find(
             (member) => member.userIdx === msg.from
           );
 
           if (msg.from === writer) {
             // 작성자 본인 메시지
             return (
-              <div className='message'>
-                <div className='message1' key={msg.chatMessageId}>
-                  {msg.content}
-                </div>
+              <div className='message' key={index}>
+                <div className='message1'>{msg.content}</div>
               </div>
             );
           } else {
             // 상대방 메시지
             return (
-              <div className='message'>
+              <div className='message' key={index}>
                 {user && (
                   <div className='userInfo'>
                     <img
