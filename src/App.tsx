@@ -98,7 +98,7 @@ function App() {
           <Route path='/deposit5' element={<DepositComplete />} />
           {/* 메인 페이지*/}
           <Route path='/main' element={<MainPage />} />
-          {/* 상품/서비스 페이지: 최애 실시간 랭킹, 최애와 한컷 페이지로 이동 */}
+          {/* // todo: 상품 페이지: 셀럽로그 계좌 목록 조회 페이지로 라우팅 변경필요  */}
           <Route path='/service' element={<ServicePage />} />
           {/* 계좌 이체 */}
           <Route
