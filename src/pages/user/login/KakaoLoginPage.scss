@@ -1,5 +1,12 @@
+
 .loginContainer {
   background-color: #008E72;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0;
+  overflow: hidden;
 
   .top-logo {
     img {
@@ -12,8 +19,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
-    /* height: 100vh;*/
     background-color: #008E72;
     text-align: center;
     padding: 20px;
@@ -52,27 +57,17 @@
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
     gap: 15px;
-    /* 요소 간 간격 조절 */
     width: 215px;
     height: 215px;
-
-    // div {
-    //   width: 100px;
-    //   height: 100px;
-    //   background-color: white;
-    //   border-radius: 10px;
-    //   opacity: 0;
-    //   /* 애니메이션 시작 전에는 보이지 않도록 설정 */
-    // }
 
     img {
       width: 100%;
       height: 100%;
       object-fit: contain;
     }
+
     .magictime {
       opacity: 1;
-      /* 애니메이션 시작 시 보이도록 설정 */
     }
 
     .shine {
@@ -82,15 +77,19 @@
 
   .bottom-logo {
     margin: 0;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
 
     img {
-      width: 100%;
-      height: auto;
-      margin-top: 0.15rem;
+      /* height: 100%; */
+    width: 5rem;
     }
   }
+  
 }
-
 
 @keyframes shine {
   0% {
@@ -99,7 +98,6 @@
 
   50% {
     filter: saturate(200%) drop-shadow(#fff 0px 0px 5px);
-    /* shadow 효과 감소 */
   }
 
   100% {
@@ -114,7 +112,6 @@
 
   50% {
     filter: brightness(2) saturate(200%) drop-shadow(#fff 0px 0px 5px);
-    /* shadow 효과 감소 */
   }
 
   100% {

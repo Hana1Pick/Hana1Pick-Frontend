@@ -16,7 +16,7 @@ const MenuBar = () => {
 
   return (
     <div className='menu-bar'>
-      <div className='menu-item home' onClick={() => handleNavigate('/')}>
+      <div className='menu-item home' onClick={() => handleNavigate('/main')}>
         <img src={beHomeIcon} alt='home-icon' style={{ width: '2.5rem' }} />
       </div>
       <div
@@ -39,7 +39,10 @@ const MenuBar = () => {
           style={{ width: '2.5rem', marginTop: '0.2rem' }}
         />
       </div>
-      <div className='menu-item user'>
+      <div
+        className='menu-item user'
+        onClick={() => handleNavigate('/user/mypage')}
+      >
         <img
           src={beUserIcon}
           alt='user-icon'
