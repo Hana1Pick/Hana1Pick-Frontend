@@ -104,7 +104,7 @@
     background-color: white;
     z-index: 1000;
     box-sizing: border-box;
-    border-bottom: 0.05rem solid rgb(232, 232, 232);
+    border-bottom: 0.1em solid #efefef;
     h4{
       margin-left: 30%;
     }
@@ -119,6 +119,7 @@
     display:flex;
     justify-content:space-between;
     padding:1rem;
+    border-bottom: 0.1em solid #efefef;
   }
   .celub-withdraw-total-box{
     height: 100vh;
