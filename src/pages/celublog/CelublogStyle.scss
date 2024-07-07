@@ -55,7 +55,7 @@
       word-break: keep-all;
     }
     button{
-      margin-top: 45px;
+      margin-top: 1.875rem;
     }
   }
   #celubBox2-2{
@@ -278,7 +278,7 @@
     z-index: 1 !important;
     display: flex;
     flex-direction: column;
-    top: 65%;
+    top: 60%;
     align-items: center;
     .celub-detail-title{
       background-color: rgba(242, 242, 242, 0.4);
@@ -458,7 +458,7 @@
   height: 2.7rem;
   padding-top: 3%;
   padding-bottom: 3%;
-  border: 0;
+  border: 0.0625rem solid black;
   border-radius: 0.5rem;
 }
 .celub-deposit-box{
@@ -588,7 +588,7 @@
   width:70%;
   border-radius: 0.5rem;
   padding: 3% 10%;
-  margin: 15% auto auto auto;
+  margin: 5% auto auto auto;
   display: flex;
   img{
     width: 40%;

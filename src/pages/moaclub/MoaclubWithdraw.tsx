@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CommonBtn from '../../components/button/CommonBtn';
 import { Account, MoaclubInfo } from '../../type/commonType';
-import CommonModal3 from '../../components/button/CommonModal3';
+import CommonModal3 from '../../components/modal/CommonModal3';
 
 function MoaclubWithdraw() {
   const navigate = useNavigate();
