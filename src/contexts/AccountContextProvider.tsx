@@ -8,11 +8,9 @@ const AccountContextProvider = ({ children }: { children: any }) => {
   // 변수
   const [userIdx, setUserIdx] = useState(localStorage.getItem('userIdx') || '');
   const [amount, setAmount] = useState(0);
-  /* TODO */
-  const [outAccId, setOutAccId] = useState('02-00-0010124');
-  const [outAccName, setOutAccName] = useState('가원이의 입출금 통장');
-  const [outAccBalance, setOutBalance] = useState(100000);
-  /* TODO 끝*/
+  const [outAccId, setOutAccId] = useState('');
+  const [outAccName, setOutAccName] = useState('');
+  const [outAccBalance, setOutBalance] = useState();
   const [inAccType, setInAccType] = useState('');
   const [inAccId, setInAccId] = useState('');
   const [inAccName, setInAccName] = useState('');
