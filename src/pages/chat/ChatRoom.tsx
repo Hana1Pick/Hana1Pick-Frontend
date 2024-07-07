@@ -1,33 +1,50 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Client, IMessage } from '@stomp/stompjs';
-import { Link, useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
+import Header from '../../components/Header';
+import sendIcon from '../../assets/images/chat/paper-plane-icon.png';
 import './ChatRoomStyle.scss';
 
 interface ChatMessageReqeust {
+  roomId: number;
+  nation: string;
   from: string;
   text: string;
-  roomId: number;
 }
 
 interface ChatMessageResponse {
-  id: number;
+  chatMessageId: number;
   content: string;
-  writer: string;
+  from: string;
+  chatDate: string;
+}
+
+interface Member {
+  userIdx: string;
+  userName: string;
+  profile: string;
 }
 
 function ChatPage() {
-  const { roomId } = useParams();
   const [stompClient, setStompClient] = useState<Client | null>(null);
+  const { roomId } = useParams();
+  const [writer] = useState(localStorage.getItem('userIdx') || '(알수없음)');
+  const [nation] = useState(localStorage.getItem('nation') || 'Korea');
   const [messages, setMessages] = useState<ChatMessageResponse[]>([]);
-  const [writer, setWriter] = useState<string>('');
   const [newMessage, setNewMessage] = useState<string>('');
 
+  const location = useLocation();
+  const { moaclub } = location.state as { moaclub: { memberList: Member[] } };
+
   useEffect(() => {
+    console.log(writer);
+    console.log(nation);
+    // 초기 채팅 내역 로드
     const loadChatHistory = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_BESERVERURI}/api/chat/${roomId}`
+          `${process.env.REACT_APP_BESERVERURI}/api/chat/${roomId}?nation=${nation}`
         );
         const messages = response.data.data
           .messageList as ChatMessageResponse[];
@@ -38,16 +55,15 @@ function ChatPage() {
     };
     loadChatHistory();
 
+    // WebSocket 연결
     const client = new Client({
-      brokerURL: 'ws://localhost:8080/chat', // 서버 WebSocket URL
+      brokerURL: 'ws://localhost:8080/chat', // WebSocket 서버 URL
       reconnectDelay: 5000,
       onConnect: () => {
         client.subscribe(
           `/topic/public/rooms/${roomId}`,
           (message: IMessage) => {
             const msg: ChatMessageResponse = JSON.parse(message.body).data;
-            console.log(messages);
-            console.log(msg);
             setMessages((prevMessages) => [...prevMessages, msg]);
           }
         );
@@ -55,18 +71,19 @@ function ChatPage() {
     });
     client.activate();
     setStompClient(client);
+
     return () => {
       client.deactivate();
     };
-  }, [roomId]);
+  }, [roomId, nation]);
 
   const sendMessage = () => {
-    console.log(messages);
     if (stompClient && newMessage) {
       const chatMessage: ChatMessageReqeust = {
+        roomId: parseInt(roomId || ''),
+        nation: nation,
         from: writer,
         text: newMessage,
-        roomId: parseInt(roomId || ''),
       };
 
       stompClient.publish({
@@ -78,31 +95,60 @@ function ChatPage() {
   };
 
   return (
-    <div className='chat-container'>
-      <div className='chat-messages'>
-        {messages.map((msg, idx) => (
-          <div key={idx}>
-            {msg.writer}: {msg.content}
-          </div>
-        ))}
+    <div id='chat'>
+      <Header value='모임 통장 채팅' />
+
+      <div className='messageWrapper'>
+        {messages.map((msg) => {
+          const user = moaclub.memberList.find(
+            (member) => member.userIdx === msg.from
+          );
+
+          if (msg.from === writer) {
+            // 작성자 본인 메시지
+            return (
+              <div className='message'>
+                <div className='message1' key={msg.chatMessageId}>
+                  {msg.content}
+                </div>
+              </div>
+            );
+          } else {
+            // 상대방 메시지
+            return (
+              <div className='message'>
+                {user && (
+                  <div className='userInfo'>
+                    <img
+                      src={user.profile}
+                      alt='프로필 사진'
+                      className='profileImg'
+                    />
+                    <div>
+                      <div className='userName'>{user.userName}</div>
+                      <div className='message2'>{msg.content}</div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          }
+        })}
       </div>
-      <div className='input-group'>
-        <label>작성자</label>
+
+      <div className='inputWrapper'>
         <input
-          type='text'
-          value={writer}
-          onChange={(e) => setWriter(e.target.value)}
-        />
-      </div>
-      <div className='input-group'>
-        <input
+          className='inputBox'
           type='text'
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
         />
-        <button className='send-button' onClick={sendMessage}>
-          Send
-        </button>
+        <img
+          className='inputBtn'
+          src={sendIcon}
+          alt='sendIcon'
+          onClick={sendMessage}
+        />
       </div>
     </div>
   );

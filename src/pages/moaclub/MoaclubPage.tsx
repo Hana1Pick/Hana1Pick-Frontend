@@ -174,7 +174,7 @@ const MoaclubPage = () => {
   };
 
   const goChat = () => {
-    navigate(`/moaclub/chat/${moaclub?.chatRoomId}`);
+    navigate(`/moaclub/chat/${moaclub?.chatRoomId}`, { state: { moaclub } });
   };
 
   return (

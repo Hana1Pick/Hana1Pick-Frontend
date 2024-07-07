@@ -1,10 +1,106 @@
 #chat .messageWrapper {
   width: 100%;
-  height: calc(100vh - 3em);
-  background-color: #d4edfd;
+  height: calc(100vh - 5.5em);
+  overflow-y: auto;
+}
+
+#chat .messageWrapper .message {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+#chat .messageWrapper .message .message1 {
+  width: max-content;
+  max-width: 60%;
+  height: max-content;
+  max-height: 10%;
+  position: relative;
+  background-color: #249c7a;
+  color: #ffffff;
+  border: 1px solid #249c7a;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5em;
+  margin-left: auto;
+  margin-right: 1.5em;
+  padding: 0.25em 0.5em;
+  font-size: 0.95em;
+
+  &::before {
+    content: '';
+    position: absolute;
+    right: -0.35em;
+    margin-top: -0.35em;
+    border-width: 0.35em;
+    border-style: solid;
+    border-color: transparent transparent #249c7a transparent;
+    transform: rotate(-45deg);
+  }
+}
+
+#chat .messageWrapper .message .userInfo {
+  width: max-content;
+  display: flex;
+  margin-left: 1em;
+}
+
+#chat .messageWrapper .message .userInfo .userName {
+  text-align: left;
+  margin-left: 1em;
+  margin-bottom: 0.4em;
+  font-size: 0.7em;
+  font-weight: 400;
+  color: #8e8e8e;
+}
+
+#chat .messageWrapper .message .userInfo .profileImg {
+  width: 2em;
+  height: 2em;
+  border-radius: 0.75em;
+}
+
+#chat .messageWrapper .message .userInfo .message2 {
+  position: relative;
+  background-color: #ebecee;
+  border: 1px solid #ebecee;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5em;
+  margin-left: 1em;
+  padding: 0.25em 0.5em;
+  font-size: 0.95em;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: -0.35em;
+    margin-top: -0.35em;
+    border-width: 0.35em;
+    border-style: solid;
+    border-color: transparent transparent #ebecee transparent;
+    transform: rotate(45deg);
+  }
 }
 
 #chat .inputWrapper {
-  width: 100%;
+  display: flex;
+  align-items: center;
   height: 3em;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+  box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+#chat .inputWrapper .inputBox {
+  width: calc(100% - 2.25em);
+  height: 2em;
+  background-color: #f5f6fa;
+  border: 0.13em solid #ebecee;
+  border-radius: 1.25em;
+  margin: auto;
+}
+
+#chat .inputWrapper .inputBtn {
+  position: absolute;
+  width: 1.25em;
+  height: 1.25em;
+  right: 1.25em;
 }
