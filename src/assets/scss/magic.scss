@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+/*!
+ * Magic - https://www.minimamente.com
+ * Licensed under the MIT license - https://opensource.org/licenses/MIT
+ * Copyright (c) 2022 Christian Pucci
+ */
+
+
+// perspective
+@import "perspective/perspectiveDown";
+@import "perspective/perspectiveDownReturn";
+@import "perspective/perspectiveLeft";
+@import "perspective/perspectiveLeftReturn";
+@import "perspective/perspectiveRight";
+@import "perspective/perspectiveRightReturn";
+@import "perspective/perspectiveUp";
+@import "perspective/perspectiveUpReturn";
+
+
+// magictime
+@import "magictime";
+
+// media
+@import "media";

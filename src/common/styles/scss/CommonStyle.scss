@@ -295,3 +295,24 @@ body {
 		flex: 1;
 	}
 }
+
+// CSS Reset
+// *{margin:0;padding:0;font:inherit;color:inherit;}
+// *, 
+// :root {-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%;text-size-adjust:100%;cursor:default;line-height:1.5;}
+
+// 스크롤 안 생기게
+// html, body {height:100%;}
+// img, picture, video, canvas, svg {display: block;max-width:100%;}
+button {background:none;border:0;cursor:pointer;}
+a {text-decoration:none}
+table {border-collapse:collapse;border-spacing:0}
+/* input 및 button 항목들이 글꼴을 상속하도록 합니다. */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color:#333
+}
+body, button, input, select, td, textarea, th {font-family: Hana1pick, Apple SD Gothic Neo, Malgun Gothic, 맑은 고딕, sans-serif;font-weight:400;color:#333}
