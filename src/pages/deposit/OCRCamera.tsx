@@ -6,6 +6,7 @@ import Header from "../../components/Header";
 import OcrCamera1 from "../../assets/images/deposit/OcrCamera1.png";
 import OcrCamera2 from "../../assets/images/deposit/OcrCamera2.png";
 import OcrCamera3 from "../../assets/images/deposit/OcrCamera3.png";
+import MoaClubHeader from "../../layouts/MoaclubHeader1";
 
 function OCRCamera() {
   const location = useLocation();
@@ -100,8 +101,8 @@ function OCRCamera() {
 
   return (
     <div>
-      <Header value="외국인등록증 인증" />
-      <div className="deposit-container">
+      <MoaClubHeader value="외국인등록증 인증" disabled={false} />
+      <div className="deposit-container" style={{ marginTop: "2rem" }}>
         <div className="camera-container">
           <div className="camera-preview">
             <video ref={videoRef} autoPlay playsInline></video>
@@ -139,13 +140,13 @@ function OCRCamera() {
             </div>
           </div>
         </div>
-        <button id="deposit-basicBtn" onClick={captureAndUpload}>
+        <button id="deposit-basicBtn-fixed" onClick={captureAndUpload}>
           사진촬영
         </button>
         <canvas ref={canvasRef} style={{ display: "none" }}></canvas>
       </div>
     </div>
-   );
+  );
 }
 
 export default OCRCamera;

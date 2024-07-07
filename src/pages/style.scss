@@ -170,6 +170,15 @@
         display: flex;
         align-items: center;
         margin-bottom: 2rem;
+        animation: bell 3s infinite;
+   
+    }
+    .promotion:nth-child(1) {
+        animation-delay: 0s;
+    }
+    
+    .promotion:nth-child(2) {
+        animation-delay: 1.5s;
     }
 
     .promotion .promotionDetail {
@@ -232,4 +241,27 @@
       height: 0.4rem;
       border-radius: 50%;
     }
+    @keyframes bell {
+        0%, 50% {
+          transform: rotate(0deg);
+        }
+        5%, 15%, 25%, 35%, 45% {
+          transform: rotate(1deg);
+        }
+        10%, 20%, 30%, 40% {
+          transform: rotate(-1deg);
+        }
+      }
+    
+      @-webkit-keyframes bell {
+        0%, 50% {
+          transform: rotate(0deg);
+        }
+        5%, 15%, 25%, 35%, 45% {
+          transform: rotate(1deg);
+        }
+        10%, 20%, 30%, 40% {
+          transform: rotate(-1deg);
+        }
+      }
 }

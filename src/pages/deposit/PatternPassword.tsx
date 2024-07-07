@@ -1,8 +1,9 @@
-import React, { useRef, useState } from 'react';
-import PattrenBg from '../../assets/images/common/PatternBg.png';
-import { Await, useLocation, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import '../../common/styles/scss/CommonStyle.scss';
+import React, { useRef, useState } from "react";
+import PattrenBg from "../../assets/images/common/PatternBg.png";
+import { Await, useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import "../../common/styles/scss/CommonStyle.scss";
+import MoaClubHeader from "../../layouts/MoaclubHeader1";
 
 interface PatternProps {
   nextUrl: string;
@@ -13,13 +14,13 @@ const Pattern: React.FC<PatternProps> = ({ nextUrl }) => {
   const url = `${process.env.REACT_APP_BESERVERURI}/api/user/update`;
 
   const initialFormData = location.state?.formData || {
-    name: '',
-    address: '',
+    name: "",
+    address: "",
     birth: null,
-    phone: '',
-    nation: '',
-    email: '',
-    password: '',
+    phone: "",
+    nation: "",
+    email: "",
+    password: "",
   };
 
   const [formData, setFormData] = useState(initialFormData);
@@ -78,11 +79,11 @@ const Pattern: React.FC<PatternProps> = ({ nextUrl }) => {
   const handleMouseUp = async () => {
     if (isDrawing.current) {
       isDrawing.current = false;
-      console.log('Selected Pattern:', selectedPoints);
+      console.log("Selected Pattern:", selectedPoints);
       if (selectedPoints.length < 4) {
-        alert('비밀번호의 길이가 유효하지 않습니다. 다시 그려주세요');
+        alert("비밀번호의 길이가 유효하지 않습니다. 다시 그려주세요");
       } else {
-        let password = '';
+        let password = "";
         for (let i = 0; i < selectedPoints.length; i++) {
           password += selectedPoints[i];
         }
@@ -95,13 +96,13 @@ const Pattern: React.FC<PatternProps> = ({ nextUrl }) => {
         axios
           .put(url, updatedFormData, {
             headers: {
-              'Content-Type': 'application/json',
+              "Content-Type": "application/json",
             },
           })
           .then((res) => {
             if (res.data.status == 200) {
-              localStorage.setItem('name', updatedFormData.name);
-              navigate('/' + `${nextUrl}`, {
+              localStorage.setItem("name", updatedFormData.name);
+              navigate("/" + `${nextUrl}`, {
                 state: { formData: updatedFormData },
               });
             }
@@ -120,7 +121,7 @@ const Pattern: React.FC<PatternProps> = ({ nextUrl }) => {
         <div
           key={i}
           data-index={i}
-          className={`pattern-dot ${selectedPoints.includes(i) ? 'selected' : ''}`}
+          className={`pattern-dot ${selectedPoints.includes(i) ? "selected" : ""}`}
           onMouseDown={() => handleMouseDown(i)}
           onTouchStart={() => handleTouchStart(i)}
           ref={(el) => (pointsRef.current[i] = el!)}
@@ -150,9 +151,9 @@ const Pattern: React.FC<PatternProps> = ({ nextUrl }) => {
           y1={startY}
           x2={endX}
           y2={endY}
-          stroke='rgb(233,198,229,0.3)'
-          strokeWidth='20'
-          strokeLinecap='round'
+          stroke="rgb(233,198,229,0.3)"
+          strokeWidth="20"
+          strokeLinecap="round"
         />
       );
     }
@@ -161,22 +162,23 @@ const Pattern: React.FC<PatternProps> = ({ nextUrl }) => {
 
   return (
     <>
-      <div className='background-container'>
-        <img src={PattrenBg} alt='Pattern Background' className='pattern-bg' />
-        <div className='overlay-text'>
+      <div className="background-container">
+        <MoaClubHeader value="패턴 설정" disabled={true} />
+        <img src={PattrenBg} alt="Pattern Background" className="pattern-bg" />
+        <div className="overlay-text">
           인증 패턴을 등록합니다.
           <div>이체 및 모든 금융 거래시 사용됩니다.</div>
         </div>
       </div>
       <div
-        className='pattern-container'
+        className="pattern-container"
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleMouseUp}
       >
         {renderPattern()}
-        <svg className='pattern-lines'>{renderLines()}</svg>
+        <svg className="pattern-lines">{renderLines()}</svg>
       </div>
     </>
   );
