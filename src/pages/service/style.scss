@@ -25,29 +25,29 @@
       animation-delay: 1.5s; 
     }
   
-    @keyframes shine {
-      0% {
-        filter: saturate(150%) drop-shadow(#F5D7FD 0px 0px 0px);
-      }
-      50% {
-        filter: saturate(200%) drop-shadow(#F5D7FD 0px 0px 20px);
-      }
-      100% {
-        filter: saturate(150%) drop-shadow(#F5D7FD 0px 0px 0px);
-      }
-    }
+    // @keyframes shine {
+    //   0% {
+    //     filter: saturate(150%) drop-shadow(#F5D7FD 0px 0px 0px);
+    //   }
+    //   50% {
+    //     filter: saturate(200%) drop-shadow(#F5D7FD 0px 0px 20px);
+    //   }
+    //   100% {
+    //     filter: saturate(150%) drop-shadow(#F5D7FD 0px 0px 0px);
+    //   }
+    // }
   
-    @-webkit-keyframes shine {
-      0% {
-        filter: brightness(1.5) saturate(150%) drop-shadow(#F5D7FD 0px 0px 0px);
-      }
-      50% {
-        filter: brightness(2) saturate(200%) drop-shadow(#F5D7FD 0px 0px 20px);
-      }
-      100% {
-        filter: brightness(1.5) saturate(150%) drop-shadow(#F5D7FD 0px 0px 0px);
-      }
-    }
+    // @-webkit-keyframes shine {
+    //   0% {
+    //     filter: brightness(1.5) saturate(150%) drop-shadow(#F5D7FD 0px 0px 0px);
+    //   }
+    //   50% {
+    //     filter: brightness(2) saturate(200%) drop-shadow(#F5D7FD 0px 0px 20px);
+    //   }
+    //   100% {
+    //     filter: brightness(1.5) saturate(150%) drop-shadow(#F5D7FD 0px 0px 0px);
+    //   }
+    // }
   
     @keyframes bell {
       0%, 50% {

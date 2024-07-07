@@ -1,0 +1,123 @@
+.loginContainer {
+  background-color: #008E72;
+
+  .top-logo {
+    img {
+      width: 3.56rem;
+      margin: 0 0 0 18rem;
+    }
+  }
+
+  .login-signup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    /* height: 100vh;*/
+    background-color: #008E72;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+
+    .mid-logo {
+      img {
+        width: 9.1rem;
+        margin: 1.1rem 0 2rem;
+      }
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: white;
+      margin-bottom: 2rem;
+    }
+
+    .buttons {
+      .kakaobtn {
+        display: flex;
+        justify-content: center;
+        transition: background-color 0.3s;
+        margin: 7.93rem 0 2.15rem 0;
+
+        img {
+          height: 50px;
+          border-radius: 2rem;
+        }
+      }
+    }
+  }
+
+  .animation-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 15px;
+    /* 요소 간 간격 조절 */
+    width: 215px;
+    height: 215px;
+
+    // div {
+    //   width: 100px;
+    //   height: 100px;
+    //   background-color: white;
+    //   border-radius: 10px;
+    //   opacity: 0;
+    //   /* 애니메이션 시작 전에는 보이지 않도록 설정 */
+    // }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .magictime {
+      opacity: 1;
+      /* 애니메이션 시작 시 보이도록 설정 */
+    }
+
+    .shine {
+      animation: shine 2s infinite;
+    }
+  }
+
+  .bottom-logo {
+    margin: 0;
+
+    img {
+      width: 100%;
+      height: auto;
+      margin-top: 0.15rem;
+    }
+  }
+}
+
+
+@keyframes shine {
+  0% {
+    filter: saturate(150%) drop-shadow(#fff 0px 0px 0px);
+  }
+
+  50% {
+    filter: saturate(200%) drop-shadow(#fff 0px 0px 5px);
+    /* shadow 효과 감소 */
+  }
+
+  100% {
+    filter: saturate(150%) drop-shadow(#fff 0px 0px 0px);
+  }
+}
+
+@-webkit-keyframes shine {
+  0% {
+    filter: brightness(1.5) saturate(150%) drop-shadow(#fff 0px 0px 0px);
+  }
+
+  50% {
+    filter: brightness(2) saturate(200%) drop-shadow(#fff 0px 0px 5px);
+    /* shadow 효과 감소 */
+  }
+
+  100% {
+    filter: brightness(1.5) saturate(150%) drop-shadow(#fff 0px 0px 0px);
+  }
+}
