@@ -181,7 +181,7 @@ function MoaclubAutoTrsfPw() {
           y1={startY}
           x2={endX}
           y2={endY}
-          stroke='rgb(233,198,229,0.3)'
+          stroke='rgb(0,149,145,0.3)'
           strokeWidth='20'
           strokeLinecap='round'
         />
