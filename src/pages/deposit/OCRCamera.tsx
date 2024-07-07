@@ -43,51 +43,51 @@ function OCRCamera() {
   }, []);
 
   const captureAndUpload = async () => {
-    
     if (canvasRef.current && videoRef.current) {
       const canvas = canvasRef.current;
       const video = videoRef.current;
       const context = canvas.getContext("2d");
-
+  
       // 캔버스의 크기를 비디오 요소의 크기와 동일하게 설정
       canvas.width = video.videoWidth;
       canvas.height = video.videoHeight;
-
+  
       if (context) {
         // 비디오 프레임을 캔버스에 비율에 맞게 그리기
         const aspectRatio = 8.6 / 5.4;
         const canvasWidth = canvas.width;
         const canvasHeight = canvasWidth / aspectRatio;
-
+  
+        // 비디오 프레임의 중심 부분을 캔버스에 그리기
         context.drawImage(
           video,
-          0,
-          (canvas.height - canvasHeight) / 2,
-          canvasWidth,
-          canvasHeight,
-          0,
-          0,
-          canvasWidth,
-          canvasHeight
+          (video.videoWidth - canvasWidth) / 2, // x 시작 위치
+          (video.videoHeight - canvasHeight) / 2, // y 시작 위치
+          canvasWidth, // 그릴 넓이
+          canvasHeight, // 그릴 높이
+          0, // 캔버스 x 위치
+          0, // 캔버스 y 위치
+          canvasWidth, // 캔버스에 그릴 넓이
+          canvasHeight // 캔버스에 그릴 높이
         );
-
+  
         const dataURL = canvas.toDataURL("image/jpg");
-
+  
         canvas.toBlob(async (blob) => {
           if (blob) {
             const requestData = new FormData();
             requestData.append("file", blob, "captured_image.jpg");
-
+  
             try {
               const response = await axios.post(url, requestData, {
                 headers: {
                   "Content-Type": "multipart/form-data",
                 },
               });
-
+  
               // 응답 데이터를 localStorage에 저장
               localStorage.setItem("ocrData", JSON.stringify(response.data));
-
+  
               // 비디오 스트림 종료
               if (videoRef.current && videoRef.current.srcObject) {
                 const stream = videoRef.current.srcObject as MediaStream;
@@ -95,9 +95,9 @@ function OCRCamera() {
                 tracks.forEach((track) => track.stop());
                 videoRef.current.srcObject = null;
               }
-
+  
               const key = localStorage.getItem("userIdx");
-
+  
               // ocr확인 페이지로 이동하면서 쿼리 파라미터 유지
               if (key) {
                 navigate(`/userauth2?key=${key}`, {
@@ -122,7 +122,12 @@ function OCRCamera() {
       <div className="deposit-container" style={{ marginTop: "2rem" }}>
         <div className="camera-container">
           <div className="camera-preview">
-            <video ref={videoRef} autoPlay playsInline></video>
+            <video
+              ref={videoRef}
+              autoPlay
+              playsInline
+              className="video-element"
+            ></video>
             <div className="deposit-overlay"></div>
           </div>
           <div className="id-card-guide">

@@ -5,7 +5,7 @@ import searchImg from "../../assets/images/celub/search.png";
 import axios from "axios";
 import { CelubListType, CelubWithdrawType } from "../../type/commonType";
 import "./CelublogStyle.scss";
-import CommonModal from "../../components/button/CommonModal";
+import CommonModal from "../../components/modal/CommonModal2";
 
 function CelubSearch() {
   const userIdx = localStorage.getItem("userIdx");

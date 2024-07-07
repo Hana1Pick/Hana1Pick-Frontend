@@ -41,7 +41,7 @@ function CelubComplete(){
                     </div>
                 </div>
             </div>
-            <div className="completeBox3" style={{"marginTop":"40px"}}>
+            <div className="completeBox3">
                 <div className="tableBox">
                     <table className="completeInfo">
                         <tr>

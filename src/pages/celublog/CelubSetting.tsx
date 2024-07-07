@@ -9,7 +9,7 @@ import settingImg from '../../assets/images/celub/settingImg.png';
 import arrow from '../../assets/images/common/righticon.png'
 import {CelubAccountInfo, CelubRuleType } from '../../type/commonType';
 import CommonBtn from '../../components/button/CommonBtn';
-import CommonModal1 from '../../components/button/CommonModal1';
+import CommonModal1 from '../../components/modal/CommonModal3';
 
 function CelubSetting() {
 	const navigate = useNavigate();

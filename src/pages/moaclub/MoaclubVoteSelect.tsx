@@ -3,7 +3,7 @@ import './MoaclubStyle.scss';
 import '../../common/styles/scss/CommonStyle.scss';
 import righticon from '../../assets/images/common/righticon.png';
 import { useNavigate, useParams } from 'react-router-dom';
-import CommonModal3 from '../../components/button/CommonModal3';
+import CommonModal3 from '../../components/modal/CommonModal3';
 import { useState } from 'react';
 import axios from 'axios';
 
