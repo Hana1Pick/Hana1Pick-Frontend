@@ -143,7 +143,7 @@ const CelubDetail: React.FC = () => {
                         <p>D+{accountInfo.duration}</p>
                         <div className="celub-detail-title">
                             <h4>{accountInfo.name}</h4>
-                            <h1>{formatCurrency(accountInfo.balance)}원</h1>
+                            <h2>{formatCurrency(accountInfo.balance)}원</h2>
                         </div>
                     </div>
                 </div>
