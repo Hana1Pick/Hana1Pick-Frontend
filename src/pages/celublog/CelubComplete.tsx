@@ -12,6 +12,7 @@ function CelubComplete(){
     const year = today.getFullYear();
     const month = String(today.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 1을 더해줌
     const day = String(today.getDate()).padStart(2, '0');
+    const userName = localStorage.getItem("name");
 
     // 날짜 형식 설정 (예: YYYY-MM-DD)
     const formattedDate = `${year}.${month}.${day}`;
@@ -45,7 +46,7 @@ function CelubComplete(){
                     <table className="completeInfo">
                         <tr>
                             <th>출금계좌</th>
-                            <td colSpan={2}>김주혜의 통장 <br/>{accNum}</td>
+                            <td colSpan={2}>{userName}의 통장 <br/>{accNum}</td>
                         </tr>
                         <tr>
                             <th>적용금리</th>

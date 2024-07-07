@@ -1,19 +1,25 @@
 .mypage-container {
-    background-color: #f7f7f7;
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 500px;
-    margin: 0 auto;    
-    height: calc(100vh - 3em); /* header: 3em */
+  background-color: #f7f7f7;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  margin: 0 auto;
+  height: 100vh; /* 전체 높이 설정 */
+  overflow: hidden; /* Remove scroll */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-    .mpButtonContainer {
-        display: flex;
-        align-items: center;
-        position: fixed;
-        bottom: 2rem;
-        width: 100%;
-    }
-  
+  .mpButtonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center align button */
+    position: fixed;
+    bottom: 2rem;
+    width: 100%;
+    margin-left: -1rem;
+  }
+
   .mypage-header {
     display: flex;
     justify-content: space-between;
@@ -21,43 +27,51 @@
     z-index: 2;
     position: fixed;
     top: 0;
-    left: 0;  
-    width: 90%;
+    left: 0;
+    width: 100%; /* Adjust width */
+    background-color: #f7f7f7; /* Ensure background color */
+    padding: 10px 20px; /* Add padding */
   }
-  #setting{
+
+  #setting {
     width: 1.7rem;
     margin-left: 1rem;
   }
 
-  .profile-pic {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin: 20px 0;
+  .mypage-content {
+    flex: 1;
+    overflow-y: auto; /* Allow scrolling in the content area */
+    margin-top: 3rem;
   }
-  
+
+  .profile-pic {
+    width: 6.25rem;
+    height: 6.25rem;
+    border-radius: 50%;
+  }
+
   .info-section {
-    margin: 1.2rem, 0rem;
+    margin: 1.2rem 0;
     text-align: left;
   }
-  
+
   .buttons {
     display: flex;
     margin-top: 4rem;
     justify-content: space-between;
   }
-  
+
   .save-button, .cancel-button {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
   }
-  
+
   .save-button {
     background-color: #ff4081;
     color: #fff;
   }
-  
+
   .cancel-button {
     background-color: #9e9e9e;
     color: #fff;

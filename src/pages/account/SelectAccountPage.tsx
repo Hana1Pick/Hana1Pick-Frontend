@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { IoSearchOutline } from 'react-icons/io5';
 
 import Header from '../../components/Header';
@@ -9,10 +9,20 @@ import './AccountStyle.scss';
 import { AccountContext } from '../../contexts/AccountContextProvider';
 
 function SelectAccountPage() {
-  const { userIdx, outAccId, setInAccType, setInAccId, setInAccName }: any =
-    useContext(AccountContext);
+  const {
+    userIdx,
+    setOutAccId,
+    setOutAccName,
+    setOutBalance,
+    setInAccType,
+    setInAccId,
+    setInAccName,
+  }: any = useContext(AccountContext);
   const [myAccId, setMyAccId] = useState([]);
   const [recentAccId, setRecentAccId] = useState([]);
+
+  const location = useLocation();
+  const { accountId, name, balance } = location.state || {};
 
   const navigate = useNavigate();
   const next = (value: any) => {
@@ -25,10 +35,14 @@ function SelectAccountPage() {
   const url = `${process.env.REACT_APP_BESERVERURI}/api/account/cash-out`;
   const data = {
     userIdx: userIdx,
-    outAccId: outAccId,
+    outAccId: accountId,
   };
 
   useEffect(() => {
+    setOutAccId(accountId);
+    setOutAccName(name);
+    setOutBalance(balance);
+
     axios
       .get(url, { params: data })
       .then((res) => {

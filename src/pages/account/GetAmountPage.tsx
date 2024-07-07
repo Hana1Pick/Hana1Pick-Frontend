@@ -7,14 +7,13 @@ import './AccountStyle.scss';
 import { AccountContext } from '../../contexts/AccountContextProvider';
 
 function GetAmountPage() {
-  const { outAccId, outAccBalance, amount, setAmount }: any =
-    useContext(AccountContext);
+  const { outAccBalance, amount, setAmount }: any = useContext(AccountContext);
   const [input, setInput] = useState(0);
   const inputStyle = {
     color: input > outAccBalance ? 'red' : 'inherit',
   };
   const [outAccInfo, setOutAccInfo] = useState(
-    outAccId + ' : ' + outAccBalance + '원'
+    '출금 가능 금액 : ' + outAccBalance + '원'
   );
   const [isNextBtnDisabled, setIsNextBtnDisabled] = useState(true);
 
@@ -105,7 +104,7 @@ function GetAmountPage() {
       </div>
       <div id='nextBtn'>
         <CommonBtn
-          type='black'
+          type='pink'
           value='다음'
           onClick={next}
           disabled={isNextBtnDisabled}

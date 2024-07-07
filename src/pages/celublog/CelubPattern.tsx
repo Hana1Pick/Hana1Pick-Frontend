@@ -80,7 +80,6 @@ function CelubPattern() {
         for (let i = 0; i < selectedPoints.length; i++) {
           password += selectedPoints[i];
         }
-
         checkPassword(password);
       }
     }
@@ -189,7 +188,7 @@ function CelubPattern() {
   };
 
   return (
-    <>
+    <div className="pattern-total-box">
       <div className='background-container'>
         <Header value="비밀번호 입력" disabled={false} />
         <img src={PattrenBg} alt='Pattern Background' className='pattern-bg' />
@@ -209,7 +208,7 @@ function CelubPattern() {
         {renderPattern()}
         <svg className='pattern-lines'>{renderLines()}</svg>
       </div>
-    </>
+    </div>
   );
 }
 

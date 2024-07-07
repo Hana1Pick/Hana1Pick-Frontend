@@ -227,19 +227,17 @@ function MoaclubCreatePage() {
 						/>
 						<h4 className='leftAlignedText'>회비 금액은 얼마인가요?</h4>
 						<div className='clubFeeBox'>
-							<h3 className='leftAlignedText'>매월</h3>
-							<div className='picker'>
-								<input
-									className='clubFeeText'
-									type=''
-									value={amount}
-									onChange={handleAmountChange}
-									placeholder='금액을 입력하세요.'
-								/>
-								<span className='currencySymbol'>
-									{getCurrencySymbol(currency)}
-								</span>
-							</div>
+							<div className='leftAlignedText moaMonthTxt'>매월</div>
+							<input
+								className='clubFeeText'
+								type=''
+								value={amount}
+								onChange={handleAmountChange}
+								placeholder='금액을 입력하세요.'
+							/>
+							<span className='currencySymbol'>
+								{getCurrencySymbol(currency)}
+							</span>
 						</div>
 					</div>
 					<div className='moaclub-box5'>
