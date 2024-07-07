@@ -37,9 +37,10 @@ const LoginHandler = (props: any) => {
 			.get(url2, { params: data })
 			.then((response) => {
 				console.log(response);
-				const { userIdx, name, email, profile } = response.data.data;
+				const { userIdx, name, nation, email, profile } = response.data.data;
 				localStorage.setItem('userIdx', userIdx);
 				localStorage.setItem('name', name);
+				localStorage.setItem('nation', nation);
 				localStorage.setItem('email', email);
 				localStorage.setItem('profile', profile); // 프로필 사진 URL 저장
 
@@ -55,17 +56,7 @@ const LoginHandler = (props: any) => {
 			});
 	};
 
-	return (
-		//TODO: 페이지 로딩 화면으로 대체
-		<SplashScreen />
-		// <div className='LoginHandler'>
-		//   <div className='notice'>
-		//     <p>로그인 중입니다.</p>
-		//     <p>잠시만 기다려주세요...</p>
-		//     <div className='spinner'></div>
-		//   </div>
-		// </div>
-	);
+	return <SplashScreen />;
 };
 
 export default LoginHandler;

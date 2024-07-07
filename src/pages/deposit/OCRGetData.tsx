@@ -1,9 +1,8 @@
 import React, { useState, useEffect, FormEvent } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import "./DepositStyle.scss";
-import axios from "axios";
 import { OCRData } from "../../type/commonType";
-import Header from "../../components/Header";
+import MoaClubHeader from "../../layouts/MoaclubHeader1";
 
 function OCRGetData() {
   const navigate = useNavigate();
@@ -16,6 +15,7 @@ function OCRGetData() {
   const [successShow, setSuccessShow] = useState(false);
   const [failShow, setFailShow] = useState(false);
 
+  
   const ocrDataString = localStorage.getItem("ocrData");
   const ocrData: OCRData = ocrDataString ? JSON.parse(ocrDataString) : null;
   const formData = location.state.userData;
@@ -62,7 +62,7 @@ function OCRGetData() {
 
   return (
     <div className="deposit-creation">
-      <Header value="개인정보 입력" />
+      <MoaClubHeader value="개인정보 확인" disabled={false} />
       <div className="deposit-container">
         <div className="input-box">
           <div className="deposit-input-container">
@@ -169,7 +169,7 @@ function OCRGetData() {
             </div>
           </div>
         </div>
-      ) }
+      )}
     </div>
   );
 }
