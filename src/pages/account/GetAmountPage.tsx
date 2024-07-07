@@ -7,14 +7,14 @@ import './AccountStyle.scss';
 import { AccountContext } from '../../contexts/AccountContextProvider';
 
 function GetAmountPage() {
-  const { outAccId, outAccBalance, amount, setAmount }: any =
+  const { outAccName, outAccBalance, amount, setAmount }: any =
     useContext(AccountContext);
   const [input, setInput] = useState(0);
   const inputStyle = {
     color: input > outAccBalance ? 'red' : 'inherit',
   };
   const [outAccInfo, setOutAccInfo] = useState(
-    outAccId + ' : ' + outAccBalance + '원'
+    outAccName + ' : ' + outAccBalance + '원'
   );
   const [isNextBtnDisabled, setIsNextBtnDisabled] = useState(true);
 

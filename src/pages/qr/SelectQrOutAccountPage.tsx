@@ -9,10 +9,7 @@ import { AccountContext } from '../../contexts/AccountContextProvider';
 function SelectQrOutAccountPage() {
   const { setOutAccId }: any = useContext(AccountContext);
 
-  const userIdx = '550e8400-e29b-41d4-a716-446655440000';
-  /* TODO
-    const userIdx = localStorage.getItem('userIdx');
-    */
+  const userIdx = localStorage.getItem('userIdx');
   const [myAccId, setMyAccId] = useState([]);
   const url = `${process.env.REACT_APP_BESERVERURI}/api/user/accounts/list`;
   const data = {
@@ -64,7 +61,7 @@ function SelectQrOutAccountPage() {
       <Header value='QR 코드 발급' />
       <div id='main'>
         <div id='mainInfo'>간편하게 QR 코드로 송금해 보세요.</div>
-        {renderAccounts('이체할 계좌', myAccId)}
+        {renderAccounts('출금할 계좌', myAccId)}
       </div>
     </div>
   );
