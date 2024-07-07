@@ -39,9 +39,9 @@ function OCRGetData() {
           const height = img.height;
 
           canvas.width = width;
-          canvas.height = height / 2;
+          canvas.height = height / 2.5;
 
-          ctx.drawImage(img, 0, 0, width, height / 2, 0, 0, width, height / 2);
+          ctx.drawImage(img, 0, 0, width, height / 2.5, 0, 0, width, height / 2.5 );
 
           const dataUrl = canvas.toDataURL();
           setCapturedImage(dataUrl);
