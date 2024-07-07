@@ -179,10 +179,14 @@ function GetQrPage() {
               )}
             </div>
             <div id='nextBtns'>
-              <button style={{ width: '45%' }} id='basicBtn2' onClick={back}>
+              <button
+                id='qrBtn'
+                style={{ backgroundColor: '#EFF0F4', color: '#000000' }}
+                onClick={back}
+              >
                 취소
               </button>
-              <button style={{ width: '45%' }} id='basicBtn2' onClick={next}>
+              <button id='qrBtn' onClick={next}>
                 이체
               </button>
             </div>

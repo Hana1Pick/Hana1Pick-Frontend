@@ -86,6 +86,7 @@ body {
 }
 .background-container, .pattern-container{
 	overflow: hidden;
+	touch-action: none;
 }
 .pattern-container {
 	// position: relative;

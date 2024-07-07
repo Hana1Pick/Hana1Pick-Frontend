@@ -69,6 +69,7 @@ function ChatPage() {
         );
       },
     });
+    console.log("websocket 확인");
     client.activate();
     setStompClient(client);
 

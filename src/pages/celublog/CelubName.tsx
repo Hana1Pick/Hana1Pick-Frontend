@@ -4,6 +4,7 @@ import logo from '../../assets/images/celub/heart.png';
 import CommonBtn from "../../components/button/CommonBtn";
 import "./CelublogStyle.scss";
 import { useState } from "react";
+import Header from "../../layouts/CelubHeader1";
 
 function CelubName() {
    const location = useLocation();

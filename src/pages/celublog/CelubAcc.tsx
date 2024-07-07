@@ -58,7 +58,7 @@ function CelubAcc() {
     <>
       <Header value='셀럽로그 출금계좌' />
 
-      <div className=''>
+      <div className='celub-withdraw-total-box'>
         <div>
           <div className='celub-withdrawMsg'>
             <div>
