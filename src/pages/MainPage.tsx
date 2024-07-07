@@ -105,7 +105,6 @@ const MainPage = () => {
 		}
 	};
 
-<<<<<<< HEAD
 	// 보내기 버튼 클릭 이벤트 핸들러
 	const handleSendClick = (account: Account) => {
 		if (account.accountType === 'moaclub') {
@@ -115,28 +114,6 @@ const MainPage = () => {
 			navigate(`/cash-out/${account.accountId}`);
 		}
 	};
-=======
-  	// console.log(
-	// 	'localStorage에 저장된 userIdx:',
-	// 	localStorage.getItem('userIdx')
-	// );
-	// console.log('localStorage에 저장된 name:', localStorage.getItem('name'));
-	// console.log('localStorage에 저장된 email:', localStorage.getItem('email'));
-	// console.log(
-	// 	'localStorage에 저장된 profile:',
-	// 	localStorage.getItem('profile')
-	// );
-
-  // 계좌 클릭 이벤트 핸들러
-  const handleAccountClick = (account: Account) => {
-    if (account.accountType === 'moaclub') {
-      navigate(`/moaclub/main/${account.accountId}`);
-    } else {
-      // todo: 다른 계좌 타입에 대한 처리(셀럽, 입출금 추가 필요)
-      navigate(`/account/${account.accountId}`);
-    }
-  };
->>>>>>> 1e84ba6b241fd5d06fb6d03abe0845b6a5cc301c
 
 	return (
 		<>
@@ -188,9 +165,12 @@ const MainPage = () => {
 													{account.accountType === 'deposit' ? '의 통장' : ''}
 												</p>
 												<p className='account-number'>{account.accountId}</p>
-												<h3 className='account-balance'>
+												<div
+													className='account-balance'
+													style={{ fontWeight: 400, marginTop: '0.5rem' }}
+												>
 													{account.balance.toLocaleString()}원
-												</h3>
+												</div>
 												<button
 													className='send-button'
 													onClick={(e) => {
@@ -236,89 +216,9 @@ const MainPage = () => {
 					</div>
 				</div>
 
-<<<<<<< HEAD
 				<div className='promotions'>
 					<div className='promotion'>
 						<img src={celubIcon} alt='celubIcon' style={{ width: '3rem' }} />
-=======
-        <div className='account-container' {...handlers}>
-          <div
-            className='account-details'
-            style={{
-              transform:
-                accounts.length > 0
-                  ? `translateX(-${currentIndex * 100}%)`
-                  : 'none',
-            }}
-          >
-            {isLoading ? (
-              <LoadingSpinner />
-            ) : (
-              <>
-                {accounts.length > 0 ? (
-                  accounts.map((account) => (
-                    <div
-                      className='accountBox'
-                      key={account.accountId}
-                      onClick={() => handleAccountClick(account)}
-                    >
-                      <div className='imgContainer'>
-                        <img src={hanaLogo} alt='logo' />
-                      </div>
-                      <div className='accountDetail'>
-                        <p className='account-type'>
-                          {account.name}
-                          {account.accountType === 'deposit' ? '의 통장' : ''}
-                        </p>
-                        <p className='account-number'>{account.accountId}</p>
-                        <div className='account-balance' style={{    "fontWeight": 400, marginTop: "0.5rem"}}>
-                          {account.balance.toLocaleString()}원
-                        </div>
-                        <button
-                          className='send-button'
-                          onClick={(e) => {
-                            e.stopPropagation(); // 계좌 클릭 이벤트 버블링 방지
-                            handleSendClick(account);
-                          }}
-                        >
-                          보내기
-                        </button>
-                      </div>
-                    </div>
-                  ))
-                ) : (
-                  <div className='accountBox'>
-                    <div>
-                      <img src={hanaLogo} alt='logo' />
-                    </div>
-                    <div className='accountDetail'>
-                      <p className='account-type'>계좌가 없습니다.</p>
-                      <button
-                        id='basicBtn1'
-                        className='send-button'
-                        onClick={() => handleNavigate('/deposit')}
-                      >
-                        계좌 추가하기
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </>
-            )}
-          </div>
-          <div className='scrollbar'>
-            {accounts.length > 0 && (
-              <div
-                className='scrollbar-indicator'
-                style={{
-                  width: `${100 / accounts.length}%`,
-                  transform: `translateX(${currentIndex * 100}%)`,
-                }}
-              ></div>
-            )}
-          </div>
-        </div>
->>>>>>> 1e84ba6b241fd5d06fb6d03abe0845b6a5cc301c
 
 						<div className='promotionDetail'>
 							<p className='promotionSubTitle'>최애와 함께 저축 습관 들이기!</p>
