@@ -24,19 +24,27 @@ function MoaclubTrsfResult() {
 				return '¥';
 			case 'USD':
 				return '$';
+			default:
+				return '';
 		}
 	};
 
-	const formatCurrency = (amount: number) => {
-		if (amount === undefined) {
+	const formatCurrency = (amount: any) => {
+		if (amount === undefined || amount === null) {
 			return '';
 		}
+
+		const numericAmount = Number(amount);
+		if (isNaN(numericAmount)) {
+			return '';
+		}
+
 		const currencySymbol = getCurrencySymbol(trsfInfo?.currency!);
 
 		if (trsfInfo?.currency === 'KRW') {
-			return `${amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}${currencySymbol}`;
+			return `${numericAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}${currencySymbol}`;
 		} else {
-			return `${currencySymbol}${amount.toFixed(2)}`;
+			return `${currencySymbol}${numericAmount.toFixed(2)}`;
 		}
 	};
 
