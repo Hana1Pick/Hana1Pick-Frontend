@@ -387,13 +387,13 @@ function MoaclubDeposit() {
 						<div className='moaDepositRow'>
 							<div className='moaDepositCountry'>적용 환율</div>
 							<div className='moaDepositValue1'>
-								{exchangeInfo.appliedExchangeRate} <div>원</div>
+								{exchangeInfo.appliedExchangeRate} 원
 							</div>
 						</div>
 						<div className='moaDepositRow'>
 							<div className='moaDepositCountry'>환율 수수료</div>
 							<div className='moaDepositValue'>
-								{exchangeInfo.exchangeFee} <div>원</div>
+								{exchangeInfo.exchangeFee} 원
 							</div>
 						</div>
 						<div className='moaDepositRow'>
@@ -404,7 +404,7 @@ function MoaclubDeposit() {
 								환전 금액
 							</div>
 							<div className='moaDepositValue1 large'>
-								{exchangeInfo.paymentAmount.toLocaleString()} <div>원</div>
+								{exchangeInfo.paymentAmount.toLocaleString()} 원
 							</div>
 						</div>
 					</div>
