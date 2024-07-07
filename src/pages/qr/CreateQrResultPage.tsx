@@ -40,7 +40,7 @@ function CreateQrResultPage() {
         </div>
       </div>
       <div id='nextBtn'>
-        <CommonBtn type='black' value='저장' onClick={save} disabled={false} />
+        <CommonBtn type='pink' value='저장' onClick={save} disabled={false} />
       </div>
     </div>
   );

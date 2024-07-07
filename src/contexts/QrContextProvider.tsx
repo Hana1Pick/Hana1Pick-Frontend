@@ -6,7 +6,7 @@ const QrContext = createContext({});
 // Context 내용 설정
 const QrContextProvider = ({ children }: { children: any }) => {
   // 변수
-  const [name, setName] = useState('');
+  const [name, setName] = useState(localStorage.getItem('name'));
   const [amount, setAmount] = useState(0);
   const [inAccId, setInAccId] = useState('');
 

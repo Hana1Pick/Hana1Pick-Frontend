@@ -1,13 +1,19 @@
-import { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState, useContext } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { QrContext } from '../../contexts/QrContextProvider';
 
 import Header from '../../components/Header';
 import CommonBtn from '../../components/button/CommonBtn';
 
 function GetQrAmountPage() {
-  const { setAmount }: any = useContext(QrContext);
+  const { setAmount, setInAccId }: any = useContext(QrContext);
   const [input, setInput] = useState(0);
+
+  const location = useLocation();
+  const { accountId } = location.state || {};
+  useEffect(() => {
+    setInAccId(accountId);
+  }, []);
 
   const formatInput = (input: number) => {
     return input == 0 ? '받을 금액' : input + '원';
@@ -90,7 +96,7 @@ function GetQrAmountPage() {
         </div>
       </div>
       <div id='nextBtn'>
-        <CommonBtn type='black' value='생성' onClick={next} disabled={false} />
+        <CommonBtn type='pink' value='생성' onClick={next} disabled={false} />
       </div>
     </div>
   );
