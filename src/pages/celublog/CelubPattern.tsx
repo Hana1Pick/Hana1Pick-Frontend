@@ -80,7 +80,6 @@ function CelubPattern() {
         for (let i = 0; i < selectedPoints.length; i++) {
           password += selectedPoints[i];
         }
-
         checkPassword(password);
       }
     }
