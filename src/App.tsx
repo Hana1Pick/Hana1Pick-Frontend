@@ -86,6 +86,7 @@ import Test from './test';
 import CamTest from './CamTest';
 import MoaclubMember from './pages/moaclub/MoaclubMember';
 import MoaclubManagerChange from './pages/moaclub/MoaclubManagerChange';
+import MyPage from './pages/user/mypage/MyPage';
 
 function App() {
 	return (
@@ -104,6 +105,9 @@ function App() {
 								<Routes>
 									<Route path='login' element={<KakaoLoginPage />} />
 								</Routes>
+                <Routes>
+                <Route path='mypage' element={<MyPage />} />
+                </Routes>
 							</AccountContextProvider>
 						}
 					/>

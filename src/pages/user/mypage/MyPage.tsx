@@ -16,7 +16,7 @@ const MyPage = () => {
     const fetchData = () => {
       axios
         .post(
-          `http://${process.env.REACT_APP_BESERVERURI}/api/user/info`,
+          `${process.env.REACT_APP_BESERVERURI}/api/user/info`,
           null,
           {
             params: {
