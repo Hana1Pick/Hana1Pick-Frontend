@@ -1,5 +1,8 @@
 @import '~swiper/swiper-bundle.css';
-
+:root {
+    --swiper-navigation-size: 0px;
+  }
+  
 .header {
   display: flex;
   align-items: center;
@@ -249,3 +252,4 @@
     }
   }
 }
+
