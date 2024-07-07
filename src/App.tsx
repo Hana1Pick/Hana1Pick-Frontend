@@ -143,23 +143,23 @@ function App() {
             }
           />
           {/* Celublog */}
-          <Route path='/celub/*'element={
-              <AccountContextProvider>
-                <Routes>
-                  <Route path='' element={<CelubPage />} />
-                  <Route path='withdraw' element={<CelubAcc />} />
-                  <Route path='complete' element={<CelubComplete />} />
-                  <Route path='list' element={<CelubAccountList />} />
-                  <Route path='detail' element={<CelubDetail />} />
-                  <Route path='rule' element={<CelubRule />} />
-                  <Route path='search' element={<CelubSelect />} />
-                  <Route path='name' element={<CelubName />} />
-                  <Route path='pattern' element={<CelubPattern />} />
-                  <Route path="setting" element={<CelubSetting/>}/>
-                  {/* <Route path="acc" element={<CelubAcc/>}/> */}
-                </Routes>
-              </AccountContextProvider>
-            }
+					<Route path='/celub/*'element={
+						<AccountContextProvider>
+							<Routes>
+							<Route path='' element={<CelubPage />} />
+							<Route path='withdraw' element={<CelubAcc />} />
+							<Route path='complete' element={<CelubComplete />} />
+							<Route path='list' element={<CelubAccountList />} />
+							<Route path='detail' element={<CelubDetail />} />
+							<Route path='rule' element={<CelubRule />} />
+							<Route path='search' element={<CelubSelect />} />
+							<Route path='name' element={<CelubName />} />
+							<Route path='pattern' element={<CelubPattern />} />
+							<Route path="setting" element={<CelubSetting/>}/>
+							<Route path="photo" element={<CamTest />}/>
+							</Routes>
+						</AccountContextProvider>
+            		}
           />
        {/* Moaclub */}
 					<Route

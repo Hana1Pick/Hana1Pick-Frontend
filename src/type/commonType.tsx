@@ -20,13 +20,24 @@ export type CelubHistoryType = {
 };
 
 export type CelubAccount = {
-	account_id: string;
-	name: string;
-	balance: number;
-	imgSrc: string;
-	ruleMoney: number;
-	totalBalance: number;
+  account_id: string;
+  name: string;
+  balance: number;
+  imgSrc: string;
+  ruleMoney: number;
+  totalBalance: number;
+  createDate: string;
 };
+export type CelubAccountInfo = {
+  accountId: string,
+  balance: number,
+  name: string,
+  imgSrc: string,
+  outAccId: string,
+  celebrityIdx: number,
+  duration: number
+  createDate: string
+}
 
 export type MoaClubHeaderData = {
 	value: string;
@@ -161,6 +172,11 @@ export type CommonModalType2 = {
 	msg: string;
 	show: boolean;
 	onConfirm: () => void;
+};
+export type CommonModalType1 = {
+  msg: string;
+  show: boolean;
+  onConfirm: () => void;
 };
 
 // 환율 데이터 타입 정의

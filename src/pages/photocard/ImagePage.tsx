@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import './PhotoCardStyle.scss';
 import Header from '../../components/Header';
 import info from '../../assets/images/photo-card/photo-card-info.gif';
+import CommonBtn from '../../components/button/CommonBtn';
 
 function ImagePage() {
   const { setImage }: any = useContext(PhotoCardContext);
@@ -16,7 +17,9 @@ function ImagePage() {
       navigate('/photo-card/sticker');
     }
   };
-
+  const goCamera = () => {
+    navigate("/celub/photo");
+  }
   return (
     <div id='photo-card'>
       <Header value='최애와 한컷' />
@@ -31,6 +34,7 @@ function ImagePage() {
         </div>
       </div>
       <div id='nextBtn'>
+        <CommonBtn type='pink' value="셀럽한컷 찍기" onClick={goCamera}/>
         <label htmlFor='file'>
           <div className='basicInputFile1'>사진 선택하기</div>
         </label>
