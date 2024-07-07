@@ -67,7 +67,6 @@ import CashOutResultPage from './pages/account/CashOutResultPage';
 
 // QR-Cash-Out
 import { QrContextProvider } from './contexts/QrContextProvider';
-import SelectQrInAccountPage from './pages/qr/SelectQrInAccountPage';
 import SelectQrOutAccountPage from './pages/qr/SelectQrOutAccountPage';
 import GetQrAmountPage from './pages/qr/GetQrAmountPage';
 import CreateQrResultPage from './pages/qr/CreateQrResultPage';
@@ -271,7 +270,6 @@ function App() {
             element={
               <QrContextProvider>
                 <Routes>
-                  <Route path='account' element={<SelectQrInAccountPage />} />
                   <Route path='amount' element={<GetQrAmountPage />} />
                   <Route path='result' element={<CreateQrResultPage />} />
                 </Routes>
