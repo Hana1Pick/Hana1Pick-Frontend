@@ -18,17 +18,29 @@
   margin-top: 1.25em;
 }
 
-#photo-card-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+#stickerTotalWrapper {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-#nextBtn{
-  button{
+#downloadIcon {
+  width: 1.25em;
+  height: 1.25em;
+  margin-left: auto;
+}
+
+#cameraIcon {
+  width: 2.5em;
+  height: 2.5em;
+  padding-top: 15px;
+}
+
+#nextBtn {
+  button {
     font-size: 1.03rem;
     margin-bottom: 0.5rem;
   }
