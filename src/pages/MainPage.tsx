@@ -102,7 +102,7 @@ const MainPage = () => {
         navigate(`/moaclub/main/${account.accountId}`);
         break;
       case 'deposit':
-        navigate(`/account/detail/${account.accountId}`);
+        navigate(`/deposit/detail/${account.accountId}`);
         break;
       default:
         console.error('Unknown account type');

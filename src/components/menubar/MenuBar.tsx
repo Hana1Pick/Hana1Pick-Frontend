@@ -22,7 +22,7 @@ const MenuBar = () => {
           style={{ width: '3rem', marginTop: '0.2rem' }}
         />
       </div>
-      <div className='menu-item service' onClick={() => navigate('/service/')}>
+      <div className='menu-item service' onClick={() => navigate('/celub/list')}>
         <img
           src={beServiceIcon}
           alt='service-icon'
