@@ -196,62 +196,65 @@ const MainPage = () => {
 						className='account-details'
 						style={{
 							transform:
-								accounts.length > 0
+								accounts.length > 2
 									? `translateX(-${currentIndex * 100}%)`
 									: 'none',
+							transition: accounts.length > 2 ? 'transform 0.3s ease-in-out' : 'none',
 						}}
 					>
 						{isLoading ? (
 							<LoadingSpinner />
 						) : (
 							<>
-								{accounts.filter((account) => account.accountType !== 'celub')
+              
+								{accounts.filter((account) => account.accountType !== 'celublog')
 									.length > 0 ? (
 									accounts
-										.filter((account) => account.accountType !== 'celub')
-										.map((account) => (
-											<div
-												className='accountBox'
-												key={account.accountId}
-												onClick={() => handleAccountClick(account)}
-											>
-												<div className='imgContainer'>
-													<img src={hanaLogo} alt='logo' />
-												</div>
-												<div className='accountDetail'>
-													<p className='account-type'>
-														{account.name}
-														{account.accountType === 'deposit' ? '의 통장' : ''}
-													</p>
-													<p className='account-number'>{account.accountId}</p>
-													<div
-														className='account-balance'
-														style={{
-															fontWeight: 500,
-															marginTop: '0.5rem',
-															fontSize: '1.3rem',
-														}}
-													>
-														{formatCurrency(
-															account.balance,
-															account.currency || 'KRW'
-														)}
-														{/* {account.balance.toLocaleString()}원 */}
+										.filter((account) => account.accountType !== 'celublog')
+										.map((account) => {
+											return (
+												<div
+													className='accountBox'
+													key={account.accountId}
+													onClick={() => handleAccountClick(account)}
+												>
+													<div className='imgContainer'>
+														<img src={hanaLogo} alt='logo' />
 													</div>
-													<button
-														className='send-button'
-														onClick={(e) => {
-															e.stopPropagation(); // 계좌 클릭 이벤트 버블링 방지
-															handleSendClick(account);
-														}}
-													>
-														{account.accountType === 'moaclub'
-															? '입금하기'
-															: '이체하기'}
-													</button>
+													<div className='accountDetail'>
+														<p className='account-type'>
+															{account.name}
+															{account.accountType === 'deposit' ? '의 통장' : ''}
+														</p>
+														<p className='account-number'>{account.accountId}</p>
+														<div
+															className='account-balance'
+															style={{
+																fontWeight: 500,
+																marginTop: '0.5rem',
+																fontSize: '1.3rem',
+															}}
+														>
+															{formatCurrency(
+																account.balance,
+																account.currency || 'KRW'
+															)}
+														</div>
+														<button
+															className='send-button'
+															onClick={(e) => {
+																e.stopPropagation(); // 계좌 클릭 이벤트 버블링 방지
+																handleSendClick(account);
+															}}
+														>
+															{account.accountType === 'moaclub'
+																? '입금하기'
+																: '이체하기'}
+														</button>
+													</div>
 												</div>
-											</div>
-										))
+											);
+										})
 								) : (
 									<div className='accountBox'>
 										<div>
@@ -273,13 +276,14 @@ const MainPage = () => {
 						)}
 					</div>
 					<div className='scrollbar'>
-						{accounts.filter((account) => account.accountType !== 'celub')
-							.length > 0 && (
+						{accounts.filter((account) => account.accountType !== 'celublog')
+							.length > 1 && (
 							<div
 								className='scrollbar-indicator'
 								style={{
-									width: `${100 / accounts.filter((account) => account.accountType !== 'celub').length}%`,
+									width: `${100 / accounts.filter((account) => account.accountType !== 'celublog').length}%`,
 									transform: `translateX(${currentIndex * 100}%)`,
+									transition: accounts.length > 1 ? 'transform 0.3s ease-in-out' : 'none',
 								}}
 							></div>
 						)}
