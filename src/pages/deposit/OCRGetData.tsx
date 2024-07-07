@@ -77,7 +77,7 @@ function OCRGetData() {
           </div>
           <p
             className="deposit-input-container"
-            style={{ marginBottom: "0.7rem" }}
+            style={{ marginBottom: "1rem" }}
           >
             신분증 정보를 확인해주세요. <br />
             실제 정보와 다른 경우 재촬영해주세요.
