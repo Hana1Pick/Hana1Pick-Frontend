@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { To, useNavigate } from 'react-router-dom';
-import Logo from '../assets/images/common/CircleLogo.png';
+import hanaLogo from '../assets/images/common/hanaBankLogo.png';
 import menuIcon from '../assets/images/alarm/black_alarm_icon.png';
 import celubIcon from '../assets/images/main/main_celub_icon.png';
 import moaIcon from '../assets/images/main/main_moa_icon.png';
@@ -11,7 +11,7 @@ import './style.scss';
 import { useSwipeable } from 'react-swipeable';
 import NavBar from '../components/alarm/NavBar';
 import Exchange from '../components/exchange';
-import LoadingSpinner from '../components/loading/'; // 로딩 스피너 컴포넌트 임포트
+import LoadingSpinner from '../components/loading/boxLoading'; // 로딩 스피너 컴포넌트 임포트
 import { NotificationType } from '../type/commonType';
 
 
@@ -50,14 +50,14 @@ const MainPage = () => {
 		}
 	};
 
-	useEffect(() => {
-		const fetchNotifications = async () => {
-			if (userIdx) {
-				const notificationRes = await getNotifications(userIdx);
-				setNotificationCount(notificationRes.length);
-			}
-		};
-		fetchNotifications();
+	// useEffect(() => {
+	// 	const fetchNotifications = async () => {
+	// 		if (userIdx) {
+	// 			const notificationRes = await getNotifications(userIdx);
+	// 			setNotificationCount(notificationRes.length);
+	// 		}
+	// 	};
+	// 	fetchNotifications();
 
 		// SSE
 		// if (userIdx && userEmail) {
@@ -90,7 +90,14 @@ const MainPage = () => {
 		// 	console.error('User is not logged in or access token is missing');
 		// 	return;
 		// }
-
+    useEffect(() => {
+      const userIdx = localStorage.getItem('userIdx');
+  
+      if (!userIdx) {
+        console.error('User is not logged in or access token is missing');
+        return;
+      }
+  
 		const url = `${process.env.REACT_APP_BESERVERURI}/api/user/accounts/list`;
 
 		axios
@@ -127,7 +134,16 @@ const MainPage = () => {
 		onSwipedRight: () => setCurrentIndex((prev) => Math.max(prev - 1, 0)),
 		trackMouse: true,
 	});
-
+  // 0707 충돌에 의해 제거된 함수 추가
+  // 계좌 클릭 이벤트 핸들러
+  const handleAccountClick = (account: Account) => {
+    if (account.accountType === 'moaclub') {
+      navigate(`/moaclub/main/${account.accountId}`);
+    } else {
+      // 다른 계좌 타입에 대한 처리
+      navigate(`/account/${account.accountId}`);
+    }
+  };
 	// console.log(
 	// 	'localStorage에 저장된 userIdx:',
 	// 	localStorage.getItem('userIdx')
@@ -147,7 +163,7 @@ const MainPage = () => {
             {profile ? (
               <img className='profile-pic' src={profile} alt='profile-pic' />
             ) : (
-              <img className='default-pic' src={Logo} alt='default-pic' />
+              <img className='default-pic' src={hanaLogo} alt='default-pic' />
             )}
           </div>
           <div className='user-name'>{name} 님</div>
@@ -175,12 +191,12 @@ const MainPage = () => {
                 {accounts.length > 0 ? (
                   accounts.map((account) => (
                     <div
-                      className='accountBox'
-                      key={account.accountId}
-                      onClick={() => handleAccountClick(account)}
-                    >
+                    className='accountBox'
+                    key={account.accountId}
+                    onClick={() => handleAccountClick(account)}
+                  >
                       <div className='imgContainer'>
-                        <img src={Logo} alt='logo' />
+                        <img src={hanaLogo} alt='logo' />
                       </div>
                       <div className='accountDetail'>
                         <p className='account-type'>
@@ -200,7 +216,7 @@ const MainPage = () => {
                 ) : (
                   <div className='accountBox'>
                     <div>
-                      <img src={Logo} alt='logo' />
+                      <img src={hanaLogo} alt='logo' />
                     </div>
                     <div className='accountDetail'>
                       <p className='account-type'>계좌가 없습니다.</p>
