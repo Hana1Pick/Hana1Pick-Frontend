@@ -11,7 +11,7 @@ function CashOutResultPage() {
 
   const navigate = useNavigate();
   const next = () => {
-    navigate('/');
+    navigate('/main');
   };
 
   return (

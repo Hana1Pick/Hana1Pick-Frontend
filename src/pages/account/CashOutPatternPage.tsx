@@ -2,7 +2,9 @@ import axios from 'axios';
 import React, { useRef, useState, useContext } from 'react';
 import PattrenBg from '../../assets/images/common/PatternBg.png';
 import { useNavigate } from 'react-router-dom';
+import Header from '../../layouts/MoaclubHeader2';
 import { AccountContext } from '../../contexts/AccountContextProvider';
+import '../../common/styles/scss/CommonStyle.scss';
 
 interface PatternProps {
   nextUrl: string;
@@ -11,13 +13,11 @@ interface PatternProps {
 function CashOutPatternPage() {
   const { userIdx, amount, outAccId, inAccId }: any =
     useContext(AccountContext);
-  const [userPassword, setUserPassword] = useState('1236');
-  /* TODO
-  const userPassword = localStorage.getItem('userPassword');
-  */
+  const [attemptCnt, setAttemptCnt] = useState(0);
   const [selectedPoints, setSelectedPoints] = useState<number[]>([]);
   const isDrawing = useRef(false);
   const pointsRef = useRef<HTMLDivElement[]>([]);
+  const [errorMsg, setErrorMsg] = useState('');
 
   const handleMouseDown = (index: number) => {
     if (!selectedPoints.includes(index)) {
@@ -25,6 +25,7 @@ function CashOutPatternPage() {
       isDrawing.current = true;
     }
   };
+
   const handleTouchStart = (index: number) => {
     if (!selectedPoints.includes(index)) {
       setSelectedPoints([index]);
@@ -70,16 +71,13 @@ function CashOutPatternPage() {
       isDrawing.current = false;
       console.log('Selected Pattern:', selectedPoints);
       if (selectedPoints.length < 4) {
-        alert('비밀번호의 길이가 유효하지 않습니다. 다시 그려주세요');
+        setErrorMsg('4개 이상의 점을 연결해주세요.');
       } else {
         let password = '';
         for (let i = 0; i < selectedPoints.length; i++) {
           password += selectedPoints[i];
         }
-
-        if (password == userPassword) {
-          next();
-        }
+        checkPassword(password);
       }
     }
   };
@@ -95,6 +93,7 @@ function CashOutPatternPage() {
       hashtag: null,
       outAccId: outAccId,
       inAccId: inAccId,
+      currency: 'KRW',
     };
 
     axios
@@ -111,6 +110,33 @@ function CashOutPatternPage() {
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  const checkPassword = async (password: string) => {
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_BESERVERURI}/api/user/password-check`,
+        {
+          userIdx: userIdx,
+          password: password,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      console.log(response.data.data);
+      if (response.data.data.check) {
+        next();
+      } else {
+        setSelectedPoints([]);
+        setAttemptCnt((prevCnt) => prevCnt + 1);
+        setErrorMsg(`일치하지 않습니다. (${attemptCnt + 1}/5)`);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const renderPattern = () => {
@@ -162,10 +188,12 @@ function CashOutPatternPage() {
   return (
     <>
       <div className='background-container'>
+        <Header value='비밀번호 입력' disabled={false} />
         <img src={PattrenBg} alt='Pattern Background' className='pattern-bg' />
         <div className='overlay-text'>
-          인증 패턴을 등록합니다.
-          <div>이체 및 모든 금융 거래시 사용됩니다.</div>
+          비밀번호를 입력하세요.
+          <div>회원 인증 패턴을 그려주세요.</div>
+          {errorMsg && <div className='errorMsg'>{errorMsg}</div>}
         </div>
       </div>
       <div
