@@ -228,7 +228,6 @@ function MoaclubCreatePage() {
 						<h4 className='leftAlignedText'>회비 금액은 얼마인가요?</h4>
 						<div className='clubFeeBox'>
 							<div className='leftAlignedText moaMonthTxt'>매월</div>
-
 							<input
 								className='clubFeeText'
 								type=''
