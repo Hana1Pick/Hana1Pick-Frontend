@@ -11,6 +11,7 @@ import './CelublogStyle.scss';
 import axios from 'axios';
 import qs from 'qs';
 import CommonModal1 from '../../components/modal/CommonModal3';
+import PageLoadingSpinner from '../../components/pageLoding/pageLoading';
 
 const CelubDetail: React.FC = () => {
 	const navigate = useNavigate();
@@ -41,8 +42,16 @@ const CelubDetail: React.FC = () => {
 	const location = useLocation();
 	const accountId = location.state;
 	const [outBalance, setOutBalance] = useState(0);
+	const [isLoading, setIsLoading] = useState(true); // 로딩 상태
+	const [minLoadingTimeReached, setMinLoadingTimeReached] = useState(false); // 최소 로딩 시간 상태
 
 	useEffect(() => {
+		// 최소 로딩 시간을 1초로 설정
+		const minLoadingTime = 1000;
+		const timer = setTimeout(() => {
+			setMinLoadingTimeReached(true);
+		}, minLoadingTime);
+
 		axios
 			.post(
 				`${process.env.REACT_APP_BESERVERURI}/api/celub/list/detail`,
@@ -55,11 +64,16 @@ const CelubDetail: React.FC = () => {
 				setAccountInfo(res.data.data.accountInfo);
 				console.log(res.data.data.accountInfo.outAccBalance);
 				setOutBalance(res.data.data.accountInfo.outAccBalance);
+				setIsLoading(false); // 로딩 완료
 			})
 			.catch((error) => {
 				alert('실패');
+				setIsLoading(false); // 로딩 오류
 			});
+
+		return () => clearTimeout(timer);
 	}, [isHistory]);
+
 	const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
 		setStartY(e.touches[0].clientY);
 		setStartHeight(
@@ -150,6 +164,11 @@ const CelubDetail: React.FC = () => {
 		history();
 		setLook(false);
 	};
+
+	if (isLoading || !minLoadingTimeReached) {
+		return <PageLoadingSpinner />;
+	}
+
 	return (
 		<>
 			<CelubHeader3 value='' disabled={false} onClick={setting} />

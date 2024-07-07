@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, useEffect } from 'react';
+import { useState, ChangeEvent, useEffect, FocusEvent } from 'react';
 import CelubHeader1 from '../../components/Header';
 import { CelubRuleType } from '../../type/commonType';
 import axios from 'axios';
@@ -55,6 +55,16 @@ function CelubRule() {
 		setRules(newRules);
 		console.log(rules);
 	};
+
+	const handleInputFocus = (index: number, event: FocusEvent<HTMLInputElement>) => {
+		const newRules = [...rules];
+		if (newRules[index].ruleMoney !== 0) {
+			newRules[index].ruleMoney = 0; // 기본 등록된 데이터 삭제
+			setRules(newRules);
+		}
+		event.target.select(); // 커서를 보여줌
+	};
+
 	const addRules = () => {
 		let data = {
 			accountId: accountId,
@@ -112,6 +122,7 @@ function CelubRule() {
 							name='ruleMoney'
 							value={rule.ruleMoney}
 							onChange={(event) => handleInputChange(index, event)}
+							onFocus={(event) => handleInputFocus(index, event)}
 						/>
 					</div>
 				))}
