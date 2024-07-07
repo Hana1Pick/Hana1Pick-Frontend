@@ -38,10 +38,10 @@ function OCRGetData() {
           const width = img.width;
           const height = img.height;
 
-          canvas.width = width / 2;
-          canvas.height = height;
+          canvas.width = width;
+          canvas.height = height / 2;
 
-          ctx.drawImage(img, 0, 0, width / 2, height, 0, 0, width / 2, height);
+          ctx.drawImage(img, 0, 0, width, height / 2, 0, 0, width, height / 2);
 
           const dataUrl = canvas.toDataURL();
           setCapturedImage(dataUrl);
