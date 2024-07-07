@@ -94,8 +94,6 @@ function App() {
         <Routes>
           {/* init */}
           <Route path='/' element={<SplashScreen />} />
-
-          {/* Main */}
           <Route path='/main' element={<MainPage />} />
 
           {/* User */}
@@ -112,7 +110,7 @@ function App() {
           <Route path='/api/user/oauth/kakao' element={<LoginHandeler />} />
 
           {/* Deposit */}
-          <Route path='deposit' element={<DepositCreation1 />} />
+          <Route path='/deposit' element={<DepositCreation1 />} />
           <Route path='/deposit2' element={<DepositCreation2 />} />
           <Route path='/userauth' element={<OCRCamera />} />
           <Route path='/userauth2' element={<OCRGetData />} />
@@ -167,38 +165,20 @@ function App() {
           />
           <Route path='/moaclub/join/:accountId' element={<MoaclubJoin />} />
           <Route path='/moaclub/main/:accountId' element={<MoaclubPage />} />
-          <Route
-            path='/moaclub/fee/:accountId'
-            element={<MoaclubFeeStatus />}
-          />
+          <Route path='/moaclub/fee/:accountId' element={<MoaclubFeeStatus />} />
           <Route
             path='/moaclub/setting/:accountId'
             element={<MoaclubSetting />}
           />
-          <Route
-            path='/moaclub/modify/:accountId'
-            element={<MoaclubModify />}
-          />
-          <Route
-            path='/moaclub/vote/:accountId'
-            element={<MoaclubVoteSelect />}
-          />
+          <Route path='/moaclub/modify/:accountId' element={<MoaclubModify />} />
+          <Route path='/moaclub/vote/:accountId' element={<MoaclubVoteSelect />} />
           <Route
             path='/moaclub/vote/manager/:accountId'
             element={<MoaclubVoteManager />}
           />
-          <Route
-            path='/moaclub/vote/trsf/:accountId'
-            element={<MoaclubVoteTrsf />}
-          />
-          <Route
-            path='/moaclub/withdraw/:accountId'
-            element={<MoaclubWithdraw />}
-          />
-          <Route
-            path='/moaclub/autotrsf/:accountId'
-            element={<MoaclubAutoTrsf />}
-          />
+          <Route path='/moaclub/vote/trsf/:accountId' element={<MoaclubVoteTrsf />} />
+          <Route path='/moaclub/withdraw/:accountId' element={<MoaclubWithdraw />} />
+          <Route path='/moaclub/autotrsf/:accountId' element={<MoaclubAutoTrsf />} />
           <Route
             path='/moaclub/autotrsf/detail/:accountId'
             element={<MoaclubAutoTrsfDetail />}
@@ -212,15 +192,11 @@ function App() {
             path='/moaclub/autotrsf/complete'
             element={<MoaclubAutoTrsfComplete />}
           />
-          <Route
-            path='/moaclub/member/:accountId'
-            element={<MoaclubMember />}
-          />
+          <Route path='/moaclub/member/:accountId' element={<MoaclubMember />} />
           <Route
             path='/moaclub/manager-change/:accountId'
             element={<MoaclubManagerChange />}
           />
-
           <Route
             path='/moaclub/deposit/*'
             element={
@@ -233,71 +209,66 @@ function App() {
               </MoaclubTrsfContextProvider>
             }
           />
-        </Routes>
 
-        {/* Cash-Out */}
-        <Route
-          path='/cash-out/*'
-          element={
-            <AccountContextProvider>
-              <Routes>
-                <Route path='account' element={<SelectAccountPage />} />
-                <Route path='account-query' element={<SearchAccountPage />} />
-                <Route path='amount' element={<GetAmountPage />} />
-                <Route path='' element={<CashOutPage />} />
-                <Route path='pattern' element={<CashOutPatternPage />} />
-                <Route path='result' element={<CashOutResultPage />} />
-                {/* QR */}
-                <Route
-                  path='/qr/*'
-                  element={
-                    <Routes>
-                      <Route path='' element={<GetQrPage />} />
-                      <Route
-                        path='account'
-                        element={<SelectQrOutAccountPage />}
-                      />
-                    </Routes>
-                  }
-                />
-              </Routes>
-            </AccountContextProvider>
-          }
-        />
+          {/* Cash-Out */}
+          <Route
+            path='/cash-out/*'
+            element={
+              <AccountContextProvider>
+                <Routes>
+                  <Route path='account' element={<SelectAccountPage />} />
+                  <Route path='account-query' element={<SearchAccountPage />} />
+                  <Route path='amount' element={<GetAmountPage />} />
+                  <Route path='' element={<CashOutPage />} />
+                  <Route path='pattern' element={<CashOutPatternPage />} />
+                  <Route path='result' element={<CashOutResultPage />} />
+                  {/* QR */}
+                  <Route
+                    path='/qr/*'
+                    element={
+                      <Routes>
+                        <Route path='' element={<GetQrPage />} />
+                        <Route path='account' element={<SelectQrOutAccountPage />} />
+                      </Routes>
+                    }
+                  />
+                </Routes>
+              </AccountContextProvider>
+            }
+          />
 
-        {/* QR-Cash-Out */}
-        <Route
-          path='qr/cash-in/*'
-          element={
-            <QrContextProvider>
-              <Routes>
-                <Route path='account' element={<SelectQrInAccountPage />} />
-                <Route path='amount' element={<GetQrAmountPage />} />
-                <Route path='result' element={<CreateQrResultPage />} />
-              </Routes>
-            </QrContextProvider>
-          }
-        />
+          {/* QR-Cash-Out */}
+          <Route
+            path='qr/cash-in/*'
+            element={
+              <QrContextProvider>
+                <Routes>
+                  <Route path='account' element={<SelectQrInAccountPage />} />
+                  <Route path='amount' element={<GetQrAmountPage />} />
+                  <Route path='result' element={<CreateQrResultPage />} />
+                </Routes>
+              </QrContextProvider>
+            }
+          />
 
-        {/* Photo Card */}
-        <Route
-          path='/photo-card/*'
-          element={
-            <PhotoCardContextProvider>
-              <Routes>
-                <Route path='image' element={<ImagePage />} />
-                <Route path='sticker' element={<StickerPage />} />
-                <Route path='camera-test' element={<CamTest />} />
-              </Routes>
-            </PhotoCardContextProvider>
-          }
-        />
-        <Routes>
+          {/* Photo Card */}
+          <Route
+            path='/photo-card/*'
+            element={
+              <PhotoCardContextProvider>
+                <Routes>
+                  <Route path='image' element={<ImagePage />} />
+                  <Route path='sticker' element={<StickerPage />} />
+                  <Route path='camera-test' element={<CamTest />} />
+                </Routes>
+              </PhotoCardContextProvider>
+            }
+          />
           <Route path='/testing' element={<Test />} />
-        </Routes>
 
-        {/* Chat */}
-        <Route path='/moaclub/chat/:roomId' element={<ChatRoom />} />
+          {/* Chat */}
+          <Route path='/moaclub/chat/:roomId' element={<ChatRoom />} />
+        </Routes>
       </BrowserRouter>
     </div>
   );
