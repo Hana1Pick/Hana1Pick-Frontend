@@ -1,17 +1,16 @@
 import axios from "axios";
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { To, useNavigate } from "react-router-dom";
-import Logo from "../assets/images/common/CircleLogo.png";
+import hanaLogo from "../assets/images/common/hanaBankLogo.png";
 import menuIcon from "../assets/images/alarm/black_alarm_icon.png";
 import celubIcon from "../assets/images/main/main_celub_icon.png";
-import moaIcon from "../assets/images/main/main_moa_icon.png";
+import moaIcon from "../assets/images/main/main_moa_logo.png";
 import MenuBar from "../components/menubar/MenuBar";
 import "./style.scss";
 import { useSwipeable } from "react-swipeable";
 import NavBar from "../components/alarm/NavBar";
 import Exchange from "../components/exchange";
-import LoadingSpinner from "../components/loading/"; // 로딩 스피너 컴포넌트 임포트
+import LoadingSpinner from "../components/loading/boxLoading"; // 로딩 스피너 컴포넌트 임포트
 import { NotificationType } from "../type/commonType";
 
 interface Account {
@@ -50,45 +49,12 @@ const MainPage = () => {
   };
 
   useEffect(() => {
-    const fetchNotifications = async () => {
-      if (userIdx) {
-        const notificationRes = await getNotifications(userIdx);
-        setNotificationCount(notificationRes.length);
-      }
-    };
-    fetchNotifications();
+    const userIdx = localStorage.getItem("userIdx");
 
-    // SSE
-    // if (userIdx && userEmail) {
-    // 	const urlEndPoint = `http://${process.env.REACT_APP_BESERVERURI}/api/notification/subscribe/${userEmail}`;
-    // 	let eventSource = new EventSource(urlEndPoint);
-
-    // 	console.log(urlEndPoint);
-
-    // 	eventSource.onopen = () => {
-    // 		console.log('SSE connection opened');
-    // 	};
-
-    // 	eventSource.onerror = (error) => {
-    // 		console.error('SSE error', error);
-    // 	};
-
-    // 	eventSource.addEventListener('sse', (event) => {
-    // 		try {
-    // 			console.log(event.data);
-    // 			const result = JSON.parse(event.data);
-    // 			console.log('Received notification:', result);
-    // 			// setNotificationCount((prevCount) => prevCount + 1);
-    // 		} catch (error) {
-    // 			console.error('Error parsing JSON:', error);
-    // 		}
-    // 	});
-    // }
-
-    // if (!userIdx) {
-    // 	console.error('User is not logged in or access token is missing');
-    // 	return;
-    // }
+    if (!userIdx) {
+      console.error("User is not logged in or access token is missing");
+      return;
+    }
 
     const url = `${process.env.REACT_APP_BESERVERURI}/api/user/accounts/list`;
 
@@ -101,13 +67,11 @@ const MainPage = () => {
       .then((response) => {
         if (response.data && response.data.data) {
           setAccounts(response.data.data);
-          // console.log('Accounts data:', response.data.data); // accounts 데이터 출력
         } else {
           console.error("No data found in response", response);
         }
         setIsLoading(false); // 데이터 로드 완료
       })
-
       .catch((error) => {
         console.error(error);
         setIsLoading(false); // 데이터 로드 오류
@@ -127,16 +91,25 @@ const MainPage = () => {
     trackMouse: true,
   });
 
-  // console.log(
-  // 	'localStorage에 저장된 userIdx:',
-  // 	localStorage.getItem('userIdx')
-  // );
-  // console.log('localStorage에 저장된 name:', localStorage.getItem('name'));
-  // console.log('localStorage에 저장된 email:', localStorage.getItem('email'));
-  // console.log(
-  // 	'localStorage에 저장된 profile:',
-  // 	localStorage.getItem('profile')
-  // );
+  // 계좌 클릭 이벤트 핸들러
+  const handleAccountClick = (account: Account) => {
+    if (account.accountType === "moaclub") {
+      navigate(`/moaclub/main/${account.accountId}`);
+    } else {
+      // todo: 다른 계좌 타입에 대한 처리(셀럽, 입출금 추가 필요)
+      navigate(`/account/${account.accountId}`);
+    }
+  };
+
+  // 보내기 버튼 클릭 이벤트 핸들러
+  const handleSendClick = (account: Account) => {
+    if (account.accountType === "moaclub") {
+      navigate(`/moaclub/deposit/${account.accountId}`);
+    } else {
+      // todo: 다른 계좌 타입에 대한 계좌이체 처리(셀럽, 입출금 추가 필요)
+      navigate(`/cash-out/${account.accountId}`);
+    }
+  };
 
   return (
     <>
@@ -146,7 +119,7 @@ const MainPage = () => {
             {profile ? (
               <img className="profile-pic" src={profile} alt="profile-pic" />
             ) : (
-              <img className="default-pic" src={Logo} alt="default-pic" />
+              <img className="default-pic" src={hanaLogo} alt="default-pic" />
             )}
           </div>
           <div className="user-name">{name} 님</div>
@@ -154,7 +127,6 @@ const MainPage = () => {
             {" "}
             {/* 햄버거 메뉴바 부분 */}
             <img src={menuIcon} alt="menu-icon" />
-            {notificationCount > 0 && <div className="red-dot"></div>}
           </div>
         </div>
 
@@ -174,9 +146,13 @@ const MainPage = () => {
               <>
                 {accounts.length > 0 ? (
                   accounts.map((account) => (
-                    <div className="accountBox" key={account.accountId} onClick={()=> navigate(`/deposit/detail/${account.accountId}`)}>
+                    <div
+                      className="accountBox"
+                      key={account.accountId}
+                      onClick={() => handleAccountClick(account)}
+                    >
                       <div className="imgContainer">
-                        <img src={Logo} alt="logo" />
+                        <img src={hanaLogo} alt="logo" />
                       </div>
                       <div className="accountDetail">
                         <p className="account-type">
@@ -187,7 +163,13 @@ const MainPage = () => {
                         <h3 className="account-balance">
                           {account.balance.toLocaleString()}원
                         </h3>
-                        <button className="send-button" onClick={() => {}}>
+                        <button
+                          className="send-button"
+                          onClick={(e) => {
+                            e.stopPropagation(); // 계좌 클릭 이벤트 버블링 방지
+                            handleSendClick(account);
+                          }}
+                        >
                           보내기
                         </button>
                       </div>
@@ -196,7 +178,7 @@ const MainPage = () => {
                 ) : (
                   <div className="accountBox">
                     <div>
-                      <img src={Logo} alt="logo" />
+                      <img src={hanaLogo} alt="logo" />
                     </div>
                     <div className="accountDetail">
                       <p className="account-type">계좌가 없습니다.</p>
@@ -228,7 +210,7 @@ const MainPage = () => {
 
         <div className="promotions">
           <div className="promotion">
-            <img src={celubIcon} alt="celubIcon" />
+            <img src={celubIcon} alt="celubIcon" style={{ width: "3rem" }} />
 
             <div className="promotionDetail">
               <p className="promotionSubTitle">최애와 함께 저축 습관 들이기!</p>
@@ -238,7 +220,7 @@ const MainPage = () => {
             </div>
           </div>
           <div className="promotion">
-            <img src={moaIcon} alt="moaIcon" />
+            <img src={moaIcon} alt="moaIcon" style={{ width: "3rem" }} />
             <div className="promotionDetail">
               <p className="promotionSubTitle">
                 최애가 같다면 함께 쓰는 모임통장!

@@ -1,6 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MainPage from "./pages/MainPage";
+import SplashScreen from "./components/splash/SplashScreen";
 
 // Deposit
 import DepositCreation1 from "./pages/deposit/DepositCreation1";
@@ -97,10 +98,13 @@ function App() {
           />
           <Route path="/deposit4" element={<UserAgree />} />
           <Route path="/deposit5" element={<DepositComplete />} />
-          <Route path="/deposit/detail/:accountId" element={<DepositDetail />} />
+          <Route
+            path="/deposit/detail/:accountId"
+            element={<DepositDetail />}
+          />
           {/* 메인 페이지*/}
-          <Route path="/" element={<MainPage />} />
-          {/* 상품/서비스 페이지: 최애 실시간 랭킹, 최애와 한컷 페이지로 이동 */}
+          <Route path="/main" element={<MainPage />} />
+          {/* // todo: 상품 페이지: 셀럽로그 계좌 목록 조회 페이지로 라우팅 변경필요  */}
           <Route path="/service" element={<ServicePage />} />
           {/* 계좌 이체 */}
           <Route
@@ -160,7 +164,6 @@ function App() {
                   <Route path="name" element={<CelubName />} />
                   <Route path="pattern" element={<CelubPattern />} />
                   <Route path="setting" element={<CelubSetting />} />
-                  {/* <Route path="acc" element={<CelubAcc/>}/> */}
                 </Routes>
               </AccountContextProvider>
             }
@@ -229,15 +232,6 @@ function App() {
             element={<MoaclubAutoTrsfComplete />}
           />
           <Route
-            path="/moaclub/member/:accountId"
-            element={<MoaclubMember />}
-          />
-          <Route
-            path="/moaclub/manager-change/:accountId"
-            element={<MoaclubManagerChange />}
-          />
-
-          <Route
             path="/moaclub/deposit/*"
             element={
               <MoaclubTrsfContextProvider>
@@ -278,6 +272,9 @@ function App() {
               </PhotoCardContextProvider>
             }
           />
+
+          {/* 초기화면 페이지 */}
+          <Route path="/" element={<SplashScreen />} />
         </Routes>
         <Routes>
           <Route path="/testing" element={<Test />} />

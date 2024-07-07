@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import "./DepositStyle.scss"; // 스타일 시트 추가
+import Header from "../../components/Header";
 import OcrCamera1 from "../../assets/images/deposit/OcrCamera1.png";
 import OcrCamera2 from "../../assets/images/deposit/OcrCamera2.png";
 import OcrCamera3 from "../../assets/images/deposit/OcrCamera3.png";
@@ -11,23 +12,12 @@ function OCRCamera() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // 사용자 데이터 예시
-  const userData = {
-    name: "PIAO XUANQING",
-    email: "tlqlapdls@gmail.com",
-    address: "02841 서울 성북구 안암로 145 (안암동5가, 고려대학교안암캠퍼스)",
-    birth: "1982-07-08",
-    phone: "01022234523",
-    nation: "CN",
-    password: "",
-  };
-
   const url = `${process.env.REACT_APP_BESERVERURI}/api/user/ocr`;
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
-  //const userData = location.state.formData;
+  const userData = location.state.formData;
 
   console.log(userData);
 
