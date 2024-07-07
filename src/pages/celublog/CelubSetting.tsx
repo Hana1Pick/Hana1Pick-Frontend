@@ -1,4 +1,4 @@
-import CelubHeader from '../../layouts/CelubHeader';
+import CelubHeader from '../../components/Header';
 import '../moaclub/MoaclubStyle.scss';
 import '../../common/styles/scss/CommonStyle.scss';
 import { useLocation, useNavigate } from 'react-router-dom';
