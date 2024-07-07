@@ -34,6 +34,9 @@ export type MoaClubHeaderData = {
 	onClick?: () => void;
 };
 
+
+// Deposit
+
 export type DomesticAuthProps = {
 	rtcRoomNum: string;
 	formData: {
@@ -57,6 +60,7 @@ export type OCRData = {
 		certification: string;
 	};
 };
+
 export type CelubListType = {
 	idx: number;
 	name: string;
@@ -170,3 +174,22 @@ export type Line = {
   endX: number;
   endY: number;
 }
+
+
+// deposit detail type
+export type DepositInfo = {
+	name: string;
+	accountId: string;
+	balance: number;
+	createDate: string;
+};
+
+
+
+export type DepsoitAccHis = {
+	transDate: string;
+	transType: string;
+	target: string;
+	transAmount: number;
+	balance: number;
+};

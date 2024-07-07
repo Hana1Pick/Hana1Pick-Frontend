@@ -1,9 +1,8 @@
 import React, { useState, useEffect, FormEvent } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import "./DepositStyle.scss";
-import axios from "axios";
 import { OCRData } from "../../type/commonType";
-import Header from "../../components/Header";
+import MoaClubHeader from "../../layouts/MoaclubHeader1";
 
 function OCRGetData() {
   const navigate = useNavigate();
@@ -16,27 +15,7 @@ function OCRGetData() {
   const [successShow, setSuccessShow] = useState(false);
   const [failShow, setFailShow] = useState(false);
 
-  // 예시데이터
-  // const formData = {
-  //   name: "PIAO XUANOING",
-  //   email: "tlqlapdls@gmail.co`m",
-  //   address: "02841 서울 성북구 안암로 145 (안암동5가, 고려대학교안암캠퍼스)",
-  //   birth: "1982-07-08",
-  //   phone: "01022234523",
-  //   nation: "CN",
-  //   password: "",
-  // };
-
-  // const ocrData = {
-  //   data: {
-  //     name: "PIAO XUANOING",
-  //     number: "123456-123456",
-  //     nation: "china",
-  //     certification: "방문취업",
-  //     date: "2021-22-22",
-  //   },
-  // };
-
+  
   const ocrDataString = localStorage.getItem("ocrData");
   const ocrData: OCRData = ocrDataString ? JSON.parse(ocrDataString) : null;
   const formData = location.state.userData;
@@ -83,7 +62,7 @@ function OCRGetData() {
 
   return (
     <div className="deposit-creation">
-      <Header value="개인정보 입력" />
+      <MoaClubHeader value="개인정보 확인" disabled={false} />
       <div className="deposit-container">
         <div className="input-box">
           <div className="deposit-input-container">
@@ -190,7 +169,7 @@ function OCRGetData() {
             </div>
           </div>
         </div>
-      ) }
+      )}
     </div>
   );
 }

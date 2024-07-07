@@ -1,47 +1,45 @@
-import Header from "../../components/Header";
-import CreateComplete from "../../assets/images/deposit/CreateComplete.png";
+import CreateComplete from "../../assets/images/deposit/CreateComplete.gif";
 import { useNavigate } from "react-router-dom";
+import CommonBtn from "../../components/button/CommonBtn";
 
 function DepositComplete() {
   const navigate = useNavigate();
-  const toMain = () => {
+  const currentDate = new Date().toLocaleDateString().replace(/\.$/, "");
+  const name = localStorage.getItem("name");
+  const next = () => {
     navigate("/");
   };
 
   return (
     <>
-      <Header value="개설 완료" />
-      <div className="deposit-container">
-        <div className="legal-notice-box">
-          <div className="notice-header">
-            <label htmlFor="agree-checkbox" className="deposit-complete-label">
-              <img
-                src={CreateComplete}
-                alt="createcomplete"
-                className="deposit-create-complete-img"
-              />
-              <strong className="deposit-bottom">입출금통장 개설완료</strong>
-              <div>입출금 통장이 개설되었습니다.</div>
-              <div className="deposit-bottom">아래의 내용을 확인해주세요.</div>
-            </label>
+      <div className="completeBox1">
+        <div className="completeBox2">
+          <img className="MoaImg" src={CreateComplete} alt="moaImg" />
+          <div className="textBox1">
+            <p>입출금통장</p>
+            <p>개설완료</p>
           </div>
-          <div className="notice-header2">
-            <div className="legal-notice-content">
-              <p className="deposit-checkbox-text">
-                계좌종류
-                <div className="deposit-notice_text">자유입출금(한도계좌)</div>
-              </p>
-              <p className="deposit-checkbox-text">
-                앱 이체한도
-                <div className="deposit-notice_text">1일 최대 200만원</div>
-              </p>
-            </div>
-          </div>
-          <div className="notice-final">
-            <div className="to-main" onClick={toMain}>
-              메인으로 가기
-            </div>
-          </div>
+        </div>
+      </div>
+      <div className="completeBox3">
+        <div className="tableBox">
+          <table className="completeInfo">
+            <tr>
+              <th>출금계좌</th>
+              <td colSpan={2}>{name} 의 입출금 계좌</td>
+            </tr>
+            <tr>
+              <th>이체한도</th>
+              <td colSpan={2}>1일 최대 200만원</td>
+            </tr>
+            <tr>
+              <th>가입일</th>
+              <td colSpan={2}>{currentDate}</td>
+            </tr>
+          </table>
+        </div>
+        <div className="buttonContainer">
+          <CommonBtn type="pink" value="완료" onClick={next} disabled={false} />
         </div>
       </div>
     </>
