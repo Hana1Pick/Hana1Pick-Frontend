@@ -26,6 +26,8 @@ function CelubSearch() {
   });
   const [celubIdx, setCelubIdx] = useState(0);
   const [imgSrc, setImgSrc] = useState('');
+  const [selectedProfile, setSelectedProfile] = useState<number | null>(null); // 선택된 프로필 인덱스를 추적
+
   const jobChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectJob(e.target.value);
   };
@@ -56,9 +58,10 @@ function CelubSearch() {
     setKeyword(event.target.value);
   };
 
-  const selectCelub = (celubIdx: number, imgSrc: string) => {
+  const selectCelub = (celubIdx: number, imgSrc: string, index: number) => {
     setCelubIdx(celubIdx);
     setImgSrc(imgSrc);
+    setSelectedProfile(index); // 선택된 프로필 인덱스를 설정
     setLook(true);
   };
 
@@ -90,7 +93,6 @@ function CelubSearch() {
         <img className="celub-search-img" src={searchImg} onClick={searchCelub} alt="search" />
       </div>
 
-
       <div className="celub-profile-box">
         {!searchResult && celubList.length === 0 ? (
           <div className="celub-rule-box1">
@@ -101,17 +103,17 @@ function CelubSearch() {
           <div className="celub-profile-cover">
             {searchResult.length === 0
               ? celubList.map((celub: CelubListType, index: number) => (
-                  <div className="celub-profile-container" key={index}  onClick={() => selectCelub(celub.idx, celub.thumbnail)}>
+                  <div className="celub-profile-container" key={index} onClick={() => selectCelub(celub.idx, celub.thumbnail, index)}>
                     <div className="celub-profile">
-                      <img src={celub.thumbnail} alt={celub.name} />
+                      <img className={selectedProfile === index ? 'selected' : ''} src={celub.thumbnail} alt={celub.name} />
                       <p>{celub.name}</p>
                     </div>
                   </div>
                 ))
               : searchResult.map((celub: CelubListType, index: number) => (
-                  <div className="celub-profile-container" key={index}  onClick={() => selectCelub(celub.idx, celub.thumbnail)}>
+                  <div className="celub-profile-container" key={index} onClick={() => selectCelub(celub.idx, celub.thumbnail, index)}>
                     <div className="celub-profile">
-                      <img src={celub.thumbnail} alt={celub.name} />
+                      <img className={selectedProfile === index ? 'selected' : ''} src={celub.thumbnail} alt={celub.name} />
                       <p>{celub.name}</p>
                     </div>
                   </div>

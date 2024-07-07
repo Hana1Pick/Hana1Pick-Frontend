@@ -4,6 +4,7 @@ import "./style.scss";
 import setting from "../../../assets/images/celub/setting.png";
 import Header from "../../../layouts/DepositHeader1";
 import CommonBtn from "../../../components/button/CommonBtn";
+import PageLoadingSpinner from "../../../components/pageLoding/pageLoading";
 
 const MyPage = () => {
   const [userData, setUserData] = useState<any>(null);
@@ -90,7 +91,8 @@ const MyPage = () => {
   };
 
   if (!userData) {
-    return <div>Loading...</div>;
+    // Loading spinner
+    return <PageLoadingSpinner/>
   }
 
   return (

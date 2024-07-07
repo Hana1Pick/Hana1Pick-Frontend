@@ -728,15 +728,23 @@
       height: 5rem;
       border-radius: 50%;
       object-fit: cover;
+      transition: box-shadow 0.3s ease-in-out;
     }
 
     p {
       margin-top: 10px;
       font-size: 1.2em;
       color: #000;
+      transition: color 0.3s ease-in-out;
+
     }
   }
-}
+    
+    .selected {
+      box-shadow: 0 0 20px #008E72;
+    }
+  }
+
 
 .celub-rule-box1 {
   // text-align: center;
