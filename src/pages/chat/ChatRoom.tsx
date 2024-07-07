@@ -69,7 +69,7 @@ function ChatPage() {
         );
       },
     });
-    console.log("websocket 확인");
+    console.log('websocket 확인');
     client.activate();
     setStompClient(client);
 
@@ -100,7 +100,7 @@ function ChatPage() {
       <Header value='모임 통장 채팅' />
 
       <div className='messageWrapper'>
-        {messages.map((msg) => {
+        {messages.map((msg, index) => {
           const user = moaclub.memberList.find(
             (member) => member.userIdx === msg.from
           );
@@ -108,16 +108,14 @@ function ChatPage() {
           if (msg.from === writer) {
             // 작성자 본인 메시지
             return (
-              <div className='message'>
-                <div className='message1' key={msg.chatMessageId}>
-                  {msg.content}
-                </div>
+              <div className='message' key={index}>
+                <div className='message1'>{msg.content}</div>
               </div>
             );
           } else {
             // 상대방 메시지
             return (
-              <div className='message'>
+              <div className='message' key={index}>
                 {user && (
                   <div className='userInfo'>
                     <img
