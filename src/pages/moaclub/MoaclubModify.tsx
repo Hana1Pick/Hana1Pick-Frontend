@@ -7,6 +7,7 @@ import CommonBtn from '../../components/button/CommonBtn';
 import { MoaclubInfo } from '../../type/commonType';
 import axios from 'axios';
 import CommonModal3 from '../../components/modal/CommonModal3';
+import { useTranslation } from 'react-i18next';
 
 function MoaclubModify() {
   const navigate = useNavigate();
@@ -21,7 +22,13 @@ function MoaclubModify() {
   const [look2, setLook2] = useState(false);
   const [look3, setLook3] = useState(false);
   const [disabled, setDisabled] = useState(false);
-
+	const { t, i18n } = useTranslation();
+	const [language, setLanguage] = useState(localStorage.getItem('language') || i18n.language);
+	
+	useEffect(() => {
+	  if(language=="KOR") i18n.changeLanguage('ko');
+	  else i18n.changeLanguage('ch');
+	}, [language, i18n]);
   const getMoaclubInfo = async (userIdx: string, accountId: string) => {
     try {
       const response = await axios.post(
@@ -146,40 +153,39 @@ function MoaclubModify() {
 
   return (
     <>
-      <Header value='모아클럽 수정' disabled={disabled} />
+      <Header value={t('modifyMoaclub.header')} disabled={disabled} />
       <div className='content'>
         <div className='moaclubModify'>
-          <label>모아클럽 이름 수정</label>
+          <label>{t('modifyMoaclub.clubName')}</label>
           <input
             type='text'
             value={name}
             onChange={(e) => setName(e.target.value)}
-            defaultValue={moaclub?.name}
+            placeholder={t('modifyMoaclub.clubName')}
           />
 
-          <label className='moaclubModifyElement'>회비 설정</label>
+          <label className='moaclubModifyElement'>{t('modifyMoaclub.feeSetting')}</label>
           <div className='feeSettings'>
-            <span>매월</span>
+            <span>{t('modifyMoaclub.monthly')}</span>
             <select value={selectedDate} onChange={handleSelectChange}>
               {[...Array(31)].map((_, index) => (
                 <option key={index + 1} value={index + 1}>
-                  {index + 1}일
+                  {index + 1}{t('modifyMoaclub.day')}
                 </option>
               ))}
             </select>
-            <span>일</span>
             <input
               type='text'
               value={clubFee}
               onChange={(e) => setClubFee(e.target.value)}
-              defaultValue={moaclub?.clubFee}
+              placeholder={t('modifyMoaclub.clubFee')}
             />
             <span>{currencyValue}</span>
           </div>
 
-          <label className='moaclubModifyElement'>관리자 변경</label>
+          <label className='moaclubModifyElement'>{t('modifyMoaclub.managerChange')}</label>
           <select className='managerSelect' onChange={handleSelectManager}>
-            <option selected disabled>
+            <option disabled selected>
               {manager?.userName}
             </option>
             {moaclub?.memberList
@@ -190,21 +196,16 @@ function MoaclubModify() {
                 </option>
               ))}
           </select>
-          <div className='moaWithdrawInfoTxt'>
-            * 이용안내 <br />
-            모아클럽 멤버 전원의 동의가 있는 경우
-            <br />
-            선택한 멤버로 관리자 변경이 이루어집니다.
-          </div>
+          <div className='moaWithdrawInfoTxt' dangerouslySetInnerHTML={{ __html: t('modifyMoaclub.information') }} />
         </div>
       </div>
 
       <div className='buttonContainer'>
-        <CommonBtn type='pink' value='완료' onClick={next} disabled={false} />
+        <CommonBtn type='pink' value={t('modifyMoaclub.completion')} onClick={next} disabled={false} />
       </div>
 
       <CommonModal3
-        msg={`이미 요청이 존재합니다.`}
+        msg={t('commonModal.existingRequest')}
         show={look}
         onConfirm={() => {
           setLook(false);
@@ -212,18 +213,18 @@ function MoaclubModify() {
       />
 
       <CommonModal3
-        msg={`수정되었습니다.`}
+        msg={t('commonModal.updated')}
         show={look2}
         onConfirm={() => {
-          window.location.reload();
+          window.location.reload(); // Adjust as per your application's navigation or state management
         }}
       />
 
       <CommonModal3
-        msg={`관리자 변경이 요청되었습니다.`}
+        msg={t('commonModal.managerChangeRequest')}
         show={look3}
         onConfirm={() => {
-          setLook(false);
+          setLook3(false);
         }}
       />
     </>

@@ -7,6 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CommonModal3 from '../../components/modal/CommonModal3';
+import { useTranslation } from 'react-i18next';
 
 interface MoaclubInfo {
   managerName: string;
@@ -30,6 +31,13 @@ const getMoaclubInfo = async (accountId: string) => {
 };
 
 function MoaclubJoin() {
+  const { t, i18n } = useTranslation();
+	const [language, setLanguage] = useState(localStorage.getItem('language') || i18n.language);
+	
+	useEffect(() => {
+	  if(language=="KOR") i18n.changeLanguage('ko');
+	  else i18n.changeLanguage('ch');
+	}, [language, i18n]);
   const navigate = useNavigate();
 
   const { accountId } = useParams();
@@ -79,19 +87,19 @@ function MoaclubJoin() {
 
   return (
     <>
-      <Header value='모아클럽 초대' disabled={isDisabled} />
+      <Header value={t('header.invitation')} disabled={isDisabled} />
       <div className='content'>
-        <img className='joinGif' src={joinGif} alt='모아클럽 가입 이미지' />
+        <img className='joinGif' src={joinGif} alt={t('content.inviteMessage')} />
 
         <h2 className='inviteClubNameTxt1'>{moaclub?.moaclubName}</h2>
-        <h2 className='inviteClubNameTxt2'>모임에 초대받았어요</h2>
+        <h2 className='inviteClubNameTxt2'>{t('content.inviteMessage')}</h2>
         <table className='completeInfo'>
           <tr>
-            <th>초대자</th>
+            <th>{t('table.inviter')}</th>
             <td colSpan={2}>{moaclub?.managerName}</td>
           </tr>
           <tr>
-            <th>모임이름</th>
+            <th>{t('table.clubName')}</th>
             <td colSpan={2}>{moaclub?.moaclubName}</td>
           </tr>
         </table>
@@ -100,14 +108,14 @@ function MoaclubJoin() {
       <div className='buttonContainer'>
         <CommonBtn
           type='pink'
-          value='참여하기'
+          value={t('button.join')}
           onClick={next}
           disabled={false}
         />
       </div>
 
       <CommonModal3
-        msg={`이미 가입된 클럽입니다.`}
+        msg={t('modal.alreadyJoined')}
         show={look}
         onConfirm={() => {
           navigate(`/moaclub/main/${accountId}`);
@@ -116,5 +124,6 @@ function MoaclubJoin() {
     </>
   );
 }
+
 
 export default MoaclubJoin;

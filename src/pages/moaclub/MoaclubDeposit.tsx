@@ -336,7 +336,7 @@ function MoaclubDeposit() {
 					type='pink'
 					value='다음'
 					onClick={nextStage}
-					disabled={!exchangeInfo}
+					disabled={!selectedAccount}
 				/>
 			</div>
 			<div>

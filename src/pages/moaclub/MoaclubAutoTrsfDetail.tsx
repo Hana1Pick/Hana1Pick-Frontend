@@ -8,6 +8,7 @@ import axios from 'axios';
 import { MoaAutoTrsf } from '../../type/commonType';
 import CommonBtn from '../../components/button/CommonBtn';
 import CommonModal3 from '../../components/modal/CommonModal3';
+import { useTranslation } from 'react-i18next';
 
 function MoaclubAutoTrsfDetail() {
   const navigate = useNavigate();
@@ -141,70 +142,77 @@ function MoaclubAutoTrsfDetail() {
     setIsDisabled(false);
   };
 
+  const { t, i18n } = useTranslation();
+	const [language, setLanguage] = useState(localStorage.getItem('language') || i18n.language);
+  
+	useEffect(() => {
+    if(language=="KOR") i18n.changeLanguage('ko');
+	  else i18n.changeLanguage('ch');
+	}, [language, i18n]);
   return (
     <>
       <div className='celub-withdraw-overlay' id='celub-withdraw-overlay'></div>
-      <Header value='자동이체' disabled={isDisabled} />
+      <Header value={t('autoTransfer')} disabled={isDisabled} />
       <div className='content'>
         <div className='moaAutoTrsfDetail'>
-          <div className='moaAutoTrsfDetailTxt'>{moaclubName} 자동이체</div>
+          <div className='moaAutoTrsfDetailTxt'>{moaclubName} {t('autoTransfer')}</div>
           <table>
             <tbody className='moaAutoTrsfDetailTable'>
               <tr>
-                <th>은행명</th>
-                <td>하나원픽</td>
+                <th>{t('bankName')}</th>
+                <td>{t('hanaOnepick')}</td>
               </tr>
               <tr>
-                <th>입금계좌정보</th>
+                <th>{t('depositAccountInfo')}</th>
                 <td>
                   {autoTrsf?.inAccId} <br />
-                  하나원픽 모아클럽
+                  {t('hanaOnepick')} {moaclubName}
                 </td>
               </tr>
               <tr>
-                <th>출금계좌정보</th>
+                <th>{t('withdrawalAccountInfo')}</th>
                 <td>
                   {autoTrsf?.outAccId} <br />
-                  하나원픽 입출금 통장
+                  {t('hanaOnepick')} {t('withdrawalAccount')}
                 </td>
               </tr>
               <tr>
-                <th>예금주</th>
+                <th>{t('accountHolder')}</th>
                 <td>{userName}</td>
               </tr>
               <tr>
-                <th>청구구분</th>
-                <td>즉시출금</td>
+                <th>{t('paymentType')}</th>
+                <td>{t('immediateWithdrawal')}</td>
               </tr>
               <tr>
-                <th>적금가입통화</th>
+                <th>{t('savingsCurrency')}</th>
                 <td>{autoTrsf?.currency}</td>
               </tr>
               <tr>
-                <th>이체기준통화</th>
+                <th>{t('transferBaseCurrency')}</th>
                 <td>{autoTrsf?.currency === 'KRW' ? '원화' : '외화'}</td>
               </tr>
               <tr>
-                <th>이체금액</th>
+                <th>{t('transferAmount')}</th>
                 <td>{formatCurrency(autoTrsf?.amount!)}</td>
               </tr>
               <tr>
-                <th>이체일</th>
+                <th>{t('transferDate')}</th>
                 <td>매월 / {autoTrsf?.atDate}일</td>
               </tr>
               <tr>
-                <th>납부자번호</th>
+                <th>{t('payerNumber')}</th>
                 <td>{userIdx.split('-').pop()}</td>
               </tr>
               <tr>
-                <th>자동이체신청일</th>
+                <th>{t('autoTransferRegDate')}</th>
                 <td>{autoTrsf?.createDate}</td>
               </tr>
             </tbody>
           </table>
           <div className='moaAutoTrsfDelete'>
             <div className='moaAutoTrsfDeleteTxt' onClick={nextStage}>
-              자동이체 해지
+              {t('autoTransferCancel')}
             </div>
           </div>
         </div>
@@ -221,21 +229,20 @@ function MoaclubAutoTrsfDetail() {
             />
           </div>
           <div>
-            <div>아래 내용의 자동이체를</div>
-            <div>&nbsp;해지하시겠습니까?</div>
+            <div>{t('cancelAutoTransferConfirmation')}</div>
             <div className='moaAutoTrsfDetailPopUp'>
               <table className='moaAutoTrsfDetailPopUpTable'>
                 <tbody>
                   <tr>
-                    <th>은행명</th>
-                    <td>하나원픽</td>
+                    <th>{t('bankName')}</th>
+                    <td>{t('hanaOnepick')}</td>
                   </tr>
                   <tr>
-                    <th>출금계좌</th>
+                    <th>{t('withdrawalAccount')}</th>
                     <td>{autoTrsf?.outAccId}</td>
                   </tr>
                   <tr>
-                    <th>이체정보</th>
+                    <th>{t('transferInfo')}</th>
                     <td>
                       매월 {autoTrsf?.atDate}일{' '}
                       {formatCurrency(autoTrsf?.amount!)}
@@ -248,7 +255,7 @@ function MoaclubAutoTrsfDetail() {
           <div className='moaclub-box5'>
             <CommonBtn
               type='pink'
-              value='해지하기'
+              value={t('cancel')}
               onClick={deleteAutoTrsf}
               disabled={false}
             />
@@ -256,7 +263,7 @@ function MoaclubAutoTrsfDetail() {
         </div>
       </div>
       <CommonModal3
-        msg={`자동이체가 해지되었습니다.`}
+        msg={t('canceledAutoTransferMessage')}
         show={look}
         onConfirm={() => {
           navigate(`/moaclub/autotrsf/${accountId}`);

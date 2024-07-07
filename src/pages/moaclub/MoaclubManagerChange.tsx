@@ -8,6 +8,7 @@ import CommonBtn from '../../components/button/CommonBtn';
 import { MoaclubInfo } from '../../type/commonType';
 import axios from 'axios';
 import CommonModal3 from '../../components/modal/CommonModal3';
+import { useTranslation } from 'react-i18next';
 
 function MoaclubManagerChange() {
   const navigate = useNavigate();
@@ -19,7 +20,13 @@ function MoaclubManagerChange() {
   const [look2, setLook2] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [isBtnDisabled, setIsBtnDisabled] = useState(true);
-
+  const { t, i18n } = useTranslation();
+	const [language, setLanguage] = useState(localStorage.getItem('language') || i18n.language);
+	
+	useEffect(() => {
+	  if(language=="KOR") i18n.changeLanguage('ko');
+	  else i18n.changeLanguage('ch');
+	}, [language, i18n]);
   const getMoaclubInfo = async (userIdx: string, accountId: string) => {
     try {
       const response = await axios.post(
@@ -96,22 +103,20 @@ function MoaclubManagerChange() {
 
   return (
     <>
-      <Header value='모아클럽 관리자 변경' disabled={disabled} />
+      <Header value={t('moaclubManagerChange')} disabled={disabled} />
       <div className='content'>
         <div className='moaclubModify'>
-          <div className='moaclubManagerChangeTxt'>누구로 변경할까요?</div>
+          <div className='moaclubManagerChangeTxt'>{t('changeManagerPrompt')}</div>
           <div className='moaHanaDepositInfoBox'>
-            <img src={MoaClubCircleLogo} className='moaAccCircle' />
+            <img src={MoaClubCircleLogo} className='moaAccCircle' alt='Moa Club Logo' />
             <div className='moaDepositDetailBox'>
-              <div>모아클럽</div>
+              <div>{t('moaclubName')}</div>
               <div>{moaclub?.accountId}</div>
             </div>
           </div>
-          <label className='moaclubModifyElement'>관리자 변경</label>
+          <label className='moaclubModifyElement'>{t('managerChange')}</label>
           <select className='managerSelect' onChange={handleSelectManager}>
-            <option selected disabled>
-              {manager?.userName}
-            </option>
+            <option disabled>{manager?.userName}</option>
             {moaclub?.memberList
               .filter((member) => member.role !== 'MANAGER')
               .map((member) => (
@@ -121,10 +126,7 @@ function MoaclubManagerChange() {
               ))}
           </select>
           <div className='moaHanaWithdrawInfoTxt'>
-            * 이용안내 <br />
-            모아클럽 멤버 전원의 동의가 있는 경우
-            <br />
-            선택한 멤버로 관리자 변경이 이루어집니다.
+            {t('changeManagerInfo')}
           </div>
         </div>
       </div>
@@ -132,14 +134,14 @@ function MoaclubManagerChange() {
       <div className='buttonContainer'>
         <CommonBtn
           type='pink'
-          value='완료'
+          value={t('complete')}
           onClick={next}
           disabled={isBtnDisabled}
         />
       </div>
 
       <CommonModal3
-        msg={`이미 요청이 존재합니다.`}
+        msg={t('requestExists')}
         show={look}
         onConfirm={() => {
           navigate(`/moaclub/vote/manager/${accountId}`);
@@ -147,7 +149,7 @@ function MoaclubManagerChange() {
       />
 
       <CommonModal3
-        msg={`관리자 변경이 요청되었습니다.`}
+        msg={t('managerChangeRequested')}
         show={look2}
         onConfirm={() => {
           navigate(`/moaclub/vote/manager/${accountId}`);

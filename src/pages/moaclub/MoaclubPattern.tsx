@@ -1,10 +1,11 @@
 import axios from 'axios';
-import React, { useRef, useState, useContext } from 'react';
+import React, { useRef, useState, useContext, useEffect } from 'react';
 import PattrenBg from '../../assets/images/common/PatternBg.png';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../layouts/MoaclubHeader2';
 import { MoaclubContext } from '../../contexts/MoaclubContextProvider';
 import '../../common/styles/scss/CommonStyle.scss';
+import { useTranslation } from 'react-i18next';
 
 interface PatternProps {
 	nextUrl: string;
@@ -194,18 +195,24 @@ function MoaclubPattern() {
 		}
 		return lines;
 	};
-
+	const { t, i18n } = useTranslation();
+	const [language, setLanguage] = useState(localStorage.getItem('language') || i18n.language);
+	
+	useEffect(() => {
+	  if(language=="KOR") i18n.changeLanguage('ko');
+	  else i18n.changeLanguage('ch');
+	}, [language, i18n]);
 	return (
 		<>
-			<div className='background-container'>
-				<Header value='비밀번호 입력' disabled={false} />
-				<img src={PattrenBg} alt='Pattern Background' className='pattern-bg' />
-				<div className='overlay-text'>
-					비밀번호를 입력하세요.
-					<div>회원 인증 패턴을 그려주세요.</div>
-					{errorMsg && <div className='errorMsg'>{errorMsg}</div>}
-				</div>
-			</div>
+		<div className='background-container'>
+		<Header value={t('passwordInput.header')} disabled={false} />
+		<img src={PattrenBg} alt='Pattern Background' className='pattern-bg' />
+		<div className='overlay-text'>
+			{t('passwordInput.enterPassword')}
+			<div>{t('passwordInput.drawPattern')}</div>
+			{errorMsg && <div className='errorMsg'>{t('passwordInput.errorMsg')}</div>}
+		</div>
+		</div>
 			<div
 				className='pattern-container'
 				onMouseMove={handleMouseMove}
