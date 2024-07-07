@@ -25,11 +25,13 @@ const getAccountListByType = async (userIdx: string, type: string) => {
 
 function MoaclubAutoTrsfRegister() {
 	const { t, i18n } = useTranslation();
-	const [language, setLanguage] = useState(localStorage.getItem('language') || i18n.language);
-	
+	const [language, setLanguage] = useState(
+		localStorage.getItem('language') || i18n.language
+	);
+
 	useEffect(() => {
-	  if(language=="KOR") i18n.changeLanguage('ko');
-	  else i18n.changeLanguage('ch');
+		if (language == 'KOR') i18n.changeLanguage('ko');
+		else i18n.changeLanguage('ch');
 	}, [language, i18n]);
 	const navigate = useNavigate();
 	const [account, setAccount] = useState<Account | null>(null);
@@ -146,99 +148,102 @@ function MoaclubAutoTrsfRegister() {
 
 	return (
 		<>
-		  <div className='celub-withdraw-overlay' id='celub-withdraw-overlay'></div>
-		  <Header value={t('autoTransferSetup.header')} disabled={isDisabled} />
-		  <div className='content'>
-			<div>
-			  <div className='withdrawMsg'>
+			<div className='celub-withdraw-overlay' id='celub-withdraw-overlay'></div>
+			<Header value={t('autoTransferSetup.header')} disabled={isDisabled} />
+			<div className='content'>
 				<div>
-				  <h3 className='narrowLine'>
-					{t('autoTransferSetup.withdrawMsg1')}
-					<br />
-					{t('autoTransferSetup.withdrawMsg2')}
-				  </h3>
+					<div className='withdrawMsg'>
+						<div>
+							<h3 className='narrowLine'>
+								{t('autoTransferSetup.withdrawMsg1')}
+								<br />
+								{t('autoTransferSetup.withdrawMsg2')}
+							</h3>
+						</div>
+						<div>
+							<h4>{t('autoTransferSetup.feeRuleApplied')}</h4>
+						</div>
+					</div>
+				</div>
+				<div className='withdraw-box1'>
+					<h4>{t('autoTransferSetup.withdrawAccount')}</h4>
+					<div className='withdraw-box2'>
+						<label htmlFor='lang' style={{ fontSize: '12px' }}>
+							{t('autoTransferSetup.bankName')}
+						</label>{' '}
+						&nbsp;
+						<select
+							name='languages'
+							id='lang'
+							style={{ border: '0', width: '70%', backgroundColor: '#F8F8F9' }}
+							onChange={handleSelectChange}
+						>
+							<option value='' disabled selected>
+								{t('autoTransferSetup.selectAccount')}
+							</option>
+							{account && (
+								<option value={account.accountId}>
+									{account.name}의 입출금 계좌 ({getAccCode(account.accountId)})
+								</option>
+							)}
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<div className='buttonContainer'>
+				<CommonBtn
+					type='pink'
+					value={t('autoTransferSetup.registerBtn')}
+					onClick={nextStage}
+					disabled={!selectedAccount}
+				/>
+			</div>
+
+			<div className='withdraw-box7' id='withdraw-box4'>
+				<div className='moaclub-box6'>
+					<img
+						className='deleteicon'
+						src={deleteicon}
+						onClick={beforeStage}
+						alt='deleteIcon'
+					/>
 				</div>
 				<div>
-				  <h4>{t('autoTransferSetup.feeRuleApplied')}</h4>
+					<div>{t('autoTransferSetup.transferInfo')}</div>
+					<div>{t('autoTransferSetup.registerBtn')}</div>
+					<div className='moaAutoTrsfDetailPopUp'>
+						<table className='moaAutoTrsfDetailPopUpTable'>
+							<tbody>
+								<tr>
+									<th>{t('autoTransferSetup.bankName')}</th>
+									<td>하나원픽</td>
+								</tr>
+								<tr>
+									<th>{t('autoTransferSetup.withdrawAccount')}</th>
+									<td>{selectedAccount}</td>
+								</tr>
+								<tr>
+									<th>{t('autoTransferSetup.transferInfo')}</th>
+									<td>
+										매월 {moaclub?.atDate}일 {formatCurrency(moaclub?.clubFee!)}
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
-			  </div>
+				<div className='moaclub-box5'>
+					<CommonBtn
+						type='pink'
+						value={t('autoTransferSetup.registerBtn')}
+						onClick={next}
+						disabled={false}
+					/>
+				</div>
 			</div>
-			<div className='withdraw-box1'>
-			  <h4>{t('autoTransferSetup.withdrawAccount')}</h4>
-			  <div className='withdraw-box2'>
-				<label htmlFor='lang' style={{ fontSize: '12px' }}>
-				  {t('autoTransferSetup.bankName')}
-				</label>{' '}
-				&nbsp;
-				<select
-				  name='languages'
-				  id='lang'
-				  style={{ border: '0', width: '70%', backgroundColor: '#F8F8F9' }}
-				  onChange={handleSelectChange}
-				>
-				  <option value='' disabled selected>
-					{t('autoTransferSetup.selectAccount')}
-				  </option>
-				  {/* Replace with actual logic to map account options */}
-				</select>
-			  </div>
-			</div>
-		  </div>
-	
-		  <div className='buttonContainer'>
-			<CommonBtn
-			  type='pink'
-			  value={t('autoTransferSetup.registerBtn')}
-			  onClick={nextStage}
-			  disabled={!selectedAccount}
-			/>
-		  </div>
-	
-		  <div className='withdraw-box7' id='withdraw-box4'>
-			<div className='moaclub-box6'>
-			  <img
-				className='deleteicon'
-				src={deleteicon}
-				onClick={beforeStage}
-				alt='deleteIcon'
-			  />
-			</div>
-			<div>
-			  <div>{t('autoTransferSetup.transferInfo')}</div>
-			  <div>{t('autoTransferSetup.registerBtn')}</div>
-			  <div className='moaAutoTrsfDetailPopUp'>
-				<table className='moaAutoTrsfDetailPopUpTable'>
-				  <tbody>
-					<tr>
-					  <th>{t('autoTransferSetup.bankName')}</th>
-					  <td>하나원픽</td>
-					</tr>
-					<tr>
-					  <th>{t('autoTransferSetup.withdrawAccount')}</th>
-					  <td>{selectedAccount}</td>
-					</tr>
-					<tr>
-					  <th>{t('autoTransferSetup.transferInfo')}</th>
-					  <td>
-						매월 {moaclub?.atDate}일{' '}
-						{formatCurrency(moaclub?.clubFee!)}
-					  </td>
-					</tr>
-				  </tbody>
-				</table>
-			  </div>
-			</div>
-			<div className='moaclub-box5'>
-			  <CommonBtn
-				type='pink'
-				value={t('autoTransferSetup.registerBtn')}
-				onClick={next}
-				disabled={false}
-			  />
-			</div>
-		  </div>
 		</>
-	  );
-	}
+	);
+}
 
 export default MoaclubAutoTrsfRegister;
