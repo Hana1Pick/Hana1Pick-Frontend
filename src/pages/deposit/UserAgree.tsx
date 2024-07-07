@@ -6,6 +6,7 @@ import "./DepositStyle.scss";
 import CommonBtn from "../../components/button/CommonBtn";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import MoaClubHeader from "../../layouts/MoaclubHeader1";
 
 function UserAgree() {
   interface CheckboxState {
@@ -17,7 +18,7 @@ function UserAgree() {
   const location = useLocation();
   const formData = location.state.formData;
 
-  const url = `http://${process.env.REACT_APP_BESERVERURI}/api/deposit`;
+  const url = `${process.env.REACT_APP_BESERVERURI}/api/deposit`;
 
   const [isChecked, setIsChecked] = useState<CheckboxState>({
     agreeCheckbox1: false,
@@ -73,8 +74,8 @@ function UserAgree() {
 
   return (
     <>
-      <Header value="약관 동의" />
-      <div className="deposit-container">
+      <MoaClubHeader value="약관 동의" disabled={false} />
+      <div className="deposit-container" style={{ marginTop: "3rem" }}>
         <div className="useragree_text">
           상품 개설을 위해 <br />
           약관 및 상품설명서를 꼭 확인해 주세요.
@@ -191,7 +192,9 @@ function UserAgree() {
           계좌개설 이후에는 [계좌관리] 메뉴에서 확인하실 수 있습니다.
         </div>
         <div className="deposit-input-container">
-          <CommonBtn type="black" value="확인" onClick={handleNext} />
+          <button id="deposit-basicBtn" onClick={handleNext}>
+            확인
+          </button>
         </div>
       </div>
     </>

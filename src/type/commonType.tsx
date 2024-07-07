@@ -26,6 +26,17 @@ export type CelubAccount = {
   imgSrc: string;
   ruleMoney: number;
   totalBalance: number;
+  createDate: string;
+};
+export type CelubAccountInfo = {
+  accountId: string;
+  balance: number;
+  name: string;
+  imgSrc: string;
+  outAccId: string;
+  celebrityIdx: number;
+  duration: number;
+  createDate: string;
 };
 
 export type MoaClubHeaderData = {
@@ -33,6 +44,8 @@ export type MoaClubHeaderData = {
   disabled: boolean;
   onClick?: () => void;
 };
+
+// Deposit
 
 export type DomesticAuthProps = {
   rtcRoomNum: string;
@@ -57,6 +70,7 @@ export type OCRData = {
     certification: string;
   };
 };
+
 export type CelubListType = {
   idx: number;
   name: string;
@@ -81,6 +95,7 @@ export type MoaclubInfo = {
   atDate: number;
   currency: string;
   createDate: string;
+  chatRoomId: number;
   memberList: memberList[];
 };
 
@@ -139,10 +154,61 @@ export interface MoaAutoTrsf {
   currency: string;
   createDate: string;
 }
+
+// NotificationType
+export interface NotificationType {
+  idx: number;
+  content: string;
+  url: string;
+  createdAt: string;
+  type: string;
+}
+
 // ModalType
 export type CommonModalType = {
   msg: string;
   show: boolean;
   onCancle: () => void;
   onConfirm: () => void;
+};
+
+export type CommonModalType2 = {
+  msg: string;
+  show: boolean;
+  onConfirm: () => void;
+};
+export type CommonModalType1 = {
+  msg: string;
+  show: boolean;
+  onConfirm: () => void;
+};
+
+// 환율 데이터 타입 정의
+export interface ExchangeRates {
+  USD: number;
+  JPY: number;
+  CNY: number;
+}
+//patternLineType
+export type Line = {
+  startX: number;
+  startY: number;
+  endX: number;
+  endY: number;
+};
+
+// deposit detail type
+export type DepositInfo = {
+  name: string;
+  accountId: string;
+  balance: number;
+  createDate: string;
+};
+
+export type DepsoitAccHis = {
+  transDate: string;
+  transType: string;
+  target: string;
+  transAmount: number;
+  balance: number;
 };

@@ -3,23 +3,16 @@ import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import "./DepositStyle.scss"; // 스타일 시트 추가
 import Header from "../../components/Header";
+import OcrCamera1 from "../../assets/images/deposit/OcrCamera1.png";
+import OcrCamera2 from "../../assets/images/deposit/OcrCamera2.png";
+import OcrCamera3 from "../../assets/images/deposit/OcrCamera3.png";
+import MoaClubHeader from "../../layouts/MoaclubHeader1";
 
 function OCRCamera() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // 사용자 데이터 예시
-  // const userData = {
-  //   name: "PIAO XUANOING",
-  //   email: "tlqlapdls@gmail.com",
-  //   address: "02841 서울 성북구 안암로 145 (안암동5가, 고려대학교안암캠퍼스)",
-  //   birth: "1982-07-08",
-  //   phone: "01022234523",
-  //   nation: "CN",
-  //   password: "",
-  // };
-
-  const url = `http://${process.env.REACT_APP_BESERVERURI}/api/user/ocr`;
+  const url = `${process.env.REACT_APP_BESERVERURI}/api/user/ocr`;
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -86,7 +79,7 @@ function OCRCamera() {
                 videoRef.current.srcObject = null;
               }
 
-              const key = response.data.data.key;
+              const key = localStorage.getItem("userIdx");
 
               // ocr확인 페이지로 이동하면서 쿼리 파라미터 유지
               if (key) {
@@ -108,18 +101,48 @@ function OCRCamera() {
 
   return (
     <div>
-      <Header value="외국인등록증 인증" />
-      <div className="camera-container">
-        <div className="camera-preview">
-          <video ref={videoRef} autoPlay playsInline></video>
-          <div className="deposit-overlay"></div>
+      <MoaClubHeader value="외국인등록증 인증" disabled={false} />
+      <div className="deposit-container" style={{ marginTop: "2rem" }}>
+        <div className="camera-container">
+          <div className="camera-preview">
+            <video ref={videoRef} autoPlay playsInline></video>
+            <div className="deposit-overlay"></div>
+          </div>
+          <div className="id-card-guide">
+            <div className="guide-container">
+              <div className="guide-section">
+                <img src={OcrCamera1} alt="guide1" />
+                <p>
+                  화면에 <br /> 맞춰주세요.
+                </p>
+              </div>
+              <div className="guide-section">
+                <img src={OcrCamera2} alt="guide2" />
+                <p>
+                  어두운 <br /> 배경에서 <br /> 촬영하세요.
+                </p>
+              </div>
+              <div className="guide-section">
+                <img src={OcrCamera3} alt="guide3" />
+                <p>
+                  빛 반사에 <br />
+                  주의하세요.
+                </p>
+              </div>
+            </div>
+            <div className="guide-text">
+              <p>· 복사본이나 사진은 사용할 수 없습니다.</p>
+              <p className="highlight">· 외국인등록증 원본으로 촬영하세요.</p>
+              <p>
+                · 정보 확인이 어렵거나 훼손된 외국인등록증은 거래가 거절 될 수
+                있습니다.
+              </p>
+            </div>
+          </div>
         </div>
-        <p className="ocr-text-container">
-          영역 안에 외국인등록증이 꽉 차도록 배치 후 <br />
-          하단 버튼을 누르면 촬영됩니다.
-        </p>
-        <button className="capture-button" onClick={captureAndUpload}></button>
-        <div className="ocr-text">사진촬영</div>
+        <button id="deposit-basicBtn-fixed" onClick={captureAndUpload}>
+          사진촬영
+        </button>
         <canvas ref={canvasRef} style={{ display: "none" }}></canvas>
       </div>
     </div>

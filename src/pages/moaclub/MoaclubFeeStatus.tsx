@@ -34,7 +34,7 @@ function MoaclubFeeStatus() {
 	const getMoaclubInfo = async (userIdx: string, accountId: string) => {
 		try {
 			const response = await axios.post(
-				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`,
+				`${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`,
 				{
 					userIdx,
 					accountId,
@@ -51,7 +51,7 @@ function MoaclubFeeStatus() {
 	const getMoaclubFeeStatus = async (accountId: string, checkDate: string) => {
 		try {
 			const response = await axios.post(
-				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/fee`,
+				`${process.env.REACT_APP_BESERVERURI}/api/moaclub/fee`,
 				{
 					accountId,
 					checkDate,
@@ -146,7 +146,18 @@ function MoaclubFeeStatus() {
 		}
 	};
 
-	const currencyValue = getCurrencySymbol(moaclub?.currency!);
+	const formatCurrency = (amount: number) => {
+		if (amount === undefined) {
+			return '';
+		}
+		const currencySymbol = getCurrencySymbol(moaclub?.currency!);
+
+		if (moaclub?.currency === 'KRW') {
+			return `${amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}${currencySymbol}`;
+		} else {
+			return `${currencySymbol}${amount.toFixed(2)}`;
+		}
+	};
 
 	const handleSelectChange = async (
 		event: React.ChangeEvent<HTMLSelectElement>
@@ -174,11 +185,10 @@ function MoaclubFeeStatus() {
 					))}
 				</select>
 				<div className='clubFeeBalance'>
-					{moaclub?.balance} {currencyValue}
+					{formatCurrency(moaclub?.balance!)}
 				</div>
 				<div className='clubFeeRule'>
-					매월 {moaclub?.atDate}일, {moaclub?.clubFee}
-					{currencyValue}씩
+					매월 {moaclub?.atDate}일, {formatCurrency(moaclub?.clubFee!)}씩
 				</div>
 
 				<div className='moaClubMainBtnContainer'>
@@ -219,7 +229,7 @@ function MoaclubFeeStatus() {
 								<td className='moaclubFeeAmount'>
 									{member.amount === 0
 										? '-'
-										: `${member.amount}${currencyValue}`}
+										: `${formatCurrency(member.amount)}`}
 								</td>
 							</tr>
 						))}
@@ -247,7 +257,7 @@ function MoaclubFeeStatus() {
 										<td className='moaclubFeeAmount'>
 											{member.amount === 0
 												? '-'
-												: `${member.amount}${currencyValue}`}
+												: `${formatCurrency(member.amount)}`}
 										</td>
 									</tr>
 								))}
@@ -274,7 +284,7 @@ function MoaclubFeeStatus() {
 										<td className='moaclubFeeAmount'>
 											{member.amount === 0
 												? '-'
-												: `${member.amount}${currencyValue}`}
+												: `${formatCurrency(member.amount)}`}
 										</td>
 									</tr>
 								))}

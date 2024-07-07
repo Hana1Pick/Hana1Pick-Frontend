@@ -73,8 +73,8 @@ function CelubPattern() {
       isDrawing.current = false;
       console.log('Selected Pattern:', selectedPoints);
       if (selectedPoints.length < 4) {
-        setErrorMsg('4개 이상의 점을 연결해주세요.')
-
+        setErrorMsg('4개 이상의 점을 연결해주세요.');
+        setSelectedPoints([]);
       } else {
         let password = '';
         for (let i = 0; i < selectedPoints.length; i++) {
@@ -88,7 +88,7 @@ function CelubPattern() {
 
   const navigate = useNavigate();
   const next = (password:string) => {
-    const url = `http://${process.env.REACT_APP_BESERVERURI}/api/celub/accession`;
+    const url = `${process.env.REACT_APP_BESERVERURI}/api/celub/accession`;
 
     const data = {
       userIdx: withdrawInfo.userIdx,
@@ -98,7 +98,7 @@ function CelubPattern() {
       outAccId: withdrawInfo.outAccId,
       celebrityIdx: withdrawInfo.celebrityIdx
     };
-
+   
     axios
       .post(url, data, {
         headers: {
@@ -118,7 +118,7 @@ function CelubPattern() {
   const checkPassword = async (password: string) => {
     try {
         const response = await axios.post(
-            `http://${process.env.REACT_APP_BESERVERURI}/api/user/password-check`,
+            `${process.env.REACT_APP_BESERVERURI}/api/user/password-check`,
             {
               userIdx: withdrawInfo.userIdx,
               password: password,
@@ -179,7 +179,7 @@ function CelubPattern() {
           y1={startY}
           x2={endX}
           y2={endY}
-          stroke='rgb(233,198,229,0.3)'
+          stroke='rgb(0,149,145,0.3)'
           strokeWidth='20'
           strokeLinecap='round'
         />

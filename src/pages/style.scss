@@ -1,18 +1,16 @@
-@import "~swiper/swiper-bundle.css";
-
-
+@import '~swiper/swiper-bundle.css';
 
 .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.5rem 1.5rem;
-    right: 0;
-    position: sticky;
-    top: 0;
-    left: 0;
-    width: 85%;
-    margin: 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.5rem 1.5rem;
+	right: 0;
+	position: sticky;
+	top: 0;
+	left: 0;
+	width: 85%;
+	margin: 0 auto;
 }
 
 .mainPage {
@@ -122,7 +120,7 @@
     .send-button {
         width: 55%;
         height: 2.7rem;
-        background-color: #f19ed3;
+        background-color: #1ea698;
         border: 0;
         border-radius: 0.5rem;
         color: rgb(255, 255, 255);
@@ -172,6 +170,15 @@
         display: flex;
         align-items: center;
         margin-bottom: 2rem;
+        animation: bell 3s infinite;
+   
+    }
+    .promotion:nth-child(1) {
+        animation-delay: 0s;
+    }
+    
+    .promotion:nth-child(2) {
+        animation-delay: 1.5s;
     }
 
     .promotion .promotionDetail {
@@ -183,6 +190,11 @@
         button {
             font-weight: 600;
             background: none;
+            // 사파리 브라우저에서 버튼의 기본 스타일을 제거
+            color: inherit; /* 부모 요소의 색상을 상속받도록 설정 */
+            // color: #000; /* 원하는 색상으로 설정 */
+            border: none; /* 버튼의 기본 테두리를 제거 */
+            text-decoration: none; /* 기본 밑줄 제거 */
         }
     }
 
@@ -218,4 +230,38 @@
         align-items: center;
         margin-bottom: 2rem;
     }
+
+    // Notification
+    .red-dot {
+      background-color: #fc5c50;
+      position: absolute;
+      top: 1.05rem;
+      right: 1.3rem;
+      width: 0.4rem;
+      height: 0.4rem;
+      border-radius: 50%;
+    }
+    @keyframes bell {
+        0%, 50% {
+          transform: rotate(0deg);
+        }
+        5%, 15%, 25%, 35%, 45% {
+          transform: rotate(1deg);
+        }
+        10%, 20%, 30%, 40% {
+          transform: rotate(-1deg);
+        }
+      }
+    
+      @-webkit-keyframes bell {
+        0%, 50% {
+          transform: rotate(0deg);
+        }
+        5%, 15%, 25%, 35%, 45% {
+          transform: rotate(1deg);
+        }
+        10%, 20%, 30%, 40% {
+          transform: rotate(-1deg);
+        }
+      }
 }

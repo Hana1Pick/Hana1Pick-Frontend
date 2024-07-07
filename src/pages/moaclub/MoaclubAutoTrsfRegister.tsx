@@ -10,7 +10,7 @@ import { Account, MoaclubInfo } from '../../type/commonType';
 const getAccountListByType = async (userIdx: string, type: string) => {
 	try {
 		const response = await axios.get(
-			`http://${process.env.REACT_APP_BESERVERURI}/api/user/account-list`,
+			`${process.env.REACT_APP_BESERVERURI}/api/user/account-list`,
 			{
 				params: { userIdx, type },
 			}
@@ -37,7 +37,7 @@ function MoaclubAutoTrsfRegister() {
 	const getMoaClubInfo = async (userIdx: string, accountId: string) => {
 		try {
 			const response = await axios.post(
-				`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`,
+				`${process.env.REACT_APP_BESERVERURI}/api/moaclub/info`,
 				{
 					userIdx,
 					accountId,
@@ -113,15 +113,28 @@ function MoaclubAutoTrsfRegister() {
 			case 'KRW':
 				return '원';
 			case 'CNY':
-				return '위안';
+				return '¥';
 			case 'JPY':
-				return '엔';
+				return '¥';
 			case 'USD':
-				return '달러';
+				return '$';
 		}
 	};
 
 	const currencyValue = getCurrencyValue(moaclub?.currency!);
+
+	const formatCurrency = (amount: number) => {
+		if (amount === undefined) {
+			return '';
+		}
+		const currencySymbol = getCurrencyValue(moaclub?.currency!);
+
+		if (moaclub?.currency === 'KRW') {
+			return `${amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}${currencySymbol}`;
+		} else {
+			return `${currencySymbol}${amount.toFixed(2)}`;
+		}
+	};
 
 	return (
 		<>
@@ -208,8 +221,8 @@ function MoaclubAutoTrsfRegister() {
 									<tr>
 										<th>이체정보</th>
 										<td>
-											매월 {moaclub?.atDate}일 {moaclub?.clubFee}
-											{currencyValue}
+											매월 {moaclub?.atDate}일{' '}
+											{formatCurrency(moaclub?.clubFee!)}
 										</td>
 									</tr>
 								</tbody>

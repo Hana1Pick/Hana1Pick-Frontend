@@ -3,6 +3,7 @@ import PattrenBg from '../../assets/images/common/PatternBg.png';
 import { Await, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../../common/styles/scss/CommonStyle.scss';
+import MoaClubHeader from '../../layouts/MoaclubHeader1';
 
 interface PatternProps {
   nextUrl: string;
@@ -10,7 +11,7 @@ interface PatternProps {
 const Pattern: React.FC<PatternProps> = ({ nextUrl }) => {
   const location = useLocation();
 
-  const url = `http://${process.env.REACT_APP_BESERVERURI}/api/user/update`;
+  const url = `${process.env.REACT_APP_BESERVERURI}/api/user/update`;
 
   const initialFormData = location.state?.formData || {
     name: '',
@@ -162,6 +163,7 @@ const Pattern: React.FC<PatternProps> = ({ nextUrl }) => {
   return (
     <>
       <div className='background-container'>
+        <MoaClubHeader value='패턴 설정' disabled={true} />
         <img src={PattrenBg} alt='Pattern Background' className='pattern-bg' />
         <div className='overlay-text'>
           인증 패턴을 등록합니다.

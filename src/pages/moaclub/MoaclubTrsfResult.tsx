@@ -1,6 +1,6 @@
 import './MoaclubStyle.scss';
 import '../../common/styles/scss/CommonStyle.scss';
-import check from '../../assets/images/common/check.png';
+import check from '../../assets/images/common/check-green.png';
 import { useLocation, useNavigate } from 'react-router-dom';
 import CommonBtn from '../../components/button/CommonBtn';
 
@@ -19,15 +19,26 @@ function MoaclubTrsfResult() {
 			case 'KRW':
 				return '원';
 			case 'CNY':
-				return '위안';
+				return '¥';
 			case 'JPY':
-				return '엔';
+				return '¥';
 			case 'USD':
-				return '달러';
+				return '$';
 		}
 	};
 
-	const currencyValue = getCurrencySymbol(trsfInfo.currency);
+	const formatCurrency = (amount: number) => {
+		if (amount === undefined) {
+			return '';
+		}
+		const currencySymbol = getCurrencySymbol(trsfInfo?.currency!);
+
+		if (trsfInfo?.currency === 'KRW') {
+			return `${amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}${currencySymbol}`;
+		} else {
+			return `${currencySymbol}${amount.toFixed(2)}`;
+		}
+	};
 
 	return (
 		<>
@@ -36,7 +47,7 @@ function MoaclubTrsfResult() {
 				<div className='moaTrsfResultTxt1'>"{trsfInfo.name}" 모아클럽에</div>
 				<div className='moaTrsfResultTxt2'>
 					<span className='moaTrsfResultMint'>
-						{trsfInfo.trsfAmount}&nbsp;{currencyValue}
+						{formatCurrency(trsfInfo.trsfAmount)}
 					</span>{' '}
 					입금했어요.
 				</div>

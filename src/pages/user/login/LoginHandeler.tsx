@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect } from 'react';
+import SplashScreen from '../../../components/splash/SplashScreen';
 
 const LoginHandler = (props: any) => {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ const LoginHandler = (props: any) => {
   }, []);
 
   const getUserInfo = (accessToken: string) => {
-    const url2 = `http://${process.env.REACT_APP_BESERVERURI}/api/user/login`;
+    const url2 = `${process.env.REACT_APP_BESERVERURI}/api/user/login`;
     const data = {
       accessToken: accessToken,
     };
@@ -36,15 +37,16 @@ const LoginHandler = (props: any) => {
       .get(url2, { params: data })
       .then((response) => {
         console.log(response);
-        const { userIdx, name, email, profile } = response.data.data;
+        const { userIdx, name, nation, email, profile } = response.data.data;
         localStorage.setItem('userIdx', userIdx);
         localStorage.setItem('name', name);
+        localStorage.setItem('nation', nation);
         localStorage.setItem('email', email);
         localStorage.setItem('profile', profile); // 프로필 사진 URL 저장
 
         // 회원가입 일때는 계좌 생성 페이지로 이동
         if (name) {
-          navigate('/');
+          navigate('/main');
         } else {
           navigate('/deposit');
         }
@@ -54,15 +56,7 @@ const LoginHandler = (props: any) => {
       });
   };
 
-  return (
-    <div className='LoginHandler'>
-      <div className='notice'>
-        <p>로그인 중입니다.</p>
-        <p>잠시만 기다려주세요...</p>
-        <div className='spinner'></div>
-      </div>
-    </div>
-  );
+  return <SplashScreen />;
 };
 
 export default LoginHandler;

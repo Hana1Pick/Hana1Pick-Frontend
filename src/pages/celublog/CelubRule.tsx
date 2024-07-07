@@ -1,20 +1,34 @@
-import React, { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import CelubHeader1 from "../../layouts/CelubHeader1";
 import { CelubRuleType } from "../../type/commonType";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
+import "./CelublogStyle.scss";
 import qs from 'qs';
+import CommonModal1 from "../../components/button/CommonModal1";
 
 function CelubRule() {
     const location = useLocation();
-    const detailList = location.state;
+    const {accountId, ruleList} = location.state;
+    console.log(accountId);
     const navigate = useNavigate();
-    console.log("룰 규칙 정하는 곳", detailList);
-    console.log(detailList.accountInfo.accountId);
-    const [rules, setRules] = useState<CelubRuleType[]>([
-        Array.isArray(detailList.ruleInfo) ? detailList.ruleInfo : []
-    ]);
-
+    const [rules, setRules] = useState<CelubRuleType[]>(ruleList ||[]);
+    const [look, setLook] = useState(false);
+    useEffect(() => {
+        axios.post(`${process.env.REACT_APP_BESERVERURI}/api/celub/list/detail`,
+            qs.stringify({accountId:accountId}))
+            .then((res)=>{
+                console.log(res.data.data);
+                				setRules(
+					res.data.data.ruleInfo.map((rule:any) => ({
+						ruleName: rule.ruleName,
+						ruleMoney: rule.ruleMoney
+					}))
+				)
+            }).catch((error)=>{
+                console.log("실패");
+            });
+    }, []); 
     const addInput = () => {
         if(rules.length>=10){
             alert('규칙은 최대 10개 까지만 생성 가능합니다.');
@@ -35,31 +49,28 @@ function CelubRule() {
             newRules[index].ruleMoney = parseFloat(value);
         }
         setRules(newRules);
+        console.log(rules);
     };
     const addRules=()=>{
         let data = {
-            accountId: detailList.accountInfo.accountId,
+            accountId: accountId,
             ruleList: rules.map(rule => ({
                 ruleName: rule.ruleName,
                 ruleMoney: rule.ruleMoney
             }))
         }
-        axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/rule`,
+        axios.post(`${process.env.REACT_APP_BESERVERURI}/api/celub/rule`,
             data)
             .then((res)=>{
                 console.log("확인하는중"+res.data.data);
-                alert('규칙이 추가되었습니다.');
-                axios.post(`http://${process.env.REACT_APP_BESERVERURI}/api/celub/list/detail`,
-                    qs.stringify({accountId:data.accountId}))
-                    .then((res)=>{
-                        console.log("되는건가?"+res.data.data);
-                        navigate("/celub/detail", {state:res.data.data});
-                    }).catch((error)=>{
-                        alert("실패");
-                    });
+                setLook(true);
+                
             }).catch((error)=>{
-                alert("실패");
+                console.log("실패");
             });
+    }
+    const completeChange = () =>{
+        navigate("/celub/detail",{state:accountId});
     }
 
     return (
@@ -76,7 +87,6 @@ function CelubRule() {
                             규칙은 나중에도 수정할 수 있어요.</p>
                     </div>
                 </div>
-
                 {rules.map((rule, index) => (
                     <div key={index} className="celub-rulemake-box3">
                         <input
@@ -103,6 +113,7 @@ function CelubRule() {
                     <button id="basicBtn1" onClick={addRules}>완료</button>
                 </div>
             </div>
+            <CommonModal1 msg=" 규칙이 변경되었습니다." show={look} onConfirm={completeChange} />
         </>
     );
 }
