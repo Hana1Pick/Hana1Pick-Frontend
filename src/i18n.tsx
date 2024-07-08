@@ -177,7 +177,9 @@ i18n
             "header": "交易历史记录查询",
             "noHistory": "暂无交易记录。",
             "deposit": "存款",
-            "withdraw": "取款"
+            "withdraw": "取款",
+            "monthlyFee": "每月{{day}}日, {{amount}}",
+            "depositStatus": "存款状态"
           },
           "modifyMoaclub": {
             "header": "修改社区俱乐部",
@@ -386,7 +388,9 @@ i18n
             "header": "거래내역조회",
             "noHistory": "거래 내역이 없습니다.",
             "deposit": "입금하기",
-            "withdraw": "출금하기"
+            "withdraw": "출금하기",
+            "monthlyFee": "매월 {{day}}일, {{amount}}씩",
+            "depositStatus": "입금현황"
           },
           "modifyMoaclub": {
             "header": "모아클럽 수정",
