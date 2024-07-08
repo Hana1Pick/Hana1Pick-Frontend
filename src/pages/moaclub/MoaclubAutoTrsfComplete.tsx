@@ -44,59 +44,70 @@ function MoaclubAutoTrsfComplete() {
 		}
 	};
 	const { t, i18n } = useTranslation();
-	const [language, setLanguage] = useState(localStorage.getItem('nation') || i18n.language);
-  
+	const [language, setLanguage] = useState(
+		localStorage.getItem('nation') || i18n.language
+	);
+
 	useEffect(() => {
-		if(language=="Korea") i18n.changeLanguage('ko');
+		if (language == 'Korea') i18n.changeLanguage('ko');
 		else i18n.changeLanguage('ch');
 	}, [language, i18n]);
 	return (
 		<>
 			<div className='completeContainer'>
-			<div className='completeBox1'>
-			<div className='completeBox2'>
-				<img className='MoaAutoTrsfCompleteCheck' src={check} alt='moaImg' />
-				<div className='textBox1'>
-				<p>{t('autoTrsfComplete')}</p>
-				<p>{t('settingComplete')}</p>
+				<div className='MoacompleteBox1'>
+					<div className='completeBox2'>
+						<img
+							className='MoaAutoTrsfCompleteCheck'
+							src={check}
+							alt='moaImg'
+						/>
+						<div className='textBox1'>
+							<p>{t('autoTrsfComplete')}</p>
+							<p>{t('settingComplete')}</p>
+						</div>
+					</div>
+				</div>
+				<div className='completeBox3'>
+					<div className='tableBox'>
+						<table className='completeInfo'>
+							<tbody>
+								<tr>
+									<th>{t('depositAccount')}</th>
+									<td colSpan={2}>
+										{moaclub.name} <br /> {inAccId}
+									</td>
+								</tr>
+								<tr>
+									<th>{t('withdrawalAccount')}</th>
+									<td colSpan={2}>
+										{userName}의 입출금 통장 <br /> {outAccId}
+									</td>
+								</tr>
+								<tr>
+									<th>{t('transferInfo')}</th>
+									<td colSpan={2}>
+										매월 {moaclub.atDate}일 {formatCurrency(moaclub.clubFee)}
+									</td>
+								</tr>
+								<tr>
+									<th>{t('autoTrsfRegDate')}</th>
+									<td colSpan={2}>{currentDate}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div className='buttonContainer'>
+						<CommonBtn
+							type='pink'
+							value={t('complete')}
+							onClick={next}
+							disabled={false}
+						/>
+					</div>
 				</div>
 			</div>
-			</div>
-			<div className='completeBox3'>
-			<div className='tableBox'>
-				<table className='completeInfo'>
-				<tbody>
-					<tr>
-					<th>{t('depositAccount')}</th>
-					<td colSpan={2}>
-						{moaclub.name} <br /> {inAccId}
-					</td>
-					</tr>
-					<tr>
-					<th>{t('withdrawalAccount')}</th>
-					<td colSpan={2}>
-						{userName}의 입출금 통장 <br /> {outAccId}
-					</td>
-					</tr>
-					<tr>
-					<th>{t('transferInfo')}</th>
-					<td colSpan={2}>
-						매월 {moaclub.atDate}일 {moaclub.clubFee}
-					</td>
-					</tr>
-					<tr>
-					<th>{t('autoTrsfRegDate')}</th>
-					<td colSpan={2}>{currentDate}</td>
-					</tr>
-				</tbody>
-				</table>
-			</div>
-			<div className='buttonContainer'>
-				<CommonBtn type='pink' value={t('complete')} onClick={next} disabled={false} />
-			</div>
-			</div>
-		</div>
-	</>
+		</>
 	);
-  }
+}
 export default MoaclubAutoTrsfComplete;

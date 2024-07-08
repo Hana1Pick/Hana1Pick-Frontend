@@ -17,7 +17,7 @@ i18n
 				translation: {
 					subtitle: '与最爱一起养成储蓄习惯',
 					startButton: '开始名人日志',
-					userGreeting: '您好, {{userName}}!',
+					userGreeting: '您好!',
 					autoTrsfCount: '您已经注册了{{count}}笔自动转账。',
 					moaclubAutoTrsfHeader: '自动转账',
 					bankName: '银行名称',
@@ -223,7 +223,7 @@ i18n
 			},
 			ko: {
 				translation: {
-					userGreeting: '{{userName}}님 안녕하세요!',
+					userGreeting: '님 안녕하세요!',
 					autoTrsfCount: '{{count}}건이 등록되어 있어요.',
 					moaclubAutoTrsfHeader: '자동이체',
 					bankName: '은행명',
@@ -423,12 +423,12 @@ i18n
 					autoTransferSetup: {
 						header: '자동이체 설정',
 						withdrawMsg1: '앞으로 아래 계좌에서',
-						withdrawMsg2: '출금할 요.',
+						withdrawMsg2: '출금할게요.',
 						feeRuleApplied: '모아클럽에 설정된 회비 규칙이 적용됩니다.',
 						selectAccount: '계좌를 선택해 주세요.',
 						bankName: '은행명',
 						withdrawAccount: '출금계좌',
-						transferInfo: '이체정보',
+						transferInfo: '이체정보 등록하기',
 						registerBtn: '등록하기',
 					},
 					completeBox: {
