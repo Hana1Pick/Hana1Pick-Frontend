@@ -13,8 +13,16 @@ import axios from 'axios';
 import qs from 'qs';
 import CommonModal1 from '../../components/modal/CommonModal3';
 import PageLoadingSpinner from '../../components/pageLoding/pageLoading';
-
+function formatDate(dateString: string): string {
+	const date = new Date(dateString);
+	const month = (date.getMonth() + 1).toString().padStart(2, '0');
+	const day = date.getDate().toString().padStart(2, '0');
+	return `${month}.${day}`;
+  }
 const CelubDetail: React.FC = () => {
+	interface DateDisplayProps {
+		dateString: string;
+	  }
 	const navigate = useNavigate();
 	const [hisList, setHisList] = useState<CelubHisType[]>([]);
  	const [look, setLook] = useState(false);
@@ -44,11 +52,10 @@ const CelubDetail: React.FC = () => {
 	const location = useLocation();
 	const accountId = location.state;
 	const [outBalance, setOutBalance] = useState(0);
-	const [isLoading, setIsLoading] = useState(true); // 로딩 상태
-	const [minLoadingTimeReached, setMinLoadingTimeReached] = useState(false); // 최소 로딩 시간 상태
+	const [isLoading, setIsLoading] = useState(true);
+	const [minLoadingTimeReached, setMinLoadingTimeReached] = useState(false);
 
 	useEffect(() => {
-		// 최소 로딩 시간을 1초로 설정
 		const minLoadingTime = 1000;
 		const timer = setTimeout(() => {
 			setMinLoadingTimeReached(true);
@@ -65,11 +72,11 @@ const CelubDetail: React.FC = () => {
 				setHistoryList(res.data.data.accountReport);
 				setAccountInfo(res.data.data.accountInfo);
 				setOutBalance(res.data.data.accountInfo.outAccBalance);
-				setIsLoading(false); // 로딩 완료
+				setIsLoading(false);
 			})
 			.catch((error) => {
 				alert('실패');
-				setIsLoading(false); // 로딩 오류
+				setIsLoading(false);
 			});
 
 			axios.post(`${process.env.REACT_APP_BESERVERURI}/api/account`,
@@ -172,11 +179,19 @@ const CelubDetail: React.FC = () => {
 		history();
 		setLook(false);
 	};
+	const extractContent = (str: string, type: 'MEMO' | 'HASHTAG'): string => {
+		if (type === 'MEMO') {
+		  const match = str.match(/규칙: ([^,]*)/);
+		  return match ? match[1] : '';
+		} else {
+		  const match = str.match(/해시태그: (.*)/);
+		  return match ? match[1] : '';
+		}
+	  };
 
 	if (isLoading || !minLoadingTimeReached) {
 		return <PageLoadingSpinner />;
 	}
-
 	return (
 		<>
 			<CelubHeader3 value='' disabled={false} onClick={setting} />
@@ -252,15 +267,17 @@ const CelubDetail: React.FC = () => {
 								<div key={idx}>
 									<table className='celub-history-table'>
 										<tr>
-											<td>{his.transDate}</td>
 											<td>
-												{his.target} <br />{' '}
-												<div className='celub-hashtag'>#{his.target}</div>{' '}
+												{formatDate(his.transDate)}
 											</td>
-											<td className="celub-income-money">
-												+{formatCurrency(his.transAmount)}원 <br />{' '}
+											<td>
+											{his.transType === 'DEPOSIT' ? extractContent(his.target, 'MEMO') : '셀럽로그 출금'} <br />{' '}
+												<div className='celub-hashtag'>{his.transType === 'DEPOSIT' ? "# " + extractContent(his.target, 'HASHTAG') : '# 출금'}</div>{' '}
+											</td>
+											<td className="celub-income-money"  style={{ color: his.transType === 'DEPOSIT' ? '#0083D1' : '#f16100' }}>
+											{his.transType == 'DEPOSIT' ? `+${formatCurrency(+his.transAmount)}원` :`${formatCurrency(his.transAmount)}원` } <br />{' '}
 												<div className='celub-totalmoney'>
-													{formatCurrency(accountInfo.balance)}원
+													{formatCurrency(his.balance)}원
 												</div>
 											</td>
 										</tr>
