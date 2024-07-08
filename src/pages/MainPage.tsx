@@ -11,6 +11,7 @@ import { useSwipeable } from 'react-swipeable';
 import NavBar from '../components/alarm/NavBar';
 import Exchange from '../components/exchange';
 import LoadingSpinner from '../components/loading/boxLoading'; // 로딩 스피너 컴포넌트 임포트
+import moaLogoIcon from '../assets/images/main/moa_logo.png'; 
 
 interface Account {
 	id: string;
@@ -222,7 +223,10 @@ const MainPage = () => {
 													onClick={() => handleAccountClick(account)}
 												>
 													<div className='imgContainer'>
-														<img src={hanaLogo} alt='logo' />
+														<img
+															src={account.accountType === 'moaclub' ? moaLogoIcon : hanaLogo}
+															alt='logo'
+														/>
 													</div>
 													<div className='accountDetail'>
 														<p className='account-type'>
@@ -267,71 +271,71 @@ const MainPage = () => {
 										<div>
 											<img src={hanaLogo} alt='logo' />
 										</div>
-										<div className='accountDetail'>
-											<p className='account-type'>계좌가 없습니다.</p>
-											<button
-												id='basicBtn1'
-												className='send-button'
-												onClick={() => handleNavigate('/deposit')}
-											>
-												계좌 추가하기
-											</button>
+											<div className='accountDetail'>
+												<p className='account-type'>계좌가 없습니다.</p>
+												<button
+													id='basicBtn1'
+													className='send-button'
+													onClick={() => handleNavigate('/deposit')}
+												>
+													계좌 추가하기
+												</button>
+											</div>
 										</div>
-									</div>
-								)}
-							</>
-						)}
-					</div>
-					<div className='scrollbar'>
-						{accounts.filter((account) => account.accountType !== 'celublog')
-							.length > 1 && (
-							<div
-								className='scrollbar-indicator'
-								style={{
-									width: `${100 / accounts.filter((account) => account.accountType !== 'celublog').length}%`,
-									transform: `translateX(${currentIndex * 100}%)`,
-									transition:
-										accounts.length > 1 ? 'transform 0.3s ease-in-out' : 'none',
-								}}
-							></div>
-						)}
-					</div>
-				</div>
-
-				<div className='promotions'>
-					<div className='promotion'>
-						<img src={celubIcon} alt='celubIcon' style={{ width: '3rem' }} />
-
-						<div className='promotionDetail'>
-							<p className='promotionSubTitle'>최애와 함께 저축 습관 들이기!</p>
-							<button onClick={() => handleNavigate('/celub')}>
-								셀럽로그 시작하기
-							</button>
+									)}
+								</>
+							)}
 						</div>
-					</div>
-					<div className='promotion'>
-						<img src={moaIcon} alt='moaIcon' style={{ width: '3rem' }} />
-						<div className='promotionDetail'>
-							<p className='promotionSubTitle'>
-								최애가 같다면 함께 쓰는 모임통장!
-							</p>
-							<button onClick={() => handleNavigate('/moaclub/opening')}>
-								모아클럽 시작하기
-							</button>
+						<div className='scrollbar'>
+							{accounts.filter((account) => account.accountType !== 'celublog')
+								.length > 1 && (
+								<div
+									className='scrollbar-indicator'
+									style={{
+										width: `${100 / accounts.filter((account) => account.accountType !== 'celublog').length}%`,
+										transform: `translateX(${currentIndex * 100}%)`,
+										transition:
+											accounts.length > 1 ? 'transform 0.3s ease-in-out' : 'none',
+									}}
+								></div>
+							)}
 						</div>
 					</div>
 
-					{/* 실시간 환율 정보  */}
-					<div className='exchange-container'>
-						<Exchange />
+					<div className='promotions'>
+						<div className='promotion'>
+							<img src={celubIcon} alt='celubIcon' style={{ width: '3rem' }} />
+
+							<div className='promotionDetail'>
+								<p className='promotionSubTitle'>최애와 함께 저축 습관 들이기!</p>
+								<button onClick={() => handleNavigate('/celub')}>
+									셀럽로그 시작하기
+								</button>
+							</div>
+						</div>
+						<div className='promotion'>
+							<img src={moaIcon} alt='moaIcon' style={{ width: '3rem' }} />
+							<div className='promotionDetail'>
+								<p className='promotionSubTitle'>
+									최애가 같다면 함께 쓰는 모임통장!
+								</p>
+								<button onClick={() => handleNavigate('/moaclub/opening')}>
+									모아클럽 시작하기
+								</button>
+							</div>
+						</div>
+
+						{/* 실시간 환율 정보  */}
+						<div className='exchange-container'>
+							<Exchange />
+						</div>
 					</div>
 				</div>
-			</div>
-			<MenuBar />
-			<NavBar isOpen={isNavOpen} onClose={() => setIsNavOpen(false)} />{' '}
-			{/* 추가된 부분 */}
-		</>
-	);
-};
+				<MenuBar />
+				<NavBar isOpen={isNavOpen} onClose={() => setIsNavOpen(false)} />{' '}
+				{/* 추가된 부분 */}
+			</>
+		);
+	};
 
-export default MainPage;
+	export default MainPage;
