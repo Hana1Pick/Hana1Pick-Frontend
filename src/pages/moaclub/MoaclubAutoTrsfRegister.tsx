@@ -26,11 +26,11 @@ const getAccountListByType = async (userIdx: string, type: string) => {
 function MoaclubAutoTrsfRegister() {
 	const { t, i18n } = useTranslation();
 	const [language, setLanguage] = useState(
-		localStorage.getItem('language') || i18n.language
+		localStorage.getItem('nation') || i18n.language
 	);
 
 	useEffect(() => {
-		if (language == 'KOR') i18n.changeLanguage('ko');
+		if(language=="Korea") i18n.changeLanguage('ko');
 		else i18n.changeLanguage('ch');
 	}, [language, i18n]);
 	const navigate = useNavigate();

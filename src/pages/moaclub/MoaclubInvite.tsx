@@ -10,10 +10,10 @@ import { useTranslation } from 'react-i18next';
 
 function MoaclubInvite() {
 	const { t, i18n } = useTranslation();
-	const [language, setLanguage] = useState(localStorage.getItem('language') || i18n.language);
+	const [language, setLanguage] = useState(localStorage.getItem('nation') || i18n.language);
 	
 	useEffect(() => {
-	  if(language=="KOR") i18n.changeLanguage('ko');
+	  if(language=="Korea") i18n.changeLanguage('ko');
 	  else i18n.changeLanguage('ch');
 	}, [language, i18n]);
 	const navigate = useNavigate();
@@ -55,7 +55,7 @@ function MoaclubInvite() {
 			<div className='bubble'>
 			  {t('invite_button_description')}
 			</div>
-			<CommonBtn type='black' value={t('common_button_next')} onClick={next} disabled={false} />
+			<CommonBtn type='black' value={t('next')} onClick={next} disabled={false} />
 		  </div>
 		</>
 	  );
