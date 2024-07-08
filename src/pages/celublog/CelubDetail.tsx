@@ -4,6 +4,7 @@ import {
 	CelubHistoryType,
 	CelubRuleType,
 	CelubAccountInfo,
+	CelubHisType
 } from '../../type/commonType';
 import { useLocation, useNavigate } from 'react-router-dom';
 import CommonBtn from '../../components/button/CommonBtn';
@@ -15,7 +16,8 @@ import PageLoadingSpinner from '../../components/pageLoding/pageLoading';
 
 const CelubDetail: React.FC = () => {
 	const navigate = useNavigate();
-	const [look, setLook] = useState(false);
+	const [hisList, setHisList] = useState<CelubHisType[]>([]);
+ 	const [look, setLook] = useState(false);
 	const [isExpanded, setIsExpanded] = useState(false);
 	const [startY, setStartY] = useState(0);
 	const [startHeight, setStartHeight] = useState(0);
@@ -62,7 +64,6 @@ const CelubDetail: React.FC = () => {
 				setRuleList(res.data.data.ruleInfo);
 				setHistoryList(res.data.data.accountReport);
 				setAccountInfo(res.data.data.accountInfo);
-				console.log(res.data.data.accountInfo.outAccBalance);
 				setOutBalance(res.data.data.accountInfo.outAccBalance);
 				setIsLoading(false); // 로딩 완료
 			})
@@ -70,6 +71,13 @@ const CelubDetail: React.FC = () => {
 				alert('실패');
 				setIsLoading(false); // 로딩 오류
 			});
+
+			axios.post(`${process.env.REACT_APP_BESERVERURI}/api/account`,
+				{ accountId }			
+			).then((res) => {
+				setHisList(res.data.data);
+				console.log(hisList);
+			})
 
 		return () => clearTimeout(timer);
 	}, [isHistory]);
@@ -229,7 +237,7 @@ const CelubDetail: React.FC = () => {
 									</div>
 								))
 							)
-						) : historyList.length == 0 ? (
+						) : hisList.length == 0 ? (
 							<>
 								<div className='celub-rule-box1'>
 									<p>
@@ -240,19 +248,19 @@ const CelubDetail: React.FC = () => {
 								</div>
 							</>
 						) : (
-							historyList.map((his, idx) => (
+							hisList.map((his, idx) => (
 								<div key={idx}>
 									<table className='celub-history-table'>
 										<tr>
 											<td>{his.transDate}</td>
 											<td>
-												{his.memo} <br />{' '}
-												<div className='celub-hashtag'>#{his.hashtag}</div>{' '}
+												{his.target} <br />{' '}
+												<div className='celub-hashtag'>#{his.target}</div>{' '}
 											</td>
-											<td>
-												{formatCurrency(his.transAmount)}원 <br />{' '}
+											<td className="celub-income-money">
+												+{formatCurrency(his.transAmount)}원 <br />{' '}
 												<div className='celub-totalmoney'>
-													{formatCurrency(his.afterInBal)}원
+													{formatCurrency(accountInfo.balance)}원
 												</div>
 											</td>
 										</tr>
