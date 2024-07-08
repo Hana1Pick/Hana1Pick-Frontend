@@ -190,16 +190,12 @@ const MoaclubPage = () => {
 		else i18n.changeLanguage('ch');
 	}, [language, i18n]);
 
-	if (!moaclub || !accountHistory) {
-		return <PageLoadingSpinner />;
-	}
-
 	return (
 		<>
 			<div id='moaclubTopAlarmBox'>
 				<img src={alarmLogo} alt='alarmTalk' />
 				<div id='moaclubTopAlarmContent'></div>
-				<div className='moaclubTopAlarmTime'>{t('transactionHistory.now')}</div>
+				<div className='moaclubTopAlarmTime'>지금</div>
 			</div>
 
 			<Header
