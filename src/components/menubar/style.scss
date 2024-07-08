@@ -26,18 +26,23 @@
   }
 
   .menu-item.home img:hover {
-    content: url("../../assets/images/menubar/a_home.png");
+    content: url("../../assets/images/menubar/h_home.png");
+    margin-top: 0.25rem !important;
   }
 
   .menu-item.qr img:hover {
-    content: url("../../assets/images/menubar/a_qr.png");
+    content: url("../../assets/images/menubar/h_qrcode.png");
+    margin-top: 0.28rem !important;
   }
 
   .menu-item.service img:hover {
-    content: url("../../assets/images/menubar/a_service.png");
+    content: url("../../assets/images/menubar/h_service.png");
+    margin-top: 0.25rem !important;
   }
 
   .menu-item.user img:hover {
-    content: url("../../assets/images/menubar/a_my.png");
+    content: url("../../assets/images/menubar/h_my.png");
+    width: 2.5rem !important;
+    margin-top: 0.25rem !important;
   }
 }
