@@ -297,6 +297,7 @@ i18n
           already_voted_msg: "이미 투표했습니다.",
           cannot_revote_msg: "재투표가 불가합니다.\n투표를 진행하시겠습니까?",
           vote_completed_msg: "투표가 완료되었습니다.",
+          moaclub_vote_header: "모아클럽 투표",
           "club_setup_header": "모아클럽",
           "club_name_input_placeholder": "모아클럽 이름을 입력하세요...",
           "next_button_text": "다음",

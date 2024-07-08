@@ -19,7 +19,7 @@ function MoaclubSetting() {
   const [look, setLook] = useState(false);
   const [look2, setLook2] = useState(false);
 	const { t, i18n } = useTranslation();
-	const [language, setLanguage] = useState(localStorage.getItem('language') || i18n.language);
+	const [language, setLanguage] = useState(localStorage.getItem('nation') || i18n.language);
   
 	useEffect(() => {
     if(language=="Korea") i18n.changeLanguage('ko');
