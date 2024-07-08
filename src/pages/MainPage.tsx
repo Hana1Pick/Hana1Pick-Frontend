@@ -51,7 +51,9 @@ const MainPage = () => {
 		const fetchNotifications = async () => {
 			if (userIdx) {
 				const notificationRes = await getNotifications(userIdx);
-				setNotificationCount(notificationRes.length);
+				if (notificationRes) {
+					setNotificationCount(notificationRes.length);
+				}
 			}
 		};
 		fetchNotifications();
@@ -199,16 +201,17 @@ const MainPage = () => {
 								accounts.length > 2
 									? `translateX(-${currentIndex * 100}%)`
 									: 'none',
-							transition: accounts.length > 2 ? 'transform 0.3s ease-in-out' : 'none',
+							transition:
+								accounts.length > 2 ? 'transform 0.3s ease-in-out' : 'none',
 						}}
 					>
 						{isLoading ? (
 							<LoadingSpinner />
 						) : (
 							<>
-              
-								{accounts.filter((account) => account.accountType !== 'celublog')
-									.length > 0 ? (
+								{accounts.filter(
+									(account) => account.accountType !== 'celublog'
+								).length > 0 ? (
 									accounts
 										.filter((account) => account.accountType !== 'celublog')
 										.map((account) => {
@@ -224,9 +227,13 @@ const MainPage = () => {
 													<div className='accountDetail'>
 														<p className='account-type'>
 															{account.name}
-															{account.accountType === 'deposit' ? '의 통장' : ''}
+															{account.accountType === 'deposit'
+																? '의 통장'
+																: ''}
 														</p>
-														<p className='account-number'>{account.accountId}</p>
+														<p className='account-number'>
+															{account.accountId}
+														</p>
 														<div
 															className='account-balance'
 															style={{
@@ -283,7 +290,8 @@ const MainPage = () => {
 								style={{
 									width: `${100 / accounts.filter((account) => account.accountType !== 'celublog').length}%`,
 									transform: `translateX(${currentIndex * 100}%)`,
-									transition: accounts.length > 1 ? 'transform 0.3s ease-in-out' : 'none',
+									transition:
+										accounts.length > 1 ? 'transform 0.3s ease-in-out' : 'none',
 								}}
 							></div>
 						)}
