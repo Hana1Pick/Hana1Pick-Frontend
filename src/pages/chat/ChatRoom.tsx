@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Client, IMessage } from '@stomp/stompjs';
 import { useParams, useLocation } from 'react-router-dom';
 import Header from '../../components/Header';
@@ -15,7 +15,9 @@ interface ChatMessageRequest {
 
 interface ChatMessageResponse {
   chatMessageId: number;
-  content: string;
+  contentKO: string;
+  contentZH: string;
+  contentJA: string;
   from: string;
   chatDate: string;
 }
@@ -43,6 +45,17 @@ function ChatPage() {
   const location = useLocation();
   const moaclub = location.state as MoaClubState | undefined;
 
+  const getChatByNation = (msg: ChatMessageResponse) => {
+    switch (nation) {
+      case 'Korea':
+        return msg.contentKO;
+      case 'China':
+        return msg.contentZH;
+      default: // Japan
+        return msg.contentJA;
+    }
+  };
+
   useEffect(() => {
     console.log(writer);
     console.log(nation);
@@ -63,14 +76,25 @@ function ChatPage() {
 
     // WebSocket 연결
     const client = new Client({
-      brokerURL: 'ws://localhost:8080/chat', // WebSocket 서버 URL
+      brokerURL: `wss://${process.env.REACT_APP_WEBSOCKET_URI}/chat`, // WebSocket 서버 URL
       reconnectDelay: 5000,
       onConnect: () => {
         client.subscribe(
           `/topic/public/rooms/${roomId}`,
           (message: IMessage) => {
+            console.log(message);
             const msg: ChatMessageResponse = JSON.parse(message.body).data;
-            setMessages((prevMessages) => [...prevMessages, msg]);
+            switch (nation) {
+              case 'Korea':
+                setMessages((prevMessages) => [...prevMessages, msg]);
+                break;
+              case 'China':
+                setMessages((prevMessages) => [...prevMessages, msg]);
+                break;
+              default: // Japan
+                setMessages((prevMessages) => [...prevMessages, msg]);
+                break;
+            }
           }
         );
       },
@@ -115,7 +139,7 @@ function ChatPage() {
             // 작성자 본인 메시지
             return (
               <div className='message' key={index}>
-                <div className='message1'>{msg.content}</div>
+                <div className='message1'>{getChatByNation(msg)}</div>
               </div>
             );
           } else {
@@ -131,7 +155,7 @@ function ChatPage() {
                     />
                     <div>
                       <div className='userName'>{user.userName}</div>
-                      <div className='message2'>{msg.content}</div>
+                      <div className='message2'>{getChatByNation(msg)}</div>
                     </div>
                   </div>
                 )}
