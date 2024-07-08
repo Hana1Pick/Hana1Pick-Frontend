@@ -69,6 +69,7 @@ function ChatPage() {
         client.subscribe(
           `/topic/public/rooms/${roomId}`,
           (message: IMessage) => {
+            console.log(message);
             const msg: ChatMessageResponse = JSON.parse(message.body).data;
             setMessages((prevMessages) => [...prevMessages, msg]);
           }
