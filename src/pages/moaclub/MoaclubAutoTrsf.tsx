@@ -102,8 +102,8 @@ function MoaclubAutoTrsf() {
             {t('autoTransferTo')}
           </div>
           <div className='moaAutoTrsfInfo'>
-            <span className='moaAutoTrsfHighlight'>{count}</span>
-            {t('autoTrsfCount', { count })}
+            <span className='moaAutoTrsfHighlight'>{t('autoTrsfCount', { count })}</span>
+            
           </div>
 
           {autoTrsf ? (

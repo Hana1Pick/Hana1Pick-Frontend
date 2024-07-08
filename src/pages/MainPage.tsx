@@ -199,11 +199,11 @@ const MainPage = () => {
 						className='account-details'
 						style={{
 							transform:
-								accounts.length > 2
+								accounts.length > 1
 									? `translateX(-${currentIndex * 100}%)`
 									: 'none',
 							transition:
-								accounts.length > 2 ? 'transform 0.3s ease-in-out' : 'none',
+								accounts.length > 1 ? 'transform 0.3s ease-in-out' : 'none',
 						}}
 					>
 						{isLoading ? (
