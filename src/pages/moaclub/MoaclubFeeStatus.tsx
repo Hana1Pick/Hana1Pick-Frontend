@@ -14,10 +14,10 @@ type StatusNumType = {
 
 function MoaclubFeeStatus() {
 	const { t, i18n } = useTranslation();
-	const [language, setLanguage] = useState(localStorage.getItem('language') || i18n.language);
+	const [language, setLanguage] = useState(localStorage.getItem('nation') || i18n.language);
 	
 	useEffect(() => {
-	  if(language=="KOR") i18n.changeLanguage('ko');
+      if(language=="Korea") i18n.changeLanguage('ko');
 	  else i18n.changeLanguage('ch');
 	}, [language, i18n]);
 	const { accountId } = useParams();

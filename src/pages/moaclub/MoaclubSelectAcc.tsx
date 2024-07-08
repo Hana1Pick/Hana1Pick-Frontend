@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 
 // API 호출 함수 정의
 const getAccountListByType = async (userIdx: string, type: string) => {
+	
 	try {
 		const response = await axios.get(
 			`${process.env.REACT_APP_BESERVERURI}/api/user/account-list`,
@@ -24,6 +25,14 @@ const getAccountListByType = async (userIdx: string, type: string) => {
 };
 
 function MoaclubSelectAcc() {
+	const { t, i18n } = useTranslation();
+	const [language, setLanguage] = useState(localStorage.getItem('nation') || i18n.language);
+  
+	useEffect(() => {
+	 if(language=="Korea") i18n.changeLanguage('ko');
+	  else i18n.changeLanguage('ch');
+	}, [language, i18n]);
+	
 	const navigate = useNavigate();
 	const [account, setAccount] = useState<Account | null>(null);
 	const [selectedAccount, setSelectedAccount] = useState<string | null>(null);
@@ -54,14 +63,7 @@ function MoaclubSelectAcc() {
 	const getAccCode = (accountId: string) => {
 		return accountId.slice(-7);
 	};
-	const { t, i18n } = useTranslation();
-	const [language, setLanguage] = useState(localStorage.getItem('language') || i18n.language);
-  
-	useEffect(() => {
-    if(language=="KOR") i18n.changeLanguage('ko');
-	  else i18n.changeLanguage('ch');
-	}, [language, i18n]);
-	
+
 	return (
 		<>
 		  <Header value={t('moaclub.header')} disabled={false} />

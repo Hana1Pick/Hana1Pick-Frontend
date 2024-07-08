@@ -12,10 +12,10 @@ import { useTranslation } from 'react-i18next';
 function MoaclubOpening() {
 	const { t, i18n } = useTranslation();
 	const [language, setLanguage] = useState(localStorage.getItem('nation') || i18n.language);
-	console.log(localStorage);
+	console.log(localStorage.getItem('nation'));
   
 	useEffect(() => {
-		if(language=="KOR"||language=="kor") i18n.changeLanguage('ko');
+		if(language=="Korea") i18n.changeLanguage('ko');
 		else i18n.changeLanguage('ch');
 	}, [language, i18n]);
 	const navigate = useNavigate();

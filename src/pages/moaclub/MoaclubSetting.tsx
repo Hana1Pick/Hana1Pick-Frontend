@@ -22,7 +22,7 @@ function MoaclubSetting() {
 	const [language, setLanguage] = useState(localStorage.getItem('language') || i18n.language);
   
 	useEffect(() => {
-    if(language=="KOR") i18n.changeLanguage('ko');
+    if(language=="Korea") i18n.changeLanguage('ko');
 	  else i18n.changeLanguage('ch');
 	}, [language, i18n]);
   const getManagerCheck = async (userIdx: string, accountId: string) => {
