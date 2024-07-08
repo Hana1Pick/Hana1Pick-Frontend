@@ -109,7 +109,7 @@ function MoaclubAutoTrsf() {
 					</div>
 					<div className='moaAutoTrsfInfo'>
 						<span className='moaAutoTrsfHighlight'>{count}</span>
-						{t('autoTrsfCount', { count })}
+						{t('autoTrsfCount')}
 					</div>
 
 					{autoTrsf ? (

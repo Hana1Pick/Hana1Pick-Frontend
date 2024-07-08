@@ -224,7 +224,7 @@ i18n
 			ko: {
 				translation: {
 					userGreeting: '님 안녕하세요!',
-					autoTrsfCount: '{{count}}건이 등록되어 있어요.',
+					autoTrsfCount: '건이 등록되어 있어요.',
 					moaclubAutoTrsfHeader: '자동이체',
 					bankName: '은행명',
 					outAccId: '출금계좌정보',
