@@ -63,7 +63,7 @@ function ChatPage() {
 
     // WebSocket 연결
     const client = new Client({
-      brokerURL: 'ws://${process.env.REACT_APP_BESERVERURI}/chat', // WebSocket 서버 URL
+      brokerURL: 'wss://${process.env.REACT_APP_BESERVERURI}/chat', // WebSocket 서버 URL
       reconnectDelay: 5000,
       onConnect: () => {
         client.subscribe(
