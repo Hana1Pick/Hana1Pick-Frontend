@@ -43,6 +43,7 @@ const LoginHandler = (props: any) => {
 				localStorage.setItem('nation', nation);
 				localStorage.setItem('email', email);
 				localStorage.setItem('profile', profile); // 프로필 사진 URL 저장
+				localStorage.setItem('kakaoAccessToken', accessToken); // 액세스 토큰 저장
 
 				// 회원가입 일때는 계좌 생성 페이지로 이동
 				if (name) {
@@ -55,6 +56,7 @@ const LoginHandler = (props: any) => {
 				console.log(error);
 			});
 	};
+	
 
 	return <SplashScreen />;
 };
