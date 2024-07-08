@@ -1,16 +1,9 @@
-html, body {
-  background-color: #f7f7f7; /* 페이지 전체 배경색 */
-  margin: 0; /* 기본 여백 제거 */
-  padding: 0; /* 기본 패딩 제거 */
-  height: 100%; /* 전체 높이 설정 */
-}
+
 .mypage-container {
   background-color: #f7f7f7;
-  padding: 20px;
+  padding: 1.25rem;
   border-radius: 8px;
-  max-width: 500px;
   margin: 0 auto;
-  height: 100vh; /* 전체 높이 설정 */
   // overflow: hidden; /* Remove scroll */
   display: flex;
   flex-direction: column;
