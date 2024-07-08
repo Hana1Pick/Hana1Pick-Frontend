@@ -132,8 +132,6 @@ const MoaclubPage = () => {
 		}
 	};
 
-	const currencyValue = getCurrencySymbol(moaclub?.currency!);
-
 	const formatDate = (isoDate: string) => {
 		const date = new Date(isoDate);
 		const formattedDate = date.toLocaleDateString('ko-KR', {
@@ -191,6 +189,11 @@ const MoaclubPage = () => {
 		if (language == 'Korea') i18n.changeLanguage('ko');
 		else i18n.changeLanguage('ch');
 	}, [language, i18n]);
+
+	if (!moaclub || !accountHistory) {
+		return <PageLoadingSpinner />;
+	}
+
 	return (
 		<>
 			<div id='moaclubTopAlarmBox'>
