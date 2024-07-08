@@ -35,7 +35,7 @@ const NavBar: React.FC<NavBarProps> = ({ isOpen, onClose }) => {
 				const notificationRes = await getNotifications(userIdx);
 				console.log(notificationRes);
 				// 최신순으로 정렬
-				if (notificationRes !== undefined) {
+				if (notificationRes) {
 					const sortedNotifications = notificationRes.sort(
 						(a: NotificationType, b: NotificationType) => {
 							return (
@@ -45,6 +45,8 @@ const NavBar: React.FC<NavBarProps> = ({ isOpen, onClose }) => {
 						}
 					);
 					setNotifications(sortedNotifications);
+				} else {
+					setNotifications([]); // 알림이 없을 경우 빈 배열 설정
 				}
 			}
 		};
