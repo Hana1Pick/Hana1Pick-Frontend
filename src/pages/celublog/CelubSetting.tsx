@@ -18,6 +18,8 @@ function CelubSetting() {
 	const [fileInput, setFileInput] = useState<File | null>(null);
 	const [inputValue, setInputValue] = useState('');
 	const [look, setLook] = useState(false);
+	const [show, setShow] = useState(false);
+	const [moneyAmount, setMoneyAmount] = useState('0');
 	const [celubAccount, setCelubAccount] = useState<CelubAccountInfo>({
 		accountId: '',
 		balance: 0,
@@ -49,8 +51,6 @@ function CelubSetting() {
 						ruleMoney: rule.ruleMoney,
 					}))
 				);
-				console.log('됐냐?');
-				console.log(rules);
 			})
 			.catch((error) => {
 				console.log('실패');
@@ -59,6 +59,9 @@ function CelubSetting() {
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setInputValue(e.target.value);
 	};
+	const handleMoneyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setMoneyAmount(e.target.value);
+	}
 	const clearInput = () => {
 		setInputValue('');
 	};
@@ -72,14 +75,28 @@ function CelubSetting() {
 			div2.style.display = 'block';
 		}
 	};
+	const goOutMoney = () => {
+		const div1 = document.getElementById('outmoney-box4');
+		const div2 = document.getElementById('celub-withdraw-overlay');
+		if (div1) {
+			div1.style.display = 'block';
+		}
+		if (div2) {
+			div2.style.display = 'block';
+		}
+	};
 	const closeModal = () => {
 		const div1 = document.getElementById('myModal');
 		const div2 = document.getElementById('celub-withdraw-overlay');
+		const div3 = document.getElementById('outmoney-box4'); 
 		if (div1) {
 			div1.style.display = 'none';
 		}
 		if (div2) {
 			div2.style.display = 'none';
+		}
+		if (div3) {
+			div3.style.display = 'none';
 		}
 	};
 	const gochangeName = () => {
@@ -152,6 +169,26 @@ function CelubSetting() {
 	const goCelubRules = () => {
 		navigate('/celub/rule', { state: { accountId, rules } });
 	};
+
+	const goWithdraw = () => {
+		closeModal();
+		const data = {
+			userIdx: localStorage.getItem("userIdx"),
+			outAccId:celubAccount.accountId,
+			inAccId: celubAccount.outAccId,
+			memo: "셀럽로그 출금",
+			amount: moneyAmount
+		}
+		axios
+			.post(
+				`${process.env.REACT_APP_BESERVERURI}/api/celub/out`, data
+			).then((res) => {
+				console.log(res);
+				closeModal();
+				setShow(true);
+				navigate("/celub/detail", { state: accountId });
+			});
+	};
 	const beforeStage = () => {
 		const div1 = document.getElementById('withdraw-box4');
 		const div2 = document.getElementById('celub-withdraw-overlay');
@@ -164,6 +201,19 @@ function CelubSetting() {
 	};
 	const completeChange = () => {
 		setLook(false);
+	};
+	const completeOutMoney = () =>{
+		setShow(false);
+	}
+	const beforeMoney = () => {
+		const div1 = document.getElementById('outmoney-box4');
+		const div2 = document.getElementById('celub-withdraw-overlay');
+		if (div1) {
+			div1.style.display = 'none';
+		}
+		if (div2) {
+			div2.style.display = 'none';
+		}
 	};
 
 	return (
@@ -205,6 +255,10 @@ function CelubSetting() {
 					</div>
 					<div className='celub-setting1' onClick={goCelubRules}>
 						<span>규칙 설정</span>
+						<img className='celub-setting-right' alt='right-icon' src={arrow} />
+					</div>
+					<div className='celub-setting1' onClick={goOutMoney}>
+						<span>출금하기</span>
 						<img className='celub-setting-right' alt='right-icon' src={arrow} />
 					</div>
 				</div>
@@ -256,6 +310,33 @@ function CelubSetting() {
 					<CommonBtn type='black' value='저장' onClick={onSave} />
 				</div>
 			</div>
+			<div className='withdraw-box4 celub-setting-box4' id='outmoney-box4'>
+					<div className='withdraw-box6'>
+						<p>출금할 금액을 입력해주세요</p>
+						<div className='celub-setting-inputBox'>
+							<input
+								className='celub-changeName'
+								type='text'
+								value={moneyAmount}
+								onChange={handleMoneyChange}
+							/>
+							<span className='celub-clear-input' onClick={clearInput}>
+								×
+							</span>
+						</div>
+						<div className='withdraw-box5'>
+							<button onClick={beforeMoney}>취소</button>
+							<button onClick={goWithdraw} className='withdraw-box5-btn'>
+								확인
+							</button>
+						</div>
+					</div>
+				</div>
+				<CommonModal1
+					msg='출금 되었습니다.'
+					show={show}
+					onConfirm={completeOutMoney}
+				/>
 		</>
 	);
 }

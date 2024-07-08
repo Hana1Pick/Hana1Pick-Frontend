@@ -19,6 +19,14 @@ export type CelubHistoryType = {
   hashtag: string;
 };
 
+export type CelubHisType = {
+  balance: number;
+  target: string;
+  transAmount: number;
+  transDate: string;
+  transType: string;
+}
+
 export type CelubAccount = {
   account_id: string;
   name: string;
