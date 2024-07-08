@@ -15,7 +15,7 @@ interface MoaclubInfo {
 const getMoaclubInfo = async (accountId: string) => {
 	try {
 		const response = await axios.get(
-			`http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/admission-info`,
+			`${process.env.REACT_APP_BESERVERURI}/api/moaclub/admission-info`,
 			{
 				params: { accountId },
 			}
@@ -48,7 +48,7 @@ function MoaclubJoin() {
 	}, [accountId]);
 
 	const next = () => {
-		const url = `http://${process.env.REACT_APP_BESERVERURI}/api/moaclub/admission`;
+		const url = `${process.env.REACT_APP_BESERVERURI}/api/moaclub/admission`;
 
 		const data = {
 			accountId: accountId,
