@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Client, IMessage } from '@stomp/stompjs';
 import { useParams, useLocation } from 'react-router-dom';
 import Header from '../../components/Header';
