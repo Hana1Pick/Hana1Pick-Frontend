@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Client, IMessage } from '@stomp/stompjs';
 import { useParams, useLocation } from 'react-router-dom';
 import Header from '../../components/Header';
@@ -63,7 +63,7 @@ function ChatPage() {
 
     // WebSocket 연결
     const client = new Client({
-      brokerURL: `wss://${process.env.REACT_APP_BESERVERURI}/chat`, // WebSocket 서버 URL
+      brokerURL: `wss://${process.env.REACT_APP_WEBSOCKET_URI}/chat`, // WebSocket 서버 URL
       reconnectDelay: 5000,
       onConnect: () => {
         client.subscribe(
