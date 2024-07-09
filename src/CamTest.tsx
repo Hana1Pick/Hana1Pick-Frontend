@@ -121,7 +121,7 @@ const CamTest: React.FC = () => {
       <canvas ref={canvasRef} style={{ display: 'none' }} />
       <div className="celub-cameraBtn-box">
         <button className="camera-button" onClick={toggleCamera}>{isCameraOn ? "카메라 끄기" : "카메라 켜기"}</button>
-        <button className="photo-button" onClick={() => startTimerAndTakePhoto(5)} disabled={!isCameraOn}>촬영</button>
+        <button className="photo-button" onClick={() => startTimerAndTakePhoto(3)} disabled={!isCameraOn}>촬영</button>
       </div>
       {timer > 0 && <div className="celub-timer">{timer}</div>}
       {isModalOpen && (
