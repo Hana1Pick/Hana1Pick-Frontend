@@ -40,7 +40,7 @@ function CelubWithdraw(){
                     </div>
                 </div>
 
-                <div id="withdraw-box1">
+                <div id="withdraw-box1" style={{marginTop:"65%"}}>
                     <h4 style={{"textAlign":"left"}}>출금계좌</h4>
                     <div className="withdraw-box2">
                         <label htmlFor="lang" style={{"fontSize":"12px"}}>출금계좌</label> &nbsp;
