@@ -77,7 +77,7 @@ function CelubAcc() {
             </div>
           </div>
         </div>
-        <div className='withdraw-box1' style={{marginBottom: '1rem'}}>
+        <div className='withdraw-box1'>
           <h4>연결계좌</h4>
           <div className='withdraw-box2'>
             <label htmlFor='lang' style={{ fontSize: '12px' }}>
