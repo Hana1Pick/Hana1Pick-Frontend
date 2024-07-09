@@ -190,10 +190,6 @@ const MoaclubPage = () => {
 		else i18n.changeLanguage('ko');
 	}, [language, i18n]);
 
-	if (!moaclub || !accountHistory) {
-		return <PageLoadingSpinner />;
-	}
-
 	return (
 		<>
 			<div id='moaclubTopAlarmBox'>
