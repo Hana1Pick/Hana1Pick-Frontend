@@ -187,7 +187,7 @@ const MoaclubPage = () => {
 
 	useEffect(() => {
 		if (language == 'Korea') i18n.changeLanguage('ko');
-		else i18n.changeLanguage('ko');
+		else i18n.changeLanguage('ch');
 	}, [language, i18n]);
 
 	return (
