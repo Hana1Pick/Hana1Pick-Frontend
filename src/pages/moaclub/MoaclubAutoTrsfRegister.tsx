@@ -30,7 +30,7 @@ function MoaclubAutoTrsfRegister() {
 	);
 
 	useEffect(() => {
-		if(language=="Korea") i18n.changeLanguage('ko');
+		if (language == 'Korea') i18n.changeLanguage('ko');
 		else i18n.changeLanguage('ch');
 	}, [language, i18n]);
 	const navigate = useNavigate();
@@ -211,7 +211,6 @@ function MoaclubAutoTrsfRegister() {
 				</div>
 				<div>
 					<div>{t('autoTransferSetup.transferInfo')}</div>
-					<div>{t('autoTransferSetup.registerBtn')}</div>
 					<div className='moaAutoTrsfDetailPopUp'>
 						<table className='moaAutoTrsfDetailPopUpTable'>
 							<tbody>

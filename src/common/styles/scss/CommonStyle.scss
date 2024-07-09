@@ -145,8 +145,8 @@ body {
 }
 
 .pattern-dot {
-	width: 0.5rem;
-	height: 0.5rem;
+	width: 0.7rem;
+	height: 0.7rem;
 	border-radius: 50%;
 	background-color: #000;
 	margin: auto;
@@ -172,7 +172,7 @@ body {
 }
 
 // CommonModal
-.commonModal-backdrop {
+.commonModal-backdrop, .commonModal3-backdrop {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -182,7 +182,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	z-index: 999;
+	z-index: 1001;
 }
 
 .commonModal {
@@ -234,7 +234,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	z-index: 1;
+	z-index: 1001;
 }
 
 .commonModal2 {
@@ -291,7 +291,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	z-index: 999;
+	z-index: 1001;
 }
 
 .commonModal3 {

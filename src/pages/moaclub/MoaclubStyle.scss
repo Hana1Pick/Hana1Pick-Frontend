@@ -189,7 +189,7 @@ h5 {
 }
 
 .withdraw-box1 {
-	margin-top: 75%;
+	margin-top: 65%;
 	h4 {
 		text-align: left;
 		font-size: small;
@@ -197,7 +197,6 @@ h5 {
 		margin-left: 2.3rem;
 		margin-bottom: 0.7rem;
 	}
-	margin-top: 75%;
 }
 
 .withdraw-box2 {
@@ -1091,6 +1090,7 @@ header {
 	color: #c4c4c4;
 	font-size: small;
 	margin-left: 2.5rem;
+	margin-right: 2.5rem;
 	margin-top: 9rem;
 }
 
@@ -1307,6 +1307,11 @@ header {
 
 .MoaAutoTrsfCompleteCheck {
 	width: 4.5rem;
+}
+
+.MoacompleteBox1 {
+	height: 50%;
+	padding: 4rem;
 }
 
 // Top Alarm

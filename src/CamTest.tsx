@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './cameraStyle.scss';
+import { useLocation } from 'react-router-dom';
 
 const CamTest: React.FC = () => {
+  const location = useLocation();
+
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const additionalImageRef = useRef<HTMLImageElement | null>(null);
@@ -9,8 +12,8 @@ const CamTest: React.FC = () => {
   const [timer, setTimer] = useState(0);
   const [photoUrl, setPhotoUrl] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const additionalImageUrl = require('../src/assets/images/photo/dntjr.png');
-
+  const additionalImageUrl = location.state;
+ 
   useEffect(() => {
     const initCamera = async () => {
       try {
@@ -118,7 +121,7 @@ const CamTest: React.FC = () => {
       <canvas ref={canvasRef} style={{ display: 'none' }} />
       <div className="celub-cameraBtn-box">
         <button className="camera-button" onClick={toggleCamera}>{isCameraOn ? "카메라 끄기" : "카메라 켜기"}</button>
-        <button className="photo-button" onClick={() => startTimerAndTakePhoto(5)} disabled={!isCameraOn}>촬영</button>
+        <button className="photo-button" onClick={() => startTimerAndTakePhoto(3)} disabled={!isCameraOn}>촬영</button>
       </div>
       {timer > 0 && <div className="celub-timer">{timer}</div>}
       {isModalOpen && (

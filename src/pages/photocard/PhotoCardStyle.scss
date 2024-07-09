@@ -45,3 +45,61 @@
     margin-bottom: 0.5rem;
   }
 }
+
+.celub-sticker-box{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.photo-img{
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius:1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+
+.celub-setting-photo-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+}
+
+.celub-setting-photo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.celub-setting-photo-close {
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.celub-photo-modalTitle{
+ display:block;
+ max-height: 20rem;
+}
+.celub-sticker-box {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+  overflow-y: scroll;
+  max-height: 15rem;
+}
+
+.celub-photo-bgModal{
+  top: 10%;
+}
+
+.photo-img:hover {
+  box-shadow: 0 0 10px 2px rgba(1, 145, 120, 0.7);
+}
