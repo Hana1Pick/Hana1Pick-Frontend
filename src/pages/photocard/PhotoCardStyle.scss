@@ -45,3 +45,21 @@
     margin-bottom: 0.5rem;
   }
 }
+
+.celub-sticker-box{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.photo-img{
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.celub-photo-modalTitle{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

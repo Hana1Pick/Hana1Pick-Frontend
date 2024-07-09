@@ -9,8 +9,8 @@ const CamTest: React.FC = () => {
   const [timer, setTimer] = useState(0);
   const [photoUrl, setPhotoUrl] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const additionalImageUrl = require('../src/assets/images/photo/dntjr.png');
-
+  const additionalImageUrl = require('../src/assets/images/photo/sticker1.png');
+ 
   useEffect(() => {
     const initCamera = async () => {
       try {
