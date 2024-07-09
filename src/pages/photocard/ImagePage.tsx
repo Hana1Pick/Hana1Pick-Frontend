@@ -25,7 +25,6 @@ function ImagePage() {
     }
   };
   const goCamera = (photoUrl:string) => {
-    alert(photoUrl);
     navigate("/celub/photo", {state:photoUrl});
   }
   const closeModal = () => {
