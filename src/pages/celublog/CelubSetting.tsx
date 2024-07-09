@@ -307,7 +307,7 @@ function CelubSetting() {
 						type='file'
 						onChange={handleFileChange}
 					/>
-					<CommonBtn type='black' value='저장' onClick={onSave} />
+					<CommonBtn type='pink' value='저장' onClick={onSave} />
 				</div>
 			</div>
 			<div className='withdraw-box4 celub-setting-box4' id='outmoney-box4'>

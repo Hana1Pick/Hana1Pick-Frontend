@@ -24,8 +24,9 @@ function ImagePage() {
       navigate('/photo-card/sticker');
     }
   };
-  const goCamera = () => {
-    navigate("/celub/photo");
+  const goCamera = (photoUrl:string) => {
+    alert(photoUrl);
+    navigate("/celub/photo", {state:photoUrl});
   }
   const closeModal = () => {
 		const div1 = document.getElementById('myModal');
@@ -81,14 +82,13 @@ function ImagePage() {
 				<div className='celub-setting-modal-content'>
 					<div className='celub-setting-modalTitle celub-photo-modalTitle'>
 						<div>원하는 스티커를 선택해주세요
-            </div>
             <span className='celub-setting-modal-close' onClick={closeModal}>
 							&times;
 						</span>
-
+            </div>
             <div className="celub-sticker-box">
               {Object.entries(photoList).map(([key, src]) => (
-                <img key={key} src={src} className="photo-img" alt={key} onClick={goCamera}/>
+                <img key={key} src={src} className="photo-img" alt={key} onClick={() => goCamera(src)}/>
               ))}
             </div>
 					</div>

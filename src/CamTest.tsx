@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './cameraStyle.scss';
+import { useLocation } from 'react-router-dom';
 
 const CamTest: React.FC = () => {
+  const location = useLocation();
+
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const additionalImageRef = useRef<HTMLImageElement | null>(null);
@@ -9,7 +12,7 @@ const CamTest: React.FC = () => {
   const [timer, setTimer] = useState(0);
   const [photoUrl, setPhotoUrl] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const additionalImageUrl = require('../src/assets/images/photo/sticker1.png');
+  const additionalImageUrl = location.state;
  
   useEffect(() => {
     const initCamera = async () => {
