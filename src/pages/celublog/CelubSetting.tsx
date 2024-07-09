@@ -129,31 +129,33 @@ function CelubSetting() {
 	};
 	// 사진변경
 	const onSave = () => {
-		if (!fileInput) {
-			alert('이미지를 선택해주세요');
-			return;
-		}
-		const formData = new FormData();
-		formData.append('accountId', accountId);
-		formData.append('field', 'imgSrc');
-		formData.append('srcImg', fileInput);
-		formData.append('name', inputValue);
+		// if (!fileInput) {
+		// 	alert('이미지를 선택해주세요');
+		// 	return;
+		// }
+		// const formData = new FormData();
+		// formData.append('accountId', accountId);
+		// formData.append('field', 'imgSrc');
+		// formData.append('srcImg', fileInput);
+		// formData.append('name', inputValue);
 
-		axios
-			.post(
-				`${process.env.REACT_APP_BESERVERURI}/api/celub/alteration`,
-				formData,
-				{
-					headers: {
-						'Content-Type': 'multipart/form-data',
-					},
-				}
-			)
-			.then((res) => {
-				console.log(res);
-				closeModal();
-				setLook(true);
-			});
+		// axios
+		// 	.post(
+		// 		`${process.env.REACT_APP_BESERVERURI}/api/celub/alteration`,
+		// 		formData,
+		// 		{
+		// 			headers: {
+		// 				'Content-Type': 'multipart/form-data',
+		// 			},
+		// 		}
+		// 	)
+		// 	.then((res) => {
+		// 		console.log(res);
+		// 		closeModal();
+		// 		setLook(true);
+		// 	});
+			closeModal();
+			setLook(true);
 	};
 	const goCelubBgImg = () => {
 		const div1 = document.getElementById('myModal');
