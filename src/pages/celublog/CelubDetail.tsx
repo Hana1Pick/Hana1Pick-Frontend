@@ -302,6 +302,8 @@ const CelubDetail: React.FC = () => {
 								<option value='공카댓글'># 공카댓글</option>
 								<option value='이달의생일'># 이달의생일</option>
 								<option value='개인셀카'># 개인셀카</option>
+								<option value='라이브방송'># 라이브방송</option>
+								<option value='활동'># 활동</option>
 							</select>
 						</div>
 						<div className='celub-deposic-balance'>
