@@ -80,18 +80,18 @@ function ImagePage() {
 			<div id='myModal' className='celub-setting-bgModal celub-photo-bgModal'>
 				<div className='celub-setting-modal-content'>
 					<div className='celub-setting-modalTitle celub-photo-modalTitle'>
-						<div>원하는 스티커를 선택해주세요</div>
-						<span className='celub-setting-modal-close' onClick={closeModal}>
+						<div>원하는 스티커를 선택해주세요
+            </div>
+            <span className='celub-setting-modal-close' onClick={closeModal}>
 							&times;
 						</span>
+
             <div className="celub-sticker-box">
               {Object.entries(photoList).map(([key, src]) => (
                 <img key={key} src={src} className="photo-img" alt={key} onClick={goCamera}/>
               ))}
             </div>
 					</div>
-
-					<CommonBtn type='pink' value='선택' onClick={goCamera} />
 				</div>
 			</div>
     </div>

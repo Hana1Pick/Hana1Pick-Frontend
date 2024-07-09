@@ -58,8 +58,42 @@
   object-fit: cover;
 }
 
-.celub-photo-modalTitle{
+
+
+.celub-setting-photo-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+}
+
+.celub-setting-photo-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 20px;
+}
+
+.celub-setting-photo-close {
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.celub-photo-modalTitle{
+ display:block;
+ max-height: 20rem;
+}
+.celub-sticker-box {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+  overflow-y: scroll;
+  max-height: 15rem;
+}
+
+.celub-photo-bgModal{
+  top: 5%;
 }
