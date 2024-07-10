@@ -13,7 +13,14 @@ const photoList: { [key: string]: string } = {
   sticker4: '/photo/sticker4.png',
   sticker5: '/photo/sticker5.png',
   sticker6: '/photo/sticker6.png',
-  sticker7: '/photo/sticker7.png'
+  sticker7: '/photo/sticker7.png',
+  sticker8: '/photo/sticker8.png',
+  sticker9: '/photo/sticker9.png',
+  sticker10: '/photo/sticker10.png',
+  sticker11: '/photo/sticker11.png',
+  sticker12: '/photo/sticker12.png',
+
+
 }
 function ImagePage() {
   const { setImage }: any = useContext(PhotoCardContext);
